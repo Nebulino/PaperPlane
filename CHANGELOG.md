@@ -1,3 +1,9 @@
+## 0.1.1
+
+- Created a 'dev' branch to keep the repo tidy.
+- Preparing for publishing on pub.dev.
+- Added LICENSE.
+
 ## 0.1.0
 #### Pre-release
 
