@@ -3,6 +3,7 @@
  * Copyright (c) 2020 Nebulino
  */
 
+/// Telegram Type Class: Poll library
 library poll;
 
 import 'package:json_annotation/json_annotation.dart';
