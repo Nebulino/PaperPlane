@@ -1,3 +1,7 @@
+## 0.1.2
+
+- Created a 'publish' branch for publishing into pub.dev.
+
 ## 0.1.1
 
 - Created a 'dev' branch to keep the repo tidy.
