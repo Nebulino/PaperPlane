@@ -51,7 +51,7 @@ dependencies:
     git: https://github.com/Nebulino/PaperPlane.git
 ```
 
-From pub.dev (coming soon...):
+From pub.dev:
 ```yaml
 dependencies:
   paperplane: ^0.3.5

@@ -3,6 +3,7 @@
  * Copyright (c) 2020 Nebulino
  */
 
+/// Telegram Type Class: Keyboard library
 library keyboard;
 
 import 'package:json_annotation/json_annotation.dart';

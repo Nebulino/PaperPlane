@@ -3,6 +3,7 @@
  * Copyright (c) 2020 Nebulino
  */
 
+/// Telegram Type Class: Chat library
 library chat;
 
 import 'package:json_annotation/json_annotation.dart';

@@ -3,6 +3,7 @@
  * Copyright (c) 2020 Nebulino
  */
 
+/// Telegram Type Class: Media library
 library media;
 
 import 'package:json_annotation/json_annotation.dart';

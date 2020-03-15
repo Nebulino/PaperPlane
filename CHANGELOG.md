@@ -1,3 +1,10 @@
+## 0.1.3
+
+- Created HTTP Client class in tools.
+- Created Exceptions Classes in exceptions.
+- Added some docs for Telegram API types and other classes.
+- Updated README.md.
+
 ## 0.1.2
 
 - Created a 'publish' branch for publishing into pub.dev.

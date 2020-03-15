@@ -4,6 +4,7 @@
  */
 
 /// Telegram Types
+/// It groups all the Telegram Api types.
 library types;
 
 export 'package:paperplane/src/types/chat.dart';
