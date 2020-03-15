@@ -3,6 +3,7 @@
  * Copyright (c) 2020 Nebulino
  */
 
+/// Telegram Type Class: Game library
 library game;
 
 import 'package:json_annotation/json_annotation.dart';

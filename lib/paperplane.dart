@@ -4,6 +4,7 @@
  */
 
 /// PaperPlane Library
+/// Import this if you want to do a simple bot.
 library paperplane;
 
 export 'src/paperplane.dart';
