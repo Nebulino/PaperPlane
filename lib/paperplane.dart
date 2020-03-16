@@ -7,4 +7,8 @@
 /// Import this if you want to do a simple bot.
 library paperplane;
 
+export 'src/core/methods.dart';
+export 'src/helpers/bot_file.dart';
+export 'src/helpers/paperplane_bot.dart';
 export 'src/paperplane.dart';
+export 'src/telegram.dart';
