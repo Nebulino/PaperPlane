@@ -11,6 +11,7 @@ import 'package:http/http.dart' as http;
 import 'package:paperplane/paperplane.dart';
 import 'package:paperplane/paperplane_exceptions.dart';
 import 'package:paperplane/src/core/types/parse_mode.dart';
+import 'package:paperplane/src/core/types/poll_type.dart';
 import 'package:paperplane/types.dart';
 
 /// Methods Class
@@ -22,14 +23,12 @@ class Methods {
 
   Methods.fromBot(PaperPlane paperplane) : this(paperplane.api);
 
-  /// _get
   /// Helps making a Url for the method and sends a get request.
   Future<dynamic> _get(String method, {Map<String, dynamic> parameters}) {
     return _api.client.get(Uri.https(
         'api.telegram.org', '/bot${_api.token}/${method}', parameters));
   }
 
-  /// _post
   /// Helps making a Url for the method and sends a post request.
   Future<dynamic> _post(String method, Map<String, dynamic> body) {
     return _api.client.post(
@@ -37,7 +36,6 @@ class Methods {
         parameters: body);
   }
 
-  /// _MultiFilePost
   /// Helps making a Url for the method. It sends [files] via Multipart.
   Future<dynamic> _multipart_post(String method, List<http.MultipartFile> files,
       Map<String, dynamic> body) async {
@@ -46,7 +44,6 @@ class Methods {
         parameters: body);
   }
 
-  /// getUpdates
   /// Use this method to receive incoming updates using long polling.
   /// An Array of [Update] objects is returned.
   ///
@@ -69,7 +66,6 @@ class Methods {
     return updates;
   }
 
-  /// getMe
   /// Returns all bot info as a [User] object.
   ///
   /// https://core.telegram.org/bots/api#getMe
@@ -77,7 +73,6 @@ class Methods {
     return User.fromJson(await _get('getMe'));
   }
 
-  /// getBot
   /// Returns all bot info as a [Bot] object.
   ///
   /// https://core.telegram.org/bots/api#getMe
@@ -100,7 +95,6 @@ class Methods {
     return Future.error(TelegramMethodException('Not yet Implemented'));
   }
 
-  /// sendMessage
   /// Use this method to send text messages.
   /// On success, the sent [Message] is returned.
   ///
@@ -123,7 +117,6 @@ class Methods {
     return Message.fromJson(await _post('sendMessage', body));
   }
 
-  /// forwardMessage
   /// Use this method to forward messages of any kind.
   /// On success, the sent [Message] is returned.
   ///
@@ -138,7 +131,6 @@ class Methods {
     return Message.fromJson(await _post('forwardMessage', body));
   }
 
-  /// sendPhoto
   /// Use this method to send photos.
   /// On success, the sent [Message] is returned.
   /// [photo] argument accepts [io.File] file, [Uint8List] blob or [String] url.
@@ -183,7 +175,6 @@ class Methods {
     }
   }
 
-  /// sendAudio
   /// Use this method to send audio files,
   /// if you want Telegram clients to display them in the music player.
   /// Your audio must be in the .MP3 or .M4A format.
@@ -280,7 +271,6 @@ class Methods {
     }
   }
 
-  /// sendDocument
   /// Use this method to send general files.
   /// On success, the sent [Message] is returned.
   /// Bots can currently send files of any type of
@@ -352,7 +342,6 @@ class Methods {
     }
   }
 
-  /// sendVideo
   /// Use this method to send video files,
   /// Telegram clients support mp4 videos
   /// (other formats may be sent as Document).
@@ -448,7 +437,6 @@ class Methods {
     }
   }
 
-  /// sendAnimation
   /// Use this method to send animation files
   /// (GIF or H.264/MPEG-4 AVC video without sound).
   /// On success, the sent [Message] is returned.
@@ -543,7 +531,6 @@ class Methods {
     }
   }
 
-  /// sendVoice
   /// Use this method to send audio files,
   /// if you want Telegram clients to display
   /// the file as a playable voice message.
@@ -613,7 +600,6 @@ class Methods {
     }
   }
 
-  /// sendVideoNote
   /// As of v.4.0,
   /// Telegram clients support rounded square mp4 videos of up to 1 minute long.
   /// Use this method to send video messages.
@@ -700,10 +686,11 @@ class Methods {
     }
   }
 
-  /// sendMediaGroup
   /// Use this method to send a group of photos or videos as an album.
   /// On success, an array of the sent [Messages] is returned.
   /// [media] is a List of [InputMediaPhoto] and/or [InputMediaVideo].
+  ///
+  /// [Messages]: [message]
   ///
   /// https://core.telegram.org/bots/api#sendmediagroup
   Future<List<Message>> sendMediaGroup(int chat_id, List<InputMedia> media,
@@ -718,8 +705,8 @@ class Methods {
           'media can not be longer than 10 InputMedia objects.');
     }
 
-    var files = <http.MultipartFile>[];
-    var messages = <Message>[];
+    // var files = <http.MultipartFile>[];
+    // var messages = <Message>[];
 
     media.forEach((element) {
       if (element.type != 'photo' || element.type != 'video') {
@@ -735,34 +722,194 @@ class Methods {
     return Future.error(TelegramMethodException('Not yet Implemented'));
   }
 
-  /// sendLocation
+  /// Use this method to send point on the map.
+  /// On success, the sent [Message] is returned.
   ///
   /// https://core.telegram.org/bots/api#sendlocation
-  Future<Message> sendLocation() async {
-    return Future.error(TelegramMethodException('Not yet Implemented'));
+  Future<Message> sendLocation(int chat_id, double latitude, double longitude,
+      {int live_period,
+      bool disable_notification,
+      int reply_to_message_id,
+      ReplyMarkup reply_markup}) async {
+    var body = <String, dynamic>{};
+    body['chat_id'] = chat_id;
+    body['latitude'] = latitude;
+    body['longitude'] = longitude;
+    body['live_period'] = (live_period ?? '');
+    body['disable_notification'] = (disable_notification ?? '');
+    body['reply_to_message_id'] = (reply_to_message_id ?? '');
+    body['reply_markup'] =
+        (reply_markup == null ? '' : jsonEncode(reply_markup));
+
+    return Message.fromJson(await _post('sendLocation', body));
   }
 
-  /// editMessageLiveLocation
+  /// Use this method to edit live location messages.
+  /// A location can be edited until its live_period expires
+  /// or editing is explicitly disabled by a call
+  /// to stopMessageLiveLocation.
+  /// On success, if the edited message was sent by the bot,
+  /// the edited [Message] is returned,
+  /// otherwise True is returned.
   ///
   /// https://core.telegram.org/bots/api#editmessagelivelocation
-  Future<Message> editMessageLiveLocation() async {
-    return Future.error(TelegramMethodException('Not yet Implemented'));
+  Future<Message> editMessageLiveLocation(double latitude, double longitude,
+      {int chat_id,
+      int message_id,
+      String inline_message_id,
+      ReplyMarkup reply_markup}) async {
+    if (inline_message_id == null && (chat_id == null || message_id == null)) {
+      return Future.error(TelegramMethodException(
+          'At least inline_message_id is required. Can be used also chat_id and message_id.'));
+    }
+
+    var body = <String, dynamic>{};
+    body['latitude'] = latitude;
+    body['longitude'] = longitude;
+    body['chat_id'] = (chat_id ?? '');
+    body['message_id'] = (message_id ?? '');
+    body['inline_message_id'] = (inline_message_id ?? '');
+    body['reply_markup'] =
+        (reply_markup == null ? '' : jsonEncode(reply_markup));
+
+    return Message.fromJson(await _post('editMessageLiveLocation', body));
   }
 
-  Future<Message> stopMessageLiveLocation() async {
-    return Future.error(TelegramMethodException('Not yet Implemented'));
+  /// Use this method to stop updating a live location message
+  /// before live_period expires.
+  /// On success, if the message was sent by the bot,
+  /// the sent [Message] is returned, otherwise True is returned.
+  ///
+  /// https://core.telegram.org/bots/api#stopmessagelivelocation
+  Future<Message> stopMessageLiveLocation(
+      {int chat_id,
+      int message_id,
+      String inline_message_id,
+      ReplyMarkup reply_markup}) async {
+    if (inline_message_id == null && (chat_id == null || message_id == null)) {
+      return Future.error(TelegramMethodException(
+          'At least inline_message_id is required. Can be used also chat_id and message_id.'));
+    }
+
+    var body = <String, dynamic>{};
+    body['chat_id'] = (chat_id ?? '');
+    body['message_id'] = (message_id ?? '');
+    body['inline_message_id'] = (inline_message_id ?? '');
+    body['reply_markup'] =
+        (reply_markup == null ? '' : jsonEncode(reply_markup));
+
+    return Message.fromJson(await _post('stopMessageLiveLocation', body));
   }
 
-  Future<Message> sendVenue() async {
-    return Future.error(TelegramMethodException('Not yet Implemented'));
+  /// Use this method to send information about a venue.
+  /// On success, the sent [Message] is returned.
+  ///
+  /// https://core.telegram.org/bots/api#sendvenue
+  Future<Message> sendVenue(int chat_id, double latitude, double longitude,
+      String title, String address,
+      {String foursquare_id,
+      String foursquare_type,
+      bool disable_notification,
+      int reply_to_message_id,
+      ReplyMarkup reply_markup}) async {
+    var body = <String, dynamic>{};
+    body['chat_id'] = chat_id;
+    body['latitude'] = latitude;
+    body['longitude'] = longitude;
+    body['title'] = title;
+    body['address'] = address;
+    body['foursquare_id'] = (foursquare_id ?? '');
+    body['foursquare_type'] = (foursquare_type ?? '');
+    body['disable_notification'] = (disable_notification ?? '');
+    body['reply_to_message_id'] = (reply_to_message_id ?? '');
+    body['reply_markup'] =
+        (reply_markup == null ? '' : jsonEncode(reply_markup));
+
+    return Message.fromJson(await _post('sendVenue', body));
   }
 
-  Future<Message> sendContact() async {
-    return Future.error(TelegramMethodException('Not yet Implemented'));
+  /// Use this method to send phone contacts.
+  /// On success, the sent [Message] is returned.
+  ///
+  /// https://core.telegram.org/bots/api#sendcontact
+  Future<Message> sendContact(
+      int chat_id, String phone_number, String first_name,
+      {String last_name,
+      String vcard,
+      bool disable_notification,
+      int reply_to_message_id,
+      ReplyMarkup reply_markup}) async {
+    var body = <String, dynamic>{};
+    body['chat_id'] = chat_id;
+    body['phone_number'] = phone_number;
+    body['first_name'] = first_name;
+    body['last_name'] = (last_name ?? '');
+    body['vcard'] = (vcard ?? '');
+    body['disable_notification'] = (disable_notification ?? '');
+    body['reply_to_message_id'] = (reply_to_message_id ?? '');
+    body['reply_markup'] =
+        (reply_markup == null ? '' : jsonEncode(reply_markup));
+
+    return Message.fromJson(await _post('sendContact', body));
   }
 
-  Future<Message> sendPoll() async {
-    return Future.error(TelegramMethodException('Not yet Implemented'));
+  /// Use this method to send a native poll.
+  /// On success, the sent [Message] is returned.
+  ///
+  /// https://core.telegram.org/bots/api#sendpoll
+  Future<Message> sendPoll(int chat_id, String question, List<String> options,
+      {bool is_anonymous,
+      PollType type,
+      bool allows_multiple_answers,
+      int correct_option_id,
+      bool is_closed,
+      bool disable_notification,
+      int reply_to_message_id,
+      ReplyMarkup reply_markup}) async {
+    var body = <String, dynamic>{};
+    body['chat_id'] = chat_id;
+    body['question'] = question;
+    body['options'] = jsonEncode(options);
+    body['is_anonymous'] = (is_anonymous ?? '');
+    body['type'] = (type ?? PollType.Regular());
+    body['allows_multiple_answers'] = (allows_multiple_answers ?? '');
+    body['correct_option_id'] = (correct_option_id ?? '');
+    body['is_closed'] = (is_closed ?? '');
+    body['disable_notification'] = (disable_notification ?? '');
+    body['reply_to_message_id'] = (reply_to_message_id ?? '');
+    body['reply_markup'] =
+        (reply_markup == null ? '' : jsonEncode(reply_markup));
+
+    return Message.fromJson(await _post('sendPoll', body));
+  }
+
+  /// Use this method when you need to tell the user
+  /// that something is happening on the bot's side.
+  /// The status is set for 5 seconds or less
+  /// (when a message arrives from your bot,
+  /// Telegram clients clear its typing status).
+  /// Returns True on success.
+  ///
+  /// Example: The [ImageBot] needs some time to process a request
+  /// and upload the image.
+  /// Instead of sending a text message along the lines of
+  /// “Retrieving image, please wait…”,
+  /// the bot may use [sendChatAction] with
+  /// action = upload_photo.
+  /// The user will see a “sending photo” status for the bot.
+  ///
+  /// We only recommend using this method when a response
+  /// from the bot will take a noticeable amount of time to arrive.
+  ///
+  /// [ImageBot]: https://t.me/imagebot
+  ///
+  /// https://core.telegram.org/bots/api#sendchataction
+  Future<bool> sendChatAction(int chat_id, String action) async {
+    var body = <String, dynamic>{};
+    body['chat_id'] = chat_id;
+    body['action'] = action;
+
+    return await _post('sendChatAction', body);
   }
 
   Future<UserProfilePhotos> getUserProfilePhotos() async {
