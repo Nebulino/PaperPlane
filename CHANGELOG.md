@@ -1,3 +1,9 @@
+## 0.2.2
+
+- Implemented more methods.
+- Modified some docs.
+- Created PollType for Telegram 4.6.
+
 ## 0.2.1
 
 - TODO: create a list of implemented methods.
