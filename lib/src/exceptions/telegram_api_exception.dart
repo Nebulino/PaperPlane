@@ -7,7 +7,6 @@
 /// It implements [Exception] class.
 /// You can find [error_code] and [error_name] received from the Telegram Api.
 class TelegramException implements Exception {
-
   int error_code;
   String error_name;
 

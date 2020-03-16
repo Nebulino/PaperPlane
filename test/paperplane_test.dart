@@ -19,7 +19,7 @@ void main() {
 
     test('PaperPlane Tests', () {
       expect(paperplane, isA<PaperPlane>());
-      expect(paperplane.token, isA<String>());
+      expect(paperplane.api.token, isA<String>());
     });
   });
 }
