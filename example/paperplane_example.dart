@@ -28,6 +28,6 @@ void main() async {
   var methods = Methods.fromBot(bot);
   // fake chat_id
   var a_chat_id = 999999999;
-  
+
   await methods.sendMessage(a_chat_id, 'Hi from PaperPlane!');
 }

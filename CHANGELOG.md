@@ -1,3 +1,20 @@
+## 0.2.1
+
+- TODO: create a list of implemented methods.
+- Changed the version on pubspec.yaml.
+
+## 0.2.0
+#### Big update.
+
+- Modified PaperPlane class, it can make bots now.
+- Created Telegram Class, it helps bridging PaperPlane and Telegram Api methods.
+- Created methods class, it contains Telegram Api methods needs to be completed.
+- Created chat_actions class.
+- Created parse_mode class.
+- Created some helpers such as bot_file, constant and paperplane_bot local type.
+- Fixed the previous commit, without http_client class.
+
+
 ## 0.1.3
 
 - Created HTTP Client class in tools.

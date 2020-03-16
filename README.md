@@ -59,7 +59,10 @@ dependencies:
 
 ## Features and bugs
 
-For now, it's not working. 
+#### For now, some methods are working.
+Still not implemented the LongPolling and Webhook.
+You can use it for now by doing a while(true). 
+
 I have created all Telegram API Classes for each Telegram Types.
 
 Please file feature requests and bugs at the [issue tracker][tracker].
