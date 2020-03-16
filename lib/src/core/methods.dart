@@ -912,88 +912,392 @@ class Methods {
     return await _post('sendChatAction', body);
   }
 
-  Future<UserProfilePhotos> getUserProfilePhotos() async {
-    return Future.error(TelegramMethodException('Not yet Implemented'));
+  /// Use this method to get a list of profile pictures for a user.
+  /// Returns a [UserProfilePhotos] object.
+  ///
+  /// https://core.telegram.org/bots/api#getuserprofilephotos
+  Future<UserProfilePhotos> getUserProfilePhotos(int user_id,
+      {int offset, int limit}) async {
+    var body = <String, dynamic>{};
+    body['user_id'] = user_id;
+    body['offset'] = (offset ?? '');
+    body['limit'] = (limit ?? '');
+
+    return UserProfilePhotos.fromJson(
+        await _post('getUserProfilePhotos', body));
   }
 
-  Future<File> getFile() async {
-    return Future.error(TelegramMethodException('Not yet Implemented'));
+  /// Use this method to get basic info about a file and prepare
+  /// it for downloading.
+  /// For the moment, bots can download files of up to 20MB in size.
+  /// On success, a [File] object is returned.
+  /// The file can then be downloaded via the link
+  /// https://api.telegram.org/file/bot<token>/<file_path>,
+  /// where <file_path> is taken from the response.
+  /// It is guaranteed that the link will be valid for at least 1 hour.
+  /// When the link expires,
+  /// a new one can be requested by calling getFile again.
+  ///
+  /// Note: This function may not preserve the original file name and MIME type.
+  /// You should save the file's MIME type and name (if available)
+  /// when the File object is received.
+  ///
+  /// https://core.telegram.org/bots/api#getfile
+  Future<File> getFile(String file_id) async {
+    var body = <String, dynamic>{};
+    body['file_id'] = file_id;
+
+    return File.fromJson(await _post('getFile', body));
   }
 
-  Future<bool> kickChatMember() async {
-    return Future.error(TelegramMethodException('Not yet Implemented'));
+  /// Use this method to kick a user from a group, a supergroup or a channel.
+  /// In the case of supergroups and channels,
+  /// the user will not be able to return to the group on
+  /// their own using invite links, etc., unless unbanned first.
+  /// The bot must be an administrator in the chat for this to work
+  /// and must have the appropriate admin rights. Returns True on success.
+  ///
+  /// https://core.telegram.org/bots/api#kickchatmember
+  Future<bool> kickChatMember(int chat_id, int user_id,
+      {int until_date}) async {
+    var body = <String, dynamic>{};
+    body['chat_id'] = chat_id;
+    body['user_id'] = user_id;
+    body['until_date'] = (until_date ?? '');
+
+    return await _post('kickChatMember', body);
   }
 
-  Future<bool> unbanChatMember() async {
-    return Future.error(TelegramMethodException('Not yet Implemented'));
+  /// Use this method to unban a previously kicked user in a
+  /// supergroup or channel. The user will not return to the group or channel
+  /// automatically, but will be able to join via link, etc.
+  /// The bot must be an administrator for this to work.
+  /// Returns True on success.
+  ///
+  /// https://core.telegram.org/bots/api#unbanchatmember
+  Future<bool> unbanChatMember(int chat_id, int user_id) async {
+    var body = <String, dynamic>{};
+    body['chat_id'] = chat_id;
+    body['user_id'] = user_id;
+
+    return await _post('unbanChatMember', body);
   }
 
-  Future<bool> restrictChatMember() async {
-    return Future.error(TelegramMethodException('Not yet Implemented'));
+  /// Use this method to restrict a user in a supergroup.
+  /// The bot must be an administrator in the supergroup for this
+  /// to work and must have the appropriate admin rights.
+  /// Pass True for all permissions to lift restrictions from a user.
+  /// Returns True on success.
+  ///
+  /// https://core.telegram.org/bots/api#restrictchatmember
+  Future<bool> restrictChatMember(int chat_id, int user_id,
+      {ChatPermissions permissions, int until_date}) async {
+    var body = <String, dynamic>{};
+    body['chat_id'] = chat_id;
+    body['user_id'] = user_id;
+    body['permissions'] = (permissions == null ? '' : jsonEncode(permissions));
+    body['until_date'] = (until_date ?? '');
+
+    return await _post('restrictChatMember', body);
   }
 
-  Future<bool> promoteChatMember() async {
-    return Future.error(TelegramMethodException('Not yet Implemented'));
+  /// Use this method to promote or demote a user in a supergroup or a channel.
+  /// The bot must be an administrator in the chat for this to work and
+  /// must have the appropriate admin rights.
+  /// Pass False for all boolean parameters to demote a user.
+  /// Returns True on success.
+  ///
+  /// https://core.telegram.org/bots/api#restrictchatmember
+  Future<bool> promoteChatMember(int chat_id, int user_id,
+      {bool can_change_info,
+      bool can_post_messages,
+      bool can_edit_messages,
+      bool can_delete_messages,
+      bool can_invite_users,
+      bool can_restrict_members,
+      bool can_pin_messages,
+      bool can_promote_members}) async {
+    var body = <String, dynamic>{};
+    body['chat_id'] = chat_id;
+    body['user_id'] = user_id;
+    body['can_change_info'] = (can_change_info ?? '');
+    body['can_post_messages'] = (can_post_messages ?? '');
+    body['can_edit_messages'] = (can_edit_messages ?? '');
+    body['can_delete_messages'] = (can_delete_messages ?? '');
+    body['can_invite_users'] = (can_invite_users ?? '');
+    body['can_restrict_members'] = (can_restrict_members ?? '');
+    body['can_pin_messages'] = (can_pin_messages ?? '');
+    body['can_promote_members'] = (can_promote_members ?? '');
+
+    return await _post('promoteChatMember', body);
   }
 
-  Future<bool> setChatAdministratorCustomTitle() async {
-    return Future.error(TelegramMethodException('Not yet Implemented'));
+  /// Use this method to set a custom title for an administrator
+  /// in a supergroup promoted by the bot.
+  /// Returns True on success.
+  ///
+  /// https://core.telegram.org/bots/api#setchatadministratorcustomtitle
+  Future<bool> setChatAdministratorCustomTitle(
+      int chat_id, int user_id, String custom_title) async {
+    var body = <String, dynamic>{};
+    body['chat_id'] = chat_id;
+    body['user_id'] = user_id;
+    body['custom_title'] = (custom_title ?? '');
+
+    return await _post('setChatAdministratorCustomTitle', body);
   }
 
-  Future<bool> setChatPermissions() async {
-    return Future.error(TelegramMethodException('Not yet Implemented'));
+  /// Use this method to set default chat permissions for all members.
+  /// The bot must be an administrator in the group or a supergroup
+  /// for this to work and must have the can_restrict_members admin rights.
+  /// Returns True on success.
+  ///
+  /// https://core.telegram.org/bots/api#setchatpermissions
+  Future<bool> setChatPermissions(
+      int chat_id, ChatPermissions permissions) async {
+    var body = <String, dynamic>{};
+    body['chat_id'] = chat_id;
+    body['permissions'] = permissions;
+
+    return await _post('setChatPermissions', body);
   }
 
-  Future<bool> exportChatInviteLink() async {
-    return Future.error(TelegramMethodException('Not yet Implemented'));
+  /// Use this method to generate a new invite link for a chat;
+  /// any previously generated link is revoked.
+  /// The bot must be an administrator in the chat for this to work and must
+  /// have the appropriate admin rights. Returns the new invite
+  /// link as String on success.
+  ///
+  /// https://core.telegram.org/bots/api#setchatpermissions
+  Future<bool> exportChatInviteLink(int chat_id) async {
+    var body = <String, dynamic>{};
+    body['chat_id'] = chat_id;
+
+    return await _post('exportChatInviteLink', body);
   }
 
-  Future<bool> setChatPhoto() async {
-    return Future.error(TelegramMethodException('Not yet Implemented'));
+  /// Use this method to set a new profile photo for the chat.
+  /// Photos can't be changed for private chats.
+  /// The bot must be an administrator in the chat
+  /// for this to work and must have the appropriate admin rights.
+  /// Returns True on success.
+  ///
+  /// https://core.telegram.org/bots/api#setchatphoto
+  Future<bool> setChatPhoto(int chat_id, dynamic photo) async {
+    var body = <String, dynamic>{};
+    body['chat_id'] = chat_id;
+
+    var files = <http.MultipartFile>[];
+
+    if (photo is io.File) {
+      files.add(http.MultipartFile(
+          'photo', photo.openRead(), photo.lengthSync(),
+          filename: 'Photo-${DateTime.now()}'));
+    } else if (photo is Uint8List) {
+      var photo_from_blob = io.File.fromRawPath(photo);
+      files.add(http.MultipartFile(
+          'photo', photo_from_blob.openRead(), photo_from_blob.lengthSync(),
+          filename: 'Photo-${DateTime.now()}'));
+    } else {
+      return Future.error(
+          TelegramMethodException('photo can only be io.File or blob.'));
+    }
+
+    return await _multipart_post('setChatPhoto', files, body);
   }
 
-  Future<bool> deleteChatPhoto() async {
-    return Future.error(TelegramMethodException('Not yet Implemented'));
+  /// Use this method to delete a chat photo.
+  /// Photos can't be changed for private chats.
+  /// The bot must be an administrator in the chat for this
+  /// to work and must have the appropriate admin rights.
+  /// Returns True on success.
+  ///
+  /// https://core.telegram.org/bots/api#deletechatphoto
+  Future<bool> deleteChatPhoto(int chat_id) async {
+    var body = <String, dynamic>{};
+    body['chat_id'] = chat_id;
+
+    return await _post('deleteChatPhoto', body);
   }
 
-  Future<bool> setChatDescription() async {
-    return Future.error(TelegramMethodException('Not yet Implemented'));
+  /// Use this method to change the title of a chat.
+  /// Titles can't be changed for private chats.
+  /// The bot must be an administrator in the chat
+  /// for this to work and must have the appropriate admin rights.
+  /// Returns True on success.
+  ///
+  /// https://core.telegram.org/bots/api#setchattitle
+  Future<bool> setChatTitle(int chat_id, String title) async {
+    var body = <String, dynamic>{};
+    body['chat_id'] = chat_id;
+    body['title'] = title;
+
+    return await _post('setChatTitle', body);
   }
 
-  Future<bool> pinChatMessage() async {
-    return Future.error(TelegramMethodException('Not yet Implemented'));
+  /// Use this method to change the description of a group,
+  /// a supergroup or a channel.
+  /// The bot must be an administrator in the chat
+  /// for this to work and must have the appropriate admin rights.
+  /// Returns True on success.
+  ///
+  /// https://core.telegram.org/bots/api#setchatdescription
+  Future<bool> setChatDescription(int chat_id, {String description}) async {
+    var body = <String, dynamic>{};
+    body['chat_id'] = chat_id;
+    body['description'] = (description ?? '');
+
+    return await _post('setChatDescription', body);
   }
 
-  Future<bool> unpinChatMessage() async {
-    return Future.error(TelegramMethodException('Not yet Implemented'));
+  /// Use this method to pin a message in a group, a supergroup, or a channel.
+  /// The bot must be an administrator in the chat for this to work and must
+  /// have the ‘can_pin_messages’ admin right in the supergroup or
+  /// ‘can_edit_messages’ admin right in the channel.
+  /// Returns True on success.
+  ///
+  /// https://core.telegram.org/bots/api#pinchatmessage
+  Future<bool> pinChatMessage(int chat_id, int message_id,
+      {bool disable_notification}) async {
+    var body = <String, dynamic>{};
+    body['chat_id'] = chat_id;
+    body['message_id'] = message_id;
+    body['disable_notification'] = (disable_notification ?? '');
+
+    return await _post('pinChatMessage', body);
   }
 
-  Future<bool> leaveChat() async {
-    return Future.error(TelegramMethodException('Not yet Implemented'));
+  /// Use this method to unpin a message in a group, a supergroup, or a channel.
+  /// The bot must be an administrator in the chat for this to
+  /// work and must have the ‘can_pin_messages’ admin right in
+  /// the supergroup or ‘can_edit_messages’ admin right in the channel.
+  /// Returns True on success.
+  ///
+  /// https://core.telegram.org/bots/api#unpinchatmessage
+  Future<bool> unpinChatMessage(int chat_id) async {
+    var body = <String, dynamic>{};
+    body['chat_id'] = chat_id;
+
+    return await _post('pinChatMessage', body);
   }
 
-  Future<Chat> getChat() async {
-    return Future.error(TelegramMethodException('Not yet Implemented'));
+  /// Use this method for your bot to leave a group, supergroup or channel.
+  /// Returns True on success.
+  ///
+  /// https://core.telegram.org/bots/api#leavechat
+  Future<bool> leaveChat(int chat_id) async {
+    var body = <String, dynamic>{};
+    body['chat_id'] = chat_id;
+
+    return await _post('leaveChat', body);
   }
 
-  Future<int> getChatMembersCount() async {
-    return Future.error(TelegramMethodException('Not yet Implemented'));
+  /// Use this method to get up to date information about the chat
+  /// (current name of the user for one-on-one conversations,
+  /// current username of a user, group or channel, etc.).
+  /// Returns a [Chat] object on success.
+  ///
+  /// https://core.telegram.org/bots/api#getchat
+  Future<Chat> getChat(int chat_id) async {
+    var body = <String, dynamic>{};
+    body['chat_id'] = chat_id;
+
+    return Chat.fromJson(await _post('getChat', body));
   }
 
-  Future<ChatMember> getChatMember() async {
-    return Future.error(TelegramMethodException('Not yet Implemented'));
+  /// Use this method to get a list of administrators in a chat.
+  /// On success, returns an Array of [ChatMember] objects that
+  /// contains information about all chat administrators except other bots.
+  /// If the chat is a group or a supergroup and no administrators
+  /// were appointed, only the creator will be returned.
+  ///
+  /// https://core.telegram.org/bots/api#getchatadministrators
+  Future<List<ChatMember>> getChatAdministrators(int chat_id) async {
+    var body = <String, dynamic>{};
+    body['chat_id'] = chat_id;
+
+    return (await _post('getChatAdministrators', body))
+        .map<ChatMember>((member) => ChatMember.fromJson(member))
+        .toList();
   }
 
-  Future<bool> sendChatStickerSet() async {
-    return Future.error(TelegramMethodException('Not yet Implemented'));
+  /// Use this method to get the number of members in a chat.
+  /// Returns Int on success.
+  ///
+  /// https://core.telegram.org/bots/api#getchatmemberscount
+  Future<int> getChatMembersCount(int chat_id) async {
+    var body = <String, dynamic>{};
+    body['chat_id'] = chat_id;
+
+    return await _post('getChatMembersCount', body);
   }
 
-  Future<bool> deleteChatStickerSet() async {
-    return Future.error(TelegramMethodException('Not yet Implemented'));
+  /// Use this method to get information about a member of a chat.
+  /// Returns a [ChatMember] object on success.
+  ///
+  /// https://core.telegram.org/bots/api#getchatmember
+  Future<ChatMember> getChatMember(int chat_id, int user_id) async {
+    var body = <String, dynamic>{};
+    body['chat_id'] = chat_id;
+    body['user_id'] = user_id;
+
+    return ChatMember.fromJson(await _post('getChatMember', body));
   }
 
-  Future<bool> answerCallbackQuery() async {
-    return Future.error(TelegramMethodException('Not yet Implemented'));
+  /// Use this method to set a new group sticker set for a supergroup.
+  /// The bot must be an administrator in the chat for this to work and
+  /// must have the appropriate admin rights. Use the field can_set_sticker_set
+  /// optionally returned in getChat requests to check
+  /// if the bot can use this method.
+  /// Returns True on success.
+  ///
+  /// https://core.telegram.org/bots/api#setchatstickerset
+  Future<bool> setChatStickerSet(int chat_id, String sticker_set_name) async {
+    var body = <String, dynamic>{};
+    body['chat_id'] = chat_id;
+    body['sticker_set_name'] = sticker_set_name;
+
+    return await _post('setChatStickerSet', body);
+  }
+
+  /// Use this method to delete a group sticker set from a supergroup.
+  /// The bot must be an administrator in the chat for this to work
+  /// and must have the appropriate admin rights.
+  /// Use the field can_set_sticker_set optionally returned in getChat
+  /// requests to check if the bot can use this method.
+  /// Returns True on success.
+  ///
+  /// https://core.telegram.org/bots/api#deletechatstickerset
+  Future<bool> deleteChatStickerSet(int chat_id) async {
+    var body = <String, dynamic>{};
+    body['chat_id'] = chat_id;
+
+    return await _post('deleteChatStickerSet', body);
+  }
+
+  /// Use this method to send answers to callback queries sent
+  /// from inline keyboards.
+  /// The answer will be displayed to the user as a notification
+  /// at the top of the chat screen or as an alert.
+  /// On success, True is returned.
+  ///
+  /// Alternatively, the user can be redirected to the specified Game URL.
+  /// For this option to work, you must first create a game
+  /// for your bot via @Botfather and accept the terms.
+  /// Otherwise, you may use links like t.me/your_bot?start=XXXX
+  /// that open your bot with a parameter.
+  ///
+  /// https://core.telegram.org/bots/api#answercallbackquery
+  Future<bool> answerCallbackQuery(int callback_query_id,
+      {String text, bool show_alert, String url, int cache_time}) async {
+    var body = <String, dynamic>{};
+    body['callback_query_id'] = callback_query_id;
+    body['text'] = (text ?? '');
+    body['show_alert'] = (show_alert ?? '');
+    body['url'] = (url ?? '');
+    body['cache_time'] = (cache_time ?? '');
+
+    return await _post('answerCallbackQuery', body);
   }
 
   Future<Message> editMessageText() async {
