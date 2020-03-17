@@ -5,7 +5,6 @@
 
 import 'package:paperplane/types.dart';
 
-/// Bot Class
 /// This is "a bridge" that connects Bot concept and User (telegram.types) concept.
 class Bot {
   String token;

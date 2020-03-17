@@ -7,7 +7,6 @@ import 'package:paperplane/paperplane.dart';
 import 'package:paperplane/paperplane_exceptions.dart';
 import 'package:paperplane/src/helpers/paperplane_bot.dart';
 
-/// PaperPlane Class
 /// This is the brain of my Wrapper.
 /// You need to import at least this to create a simple bot.
 class PaperPlane {

@@ -3,7 +3,6 @@
  * Copyright (c) 2020 Nebulino
  */
 
-/// HttpClientException object
 /// It implements [Exception] class.
 /// You can find [error] that gives a brief error information.
 class HttpClientException implements Exception {

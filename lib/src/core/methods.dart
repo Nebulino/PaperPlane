@@ -14,13 +14,14 @@ import 'package:paperplane/src/core/types/parse_mode.dart';
 import 'package:paperplane/src/core/types/poll_type.dart';
 import 'package:paperplane/types.dart';
 
-/// Methods Class
-/// All Telegram API
+/// You can find all Telegram API methods.
 class Methods {
   final Telegram _api;
 
+  /// It creates all methods necessary information from a [Telegram] Object.
   Methods(this._api);
 
+  /// It creates all methods necessary information from a [PaperPlane] bot.
   Methods.fromBot(PaperPlane paperplane) : this(paperplane.api);
 
   /// Helps making a Url for the method and sends a get request.

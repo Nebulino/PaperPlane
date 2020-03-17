@@ -3,7 +3,7 @@
  * Copyright (c) 2020 Nebulino
  */
 
-/// PaperPlane Library
+/// PaperPlane Library.
 /// Import this if you want to do a simple bot.
 library paperplane;
 
