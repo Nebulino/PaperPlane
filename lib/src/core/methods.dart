@@ -10,6 +10,7 @@ import 'dart:typed_data';
 import 'package:http/http.dart' as http;
 import 'package:paperplane/paperplane.dart';
 import 'package:paperplane/paperplane_exceptions.dart';
+import 'package:paperplane/src/core/types/chat_actions.dart';
 import 'package:paperplane/src/core/types/parse_mode.dart';
 import 'package:paperplane/src/core/types/poll_type.dart';
 import 'package:paperplane/types.dart';
@@ -951,7 +952,7 @@ class Methods {
   /// [ImageBot]: https://t.me/imagebot
   ///
   /// https://core.telegram.org/bots/api#sendchataction
-  Future<bool> sendChatAction(int chat_id, String action) async {
+  Future<bool> sendChatAction(int chat_id, ChatAction action) async {
     var body = <String, dynamic>{};
     body['chat_id'] = chat_id;
     body['action'] = action;

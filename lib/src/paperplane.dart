@@ -13,6 +13,10 @@ class PaperPlane {
   Telegram api;
   Bot _me;
 
+  static PaperPlane _paperplane;
+
+  static PaperPlane get fly => _paperplane;
+
   bool isReady = false;
 
   PaperPlane._({this.api});
@@ -29,6 +33,7 @@ class PaperPlane {
       throw PaperPlaneException(description: 'Api not created correctly');
     }
     await api.methods.getBot().then(_botSelfSetup);
+    _paperplane = this;
     return this;
   }
 
