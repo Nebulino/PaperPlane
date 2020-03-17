@@ -1,3 +1,9 @@
+## 0.3.0
+#### Big update.
+
+- Finished implementing all Telegram Api Methods.
+- TODO: make possible using @username in chat_id in some methods.
+
 ## 0.2.2
 
 - Implemented more methods.
