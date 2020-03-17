@@ -80,19 +80,63 @@ class Methods {
     return Bot.fromData(await _get('getMe'));
   }
 
-  Future<bool> setWebhook() async {
-    // TODO: implement setWebhook
-    return Future.error(TelegramMethodException('Not yet Implemented'));
+  /// Use this method to specify a url and receive incoming updates
+  /// via an outgoing webhook.
+  /// Whenever there is an update for the bot,
+  /// we will send an HTTPS POST request to the specified url,
+  /// containing a JSON-serialized [Update].
+  /// In case of an unsuccessful request,
+  /// we will give up after a reasonable amount of attempts.
+  /// Returns True on success.
+  ///
+  /// If you'd like to make sure that the
+  /// Webhook request comes from Telegram,
+  /// we recommend using a secret path in the URL,
+  /// e.g. https://www.example.com/<token>.
+  ///
+  /// Since nobody else knows your bot‘s token,
+  /// you can be pretty sure it’s us.
+  ///
+  /// https://core.telegram.org/bots/api#setwebhook
+  Future<bool> setWebhook(String url,
+      {io.File certificate,
+      int max_connections,
+      List<String> allowed_updates}) async {
+    var body = <String, dynamic>{};
+    body['url'] = url;
+    body['max_connections'] = (max_connections ?? '');
+    body['allowed_updates'] =
+        (allowed_updates == null ? '' : jsonEncode(allowed_updates));
+
+    if (certificate != null) {
+      var files = <http.MultipartFile>[];
+      files.add(http.MultipartFile(
+          'certificate', certificate.openRead(), certificate.lengthSync(),
+          filename: 'Certificate-${DateTime.now()}'));
+      return await _multipart_post('setWebhook', files, body);
+    }
+
+    return await _post('setWebhook', body);
   }
 
+  /// Use this method to remove webhook integration
+  /// if you decide to switch back to getUpdates.
+  /// Returns True on success. Requires no parameters.
+  ///
+  /// https://core.telegram.org/bots/api#deletewebhook
   Future<bool> deleteWebhook() async {
-    // TODO: implement setWebhook
-    return Future.error(TelegramMethodException('Not yet Implemented'));
+    return await _get('deleteWebhook');
   }
 
+  /// Use this method to get current webhook status.
+  /// Requires no parameters.
+  /// On success, returns a [WebhookInfo] object.
+  /// If the bot is using [getUpdates],
+  /// will return an object with the url field empty.
+  ///
+  /// https://core.telegram.org/bots/api#getwebhookinfo
   Future<WebhookInfo> getWebhookInfo() async {
-    // TODO: implement setWebhook
-    return Future.error(TelegramMethodException('Not yet Implemented'));
+    return WebhookInfo.fromJson(await _get('getWebhookInfo'));
   }
 
   /// Use this method to send text messages.
@@ -759,8 +803,9 @@ class Methods {
       String inline_message_id,
       ReplyMarkup reply_markup}) async {
     if (inline_message_id == null && (chat_id == null || message_id == null)) {
-      return Future.error(TelegramMethodException(
-          'At least inline_message_id is required. Can be used also chat_id and message_id.'));
+      return Future.error(
+          TelegramMethodException('At least inline_message_id is required. '
+              'Can be used also chat_id and message_id.'));
     }
 
     var body = <String, dynamic>{};
@@ -787,8 +832,9 @@ class Methods {
       String inline_message_id,
       ReplyMarkup reply_markup}) async {
     if (inline_message_id == null && (chat_id == null || message_id == null)) {
-      return Future.error(TelegramMethodException(
-          'At least inline_message_id is required. Can be used also chat_id and message_id.'));
+      return Future.error(
+          TelegramMethodException('At least inline_message_id is required. '
+              'Can be used also chat_id and message_id.'));
     }
 
     var body = <String, dynamic>{};
@@ -1300,87 +1346,606 @@ class Methods {
     return await _post('answerCallbackQuery', body);
   }
 
-  Future<Message> editMessageText() async {
-    return Future.error(TelegramMethodException('Not yet Implemented'));
+  /// Use this method to edit text and game messages.
+  /// On success, if edited message is sent by the bot,
+  /// the edited [Message] is returned, otherwise True is returned.
+  ///
+  /// https://core.telegram.org/bots/api#editmessagetext
+  Future<Message> editMessageText(String text,
+      {int chat_id,
+      int message_id,
+      String inline_message_id,
+      ParseMode parse_mode,
+      bool disable_web_page_preview,
+      InlineKeyboardMarkup reply_markup}) async {
+    if (inline_message_id == null && (chat_id == null || message_id == null)) {
+      return Future.error(
+          TelegramMethodException('At least inline_message_id is required. '
+              'Can be used also chat_id and message_id.'));
+    }
+
+    var body = <String, dynamic>{};
+    body['chat_id'] = (chat_id ?? '');
+    body['message_id'] = (message_id ?? '');
+    body['inline_message_id'] = (inline_message_id ?? '');
+    body['text'] = text;
+    body['parse_mode'] = (parse_mode ?? '');
+    body['disable_web_page_preview'] = (disable_web_page_preview ?? '');
+    body['reply_markup'] =
+        (reply_markup == null ? '' : jsonEncode(reply_markup));
+
+    var response = await _post('editMessageText', body);
+
+    if (response == true) {
+      return Future.error(
+          TelegramMethodException('Edited message is not sent by the bot.'));
+    }
+
+    return Message.fromJson(response);
   }
 
-  Future<Message> editMessageCaption() async {
-    return Future.error(TelegramMethodException('Not yet Implemented'));
+  /// Use this method to edit captions of messages.
+  /// On success, if edited message is sent by the bot,
+  /// the edited [Message] is returned, otherwise True is returned.
+  ///
+  /// https://core.telegram.org/bots/api#editmessagecaption
+  Future<Message> editMessageCaption(
+      {int chat_id,
+      int message_id,
+      String inline_message_id,
+      String caption,
+      String parse_mode,
+      InlineKeyboardMarkup reply_markup}) async {
+    if (inline_message_id == null && (chat_id == null || message_id == null)) {
+      return Future.error(
+          TelegramMethodException('At least inline_message_id is required. '
+              'Can be used also chat_id and message_id.'));
+    }
+
+    var body = <String, dynamic>{};
+    body['chat_id'] = (chat_id ?? '');
+    body['message_id'] = (message_id ?? '');
+    body['inline_message_id'] = (inline_message_id ?? '');
+    body['caption'] = (caption ?? '');
+    body['parse_mode'] = (parse_mode ?? '');
+    body['reply_markup'] =
+        (reply_markup == null ? '' : jsonEncode(reply_markup));
+
+    var response = await _post('editMessageCaption', body);
+
+    if (response == true) {
+      return Future.error(
+          TelegramMethodException('Edited message is not sent by the bot.'));
+    }
+
+    return Message.fromJson(response);
   }
 
-  Future<Message> editMessageMedia() async {
-    return Future.error(TelegramMethodException('Not yet Implemented'));
+  /// Use this method to edit animation, audio, document, photo,
+  /// or video messages.
+  /// If a message is a part of a message album,
+  /// then it can be edited only to a photo or a video.
+  /// Otherwise, message type can be changed arbitrarily.
+  /// When inline message is edited, new file can't be uploaded.
+  /// Use previously uploaded file via its file_id or specify a URL.
+  /// On success, if the edited message was sent by the bot,
+  /// the edited [Message] is returned, otherwise True is returned.
+  ///
+  /// https://core.telegram.org/bots/api#editmessagemedia
+  Future editMessageMedia(
+      {int chat_id,
+      int message_id,
+      String inline_message_id,
+      InputMedia media,
+      String parse_mode,
+      InlineKeyboardMarkup reply_markup}) async {
+    if (inline_message_id == null &&
+        (chat_id == null || inline_message_id == null)) {
+      return Future.error(
+          TelegramMethodException('At least inline_message_id is required. '
+              'Can be used also chat_id and message_id.'));
+    }
+
+    var body = <String, dynamic>{};
+    body['chat_id'] = (chat_id ?? '');
+    body['message_id'] = (message_id ?? '');
+    body['inline_message_id'] = (inline_message_id ?? '');
+    body['media'] = (media == null ? '' : jsonEncode(media));
+    body['parse_mode'] = (parse_mode ?? '');
+    body['reply_markup'] =
+        (reply_markup == null ? '' : jsonEncode(reply_markup));
+
+    var response = await _post('editMessageMedia', body);
+
+    if (response == true) {
+      return Future.error(
+          TelegramMethodException('Edited message is not sent by the bot.'));
+    }
+
+    return Message.fromJson(response);
   }
 
-  Future<Message> editMessageReplyMarkup() async {
-    return Future.error(TelegramMethodException('Not yet Implemented'));
+  /// Use this method to edit only the reply markup of messages.
+  /// On success, if edited message is sent by the bot,
+  /// the edited [Message] is returned, otherwise True is returned.
+  ///
+  /// https://core.telegram.org/bots/api#editmessagereplymarkup
+  Future<Message> editMessageReplyMarkup(
+      {int chat_id,
+      int message_id,
+      String inline_message_id,
+      InlineKeyboardMarkup reply_markup}) async {
+    if (inline_message_id == null &&
+        (chat_id == null || inline_message_id == null)) {
+      return Future.error(
+          TelegramMethodException('At least inline_message_id is required. '
+              'Can be used also chat_id and message_id.'));
+    }
+
+    var body = <String, dynamic>{};
+    body['chat_id'] = (chat_id ?? '');
+    body['message_id'] = (message_id ?? '');
+    body['inline_message_id'] = (inline_message_id ?? '');
+    body['reply_markup'] =
+        (reply_markup == null ? '' : jsonEncode(reply_markup));
+
+    var response = await _post('editMessageMedia', body);
+
+    if (response == true) {
+      return Future.error(
+          TelegramMethodException('Edited message is not sent by the bot.'));
+    }
+
+    return Message.fromJson(response);
   }
 
-  Future<Poll> stopPoll() async {
-    return Future.error(TelegramMethodException('Not yet Implemented'));
+  /// Use this method to stop a poll which was sent by the bot.
+  /// On success, the stopped [Poll] with the final results is returned.
+  ///
+  /// https://core.telegram.org/bots/api#stoppoll
+  Future<Poll> stopPoll(int chat_id, int message_id,
+      {InlineKeyboardMarkup reply_markup}) async {
+    var body = <String, dynamic>{};
+    body['chat_id'] = chat_id;
+    body['message_id'] = message_id;
+    body['reply_markup'] =
+        (reply_markup == null ? '' : jsonEncode(reply_markup));
+
+    return Poll.fromJson(await _post('stopPoll', body));
   }
 
-  Future<bool> deleteMessage() async {
-    return Future.error(TelegramMethodException('Not yet Implemented'));
+  /// Use this method to delete a message, including service messages,
+  /// with the following limitations:
+  /// - A message can only be deleted if it was sent less than 48 hours ago.
+  /// - Bots can delete outgoing messages in private chats, groups,
+  /// and supergroups.
+  /// - Bots can delete incoming messages in private chats.
+  /// - Bots granted can_post_messages permissions can delete outgoing
+  /// messages in channels.
+  /// - If the bot is an administrator of a group, it can delete any
+  /// message there.
+  /// - If the bot has can_delete_messages permission in a supergroup or a
+  /// channel, it can delete any message there.
+  /// Returns True on success.
+  ///
+  /// https://core.telegram.org/bots/api#deletemessage
+  Future<bool> deleteMessage(int chat_id, int message_id) async {
+    var body = <String, dynamic>{};
+    body['chat_id'] = chat_id;
+    body['message_id'] = message_id;
+
+    return await _post('deleteMessage', body);
   }
 
-  Future<Message> sendSticker() async {
-    return Future.error(TelegramMethodException('Not yet Implemented'));
+  /// Use this method to send static .WEBP or animated .TGS stickers.
+  /// On success, the sent [Message] is returned.
+  ///
+  /// https://core.telegram.org/bots/api#sendsticker
+  Future<Message> sendSticker(int chat_id, dynamic sticker,
+      {bool disable_notification,
+      int reply_to_message_id,
+      ReplyMarkup reply_markup}) async {
+    var body = <String, dynamic>{};
+    body['chat_id'] = chat_id;
+    body['disable_notification'] = (disable_notification ?? '');
+    body['reply_to_message_id'] = (reply_to_message_id ?? '');
+    body['reply_markup'] =
+        (reply_markup == null ? '' : jsonEncode(reply_markup));
+
+    if (sticker is String) {
+      body['sticker'] = sticker;
+      return Message.fromJson(await _post('sendSticker', body));
+    } else if (sticker is io.File) {
+      var files = <http.MultipartFile>[];
+      files.add(http.MultipartFile(
+          'sticker', sticker.openRead(), sticker.lengthSync(),
+          filename: 'Sticker-${DateTime.now()}'));
+      return Message.fromJson(
+          await _multipart_post('sendSticker', files, body));
+    } else {
+      return Future.error(TelegramMethodException('Photo can only be io.File, '
+          'Telegram file_id in String or a URL.'));
+    }
   }
 
-  Future<StickerSet> getStickerSet() async {
-    return Future.error(TelegramMethodException('Not yet Implemented'));
+  /// Use this method to get a sticker set.
+  /// On success, a StickerSet object is returned.
+  ///
+  /// https://core.telegram.org/bots/api#sendsticker
+  Future<StickerSet> getStickerSet(String name) async {
+    var body = <String, dynamic>{};
+    body['name'] = name;
+
+    return StickerSet.fromJson(await _post('getStickerSet', body));
   }
 
-  Future<File> uploadStickerFile() async {
-    return Future.error(TelegramMethodException('Not yet Implemented'));
+  /// Use this method to upload a .png file with a sticker
+  /// for later use in createNewStickerSet and addStickerToSet
+  /// methods (can be used multiple times).
+  /// Returns the uploaded [File] on success.
+  ///
+  /// https://core.telegram.org/bots/api#uploadstickerfile
+  Future<File> uploadStickerFile(int user_id, dynamic png_sticker) async {
+    var body = <String, dynamic>{};
+    body['user_id'] = user_id;
+
+    if (png_sticker is io.File) {
+      var files = <http.MultipartFile>[];
+      files.add(http.MultipartFile(
+          'png_sticker', png_sticker.openRead(), png_sticker.lengthSync(),
+          filename: 'Png_Sticker-${DateTime.now()}'));
+      return File.fromJson(
+          await _multipart_post('uploadStickerFile', files, body));
+    } else if (png_sticker is Uint8List) {
+      var files = <http.MultipartFile>[];
+      var png_sticker_created = io.File.fromRawPath(png_sticker);
+      files.add(http.MultipartFile('png_sticker',
+          png_sticker_created.openRead(), png_sticker_created.lengthSync(),
+          filename: 'Png_Sticker-${DateTime.now()}'));
+      return File.fromJson(
+          await _multipart_post('uploadStickerFile', files, body));
+    } else {
+      return Future.error(
+          TelegramMethodException('Png_Sticker can only be io.File, blob, '
+              'Telegram file_id in String or a URL.'));
+    }
   }
 
-  Future<bool> createNewStickerSet() async {
-    return Future.error(TelegramMethodException('Not yet Implemented'));
+  /// Use this method to create new sticker set owned by a user.
+  /// The bot will be able to edit the created sticker set.
+  /// Returns True on success.
+  ///
+  /// https://core.telegram.org/bots/api#createnewstickerset
+  Future<bool> createNewStickerSet(int user_id, String name, String title,
+      dynamic png_sticker, String emojis,
+      {bool contains_masks, MaskPosition mask_position}) async {
+    var _me = await getMe();
+
+    var body = <String, dynamic>{};
+    body['user_id'] = user_id;
+    body['name'] = '${name}_@${_me.username}';
+    body['title'] = title;
+    body['emojis'] = emojis;
+    body['contains_mask'] = (contains_masks ?? '');
+    body['mask_position'] =
+        (mask_position == null ? '' : jsonEncode(mask_position));
+
+    if (png_sticker is String) {
+      body['png_sticker'] = png_sticker;
+      return await _post('createNewStickerSet', body);
+    } else if (png_sticker is io.File) {
+      var files = <http.MultipartFile>[];
+      files.add(http.MultipartFile(
+          'png_sticker', png_sticker.openRead(), png_sticker.lengthSync(),
+          filename: 'Png_Sticker-${DateTime.now()}'));
+      return await _multipart_post('createNewStickerSet', files, body);
+    } else if (png_sticker is Uint8List) {
+      var files = <http.MultipartFile>[];
+      var png_sticker_created = io.File.fromRawPath(png_sticker);
+      files.add(http.MultipartFile('png_sticker',
+          png_sticker_created.openRead(), png_sticker_created.lengthSync(),
+          filename: 'Png_Sticker-${DateTime.now()}'));
+      return await _multipart_post('createNewStickerSet', files, body);
+    } else {
+      return Future.error(
+          TelegramMethodException('Png_Sticker can only be io.File, blob, '
+              'Telegram file_id in String or a URL.'));
+    }
   }
 
-  Future<bool> addStickerToSet() async {
-    return Future.error(TelegramMethodException('Not yet Implemented'));
+  /// Use this method to add a new sticker to a set created by the bot.
+  /// Returns True on success.
+  ///
+  /// https://core.telegram.org/bots/api#addstickertoset
+  Future<bool> addStickerToSet(
+      int user_id, String name, dynamic png_sticker, String emojis,
+      {MaskPosition mask_position}) async {
+    var body = <String, dynamic>{};
+    body['user_id'] = user_id;
+    body['name'] = name;
+    body['emojis'] = emojis;
+    body['mask_position'] =
+        (mask_position == null ? '' : jsonEncode(mask_position));
+
+    if (png_sticker is String) {
+      body['png_sticker'] = png_sticker;
+      return await _post('addStickerToSet', body);
+    } else if (png_sticker is io.File) {
+      var files = <http.MultipartFile>[];
+      files.add(http.MultipartFile(
+          'png_sticker', png_sticker.openRead(), png_sticker.lengthSync(),
+          filename: 'Png_Sticker-${DateTime.now()}'));
+      return await _multipart_post('createNewStickerSet', files, body);
+    } else if (png_sticker is Uint8List) {
+      var files = <http.MultipartFile>[];
+      var png_sticker_created = io.File.fromRawPath(png_sticker);
+      files.add(http.MultipartFile('png_sticker',
+          png_sticker_created.openRead(), png_sticker_created.lengthSync(),
+          filename: 'Png_Sticker-${DateTime.now()}'));
+      return await _multipart_post('createNewStickerSet', files, body);
+    } else {
+      return Future.error(
+          TelegramMethodException('Png_Sticker can only be io.File, blob, '
+              'Telegram file_id in String or a URL.'));
+    }
   }
 
-  Future<bool> setStickerPositionInSet() async {
-    return Future.error(TelegramMethodException('Not yet Implemented'));
+  /// Use this method to move a sticker in a set created
+  /// by the bot to a specific position.
+  /// Returns True on success.
+  ///
+  /// https://core.telegram.org/bots/api#setstickerpositioninset
+  Future<bool> setStickerPositionInSet(String sticker, int position) async {
+    var body = <String, dynamic>{};
+    body['sticker'] = sticker;
+    body['position'] = position;
+
+    return await _post('setStickerPositionInSet', body);
   }
 
-  Future<bool> deleteStickerFromSet() async {
-    return Future.error(TelegramMethodException('Not yet Implemented'));
+  /// Use this method to delete a sticker from a set created by the bot.
+  /// Returns True on success.
+  ///
+  /// https://core.telegram.org/bots/api#deletestickerfromset
+  Future<bool> deleteStickerFromSet(String sticker) async {
+    var body = <String, dynamic>{};
+    body['sticker'] = sticker;
+
+    return await _post('deleteStickerFromSet', body);
   }
 
-  Future<bool> answerInlineQuery() async {
-    return Future.error(TelegramMethodException('Not yet Implemented'));
+  /// Use this method to send answers to an inline query.
+  /// On success, True is returned.
+  ///
+  /// No more than 50 results per query are allowed.
+  ///
+  /// https://core.telegram.org/bots/api#answerinlinequery
+  Future<bool> answerInlineQuery(
+      String inline_query_id, List<InlineQueryResult> results,
+      {int cache_time,
+      bool is_personal,
+      String next_offset,
+      String switch_pm_text,
+      String switch_pm_parameter}) async {
+    var body = <String, dynamic>{};
+    body['inline_query_id'] = inline_query_id;
+    body['results'] = jsonEncode(results);
+    body['cache_time'] = (cache_time ?? '');
+    body['is_personal'] = (is_personal ?? '');
+    body['next_offset'] = (next_offset ?? '');
+    body['switch_pm_text'] = (switch_pm_text);
+    body['switch_pm_parameter'](switch_pm_parameter ?? '');
+
+    return await _post('answerInlineQuery', body);
   }
 
-  Future<Message> sendInvoice() async {
-    return Future.error(TelegramMethodException('Not yet Implemented'));
+  /// Use this method to send invoices.
+  /// On success, the sent [Message] is returned.
+  ///
+  /// https://core.telegram.org/bots/api#sendinvoice
+  Future<Message> sendInvoice(
+      int chat_id,
+      String title,
+      String description,
+      String payload,
+      String provider_token,
+      String start_parameter,
+      String currency,
+      List<LabeledPrice> prices,
+      {String provider_data,
+      String photo_url,
+      int photo_size,
+      int photo_width,
+      int photo_height,
+      bool need_name,
+      bool need_phone_number,
+      bool need_email,
+      bool need_shipping_address,
+      bool send_phone_number_to_provider,
+      bool send_email_to_provider,
+      bool is_flexible,
+      bool disable_notification,
+      int reply_to_message_id,
+      InlineKeyboardMarkup reply_markup}) async {
+    var body = <String, dynamic>{};
+    body['chat_id'] = chat_id;
+    body['title'] = title;
+    body['description'] = description;
+    body['payload'] = payload;
+    body['provider_token'] = provider_token;
+    body['start_parameter'] = start_parameter;
+    body['currency'] = currency;
+    body['prices'] = jsonEncode(prices);
+    body['provider_data'] = (provider_data ?? '');
+    body['photo_url'] = (photo_url ?? '');
+    body['photo_size'] = (photo_size ?? '');
+    body['photo_width'] = (photo_width ?? '');
+    body['photo_height'] = (photo_height ?? '');
+    body['need_name'] = (need_name ?? '');
+    body['need_phone_number'] = (need_phone_number ?? '');
+    body['need_email'] = (need_email ?? '');
+    body['need_shipping_address'] = (need_shipping_address ?? '');
+    body['send_phone_number_to_provider'] =
+        (send_phone_number_to_provider ?? '');
+    body['send_email_to_provider'] = (send_email_to_provider ?? '');
+    body['is_flexible'] = (is_flexible ?? '');
+    body['disable_notification'] = (disable_notification ?? '');
+    body['reply_to_message_id'] = (reply_to_message_id ?? '');
+    body['reply_markup'] =
+        (reply_markup == null ? '' : jsonEncode(reply_markup));
+
+    return Message.fromJson(await _post('sendInvoice', body));
   }
 
-  Future<bool> answerShippingQuery() async {
-    return Future.error(TelegramMethodException('Not yet Implemented'));
+  /// If you sent an invoice requesting a shipping address
+  /// and the parameter is_flexible was specified,
+  /// the Bot API will send an Update with a shipping_query
+  /// field to the bot.
+  /// Use this method to reply to shipping queries.
+  /// On success, True is returned.
+  ///
+  /// https://core.telegram.org/bots/api#answershippingquery
+  Future<bool> answerShippingQuery(String shipping_query_id, bool possible,
+      {List<ShippingOption> shipping_options, String error_message}) async {
+    if (!possible && (shipping_options == null || error_message == null)) {
+      return Future.error(
+          'If it\'s not possible, shipping_options and error_message can not be null.');
+    }
+
+    var body = <String, dynamic>{};
+    body['shipping_query_id'] = shipping_query_id;
+    body['ok'] = possible;
+    body['shipping_options'] =
+        (shipping_options == null ? '' : jsonEncode(shipping_options));
+    body['error_message'] = error_message;
+
+    return await _post('answerShippingQuery', body);
   }
 
-  Future<bool> answerPreCheckoutQuery() async {
-    return Future.error(TelegramMethodException('Not yet Implemented'));
+  /// Once the user has confirmed their payment and shipping details,
+  /// the Bot API sends the final confirmation in the form of
+  /// an [Update] with the field pre_checkout_query.
+  /// Use this method to respond to such pre-checkout queries.
+  /// On success, True is returned.
+  ///
+  /// Note: The Bot API must receive an answer within 10 seconds
+  /// after the pre-checkout query was sent.
+  ///
+  /// https://core.telegram.org/bots/api#answerprecheckoutquery
+  Future<bool> answerPreCheckoutQuery(String pre_checkout_query_id, bool ok,
+      {String error_message}) async {
+    if (!ok && error_message == null) {
+      return Future.error(
+          'If it\'s not possible, error_message can not be null.');
+    }
+
+    var body = <String, dynamic>{};
+    body['pre_checkout_query_id'] = pre_checkout_query_id;
+    body['ok'] = ok;
+    body['error_message'] = (error_message ?? '');
+
+    return await _post('answerPreCheckoutQuery', body);
   }
 
-  Future<bool> setPassportDataErrors() async {
-    return Future.error(TelegramMethodException('Not yet Implemented'));
+  /// Informs a user that some of the Telegram Passport elements
+  /// they provided contains errors.
+  /// The user will not be able to re-submit their Passport
+  /// to you until the errors are fixed
+  /// (the contents of the field for which you returned the error
+  /// must change).
+  /// Returns True on success.
+  ///
+  /// Use this if the data submitted by the user doesn't
+  /// satisfy the standards your service requires for any reason.
+  /// For example, if a birthday date seems invalid,
+  /// a submitted document is blurry,
+  /// a scan shows evidence of tampering, etc.
+  /// Supply some details in the error message to make sure
+  /// the user knows how to correct the issues.
+  ///
+  /// https://core.telegram.org/bots/api#setpassportdataerrors
+  Future<bool> setPassportDataErrors(
+      int user_id, List<PassportElementError> errors) async {
+    var body = <String, dynamic>{};
+    body['user_id'] = user_id;
+    body['errors'] = jsonEncode(errors);
+
+    return await _post('setPassportDataErrors', body);
   }
 
-  Future<Message> sendGame() async {
-    return Future.error(TelegramMethodException('Not yet Implemented'));
+  /// Use this method to send a game.
+  /// On success, the sent [Message] is returned.
+  ///
+  /// https://core.telegram.org/bots/api#sendgame
+  Future<Message> sendGame(int chat_id, String game_short_name,
+      {bool disable_notification,
+      int reply_to_message_id,
+      InlineKeyboardMarkup reply_markup}) async {
+    var body = <String, dynamic>{};
+    body['chat_id'] = chat_id;
+    body['game_short_name'] = game_short_name;
+    body['disable_notification'] = (disable_notification ?? '');
+    body['reply_to_message_id'] = (reply_to_message_id ?? '');
+    body['reply_markup'] =
+        (reply_markup == null ? '' : jsonEncode(reply_markup));
+
+    return Message.fromJson(await _post('sendGame', body));
   }
 
-  Future<Message> setGameScore() async {
-    return Future.error(TelegramMethodException('Not yet Implemented'));
+  /// Use this method to set the score of the specified user in a game.
+  /// On success, if the message was sent by the bot,
+  /// returns the edited [Message], otherwise returns True.
+  /// Returns an error, if the new score is not greater than the
+  /// user's current score in the chat and force is False.
+  ///
+  /// https://core.telegram.org/bots/api#setgamescore
+  Future<Message> setGameScore(int user_id, int score,
+      {bool force,
+      bool disable_edit_message,
+      int chat_id,
+      int message_id,
+      String inline_message_id}) async {
+    if (inline_message_id == null && (chat_id == null || message_id == null)) {
+      return Future.error(
+          TelegramMethodException('At least inline_message_id is required. '
+              'Can be used also chat_id and message_id.'));
+    }
+
+    var body = <String, dynamic>{};
+    body['user_id'] = user_id;
+    body['score'] = score;
+    body['force'] = (force ?? '');
+    body['disable_edit_message'] = (disable_edit_message ?? '');
+    body['chat_id'] = (chat_id ?? '');
+    body['message_id'] = (message_id ?? '');
+    body['inline_message_id'] = (inline_message_id ?? '');
+
+    return Message.fromJson(await _post('setGameScore', body));
   }
 
-  Future<List<Message>> getGameHighScores() async {
-    return Future.error(TelegramMethodException('Not yet Implemented'));
+  /// Use this method to get data for high score tables.
+  /// Will return the score of the specified user and several
+  /// of his neighbors in a game. On success, returns an
+  /// Array of [GameHighScore] objects.
+  ///
+  /// https://core.telegram.org/bots/api#getgamehighscores
+  Future<List<GameHighScore>> getGameHighScores(int user_id,
+      {int chat_id, int message_id, String inline_message_id}) async {
+    if (inline_message_id == null && (chat_id == null || message_id == null)) {
+      return Future.error(
+          TelegramMethodException('At least inline_message_id is required. '
+              'Can be used also chat_id and message_id.'));
+    }
+
+    var body = <String, dynamic>{};
+    body['user_id'] = user_id;
+    body['chat_id'] = (chat_id ?? '');
+    body['message_id'] = (message_id ?? '');
+    body['inline_message_id'] = (inline_message_id ?? '');
+
+    return (await _post('getGameHighScores', body))
+        .map<GameHighScore>(
+            (gameHighScore) => GameHighScore.fromJson(gameHighScore))
+        .toList();
   }
 }
