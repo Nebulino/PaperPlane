@@ -54,7 +54,7 @@ dependencies:
 From pub.dev:
 ```yaml
 dependencies:
-  paperplane: ^0.2.2
+  paperplane: ^0.3.0
 ```
 
 ## Features and bugs
