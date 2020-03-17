@@ -3,7 +3,6 @@
  * Copyright (c) 2020 Nebulino
  */
 
-/// TelegramException object
 /// It implements [Exception] class.
 /// You can find [error_code] and [error_name] received from the Telegram Api.
 class TelegramException implements Exception {

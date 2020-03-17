@@ -7,12 +7,15 @@ import 'package:paperplane/paperplane.dart';
 import 'package:paperplane/paperplane_exceptions.dart';
 import 'package:paperplane/src/helpers/paperplane_bot.dart';
 
-/// PaperPlane Class
 /// This is the brain of my Wrapper.
 /// You need to import at least this to create a simple bot.
 class PaperPlane {
   Telegram api;
   Bot _me;
+
+  static PaperPlane _paperplane;
+
+  static PaperPlane get fly => _paperplane;
 
   bool isReady = false;
 
@@ -30,6 +33,7 @@ class PaperPlane {
       throw PaperPlaneException(description: 'Api not created correctly');
     }
     await api.methods.getBot().then(_botSelfSetup);
+    _paperplane = this;
     return this;
   }
 

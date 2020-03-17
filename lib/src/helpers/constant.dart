@@ -3,8 +3,7 @@
  * Copyright (c) 2020 Nebulino
  */
 
-/// Constant Class
-/// Contains every constants for future uses
+/// Contains every telegram constants for future uses.
 class Constant {
   // Telegram Limitations
   static const int MAX_MESSAGE_LENGTH = 4096;

@@ -3,7 +3,7 @@
  * Copyright (c) 2020 Nebulino
  */
 
-/// PaperPlane's exceptions Library
+/// PaperPlane's exceptions Library.
 /// It helps to manage different type of exception inside my library.
 library paperplane_exceptions;
 

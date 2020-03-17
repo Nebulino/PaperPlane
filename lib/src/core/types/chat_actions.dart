@@ -3,7 +3,6 @@
  * Copyright (c) 2020 Nebulino
  */
 
-/// ChatAction Class
 /// Contains every type of chat action
 class ChatAction {
   final String _action;
