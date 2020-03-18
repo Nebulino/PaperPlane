@@ -8,6 +8,7 @@ import 'package:paperplane/src/tools/http_client.dart';
 
 /// It helps connecting http_client and methods.
 /// It also contains the bot token.
+/// It's the Telegram API headquarter, it builds all the methods.
 class Telegram {
   final HttpClient _client = HttpClient();
   final String _token;

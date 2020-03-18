@@ -36,7 +36,25 @@ void main() async {
   var token = 'Just A Token';
   
   var bot = PaperPlane.createBot(token);
-  bot.init();
+  bot.engine();
+
+  bot.startPolling();
+  
+  // Work with events...
+  bot
+    .onMessage()
+    .where((message) => message.text == 'owo')
+    .listen((message) => message.replyText('uwu'));
+ 
+  // Work with updates and directly with methods...
+  var methods = bot.api.methods;
+  var updater = bot.updater.onUpdate();
+  
+  updater
+    .where((onUpdate) => onUpdate.message.text == 'voice')
+    .listen((update) => methods.sendAnimation(
+      message.chat.id,
+      io.File('./files/gifs/bunny_girl.gif')));
 }
 ```
 
@@ -54,14 +72,16 @@ dependencies:
 From pub.dev:
 ```yaml
 dependencies:
-  paperplane: ^0.3.0
+  paperplane: ^0.4.0
 ```
 
 ## Features and bugs
 
 #### For now, some methods are working.
-Still not implemented the LongPolling and Webhook.
-You can use it for now by doing a while(true). 
+Implemented a base for a future solid implementation of Long Polling.
+Still not implemented the Webhook.
+
+You can use Long Polling mode for now. 
 
 I have created all Telegram API Classes for each Telegram Types.
 
@@ -69,4 +89,4 @@ Please file feature requests and bugs at the [issue tracker][tracker].
 
 [tracker]: http://github.com/Nebulino/PaperPlane/issues
 
-Copyright © 2020 Nebulino
+##### Copyright © 2020 Nebulino

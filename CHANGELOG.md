@@ -1,3 +1,12 @@
+## 0.4.0
+#### Huge Update. Basic polling!
+
+- Implemented a basic long polling implementation.
+- To achieve this, created Updater.
+- Created messages dispatcher.
+- Created message extension.
+- Refactored some part of the code.
+
 ## 0.3.0
 #### Big update.
 

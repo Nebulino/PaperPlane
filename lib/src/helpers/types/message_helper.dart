@@ -19,6 +19,8 @@ extension MessageHelper on Message {
 
   int get _message_id => message_id;
 
+  Methods get _methods => PaperPlane.fly.api.methods;
+
   /// Helps replying with a text directly.
   Future<Message> replyText(String text,
       {bool quote_message = true,
@@ -26,7 +28,7 @@ extension MessageHelper on Message {
       bool disable_web_page_preview,
       bool disable_notification,
       ReplyMarkup reply_markup}) {
-    return PaperPlane.fly.api.methods.sendMessage(_chat_id, text,
+    return _methods.sendMessage(_chat_id, text,
         parse_mode: parse_mode,
         disable_web_page_preview: disable_web_page_preview,
         disable_notification: disable_notification,
@@ -41,7 +43,7 @@ extension MessageHelper on Message {
       ParseMode parse_mode,
       bool disable_notification,
       ReplyMarkup reply_markup}) {
-    return PaperPlane.fly.api.methods.sendPhoto(_chat_id, photo,
+    return _methods.sendPhoto(_chat_id, photo,
         caption: caption,
         parse_mode: parse_mode,
         disable_notification: disable_notification,
@@ -60,7 +62,7 @@ extension MessageHelper on Message {
       dynamic thumb,
       bool disable_notification,
       ReplyMarkup reply_markup}) {
-    return PaperPlane.fly.api.methods.sendAudio(_chat_id, audio,
+    return _methods.sendAudio(_chat_id, audio,
         caption: caption,
         parse_mode: parse_mode,
         duration: duration,
@@ -79,7 +81,7 @@ extension MessageHelper on Message {
       String parse_mode,
       bool disable_notification,
       ReplyMarkup reply_markup}) {
-    return PaperPlane.fly.api.methods.sendDocument(_chat_id, document,
+    return _methods.sendDocument(_chat_id, document,
         thumb: thumb,
         caption: caption,
         parse_mode: parse_mode,
@@ -100,7 +102,7 @@ extension MessageHelper on Message {
       bool supports_streaming,
       bool disable_notification,
       ReplyMarkup reply_markup}) {
-    return PaperPlane.fly.api.methods.sendVideo(_chat_id, video,
+    return _methods.sendVideo(_chat_id, video,
         duration: duration,
         width: width,
         height: height,
@@ -124,7 +126,7 @@ extension MessageHelper on Message {
       String parse_mode,
       bool disable_notification,
       ReplyMarkup reply_markup}) {
-    return PaperPlane.fly.api.methods.sendAnimation(_chat_id, animation,
+    return _methods.sendAnimation(_chat_id, animation,
         duration: duration,
         width: width,
         height: height,
@@ -144,7 +146,7 @@ extension MessageHelper on Message {
       dynamic duration,
       bool disable_notification,
       ReplyMarkup reply_markup}) {
-    return PaperPlane.fly.api.methods.sendVoice(_chat_id, voice,
+    return _methods.sendVoice(_chat_id, voice,
         caption: caption,
         parse_mode: parse_mode,
         duration: duration,
@@ -161,7 +163,7 @@ extension MessageHelper on Message {
       dynamic thumb,
       bool disable_notification,
       ReplyMarkup reply_markup}) {
-    return PaperPlane.fly.api.methods.sendVideoNote(_chat_id, video_note,
+    return _methods.sendVideoNote(_chat_id, video_note,
         duration: duration,
         length: length,
         thumb: thumb,
@@ -173,7 +175,7 @@ extension MessageHelper on Message {
   /// Helps replying with a media group directly.
   Future<List<Message>> replyMediaGroup(List<InputMedia> media,
       {bool quote_message = true, bool disable_notification}) {
-    return PaperPlane.fly.api.methods.sendMediaGroup(_chat_id, media,
+    return _methods.sendMediaGroup(_chat_id, media,
         disable_notification: disable_notification,
         reply_to_message_id: quote_message ? _message_id : null);
   }
@@ -192,8 +194,7 @@ extension MessageHelper on Message {
       String foursquare_type,
       bool disable_notification,
       ReplyMarkup reply_markup}) {
-    return PaperPlane.fly.api.methods.sendVenue(
-        _chat_id, latitude, longitude, title, address,
+    return _methods.sendVenue(_chat_id, latitude, longitude, title, address,
         foursquare_id: foursquare_id,
         foursquare_type: foursquare_type,
         disable_notification: disable_notification,
@@ -208,8 +209,7 @@ extension MessageHelper on Message {
       String vcard,
       bool disable_notification,
       ReplyMarkup reply_markup}) {
-    return PaperPlane.fly.api.methods.sendContact(
-        _chat_id, phone_number, first_name,
+    return _methods.sendContact(_chat_id, phone_number, first_name,
         last_name: last_name,
         vcard: vcard,
         disable_notification: disable_notification,
@@ -227,7 +227,7 @@ extension MessageHelper on Message {
       bool is_closed,
       bool disable_notification,
       ReplyMarkup reply_markup}) {
-    return PaperPlane.fly.api.methods.sendPoll(_chat_id, question, options,
+    return _methods.sendPoll(_chat_id, question, options,
         is_anonymous: is_anonymous,
         type: type,
         allows_multiple_answers: allows_multiple_answers,
@@ -240,8 +240,6 @@ extension MessageHelper on Message {
 
   /// Helps replying with a chat action directly.
   Future<bool> replyChatAction(ChatAction action) {
-    return PaperPlane.fly.api.methods.sendChatAction(_chat_id, action);
+    return _methods.sendChatAction(_chat_id, action);
   }
-
-
 }

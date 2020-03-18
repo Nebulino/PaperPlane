@@ -22,4 +22,5 @@ class Constant {
   static const POLLING_OFFSET = 0;
   static const POLLING_LIMIT = 100;
   static const POLLING_TIMEOUT = 20;
+  static const MAX_POLLING_TIMEOUT = 50;
 }
