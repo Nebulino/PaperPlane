@@ -3,7 +3,6 @@
  * Copyright (c) 2020 Nebulino
  */
 
-/// Parse Mode Class
 /// A list of parsing mode types for telegram.
 class ParseMode {
   String _mode;

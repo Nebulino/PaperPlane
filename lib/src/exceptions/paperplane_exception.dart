@@ -3,7 +3,6 @@
  * Copyright (c) 2020 Nebulino
  */
 
-/// PaperPlaneException object
 /// It implements [Exception] class.
 /// You can find [description] that gives a brief information of what happened.
 class PaperPlaneException implements Exception {

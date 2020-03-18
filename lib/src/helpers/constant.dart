@@ -3,8 +3,7 @@
  * Copyright (c) 2020 Nebulino
  */
 
-/// Constant Class
-/// Contains every constants for future uses
+/// Contains every telegram constants for future uses.
 class Constant {
   // Telegram Limitations
   static const int MAX_MESSAGE_LENGTH = 4096;
@@ -23,4 +22,5 @@ class Constant {
   static const POLLING_OFFSET = 0;
   static const POLLING_LIMIT = 100;
   static const POLLING_TIMEOUT = 20;
+  static const MAX_POLLING_TIMEOUT = 50;
 }

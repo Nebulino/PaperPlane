@@ -10,23 +10,29 @@ import 'dart:typed_data';
 import 'package:http/http.dart' as http;
 import 'package:paperplane/paperplane.dart';
 import 'package:paperplane/paperplane_exceptions.dart';
+import 'package:paperplane/src/core/types/chat_actions.dart';
 import 'package:paperplane/src/core/types/parse_mode.dart';
 import 'package:paperplane/src/core/types/poll_type.dart';
 import 'package:paperplane/types.dart';
 
-/// Methods Class
-/// All Telegram API
+/// You can find all Telegram API methods.
 class Methods {
   final Telegram _api;
 
+  /// It creates all methods necessary information from a [Telegram] Object.
   Methods(this._api);
 
+  /// It creates all methods necessary information from a [PaperPlane] bot.
   Methods.fromBot(PaperPlane paperplane) : this(paperplane.api);
 
   /// Helps making a Url for the method and sends a get request.
   Future<dynamic> _get(String method, {Map<String, dynamic> parameters}) {
     return _api.client.get(Uri.https(
-        'api.telegram.org', '/bot${_api.token}/${method}', parameters));
+        'api.telegram.org',
+        '/bot${_api.token}/${method}',
+        ((parameters == null
+            ? null
+            : parameters.map((key, value) => MapEntry(key, '${value}'))))));
   }
 
   /// Helps making a Url for the method and sends a post request.
@@ -55,7 +61,7 @@ class Methods {
       List<String> allowed_updates}) async {
     List<Update> updates;
 
-    var parameters = <String, String>{};
+    var parameters = <String, dynamic>{};
     parameters['offset'] = (offset ?? '');
     parameters['limit'] = (limit ?? '');
     parameters['timeout'] = (timeout ?? '');
@@ -950,7 +956,7 @@ class Methods {
   /// [ImageBot]: https://t.me/imagebot
   ///
   /// https://core.telegram.org/bots/api#sendchataction
-  Future<bool> sendChatAction(int chat_id, String action) async {
+  Future<bool> sendChatAction(int chat_id, ChatAction action) async {
     var body = <String, dynamic>{};
     body['chat_id'] = chat_id;
     body['action'] = action;

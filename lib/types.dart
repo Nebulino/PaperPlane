@@ -3,7 +3,7 @@
  * Copyright (c) 2020 Nebulino
  */
 
-/// Telegram Types
+/// Telegram Types Library.
 /// It groups all the Telegram Api types.
 library types;
 
