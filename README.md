@@ -30,6 +30,7 @@ First build the .g files for Serializable (if you clone the repo):
 A simple usage example:
 
 ```dart
+import 'dart:io' as io;
 import 'package:paperplane/paperplane.dart';
 
 void main() {
@@ -51,7 +52,7 @@ void main() {
   var updater = bot.updater.onUpdate();
   
   updater
-    .where((onUpdate) => onUpdate.message.text == 'voice')
+    .where((onUpdate) => onUpdate.message.text == 'animate')
     .listen((update) => methods.sendAnimation(
       message.chat.id,
       io.File('./files/gifs/bunny_girl.gif')));
