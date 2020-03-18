@@ -32,7 +32,7 @@ A simple usage example:
 ```dart
 import 'package:paperplane/paperplane.dart';
 
-void main() async {
+void main() {
   var token = 'Just A Token';
   
   var bot = PaperPlane.createBot(token);
