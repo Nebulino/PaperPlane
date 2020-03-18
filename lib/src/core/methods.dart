@@ -28,7 +28,11 @@ class Methods {
   /// Helps making a Url for the method and sends a get request.
   Future<dynamic> _get(String method, {Map<String, dynamic> parameters}) {
     return _api.client.get(Uri.https(
-        'api.telegram.org', '/bot${_api.token}/${method}', parameters));
+        'api.telegram.org',
+        '/bot${_api.token}/${method}',
+        ((parameters == null
+            ? null
+            : parameters.map((key, value) => MapEntry(key, '${value}'))))));
   }
 
   /// Helps making a Url for the method and sends a post request.
@@ -57,7 +61,7 @@ class Methods {
       List<String> allowed_updates}) async {
     List<Update> updates;
 
-    var parameters = <String, String>{};
+    var parameters = <String, dynamic>{};
     parameters['offset'] = (offset ?? '');
     parameters['limit'] = (limit ?? '');
     parameters['timeout'] = (timeout ?? '');

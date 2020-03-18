@@ -18,6 +18,11 @@ class BotFile {
 
   BotFile._(this._bot, {this.file_name});
 
+  /// Creates a BotFile from a file.
+  factory BotFile.fromFile(io.File file) {
+    return BotFile._(Bot.fromData(jsonDecode(file.readAsStringSync())));
+  }
+
   /// Import a PaperPlane file.
   static Future<BotFile> import(
       {String file_name = 'PaperPlaneBot.json'}) async {
