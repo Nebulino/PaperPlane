@@ -5,7 +5,15 @@
 
 part of passport;
 
-/// EncryptedCredentials telegram.types Class
+/// Contains data required for decrypting and authenticating
+/// [EncryptedPassportElement].
+/// See the [Telegram Passport Documentation]
+/// for a complete description of the data decryption
+/// and authentication processes.
+///
+/// [EncryptedPassportElement]: https://core.telegram.org/bots/api#encryptedpassportelement
+/// [Telegram Passport Documentation]: https://core.telegram.org/passport#receiving-information
+///
 /// https://core.telegram.org/bots/api#encryptedcredentials
 @JsonSerializable()
 class EncryptedCredentials {

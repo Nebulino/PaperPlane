@@ -5,7 +5,9 @@
 
 part of inputmedia;
 
-/// InputMediaAudio telegram.types Class
+/// Represents an audio file to be treated as
+/// music to be sent.
+///
 /// https://core.telegram.org/bots/api#inputmediaaudio
 @JsonSerializable()
 class InputMediaAudio implements InputMedia {

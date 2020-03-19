@@ -5,7 +5,9 @@
 
 part of chat;
 
-/// ChatPermissions telegram.types Class
+/// Describes actions that a non-administrator user is allowed to
+/// take in a chat.
+///
 /// https://core.telegram.org/bots/api#chatpermissions
 @JsonSerializable()
 class ChatPermissions {

@@ -5,7 +5,11 @@
 
 part of inline;
 
-/// InputContactMessageContent telegram.types Class
+/// Represents the [content] of a contact message to be sent
+/// as the result of an inline query.
+///
+/// [content]: https://core.telegram.org/bots/api#inputmessagecontent
+///
 /// https://core.telegram.org/bots/api#inputcontactmessagecontent
 @JsonSerializable()
 class InputContactMessageContent implements InputMessageContent {

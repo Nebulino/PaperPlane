@@ -995,9 +995,13 @@ class Methods {
   /// when the File object is received.
   ///
   /// https://core.telegram.org/bots/api#getfile
-  Future<File> getFile(String file_id) async {
+  Future<File> getFile(String file_id,
+      {String file_unique_id, int file_size, String file_path}) async {
     var body = <String, dynamic>{};
     body['file_id'] = file_id;
+    body['file_unique_id'] = (file_unique_id ?? '');
+    body['file_size'] = (file_size ?? '');
+    body['file_path'] = (file_path ?? '');
 
     return File.fromJson(await _post('getFile', body));
   }

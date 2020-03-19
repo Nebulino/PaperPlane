@@ -5,7 +5,12 @@
 
 part of media;
 
-/// VideoNote telegram.types Class
+/// This object represents a [video message] (available in
+/// Telegram apps as of [v.4.0]).
+///
+/// [video message]: https://telegram.org/blog/video-messages-and-telescope
+/// [v.4.0]: https://telegram.org/blog/video-messages-and-telescope
+///
 /// https://core.telegram.org/bots/api#videonote
 @JsonSerializable()
 class VideoNote {

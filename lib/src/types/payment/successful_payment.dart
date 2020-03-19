@@ -5,8 +5,9 @@
 
 part of payment;
 
-/// SuccessfulPayment telegram.types Class
-/// https://core.telegram.org/bots/api#successfullpayment
+/// This object contains basic information about a successful payment.
+///
+/// https://core.telegram.org/bots/api#successfulpayment
 @JsonSerializable()
 class SuccessfulPayment {
   String currency;

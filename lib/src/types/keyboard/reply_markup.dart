@@ -5,8 +5,14 @@
 
 part of keyboard;
 
-/// ReplyMarkup telegram.types Class
-/// https://core.telegram.org/bots/api#replymarkup
+/// Abstract object that represents a ReplyMarkup.
+/// * [ReplyKeyboardMarkup](https://core.telegram.org/bots/api#replykeyboardmarkup)
+/// * [ReplyKeyboardRemove](https://core.telegram.org/bots/api#replykeyboardremove)
+/// * [InlineKeyboardMarkup](https://core.telegram.org/bots/api#inlinekeyboardmarkup)
+/// * [ForceReply](https://core.telegram.org/bots/api#forcereply)
+///
+/// [inline keyboard]: https://core.telegram.org/bots#inline-keyboards-and-on-the-fly-updating
+/// [custom reply keyboard]: https://core.telegram.org/bots#keyboards
 @JsonSerializable()
 class ReplyMarkup {
   ReplyMarkup();

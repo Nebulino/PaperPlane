@@ -5,7 +5,8 @@
 
 part of poll;
 
-/// PollOption telegram.types Class
+/// This object contains information about one answer option in a poll.
+///
 /// https://core.telegram.org/bots/api#polloption
 @JsonSerializable()
 class PollOption {

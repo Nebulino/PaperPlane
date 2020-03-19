@@ -5,7 +5,8 @@
 
 part of payment;
 
-/// PreCheckoutQuery telegram.types Class
+/// This object contains information about an incoming pre-checkout query.
+///
 /// https://core.telegram.org/bots/api#precheckoutquery
 @JsonSerializable()
 class PreCheckoutQuery {

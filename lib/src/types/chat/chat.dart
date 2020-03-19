@@ -5,7 +5,8 @@
 
 part of chat;
 
-/// Chat telegram.types Class
+/// This object represents a chat.
+///
 /// https://core.telegram.org/bots/api#chat
 @JsonSerializable()
 class Chat {

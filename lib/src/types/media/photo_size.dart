@@ -5,7 +5,12 @@
 
 part of media;
 
-/// PhotoSize telegram.types Class
+/// This object represents one size of a photo or a
+/// [file] / [sticker] thumbnail.
+///
+/// [file]: https://core.telegram.org/bots/api#document
+/// [sticker]: https://core.telegram.org/bots/api#sticker
+///
 /// https://core.telegram.org/bots/api#photosize
 @JsonSerializable()
 class PhotoSize {

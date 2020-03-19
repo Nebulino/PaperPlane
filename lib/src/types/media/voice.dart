@@ -5,7 +5,8 @@
 
 part of media;
 
-/// Voice telegram.types Class
+/// This object represents a voice note.
+///
 /// https://core.telegram.org/bots/api#voice
 @JsonSerializable()
 class Voice {

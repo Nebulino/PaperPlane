@@ -5,7 +5,10 @@
 
 part of passport;
 
-/// PassportElementErrorFile telegram.types Class
+/// Represents an issue with a document scan.
+/// The error is considered resolved when the file with the
+/// document scan changes.
+///
 /// https://core.telegram.org/bots/api#passportelementerrorfile
 @JsonSerializable()
 class PassportElementErrorFile implements PassportElementError {

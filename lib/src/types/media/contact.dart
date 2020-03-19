@@ -5,7 +5,8 @@
 
 part of media;
 
-/// Contact telegram.types Class
+/// This object represents a phone contact.
+///
 /// https://core.telegram.org/bots/api#contact
 @JsonSerializable()
 class Contact {

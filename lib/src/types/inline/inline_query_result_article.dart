@@ -5,7 +5,8 @@
 
 part of inline;
 
-/// InlineQueryResultArticle telegram.types Class
+/// Represents a link to an article or web page.
+///
 /// https://core.telegram.org/bots/api#inlinequeryresultarticle
 @JsonSerializable()
 class InlineQueryResultArticle implements InlineQueryResult {

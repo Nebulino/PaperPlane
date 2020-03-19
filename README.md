@@ -30,9 +30,10 @@ First build the .g files for Serializable (if you clone the repo):
 A simple usage example:
 
 ```dart
+import 'dart:io' as io;
 import 'package:paperplane/paperplane.dart';
 
-void main() async {
+void main() {
   var token = 'Just A Token';
   
   var bot = PaperPlane.createBot(token);
@@ -51,7 +52,7 @@ void main() async {
   var updater = bot.updater.onUpdate();
   
   updater
-    .where((onUpdate) => onUpdate.message.text == 'voice')
+    .where((onUpdate) => onUpdate.message.text == 'animate')
     .listen((update) => methods.sendAnimation(
       message.chat.id,
       io.File('./files/gifs/bunny_girl.gif')));
@@ -72,13 +73,14 @@ dependencies:
 From pub.dev:
 ```yaml
 dependencies:
-  paperplane: ^0.4.0
+  paperplane: ^0.4.1
 ```
 
 ## Features and bugs
 
 #### For now, some methods are working.
-Implemented a base for a future solid implementation of Long Polling.
+##### Implemented a base for a future solid implementation of Long Polling.
+
 Still not implemented the Webhook.
 
 You can use Long Polling mode for now. 

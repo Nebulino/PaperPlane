@@ -5,7 +5,13 @@
 
 part of media;
 
-/// Document telegram.types Class
+/// This object represents a general file
+/// (as opposed to [photos], [voice messages] and [audio files]).
+///
+/// [photos]: https://core.telegram.org/bots/api#photosize
+/// [voice messages]: https://core.telegram.org/bots/api#voice
+/// [audio files]: https://core.telegram.org/bots/api#audio
+///
 /// https://core.telegram.org/bots/api#document
 @JsonSerializable()
 class Document {

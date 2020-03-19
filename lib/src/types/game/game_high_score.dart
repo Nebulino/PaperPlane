@@ -5,7 +5,9 @@
 
 part of game;
 
-/// Game High-score telegram.types Class
+/// This object represents one row of the high scores
+/// table for a game.
+///
 /// https://core.telegram.org/bots/api#gamehighscore
 @JsonSerializable()
 class GameHighScore {

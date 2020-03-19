@@ -5,7 +5,8 @@
 
 part of inputmedia;
 
-/// InputMediaDocument telegram.types Class
+/// Represents a general file to be sent.
+///
 /// https://core.telegram.org/bots/api#inputmediadocument
 @JsonSerializable()
 class InputMediaDocument implements InputMedia {

@@ -5,7 +5,9 @@
 
 part of inline;
 
-/// InputTextMessageContent telegram.types Class
+/// Represents the [content] of a text message to be sent as the result of an inline query.
+///
+/// [content]: https://core.telegram.org/bots/api#inputmessagecontent
 /// https://core.telegram.org/bots/api#inputtextmessagecontent
 @JsonSerializable()
 class InputTextMessageContent implements InputMessageContent {

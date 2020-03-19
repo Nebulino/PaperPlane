@@ -5,7 +5,13 @@
 
 part of keyboard;
 
-/// InlineKeyboardMarkup telegram.types Class
+/// This object represents an [inline keyboard] that appears right next to the message it belongs to.
+///
+/// **Note:** This will only work in Telegram versions released after 9 April, 2016. Older clients
+/// will display *unsupported message*.
+///
+/// [inline keyboard]: https://core.telegram.org/bots#inline-keyboards-and-on-the-fly-updating
+///
 /// https://core.telegram.org/bots/api#inlinekeyboardmarkup
 @JsonSerializable()
 class InlineKeyboardMarkup implements ReplyMarkup {

@@ -5,7 +5,8 @@
 
 part of media;
 
-/// Venue telegram.types Class
+/// This object represents a venue.
+///
 /// https://core.telegram.org/bots/api#venue
 @JsonSerializable()
 class Venue {
