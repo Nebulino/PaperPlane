@@ -22,8 +22,13 @@ class KeyboardButton {
   String text;
   bool request_contact;
   bool request_location;
+  KeyboardButtonPollType request_poll;
 
-  KeyboardButton({this.text, this.request_contact, this.request_location});
+  KeyboardButton(
+      {this.text,
+      this.request_contact,
+      this.request_location,
+      this.request_poll});
 
   factory KeyboardButton.fromJson(Map<String, dynamic> json) =>
       _$KeyboardButtonFromJson(json);

@@ -1,3 +1,13 @@
+## 0.4.2
+#### Another update.
+
+- Fixed Telegram API v.4.6.
+- Created PollAnswer.
+- Created KeyboardButtonPollType.
+- Updated Update object.
+- Updated MessageEntity.
+- Fixed CHANGELOG.md.
+
 ## 0.4.1
 #### A new step for the docs, and more...
 
@@ -6,8 +16,6 @@
 - Updated all Telegram API types documentation.
 - Implemented replyLocation.
 - Some refactoring.
-
-Updated some  
 
 ## 0.4.0
 #### Huge Update. Basic polling!
