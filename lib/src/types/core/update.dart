@@ -27,6 +27,7 @@ class Update {
   ShippingQuery shipping_query;
   PreCheckoutQuery pre_checkout_query;
   Poll poll;
+  PollAnswer poll_answer;
 
   Update(
       {this.update_id,
@@ -39,7 +40,8 @@ class Update {
       this.callback_query,
       this.shipping_query,
       this.pre_checkout_query,
-      this.poll});
+      this.poll,
+      this.poll_answer});
 
   factory Update.fromJson(Map<String, dynamic> json) => _$UpdateFromJson(json);
 

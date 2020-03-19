@@ -21,6 +21,7 @@ class Dispatcher {
   StreamController<ShippingQuery> _shipping_query_dispatcher;
   StreamController<PreCheckoutQuery> _precheckout_query_dispatcher;
   StreamController<Poll> _poll_dispatcher;
+  StreamController<PollAnswer> _poll_answer_dispatcher;
 
   Dispatcher({bool sync = false}) {
     // Creating all StreamControllers...
@@ -32,6 +33,7 @@ class Dispatcher {
     _callback_query_dispatcher = StreamController.broadcast(sync: sync);
     _shipping_query_dispatcher = StreamController.broadcast(sync: sync);
     _poll_dispatcher = StreamController.broadcast(sync: sync);
+    _poll_answer_dispatcher = StreamController.broadcast(sync: sync);
   }
 
   // Dispatch the update into each queues.
@@ -58,6 +60,8 @@ class Dispatcher {
       _precheckout_query_dispatcher.add(update.pre_checkout_query);
     } else if (update.poll != null) {
       _poll_dispatcher.add(update.poll);
+    } else if (update.poll_answer != null) {
+      _poll_answer_dispatcher.add(update.poll_answer);
     } else {
       throw DispatcherException(description: 'The update can not be handled.');
     }
@@ -86,4 +90,6 @@ class Dispatcher {
       _precheckout_query_dispatcher.stream;
 
   Stream<Poll> onPoll() => _poll_dispatcher.stream;
+
+  Stream<PollAnswer> onPollAnswer() => _poll_answer_dispatcher.stream;
 }
