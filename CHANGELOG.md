@@ -1,3 +1,9 @@
+## 0.4.3
+
+- Implemented clean mode polling.
+- Implemented bot stopping.
+- Fixed blob sending.
+
 ## 0.4.2
 #### Another update.
 
