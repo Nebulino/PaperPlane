@@ -78,13 +78,33 @@ class PaperPlane {
   }
 
   // Create an extension instead?
-  Future<void> startPolling() async {
+  Future<void> startPolling({bool clean = false}) async {
+    if (_is_flying) {
+      throw PaperPlaneException(
+          description: 'The PaperPlane is already on air.');
+    }
     _polling ??= LongPolling(api)
-      ..start()
+      ..start(clean: clean)
       // Every update inside the onUpdate are being dispatched.
       ..updater.onUpdate().listen((update) {
         _polling_helper(update);
       });
+  }
+
+  void stop() {
+    if (!_is_flying) {
+      throw PaperPlaneException(description: 'No PaperPlane departed.');
+    }
+    print('${_me.username} is landing...');
+    if (_polling != null) {
+      _polling.stop_polling();
+      _polling = null;
+    }
+  }
+
+  void scrapPaperPlane() {
+    _paperplane = null;
+    _me = null;
   }
 
   /// It helps sending the updates into the dispatcher.

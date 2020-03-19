@@ -39,9 +39,15 @@ class LongPolling {
 
   bool get isPolling => _polling;
 
-  void start() {
+  void _cleanUpdates() {
+    offset = -1;
+    timeout = 0;
+  }
+
+  void start({bool clean = false}) {
     if (!_polling) {
       _polling = true;
+      if (clean) _cleanUpdates();
       _long_polling();
     } else {
       PaperPlaneException(
@@ -61,7 +67,6 @@ class LongPolling {
         if (updates.isNotEmpty) {
           for (var update in updates) {
             // It adds all the updates in the queue.
-            // TODO: need to setup the clean polling.
             updater.updateQueue(update);
             offset = update.update_id + 1;
           }
@@ -72,8 +77,9 @@ class LongPolling {
   }
 
   void stop_polling() {
-    if (_polling) {
-      _polling = false;
+    if (!_polling) {
+      throw PaperPlaneException(description: 'No polling is running.');
     }
+    _polling = false;
   }
 }
