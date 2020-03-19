@@ -5,7 +5,12 @@
 
 part of keyboard;
 
-/// ReplyKeyboardMarkup telegram.types Class
+/// This object represents a [custom keyboard] with reply options
+/// (see [Introduction to bots] for details and examples).
+///
+/// [custom keyboard]: https://core.telegram.org/bots#keyboards
+/// [Introduction to bots]: https://core.telegram.org/bots#keyboards
+///
 /// https://core.telegram.org/bots/api#replykeyboardmarkup
 @JsonSerializable()
 class ReplyKeyboardMarkup implements ReplyMarkup {

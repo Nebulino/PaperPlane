@@ -5,7 +5,8 @@
 
 part of payment;
 
-/// Invoice telegram.types Class
+/// This object contains basic information about an invoice.
+///
 /// https://core.telegram.org/bots/api#invoice
 @JsonSerializable()
 class Invoice {

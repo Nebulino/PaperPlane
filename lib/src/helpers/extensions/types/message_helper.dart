@@ -4,7 +4,6 @@
  */
 
 import 'package:paperplane/paperplane.dart';
-import 'package:paperplane/paperplane_exceptions.dart';
 import 'package:paperplane/src/core/types/chat_actions.dart';
 import 'package:paperplane/src/core/types/parse_mode.dart';
 import 'package:paperplane/src/core/types/poll_type.dart';
@@ -181,9 +180,16 @@ extension MessageHelper on Message {
   }
 
   /// Helps replying with a location directly.
-  Future<Message> replyLocation() {
-    // TODO: implement replyLocation
-    return Future.error(TelegramMethodException('Not yet implemented.'));
+  Future<Message> replyLocation(double latitude, double longitude,
+      {bool quote_message = true,
+      int live_period,
+      bool disable_notification,
+      ReplyMarkup reply_markup}) {
+    return _methods.sendLocation(_chat_id, latitude, longitude,
+        live_period: live_period,
+        disable_notification: disable_notification,
+        reply_to_message_id: quote_message ? _message_id : null,
+        reply_markup: reply_markup);
   }
 
   /// Helps replying with a venue directly.

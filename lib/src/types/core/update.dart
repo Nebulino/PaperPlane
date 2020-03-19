@@ -5,7 +5,14 @@
 
 part of core;
 
-/// Update telegram.types Class
+/// This [object] represents an incoming update.
+/// At most **one** of the optional parameters can be present
+/// in any given update.
+///
+/// **Optional** fields may be not returned when irrelevant.
+///
+/// [object]: https://core.telegram.org/bots/api#available-types
+///
 /// https://core.telegram.org/bots/api#update
 @JsonSerializable()
 class Update {

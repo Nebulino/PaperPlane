@@ -5,7 +5,8 @@
 
 part of inputmedia;
 
-/// InputMediaPhoto telegram.types Class
+/// Represents a photo to be sent.
+///
 /// https://core.telegram.org/bots/api#inputmediaphoto
 @JsonSerializable()
 class InputMediaPhoto implements InputMedia {

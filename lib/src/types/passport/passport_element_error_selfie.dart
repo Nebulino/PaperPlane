@@ -5,7 +5,9 @@
 
 part of passport;
 
-/// PassportElementErrorSelfie telegram.types Class
+/// Represents an issue with the selfie with a document.
+/// The error is considered resolved when the file with the selfie changes.
+///
 /// https://core.telegram.org/bots/api#passportelementerrorselfie
 @JsonSerializable()
 class PassportElementErrorSelfie implements PassportElementError {

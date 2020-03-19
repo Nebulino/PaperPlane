@@ -5,7 +5,9 @@
 
 part of passport;
 
-/// PassportElementErrorUnspecified telegram.types Class
+/// Represents an issue in an unspecified place.
+/// The error is considered resolved when new data is added.
+///
 /// https://core.telegram.org/bots/api#passportelementerrorunspecified
 @JsonSerializable()
 class PassportElementErrorUnspecified implements PassportElementError {

@@ -5,7 +5,8 @@
 
 part of payment;
 
-/// ShippingAddress telegram.types Class
+/// This object represents a shipping address.
+///
 /// https://core.telegram.org/bots/api#shippingaddress
 @JsonSerializable()
 class ShippingAddress {

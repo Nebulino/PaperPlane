@@ -5,7 +5,10 @@
 
 part of game;
 
-/// Game telegram.types Class
+/// This object represents a game.
+/// Use BotFather to create and edit games,
+/// their short names will act as unique identifiers.
+///
 /// https://core.telegram.org/bots/api#game
 @JsonSerializable()
 class Game {

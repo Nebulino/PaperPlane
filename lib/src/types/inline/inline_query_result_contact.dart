@@ -5,8 +5,18 @@
 
 part of inline;
 
-/// InlineQueryResultCachedContact telegram.types Class
-/// https://core.telegram.org/bots/api#inlinequeryresultcachedcontact
+/// Represents a contact with a phone number.
+/// By default, the contact will be sent by the user.
+/// Alternatively,
+/// you can use *input_message_content* to send a
+/// message with the specified content instead of the contact.
+///
+/// **Note:** This will only work in Telegram versions
+/// released after 9 April, 2016.
+///
+/// Older clients will ignore them.
+///
+/// https://core.telegram.org/bots/api#inlinequeryresultcontact
 @JsonSerializable()
 class InlineQueryResultContact implements InlineQueryResult {
   @override

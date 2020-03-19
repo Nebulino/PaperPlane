@@ -5,7 +5,8 @@
 
 part of core;
 
-/// Webhook Info telegram.types Class
+/// Contains information about the current status of a webhook.
+///
 /// https://core.telegram.org/bots/api#webhookinfo
 @JsonSerializable()
 class WebhookInfo {

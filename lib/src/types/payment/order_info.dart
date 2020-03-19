@@ -5,7 +5,8 @@
 
 part of payment;
 
-/// OrderInfo telegram.types Class
+/// This object represents information about an order.
+///
 /// https://core.telegram.org/bots/api#orderinfo
 @JsonSerializable()
 class OrderInfo {

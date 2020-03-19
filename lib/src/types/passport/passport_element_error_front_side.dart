@@ -5,7 +5,10 @@
 
 part of passport;
 
-/// PassportElementErrorFrontSide telegram.types Class
+/// Represents an issue with the front side of a document.
+/// The error is considered resolved when the file with
+/// the front side of the document changes.
+///
 /// https://core.telegram.org/bots/api#passportelementerrorfrontside
 @JsonSerializable()
 class PassportElementErrorFrontSide implements PassportElementError {

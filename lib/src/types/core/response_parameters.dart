@@ -5,7 +5,8 @@
 
 part of core;
 
-/// ResponseParameters telegram.types Class
+/// Contains information about why a request was unsuccessful.
+///
 /// https://core.telegram.org/bots/api#responseparameters
 @JsonSerializable()
 class ResponseParameters {

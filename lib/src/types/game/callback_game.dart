@@ -5,7 +5,11 @@
 
 part of game;
 
-/// CallbackGame telegram.types Class
+/// A placeholder, currently holds no information.
+/// Use [BotFather] to set up your game.
+///
+/// [BotFather]: https://t.me/botfather
+///
 /// https://core.telegram.org/bots/api#callbackgame
 @JsonSerializable()
 class CallbackGame {

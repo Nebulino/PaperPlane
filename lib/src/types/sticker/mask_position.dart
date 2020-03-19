@@ -5,7 +5,9 @@
 
 part of sticker;
 
-/// MaskPosition telegram.types Class
+/// This object describes the position on faces where
+/// a mask should be placed by default.
+///
 /// https://core.telegram.org/bots/api#maskposition
 @JsonSerializable()
 class MaskPosition {

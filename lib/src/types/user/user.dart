@@ -5,7 +5,8 @@
 
 part of user;
 
-/// User telegram.types Class
+/// This object represents a Telegram user or bot.
+///
 /// https://core.telegram.org/bots/api#user
 @JsonSerializable()
 class User {

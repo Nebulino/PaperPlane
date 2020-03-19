@@ -5,8 +5,9 @@
 
 part of payment;
 
-/// LabeledPrice telegram.types Class
-/// https://core.telegram.org/bots/api#labeled_price
+/// This object represents a portion of the price for goods or services.
+///
+/// https://core.telegram.org/bots/api#labeledprice
 @JsonSerializable()
 class LabeledPrice {
   String label;

@@ -5,8 +5,9 @@
 
 part of inputmedia;
 
-/// InputMediaPhoto telegram.types Class
-/// https://core.telegram.org/bots/api#inputmediaphoto
+/// Represents a video to be sent.
+///
+/// https://core.telegram.org/bots/api#inputmediavideo
 @JsonSerializable()
 class InputMediaVideo implements InputMedia {
   @override

@@ -5,7 +5,9 @@
 
 part of message;
 
-/// MessageEntity telegram.types Class
+/// This object represents one special entity in a
+/// text message. For example, hashtags, usernames, URLs, etc.
+///
 /// https://core.telegram.org/bots/api#messageentity
 @JsonSerializable()
 class MessageEntity {
