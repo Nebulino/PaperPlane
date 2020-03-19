@@ -16,8 +16,15 @@ class MessageEntity {
   int length;
   String url;
   User user;
+  String language;
 
-  MessageEntity({this.type, this.offset, this.length, this.url, this.user});
+  MessageEntity(
+      {this.type,
+      this.offset,
+      this.length,
+      this.url,
+      this.user,
+      this.language});
 
   factory MessageEntity.fromJson(Map<String, dynamic> json) =>
       _$MessageEntityFromJson(json);

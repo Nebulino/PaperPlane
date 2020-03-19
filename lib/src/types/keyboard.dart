@@ -16,6 +16,7 @@ part '../types/keyboard/force_reply.dart';
 part '../types/keyboard/inline_keyboard_button.dart';
 part '../types/keyboard/inline_keyboard_markup.dart';
 part '../types/keyboard/keyboard_button.dart';
+part '../types/keyboard/keyboard_button_poll_type.dart';
 part '../types/keyboard/reply_keyboard_markup.dart';
 part '../types/keyboard/reply_keyboard_remove.dart';
 part '../types/keyboard/reply_markup.dart';

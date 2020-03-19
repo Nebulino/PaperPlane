@@ -29,4 +29,6 @@ extension PaperPlaneDispatcherExtension on PaperPlane {
       _dispatcher.onPreCheckoutQuery();
 
   Stream<Poll> onPoll() => _dispatcher.onPoll();
+
+  Stream<PollAnswer> onPollAnswer() => _dispatcher.onPollAnswer();
 }
