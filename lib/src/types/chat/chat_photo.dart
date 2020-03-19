@@ -5,7 +5,8 @@
 
 part of chat;
 
-/// ChatPhoto telegram.types Class
+/// This object represents a chat photo.
+///
 /// https://core.telegram.org/bots/api#chatphoto
 @JsonSerializable()
 class ChatPhoto {

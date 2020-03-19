@@ -5,7 +5,10 @@
 
 part of passport;
 
-/// PassportElementErrorReverseSide telegram.types Class
+/// Represents an issue with the reverse side of a document.
+/// The error is considered resolved when the file with reverse
+/// side of the document changes.
+///
 /// https://core.telegram.org/bots/api#passportelementerrorreverseside
 @JsonSerializable()
 class PassportElementErrorReverseSide implements PassportElementError {

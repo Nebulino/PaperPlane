@@ -5,7 +5,9 @@
 
 part of media;
 
-/// Audio telegram.types Class
+/// This object represents an audio file to be treated as music by the
+/// Telegram clients.
+///
 /// https://core.telegram.org/bots/api#audio
 @JsonSerializable()
 class Audio {

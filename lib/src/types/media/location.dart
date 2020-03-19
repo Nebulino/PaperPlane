@@ -5,7 +5,8 @@
 
 part of media;
 
-/// Location telegram.types Class
+/// This object represents a point on the map.
+///
 /// https://core.telegram.org/bots/api#location
 @JsonSerializable()
 class Location {

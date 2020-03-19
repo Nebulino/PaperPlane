@@ -5,7 +5,13 @@
 
 part of inline;
 
-/// InlineQueryResultCachedVideo telegram.types Class
+/// Represents a link to a video file stored on the
+/// Telegram servers.
+/// By default, this video file will be sent by the
+/// user with an optional caption.
+/// Alternatively, you can use *input_message_content*
+/// to send a message with the specified content instead of the video.
+///
 /// https://core.telegram.org/bots/api#inlinequeryresultcachedvideo
 @JsonSerializable()
 class InlineQueryResultCachedVideo implements InlineQueryResult {

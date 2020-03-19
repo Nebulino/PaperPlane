@@ -5,7 +5,11 @@
 
 part of inline;
 
-/// InputLocationMessageContent telegram.types Class
+/// Represents the [content] of a location message
+/// to be sent as the result of an inline query.
+///
+/// [content]: https://core.telegram.org/bots/api#inputmessagecontent
+///
 /// https://core.telegram.org/bots/api#inputlocationmessagecontent
 @JsonSerializable()
 class InputLocationMessageContent implements InputMessageContent {

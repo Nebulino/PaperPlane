@@ -5,7 +5,8 @@
 
 part of message;
 
-/// Message telegram.types Class
+/// This object represents a message.
+///
 /// https://core.telegram.org/bots/api#message
 @JsonSerializable()
 class Message {

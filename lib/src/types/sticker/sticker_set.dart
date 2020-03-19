@@ -5,7 +5,8 @@
 
 part of sticker;
 
-/// StickerSet telegram.types Class
+/// This object represents a sticker set.
+///
 /// https://core.telegram.org/bots/api#stickerset
 @JsonSerializable()
 class StickerSet {

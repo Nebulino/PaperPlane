@@ -5,7 +5,14 @@
 
 part of inline;
 
-/// ChosenInlineResult telegram.types Class
+/// Represents a [result] of an inline query that was chosen by the user and sent to their chat partner.
+///
+/// **Note:** It is necessary to enable [inline feedback] via [@Botfather] in order to receive these objects in updates.
+///
+/// [result]: https://core.telegram.org/bots/api#inlinequeryresult
+/// [inline feedback]: https://core.telegram.org/bots/inline#collecting-feedback
+/// [@Botfather]: https://t.me/botfather
+///
 /// https://core.telegram.org/bots/api#choseninlineresult
 @JsonSerializable()
 class ChosenInlineResult {

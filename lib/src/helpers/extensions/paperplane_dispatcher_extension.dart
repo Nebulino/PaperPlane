@@ -8,7 +8,7 @@ import 'package:paperplane/src/core/dispatcher.dart';
 import 'package:paperplane/types.dart';
 
 /// It extends PaperPlane by adding dispatcher functions.
-extension PaperPlaneExtension on PaperPlane {
+extension PaperPlaneDispatcherExtension on PaperPlane {
   Dispatcher get _dispatcher => dispatcher;
 
   Stream<Message> onMessage() => _dispatcher.onMessage();

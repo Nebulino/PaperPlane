@@ -5,7 +5,8 @@
 
 part of payment;
 
-/// ShippingOption telegram.types Class
+/// This object represents one shipping option.
+///
 /// https://core.telegram.org/bots/api#shippingoption
 @JsonSerializable()
 class ShippingOption {

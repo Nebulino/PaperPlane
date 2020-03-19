@@ -5,7 +5,9 @@
 
 part of inputmedia;
 
-/// InputMediaAnimation telegram.types Class
+/// Represents an animation file
+/// (GIF or H.264/MPEG-4 AVC video without sound) to be sent.
+///
 /// https://core.telegram.org/bots/api#inputmediaanimation
 @JsonSerializable()
 class InputMediaAnimation implements InputMedia {

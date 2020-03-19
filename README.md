@@ -73,13 +73,14 @@ dependencies:
 From pub.dev:
 ```yaml
 dependencies:
-  paperplane: ^0.4.0
+  paperplane: ^0.4.1
 ```
 
 ## Features and bugs
 
 #### For now, some methods are working.
-Implemented a base for a future solid implementation of Long Polling.
+##### Implemented a base for a future solid implementation of Long Polling.
+
 Still not implemented the Webhook.
 
 You can use Long Polling mode for now. 

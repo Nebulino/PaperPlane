@@ -5,7 +5,10 @@
 
 part of passport;
 
-/// PassportFile telegram.types Class
+/// This object represents a file uploaded to Telegram Passport.
+/// Currently all Telegram Passport files are in JPEG format when
+/// decrypted and don't exceed 10MB.
+///
 /// https://core.telegram.org/bots/api#passportfile
 @JsonSerializable()
 class PassportFile {

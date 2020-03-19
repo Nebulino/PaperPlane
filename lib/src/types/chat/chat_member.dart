@@ -5,7 +5,8 @@
 
 part of chat;
 
-/// ChatMember telegram.types Class
+/// This object contains information about one member of a chat.
+///
 /// https://core.telegram.org/bots/api#chatmember
 @JsonSerializable()
 class ChatMember {

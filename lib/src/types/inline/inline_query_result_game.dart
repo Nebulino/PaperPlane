@@ -5,7 +5,15 @@
 
 part of inline;
 
-/// InlineQueryResultGame telegram.types Class
+/// Represents a [Game].
+///
+/// **Note:** This will only work in Telegram versions released
+/// after October 1, 2016.
+/// Older clients will not display any inline results if
+/// a game result is among them.
+///
+/// [Game]: https://core.telegram.org/bots/api#games
+///
 /// https://core.telegram.org/bots/api#inlinequeryresultgame
 @JsonSerializable()
 class InlineQueryResultGame implements InlineQueryResult {

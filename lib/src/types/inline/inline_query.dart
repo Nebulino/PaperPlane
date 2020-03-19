@@ -5,7 +5,10 @@
 
 part of inline;
 
-/// InlineQuery telegram.types Class
+/// This object represents an incoming inline query.
+/// When the user sends an empty query,
+/// your bot could return some default or trending results.
+///
 /// https://core.telegram.org/bots/api#inlinequery
 @JsonSerializable()
 class InlineQuery {

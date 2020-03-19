@@ -5,7 +5,9 @@
 
 part of passport;
 
-/// EncryptedPassportElement telegram.types Class
+/// Contains information about documents
+/// or other Telegram Passport elements shared with the bot by the user.
+///
 /// https://core.telegram.org/bots/api#encryptedpassportelement
 @JsonSerializable()
 class EncryptedPassportElement {

@@ -5,7 +5,8 @@
 
 part of payment;
 
-/// ShippingQuery telegram.types Class
+/// This object contains information about an incoming shipping query.
+///
 /// https://core.telegram.org/bots/api#shippingquery
 @JsonSerializable()
 class ShippingQuery {

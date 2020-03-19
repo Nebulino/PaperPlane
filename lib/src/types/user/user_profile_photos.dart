@@ -5,7 +5,8 @@
 
 part of user;
 
-/// UserProfilePhotos telegram.types Class
+/// This object represent a user's profile pictures.
+///
 /// https://core.telegram.org/bots/api#userprofilephotos
 @JsonSerializable()
 class UserProfilePhotos {
