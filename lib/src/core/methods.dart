@@ -213,9 +213,7 @@ class Methods {
       return Message.fromJson(await _multipart_post('sendPhoto', files, body));
     } else if (photo is Uint8List) {
       var files = <http.MultipartFile>[];
-      var photo_created = io.File.fromRawPath(photo);
-      files.add(http.MultipartFile(
-          'photo', photo_created.openRead(), photo_created.lengthSync(),
+      files.add(http.MultipartFile.fromBytes('photo', photo,
           filename: 'Photo-${DateTime.now()}'));
       return Message.fromJson(await _multipart_post('sendPhoto', files, body));
     } else {
@@ -285,9 +283,7 @@ class Methods {
           'audio', audio.openRead(), audio.lengthSync(),
           filename: 'Audio-${DateTime.now()}'));
     } else if (audio is Uint8List) {
-      var audio_from_blob = io.File.fromRawPath(audio);
-      files.add(http.MultipartFile(
-          'audio', audio_from_blob.openRead(), audio_from_blob.lengthSync(),
+      files.add(http.MultipartFile.fromBytes('audio', audio,
           filename: 'Audio-${DateTime.now()}'));
     } else {
       return Future.error(
@@ -302,9 +298,7 @@ class Methods {
           'thumb', thumb.openRead(), thumb.lengthSync(),
           filename: 'Thumb-${DateTime.now()}'));
     } else if (thumb is Uint8List) {
-      var thumb_from_blob = io.File.fromRawPath(thumb);
-      files.add(http.MultipartFile(
-          'thumb', thumb_from_blob.openRead(), thumb_from_blob.lengthSync(),
+      files.add(http.MultipartFile.fromBytes('thumb', thumb,
           filename: 'Thumb-${DateTime.now()}'));
     } else if (thumb == null) {
       body['thumb'] = '';
@@ -355,9 +349,7 @@ class Methods {
           'document', document.openRead(), document.lengthSync(),
           filename: 'Document-${DateTime.now()}'));
     } else if (document is Uint8List) {
-      var document_from_blob = io.File.fromRawPath(document);
-      files.add(http.MultipartFile('document', document_from_blob.openRead(),
-          document_from_blob.lengthSync(),
+      files.add(http.MultipartFile.fromBytes('document', document,
           filename: 'Document-${DateTime.now()}'));
     } else {
       return Future.error(
@@ -372,9 +364,7 @@ class Methods {
           'thumb', thumb.openRead(), thumb.lengthSync(),
           filename: 'Thumb-${DateTime.now()}'));
     } else if (thumb is Uint8List) {
-      var thumb_from_blob = io.File.fromRawPath(thumb);
-      files.add(http.MultipartFile(
-          'thumb', thumb_from_blob.openRead(), thumb_from_blob.lengthSync(),
+      files.add(http.MultipartFile.fromBytes('thumb', thumb,
           filename: 'Thumb-${DateTime.now()}'));
     } else if (thumb == null) {
       body['thumb'] = '';
@@ -451,9 +441,7 @@ class Methods {
           'video', video.openRead(), video.lengthSync(),
           filename: 'Video-${DateTime.now()}'));
     } else if (video is Uint8List) {
-      var video_from_blob = io.File.fromRawPath(video);
-      files.add(http.MultipartFile(
-          'video', video_from_blob.openRead(), video_from_blob.lengthSync(),
+      files.add(http.MultipartFile.fromBytes('video', video,
           filename: 'Video-${DateTime.now()}'));
     } else {
       return Future.error(
@@ -468,9 +456,7 @@ class Methods {
           'thumb', thumb.openRead(), thumb.lengthSync(),
           filename: 'Thumb-${DateTime.now()}'));
     } else if (thumb is Uint8List) {
-      var thumb_from_blob = io.File.fromRawPath(thumb);
-      files.add(http.MultipartFile(
-          'thumb', thumb_from_blob.openRead(), thumb_from_blob.lengthSync(),
+      files.add(http.MultipartFile.fromBytes('thumb', thumb,
           filename: 'Thumb-${DateTime.now()}'));
     } else if (thumb == null) {
       body['thumb'] = '';
@@ -544,9 +530,7 @@ class Methods {
           'animation', animation.openRead(), animation.lengthSync(),
           filename: 'Animation-${DateTime.now()}'));
     } else if (animation is Uint8List) {
-      var animation_from_blob = io.File.fromRawPath(animation);
-      files.add(http.MultipartFile('animation', animation_from_blob.openRead(),
-          animation_from_blob.lengthSync(),
+      files.add(http.MultipartFile.fromBytes('animation', animation,
           filename: 'Animation-${DateTime.now()}'));
     } else {
       return Future.error(
@@ -561,9 +545,7 @@ class Methods {
           'thumb', thumb.openRead(), thumb.lengthSync(),
           filename: 'Thumb-${DateTime.now()}'));
     } else if (thumb is Uint8List) {
-      var thumb_from_blob = io.File.fromRawPath(thumb);
-      files.add(http.MultipartFile(
-          'thumb', thumb_from_blob.openRead(), thumb_from_blob.lengthSync(),
+      files.add(http.MultipartFile.fromBytes('thumb', thumb,
           filename: 'Thumb-${DateTime.now()}'));
     } else if (thumb == null) {
       body['thumb'] = '';
@@ -633,9 +615,7 @@ class Methods {
           'voice', voice.openRead(), voice.lengthSync(),
           filename: 'Voice-${DateTime.now()}'));
     } else if (voice is Uint8List) {
-      var voice_from_blob = io.File.fromRawPath(voice);
-      files.add(http.MultipartFile(
-          'voice', voice_from_blob.openRead(), voice_from_blob.lengthSync(),
+      files.add(http.MultipartFile.fromBytes('voice', voice,
           filename: 'Voice-${DateTime.now()}'));
     } else {
       return Future.error(
@@ -699,9 +679,7 @@ class Methods {
           'animation', video_note.openRead(), video_note.lengthSync(),
           filename: 'Video_note-${DateTime.now()}'));
     } else if (video_note is Uint8List) {
-      var video_note_from_blob = io.File.fromRawPath(video_note);
-      files.add(http.MultipartFile('video_note',
-          video_note_from_blob.openRead(), video_note_from_blob.lengthSync(),
+      files.add(http.MultipartFile.fromBytes('video_note', video_note,
           filename: 'Video_note-${DateTime.now()}'));
     } else {
       return Future.error(
@@ -716,9 +694,7 @@ class Methods {
           'thumb', thumb.openRead(), thumb.lengthSync(),
           filename: 'Thumb-${DateTime.now()}'));
     } else if (thumb is Uint8List) {
-      var thumb_from_blob = io.File.fromRawPath(thumb);
-      files.add(http.MultipartFile(
-          'thumb', thumb_from_blob.openRead(), thumb_from_blob.lengthSync(),
+      files.add(http.MultipartFile.fromBytes('thumb', thumb,
           filename: 'Thumb-${DateTime.now()}'));
     } else if (thumb == null) {
       body['thumb'] = '';
@@ -1150,9 +1126,7 @@ class Methods {
           'photo', photo.openRead(), photo.lengthSync(),
           filename: 'Photo-${DateTime.now()}'));
     } else if (photo is Uint8List) {
-      var photo_from_blob = io.File.fromRawPath(photo);
-      files.add(http.MultipartFile(
-          'photo', photo_from_blob.openRead(), photo_from_blob.lengthSync(),
+      files.add(http.MultipartFile.fromBytes('photo', photo,
           filename: 'Photo-${DateTime.now()}'));
     } else {
       return Future.error(
@@ -1608,9 +1582,7 @@ class Methods {
           await _multipart_post('uploadStickerFile', files, body));
     } else if (png_sticker is Uint8List) {
       var files = <http.MultipartFile>[];
-      var png_sticker_created = io.File.fromRawPath(png_sticker);
-      files.add(http.MultipartFile('png_sticker',
-          png_sticker_created.openRead(), png_sticker_created.lengthSync(),
+      files.add(http.MultipartFile.fromBytes('png_sticker', png_sticker,
           filename: 'Png_Sticker-${DateTime.now()}'));
       return File.fromJson(
           await _multipart_post('uploadStickerFile', files, body));
@@ -1651,9 +1623,7 @@ class Methods {
       return await _multipart_post('createNewStickerSet', files, body);
     } else if (png_sticker is Uint8List) {
       var files = <http.MultipartFile>[];
-      var png_sticker_created = io.File.fromRawPath(png_sticker);
-      files.add(http.MultipartFile('png_sticker',
-          png_sticker_created.openRead(), png_sticker_created.lengthSync(),
+      files.add(http.MultipartFile.fromBytes('png_sticker', png_sticker,
           filename: 'Png_Sticker-${DateTime.now()}'));
       return await _multipart_post('createNewStickerSet', files, body);
     } else {
@@ -1688,9 +1658,7 @@ class Methods {
       return await _multipart_post('createNewStickerSet', files, body);
     } else if (png_sticker is Uint8List) {
       var files = <http.MultipartFile>[];
-      var png_sticker_created = io.File.fromRawPath(png_sticker);
-      files.add(http.MultipartFile('png_sticker',
-          png_sticker_created.openRead(), png_sticker_created.lengthSync(),
+      files.add(http.MultipartFile.fromBytes('png_sticker', png_sticker,
           filename: 'Png_Sticker-${DateTime.now()}'));
       return await _multipart_post('createNewStickerSet', files, body);
     } else {
