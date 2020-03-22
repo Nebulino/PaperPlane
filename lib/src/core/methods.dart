@@ -10,9 +10,6 @@ import 'dart:typed_data';
 import 'package:http/http.dart' as http;
 import 'package:paperplane/paperplane.dart';
 import 'package:paperplane/paperplane_exceptions.dart';
-import 'package:paperplane/src/core/types/chat_actions.dart';
-import 'package:paperplane/src/core/types/parse_mode.dart';
-import 'package:paperplane/src/core/types/poll_type.dart';
 import 'package:paperplane/types.dart';
 
 /// You can find all Telegram API methods.

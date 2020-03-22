@@ -36,7 +36,7 @@ class BotFile {
   }
 
   /// Export a PaperPlane file.
-  static void export(Bot bot, {String file_name = 'PaperPlaneBot.json'}) {
+  static void export(Bot bot, String file_name) {
     io.File(file_name).writeAsString(jsonEncode(bot.toJson()));
   }
 

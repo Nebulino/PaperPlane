@@ -12,6 +12,9 @@ linter:
     - test_types_in_equals
     - iterable_contains_unrelated_type
 
-# analyzer:
-#   exclude:
-#     - path/to/excluded/files/**
+analyzer:
+  exclude:
+    - lib/paperplane.dart
+    - lib/paperplane_exceptions.dart
+    - lib/types.dart
+#    - path/to/excluded/files/**

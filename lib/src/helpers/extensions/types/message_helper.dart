@@ -4,9 +4,6 @@
  */
 
 import 'package:paperplane/paperplane.dart';
-import 'package:paperplane/src/core/types/chat_actions.dart';
-import 'package:paperplane/src/core/types/parse_mode.dart';
-import 'package:paperplane/src/core/types/poll_type.dart';
 import 'package:paperplane/types.dart';
 
 /// Helper for Message.
@@ -14,10 +11,6 @@ import 'package:paperplane/types.dart';
 /// It means it quotes the message you want to reply.
 /// For disabling it, just set quote_message to False.
 extension MessageHelper on Message {
-  int get _chat_id => chat.id;
-
-  int get _message_id => message_id;
-
   Methods get _methods => PaperPlane.fly.api.methods;
 
   /// Helps replying with a text directly.
@@ -27,11 +20,11 @@ extension MessageHelper on Message {
       bool disable_web_page_preview,
       bool disable_notification,
       ReplyMarkup reply_markup}) {
-    return _methods.sendMessage(_chat_id, text,
+    return _methods.sendMessage(chat.id, text,
         parse_mode: parse_mode,
         disable_web_page_preview: disable_web_page_preview,
         disable_notification: disable_notification,
-        reply_to_message_id: quote_message ? _message_id : null,
+        reply_to_message_id: quote_message ? message_id : null,
         reply_markup: reply_markup);
   }
 
@@ -42,11 +35,11 @@ extension MessageHelper on Message {
       ParseMode parse_mode,
       bool disable_notification,
       ReplyMarkup reply_markup}) {
-    return _methods.sendPhoto(_chat_id, photo,
+    return _methods.sendPhoto(chat.id, photo,
         caption: caption,
         parse_mode: parse_mode,
         disable_notification: disable_notification,
-        reply_to_message_id: quote_message ? _message_id : null,
+        reply_to_message_id: quote_message ? message_id : null,
         reply_markup: reply_markup);
   }
 
@@ -61,7 +54,7 @@ extension MessageHelper on Message {
       dynamic thumb,
       bool disable_notification,
       ReplyMarkup reply_markup}) {
-    return _methods.sendAudio(_chat_id, audio,
+    return _methods.sendAudio(chat.id, audio,
         caption: caption,
         parse_mode: parse_mode,
         duration: duration,
@@ -69,7 +62,7 @@ extension MessageHelper on Message {
         title: title,
         thumb: thumb,
         disable_notification: disable_notification,
-        reply_to_message_id: quote_message ? _message_id : null);
+        reply_to_message_id: quote_message ? message_id : null);
   }
 
   /// Helps replying a document directly.
@@ -80,12 +73,12 @@ extension MessageHelper on Message {
       String parse_mode,
       bool disable_notification,
       ReplyMarkup reply_markup}) {
-    return _methods.sendDocument(_chat_id, document,
+    return _methods.sendDocument(chat.id, document,
         thumb: thumb,
         caption: caption,
         parse_mode: parse_mode,
         disable_notification: disable_notification,
-        reply_to_message_id: quote_message ? _message_id : null,
+        reply_to_message_id: quote_message ? message_id : null,
         reply_markup: reply_markup);
   }
 
@@ -101,7 +94,7 @@ extension MessageHelper on Message {
       bool supports_streaming,
       bool disable_notification,
       ReplyMarkup reply_markup}) {
-    return _methods.sendVideo(_chat_id, video,
+    return _methods.sendVideo(chat.id, video,
         duration: duration,
         width: width,
         height: height,
@@ -110,7 +103,7 @@ extension MessageHelper on Message {
         parse_mode: parse_mode,
         supports_streaming: supports_streaming,
         disable_notification: disable_notification,
-        reply_to_message_id: quote_message ? _message_id : null,
+        reply_to_message_id: quote_message ? message_id : null,
         reply_markup: reply_markup);
   }
 
@@ -125,7 +118,7 @@ extension MessageHelper on Message {
       String parse_mode,
       bool disable_notification,
       ReplyMarkup reply_markup}) {
-    return _methods.sendAnimation(_chat_id, animation,
+    return _methods.sendAnimation(chat.id, animation,
         duration: duration,
         width: width,
         height: height,
@@ -133,7 +126,7 @@ extension MessageHelper on Message {
         caption: caption,
         parse_mode: parse_mode,
         disable_notification: disable_notification,
-        reply_to_message_id: quote_message ? _message_id : null,
+        reply_to_message_id: quote_message ? message_id : null,
         reply_markup: reply_markup);
   }
 
@@ -145,12 +138,12 @@ extension MessageHelper on Message {
       dynamic duration,
       bool disable_notification,
       ReplyMarkup reply_markup}) {
-    return _methods.sendVoice(_chat_id, voice,
+    return _methods.sendVoice(chat.id, voice,
         caption: caption,
         parse_mode: parse_mode,
         duration: duration,
         disable_notification: disable_notification,
-        reply_to_message_id: quote_message ? _message_id : null,
+        reply_to_message_id: quote_message ? message_id : null,
         reply_markup: reply_markup);
   }
 
@@ -162,21 +155,21 @@ extension MessageHelper on Message {
       dynamic thumb,
       bool disable_notification,
       ReplyMarkup reply_markup}) {
-    return _methods.sendVideoNote(_chat_id, video_note,
+    return _methods.sendVideoNote(chat.id, video_note,
         duration: duration,
         length: length,
         thumb: thumb,
         disable_notification: disable_notification,
-        reply_to_message_id: quote_message ? _message_id : null,
+        reply_to_message_id: quote_message ? message_id : null,
         reply_markup: reply_markup);
   }
 
   /// Helps replying with a media group directly.
   Future<List<Message>> replyMediaGroup(List<InputMedia> media,
       {bool quote_message = true, bool disable_notification}) {
-    return _methods.sendMediaGroup(_chat_id, media,
+    return _methods.sendMediaGroup(chat.id, media,
         disable_notification: disable_notification,
-        reply_to_message_id: quote_message ? _message_id : null);
+        reply_to_message_id: quote_message ? message_id : null);
   }
 
   /// Helps replying with a location directly.
@@ -185,10 +178,10 @@ extension MessageHelper on Message {
       int live_period,
       bool disable_notification,
       ReplyMarkup reply_markup}) {
-    return _methods.sendLocation(_chat_id, latitude, longitude,
+    return _methods.sendLocation(chat.id, latitude, longitude,
         live_period: live_period,
         disable_notification: disable_notification,
-        reply_to_message_id: quote_message ? _message_id : null,
+        reply_to_message_id: quote_message ? message_id : null,
         reply_markup: reply_markup);
   }
 
@@ -200,11 +193,11 @@ extension MessageHelper on Message {
       String foursquare_type,
       bool disable_notification,
       ReplyMarkup reply_markup}) {
-    return _methods.sendVenue(_chat_id, latitude, longitude, title, address,
+    return _methods.sendVenue(chat.id, latitude, longitude, title, address,
         foursquare_id: foursquare_id,
         foursquare_type: foursquare_type,
         disable_notification: disable_notification,
-        reply_to_message_id: quote_message ? _message_id : null,
+        reply_to_message_id: quote_message ? message_id : null,
         reply_markup: reply_markup);
   }
 
@@ -215,11 +208,11 @@ extension MessageHelper on Message {
       String vcard,
       bool disable_notification,
       ReplyMarkup reply_markup}) {
-    return _methods.sendContact(_chat_id, phone_number, first_name,
+    return _methods.sendContact(chat.id, phone_number, first_name,
         last_name: last_name,
         vcard: vcard,
         disable_notification: disable_notification,
-        reply_to_message_id: quote_message ? _message_id : null,
+        reply_to_message_id: quote_message ? message_id : null,
         reply_markup: reply_markup);
   }
 
@@ -233,19 +226,19 @@ extension MessageHelper on Message {
       bool is_closed,
       bool disable_notification,
       ReplyMarkup reply_markup}) {
-    return _methods.sendPoll(_chat_id, question, options,
+    return _methods.sendPoll(chat.id, question, options,
         is_anonymous: is_anonymous,
         type: type,
         allows_multiple_answers: allows_multiple_answers,
         correct_option_id: correct_option_id,
         is_closed: is_closed,
         disable_notification: disable_notification,
-        reply_to_message_id: quote_message ? _message_id : null,
+        reply_to_message_id: quote_message ? message_id : null,
         reply_markup: reply_markup);
   }
 
   /// Helps replying with a chat action directly.
   Future<bool> replyChatAction(ChatAction action) {
-    return _methods.sendChatAction(_chat_id, action);
+    return _methods.sendChatAction(chat.id, action);
   }
 }

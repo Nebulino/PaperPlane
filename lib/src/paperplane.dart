@@ -73,8 +73,14 @@ class PaperPlane {
   static PaperPlane get fly => _paperplane;
 
   // Export a Botfile in the same directory of the executable.
-  void export({String file_name}) {
-    BotFile.export(_me, file_name: file_name);
+  void export(Bot bot, {String file_name = 'PaperPlaneBot.json'}) {
+    if (_is_flying) {
+      print('Exporting occurs on landing...');
+      BotFile.export(bot, file_name);
+    } else {
+      throw PaperPlaneException(
+          description: 'Can not export, the PaperPlane is not ready...');
+    }
   }
 
   // Create an extension instead?
