@@ -1,3 +1,9 @@
+## 0.4.4
+
+- Fixed the example.
+- Added MessageEntityType.
+- Fixed export.
+
 ## 0.4.3
 
 - Implemented clean mode polling.
