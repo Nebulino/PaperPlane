@@ -5,11 +5,11 @@
 
 import 'package:paperplane/paperplane.dart';
 import 'package:paperplane/paperplane_exceptions.dart';
+import 'package:paperplane/paperplane_helpers.dart';
 import 'package:paperplane/src/core/dispatcher.dart';
 import 'package:paperplane/src/core/mode/long_polling.dart';
 import 'package:paperplane/src/core/updater.dart';
-import 'package:paperplane/src/helpers/paperplane_bot.dart';
-import 'package:paperplane/types.dart';
+import 'package:paperplane/telegram.dart';
 
 /// This is the brain of my Wrapper.
 /// You need to "import 'package:paperplane/paperplane.dart"

@@ -10,7 +10,8 @@ import 'dart:typed_data';
 import 'package:http/http.dart' as http;
 import 'package:paperplane/paperplane.dart';
 import 'package:paperplane/paperplane_exceptions.dart';
-import 'package:paperplane/types.dart';
+import 'package:paperplane/paperplane_helpers.dart';
+import 'package:paperplane/telegram.dart';
 
 /// You can find all Telegram API methods.
 class Methods {

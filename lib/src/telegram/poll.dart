@@ -8,10 +8,10 @@ library poll;
 
 import 'package:json_annotation/json_annotation.dart';
 
-import 'package:paperplane/types.dart';
+import 'package:paperplane/telegram.dart';
 
 part 'poll.g.dart';
 
-part '../types/poll/poll.dart';
-part '../types/poll/poll_anwer.dart';
-part '../types/poll/poll_option.dart';
+part '../telegram/poll/poll.dart';
+part '../telegram/poll/poll_anwer.dart';
+part '../telegram/poll/poll_option.dart';

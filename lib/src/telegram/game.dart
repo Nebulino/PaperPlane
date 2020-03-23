@@ -8,10 +8,10 @@ library game;
 
 import 'package:json_annotation/json_annotation.dart';
 
-import 'package:paperplane/types.dart';
+import 'package:paperplane/telegram.dart';
 
 part 'game.g.dart';
 
-part '../types/game/callback_game.dart';
-part '../types/game/game.dart';
-part '../types/game/game_high_score.dart';
+part '../telegram/game/callback_game.dart';
+part '../telegram/game/game.dart';
+part '../telegram/game/game_high_score.dart';

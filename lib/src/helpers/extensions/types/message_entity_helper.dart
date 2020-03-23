@@ -4,7 +4,7 @@
  */
 
 import 'package:paperplane/paperplane.dart';
-import 'package:paperplane/types.dart';
+import 'package:paperplane/telegram.dart';
 
 /// It helps managing a [MessageEntity] or more inside a message.
 extension MessageEntityHelper on Message {

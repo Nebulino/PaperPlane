@@ -6,6 +6,7 @@
 import 'dart:io' as io;
 
 import 'package:paperplane/paperplane.dart';
+import 'package:paperplane/paperplane_helpers.dart';
 
 void main() {
   // => Choose how to create your bot~:

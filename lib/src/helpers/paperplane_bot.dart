@@ -3,7 +3,7 @@
  * Copyright (c) 2020 Nebulino
  */
 
-import 'package:paperplane/types.dart';
+import 'package:paperplane/telegram.dart';
 
 /// This is "a bridge" that connects Bot concept and User (telegram.types) concept.
 /// This object represents a Telegram user or bot.

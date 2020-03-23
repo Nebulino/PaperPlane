@@ -8,7 +8,7 @@ library chat;
 
 import 'package:json_annotation/json_annotation.dart';
 
-import 'package:paperplane/types.dart';
+import 'package:paperplane/telegram.dart';
 
 part 'chat.g.dart';
 

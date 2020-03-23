@@ -7,7 +7,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:paperplane/paperplane_exceptions.dart';
-import 'package:paperplane/types.dart';
+import 'package:paperplane/telegram.dart';
 
 /// It helps formatting the received answer.
 /// The response in input is managed and returned as it should be.

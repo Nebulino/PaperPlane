@@ -5,7 +5,7 @@
 
 import 'dart:async';
 
-import 'package:paperplane/types.dart';
+import 'package:paperplane/telegram.dart';
 
 /// It helps fetching the updates.
 /// It makes possible the possibility of managing the updates directly.

@@ -6,7 +6,7 @@
 import 'dart:async';
 
 import 'package:paperplane/paperplane_exceptions.dart';
-import 'package:paperplane/types.dart';
+import 'package:paperplane/telegram.dart';
 
 /// It dispatches the updates into different queues.
 class Dispatcher {

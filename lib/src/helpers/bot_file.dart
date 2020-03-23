@@ -6,8 +6,8 @@
 import 'dart:convert';
 import 'dart:io' as io;
 
-import 'package:paperplane/paperplane.dart';
 import 'package:paperplane/paperplane_exceptions.dart';
+import 'package:paperplane/paperplane_helpers.dart';
 
 /// It creates a virtual BotFile from a file.
 /// It helps creating a PaperPlane instance from a file, just

@@ -4,7 +4,7 @@
  */
 
 import 'package:paperplane/paperplane.dart';
-import 'package:paperplane/types.dart';
+import 'package:paperplane/telegram.dart';
 
 /// Helper for Message.
 /// Each function have [quote_message] enabled.

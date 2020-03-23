@@ -5,7 +5,7 @@
 
 import 'package:paperplane/paperplane.dart';
 import 'package:paperplane/src/core/dispatcher.dart';
-import 'package:paperplane/types.dart';
+import 'package:paperplane/telegram.dart';
 
 /// It extends PaperPlane by adding dispatcher functions.
 extension PaperPlaneDispatcherExtension on PaperPlane {
