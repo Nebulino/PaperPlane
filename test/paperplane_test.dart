@@ -14,12 +14,12 @@ void main() {
 
     setUp(() {
       token = 'Just a token.';
-      paperplane = PaperPlane.createBot(token);
+      paperplane = PaperPlane.createBot(token: token);
     });
 
     test('PaperPlane Tests', () {
       expect(paperplane, isA<PaperPlane>());
-      expect(paperplane.api.token, isA<String>());
+      expect(paperplane.token, isA<String>());
     });
   });
 }

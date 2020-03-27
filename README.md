@@ -68,12 +68,13 @@ From GitHub:
 dependencies:
   paperplane:
     git: https://github.com/Nebulino/PaperPlane.git
+    ref: branch-name
 ```
 
 From pub.dev:
 ```yaml
 dependencies:
-  paperplane: ^0.4.4
+  paperplane: ^0.5.0
 ```
 
 ## Features and bugs
