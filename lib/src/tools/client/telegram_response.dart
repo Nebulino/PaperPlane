@@ -6,7 +6,7 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:paperplane/telegram.dart';
 
-part 'telegram_response.g.dart';
+part 'package:paperplane/src/tools/client/telegram_response.g.dart';
 
 /// It helps formatting the received answer.
 /// The response in input is managed and returned as it should be.

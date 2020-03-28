@@ -5,7 +5,7 @@
 
 import 'package:meta/meta.dart';
 import 'package:paperplane/src/paperplane/core/api.dart';
-import 'package:paperplane/src/tools/telegram_client.dart';
+import 'package:paperplane/src/tools/client/telegram_client.dart';
 
 /// It helps connecting [TelegramClient] and [API].
 /// It also contains the bot token.

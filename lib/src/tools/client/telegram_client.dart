@@ -9,7 +9,7 @@ import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import 'package:meta/meta.dart';
 import 'package:paperplane/paperplane_exceptions.dart';
-import 'package:paperplane/src/tools/telegram_response.dart';
+import 'package:paperplane/src/tools/client/telegram_response.dart';
 
 /// It creates a custom instance to send and receive requests.
 class TelegramClient {
