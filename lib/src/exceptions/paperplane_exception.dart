@@ -11,5 +11,6 @@ class PaperPlaneException implements Exception {
   PaperPlaneException({this.description});
 
   @override
-  String toString() => '[PaperPlaneException]: ${description}';
+  String toString() =>
+      '[PaperPlaneException]' + (description == null ? '' : ': ${description}');
 }

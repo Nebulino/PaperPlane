@@ -5,23 +5,34 @@
 
 import 'dart:io' as io;
 
+import 'package:logger/logger.dart';
+import 'package:paperplane/helpers.dart';
 import 'package:paperplane/paperplane.dart';
 
+import 'test_values.dart';
+
+/// A simple Example...
 void main() {
   // => Choose how to create your bot~:
   // - BotFile (async)
   // - io.File
   // - token
-  var paperplane = PaperPlane.createFromFile(
-      BotFile.fromFile(io.File('./PaperPlaneBot.json')));
+  var paperplane = PaperPlane.createBot(token: TestValues.TOKEN);
+  final master = TestValues.MASTER;
+  final dev_lab = TestValues.DEV;
 
   // => Turn on the engines. Okay it's a paperplane, but still looks cool?
   // If you want to export the bot for future use when turning off.
   // I know, this example loads a file, but I guess you know that exporting is
   // good if you create a bot using a TOKEN for example.
-  paperplane
-      .engine()
-      .then((bot) => paperplane.export(bot, file_name: 'bot.json'));
+  paperplane.engine()
+    ..then((bot) => paperplane.export(bot: bot, file_name: 'bot.json'))
+    ..then((bot) => paperplane.api.getChat(chat_id: master).then(
+        (master_data) => paperplane.api.sendMessage(
+            chat_id: master,
+            text: "I'm departed master ${master_data.username}...")));
+
+  paperplane.setLoggerLevel(level: Level.debug);
 
   // => Choose your "flying" mode:
   // - polling
@@ -29,34 +40,38 @@ void main() {
   paperplane.startPolling(clean: true);
 
   // => Do you want to work directly with Telegram Methods and shrink the code?
-  var methods = paperplane.api.methods;
+  final api = paperplane.api;
 
   // => If you want to work with updates, you can!
   // 1. get the updater.
-  var updater = paperplane.updater.onUpdate();
+  final updater = paperplane.updater.onUpdate();
 
   // 2. set your conditions!
   updater
       .where((onUpdate) => onUpdate.message.text != null)
       .where((onUpdate) => onUpdate.message.text == 'uwu')
-      .listen((update) => methods.sendMessage(update.message.chat.id, 'owo'));
+      .listen((update) {
+    api.sendMessage(chat_id: update.message.chat.id, text: 'owo');
+  });
 
   // => If you want to manage events, just do as follows...
   paperplane
       .onMessage()
       .where((message) => message.text == 'cacca')
-      .listen((message) => methods.sendPhoto(
-          // Send an image from a URL.
-          message.chat.id,
-          'https://pbs.twimg.com/media/ETObHKAUUAE7nSM.jpg'));
+      .listen((message) {
+    api.sendPhoto(
+        // Send an image from a URL.
+        chat_id: message.chat.id,
+        photo: Luggage.withLink(
+            link: 'https://pbs.twimg.com/media/ETObHKAUUAE7nSM.jpg'));
+  });
 
-  paperplane
-      .onMessage()
-      .where((message) => message.text == 'voice')
-      .listen((message) => methods.sendAudio(
+  paperplane.onMessage().where((message) => message.text == 'voice').listen(
+      (message) => api.sendAudio(
           // Send a File. You can also send a blob (Uint8List).
-          message.chat.id,
-          io.File('./files/voices/kokodayo.ogg')));
+          chat_id: message.chat.id,
+          audio:
+              Luggage.withFile(file: io.File('./files/voices/kokodayo.ogg'))));
 
   // For more information about the methods, watch the wiki
   // (on pub.dev: https://pub.dev/packages/paperplane)!
@@ -65,7 +80,9 @@ void main() {
   paperplane
       .onMessage()
       .where((message) => message.text == 'reply')
-      .listen((message) => message.replyText('sure!'));
+      .listen((message) {
+    message.replyText(text: 'sure!');
+  });
 
   // MORE TO COME... STAY SAFE AND FLY~ (Corona Virus FREE PaperPlanes)
 }
