@@ -3,7 +3,9 @@
  * Copyright (c) 2020 Nebulino
  */
 
-/// Contains every type of chat action
+/// Contains every type of [chat action]
+///
+/// [chat action] : [API]
 class ChatAction {
   final String _action;
 

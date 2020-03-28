@@ -1,13 +1,11 @@
-import 'package:paperplane/helpers.dart';
 /**
  * PaperPlane - Just a Telegram Library for Dart
  * Copyright (c) 2020 Nebulino
  */
 
+import 'package:paperplane/helpers.dart';
 import 'package:paperplane/paperplane.dart';
 import 'package:paperplane/paperplane_exceptions.dart';
-import 'package:paperplane/src/paperplane/core/updater.dart';
-import 'package:paperplane/src/paperplane/helpers/constant.dart';
 
 /// It helps creating a long polling bot.
 class LongPolling {

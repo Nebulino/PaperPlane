@@ -3,7 +3,9 @@
  * Copyright (c) 2020 Nebulino
  */
 
-/// A list of update type, usable for filtering the updates.
+/// A list of update type, usable for filtering the [updates].
+///
+/// [updates]: [getUpdates]
 class UpdateType {
   final String _type;
 
