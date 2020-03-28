@@ -6,7 +6,7 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:paperplane/telegram.dart';
 
-part 'package:paperplane/src/tools/client/telegram_response.g.dart';
+part 'telegram_response.g.dart';
 
 /// It helps formatting the received answer.
 /// The response in input is managed and returned as it should be.
@@ -27,4 +27,6 @@ class TelegramResponse {
 
   factory TelegramResponse.fromJson(Map<String, dynamic> response) =>
       _$TelegramResponseFromJson(response);
+
+  Map<String, dynamic> toJson() => _$TelegramResponseToJson(this);
 }
