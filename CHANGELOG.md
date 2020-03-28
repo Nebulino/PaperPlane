@@ -1,3 +1,22 @@
+## 0.5.0
+#### Huge package rewrite.
+##### Now all Telegram API v4.6 are supported.
+     
+- Fixed sendMediaGroup. 
+- Started using Dio as HTTPClient => TelegramClient.
+- Rewritten Response Class => TelegramResponse.
+- Created more Helpers such as Luggage and InputMediaLuggage for better File management.
+- Created more Extensions.
+- Duration is now only Duration type.
+- Written some function in PaperPlane.dart for managing LongPolling.
+- Rewritten some part of the package.
+- Refactored some functions.
+- Testing a ChatIdentifier object to manage functions that accepts int chat_id and String chat_id 
+    (for groups and channels).
+- Remove some un-necessary exceptions.
+- Rewritten "clean" scripts.
+- More to come...
+
 ## 0.4.4
 
 - Fixed the example.

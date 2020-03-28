@@ -45,17 +45,17 @@ void main() {
   bot
     .onMessage()
     .where((message) => message.text == 'owo')
-    .listen((message) => message.replyText('uwu'));
+    .listen((message) => message.replyText(text: 'uwu'));
  
   // Work with updates and directly with methods...
-  var methods = bot.api.methods;
+  var api = bot.api;
   var updater = bot.updater.onUpdate();
   
   updater
     .where((onUpdate) => onUpdate.message.text == 'animate')
     .listen((update) => methods.sendAnimation(
-      message.chat.id,
-      io.File('./files/gifs/bunny_girl.gif')));
+      chat_id: message.chat.id,
+      animation: Luggage.withFile(file: io.File('./files/gifs/bunny_girl.gif'))));
 }
 ```
 
@@ -68,17 +68,18 @@ From GitHub:
 dependencies:
   paperplane:
     git: https://github.com/Nebulino/PaperPlane.git
+    ref: branch-name
 ```
 
 From pub.dev:
 ```yaml
 dependencies:
-  paperplane: ^0.4.4
+  paperplane: ^0.5.0
 ```
 
 ## Features and bugs
 
-#### For now, some methods are working.
+#### All API up-to v4.6 are supported.
 ##### Implemented a base for a future solid implementation of Long Polling.
 
 Still not implemented the Webhook.
