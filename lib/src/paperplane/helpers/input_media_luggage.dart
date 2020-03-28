@@ -7,7 +7,6 @@ import 'package:dio/dio.dart';
 import 'package:meta/meta.dart';
 import 'package:paperplane/helpers.dart';
 import 'package:paperplane/paperplane_exceptions.dart';
-import 'package:paperplane/src/paperplane/types/input_media_type.dart';
 import 'package:paperplane/telegram.dart';
 import 'package:uuid/uuid.dart';
 
@@ -18,7 +17,7 @@ import 'package:uuid/uuid.dart';
 /// [TelegramAPIs]: [Telegram]
 /// [sendMediaGroup]: [API]
 /// [photos]: [PhotoSize]
-/// [video]: [Video]
+/// [videos]: [Video]
 class InputMediaLuggage {
   final InputMediaType _type;
   final InputMedia _media;

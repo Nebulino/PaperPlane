@@ -8,6 +8,6 @@
 library paperplane_exceptions;
 
 export 'package:paperplane/src/exceptions/api_exception.dart';
-export 'package:paperplane/src/exceptions/telegram_client_exception.dart';
 export 'package:paperplane/src/exceptions/paperplane_exception.dart';
+export 'package:paperplane/src/exceptions/telegram_client_exception.dart';
 export 'package:paperplane/src/exceptions/telegram_exception.dart';

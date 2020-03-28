@@ -7,9 +7,11 @@ import 'package:meta/meta.dart';
 import 'package:paperplane/src/paperplane/core/api.dart';
 import 'package:paperplane/src/tools/telegram_client.dart';
 
-/// It helps connecting http_client and methods.
+/// It helps connecting [TelegramClient] and [API].
 /// It also contains the bot token.
-/// It's the Telegram API headquarter, it builds all the methods.
+/// It's the Telegram API headquarter, it builds all the **methods** by creating
+/// *API* object using the created client.
+/// It also make sure the proxy set is used to create the HTTP Client.
 class Telegram {
   final String _token;
 
