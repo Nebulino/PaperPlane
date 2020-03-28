@@ -10,8 +10,8 @@ import 'package:dio/dio.dart';
 import 'package:meta/meta.dart';
 import 'package:paperplane/helpers.dart';
 import 'package:paperplane/paperplane_exceptions.dart';
+import 'package:paperplane/src/tools/client/telegram_client.dart';
 import 'package:paperplane/telegram.dart';
-import 'package:paperplane/telegram_client.dart';
 
 /// You can find all Telegram API methods.
 class API {
@@ -619,7 +619,6 @@ class API {
     final media_file_to_send = <MapEntry<String, MultipartFile>>[];
 
     for (var input_media_luggage in media) {
-      print(input_media_luggage.type);
       if (input_media_luggage.type != 'photo' &&
           input_media_luggage.type != 'video') {
         return Future.error(ApiException(

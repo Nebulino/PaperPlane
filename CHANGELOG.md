@@ -1,3 +1,10 @@
+## 0.5.1
+
+- Fixed a problem with the dispatcher.
+- Cleaned some part of code.
+- Hide the TelegramClient part.
+- Removed UUID package and created just a simple String Generator Helper.
+
 ## 0.5.0
 #### Huge package rewrite.
 ##### Now all Telegram API v4.6 are supported.

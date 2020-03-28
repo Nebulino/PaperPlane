@@ -40,7 +40,6 @@ class Dispatcher {
 
   /// Dispatch the update into each queues.
   void dispatchUpdate(Update update) {
-    print('owo');
     if (update == null) {
       throw PaperPlaneException(
           description: 'Error while dispatching: the update is null.');

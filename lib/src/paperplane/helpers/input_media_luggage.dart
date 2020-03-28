@@ -7,8 +7,8 @@ import 'package:dio/dio.dart';
 import 'package:meta/meta.dart';
 import 'package:paperplane/helpers.dart';
 import 'package:paperplane/paperplane_exceptions.dart';
+import 'package:paperplane/src/tools/uuid/uuid_generator.dart';
 import 'package:paperplane/telegram.dart';
-import 'package:uuid/uuid.dart';
 
 /// It helps creating an Input Media for [TelegramAPIs].
 /// For example you can find it useful when sending a [sendMediaGroup].
@@ -45,11 +45,9 @@ class InputMediaLuggage {
     input_animation.height = height;
     input_animation.duration = duration?.inSeconds;
 
-    final uuid_generator = Uuid();
-
     if (thumb != null) {
       if (thumb.type == 'file' || thumb.type == 'bytes') {
-        final thumb_id = 'thumb_animation${uuid_generator.v1()}';
+        final thumb_id = 'thumb_animation${Uuid.generate()}';
         input_animation.thumb = 'attach://${thumb_id}';
         thumb_file = MapEntry(
             '${thumb_id}',
@@ -63,7 +61,7 @@ class InputMediaLuggage {
     }
 
     if (animation.type == 'file' || animation.type == 'bytes') {
-      final animation_id = 'animation_${uuid_generator.v1()}';
+      final animation_id = 'animation_${Uuid.generate()}';
       input_animation.media = 'attach://${animation_id}';
       file = MapEntry(
           '${animation_id}',
@@ -96,11 +94,9 @@ class InputMediaLuggage {
     input_audio.performer = performer;
     input_audio.title = title;
 
-    final uuid_generator = Uuid();
-
     if (thumb != null) {
       if (thumb.type == 'file' || thumb.type == 'bytes') {
-        final thumb_id = 'thumb_audio${uuid_generator.v1()}';
+        final thumb_id = 'thumb_audio${Uuid.generate()}';
         input_audio.thumb = 'attach://${thumb_id}';
         thumb_file = MapEntry(
             '${thumb_id}',
@@ -114,7 +110,7 @@ class InputMediaLuggage {
     }
 
     if (audio.type == 'file' || audio.type == 'bytes') {
-      final audio_id = 'audio_${uuid_generator.v1()}';
+      final audio_id = 'audio_${Uuid.generate()}';
       input_audio.media = 'attach://${audio_id}';
       file = MapEntry(
           '${audio_id}',
@@ -136,13 +132,11 @@ class InputMediaLuggage {
   }) {
     MapEntry<String, MultipartFile> file;
 
-    final uuid_generator = Uuid();
-
     final input_photo =
         InputMediaPhoto(caption: caption, parse_mode: parse_mode?.getMode());
 
     if (photo.type == 'file' || photo.type == 'bytes') {
-      final photo_id = 'photo_${uuid_generator.v1()}';
+      final photo_id = 'photo_${Uuid.generate()}';
       input_photo.media = 'attach://${photo_id}';
       file = MapEntry(
           '${photo_id}',
@@ -168,11 +162,9 @@ class InputMediaLuggage {
     input_document.caption = caption;
     input_document.parse_mode = parse_mode?.getMode();
 
-    final uuid_generator = Uuid();
-
     if (thumb != null) {
       if (thumb.type == 'file' || thumb.type == 'bytes') {
-        final thumb_id = 'thumb_document_${uuid_generator.v1()}';
+        final thumb_id = 'thumb_document_${Uuid.generate()}';
         input_document.thumb = 'attach://${thumb_id}';
         thumb_file = MapEntry(
             '${thumb_id}',
@@ -186,7 +178,7 @@ class InputMediaLuggage {
     }
 
     if (document.type == 'file' || document.type == 'bytes') {
-      final document_id = 'document_${uuid_generator.v1()}';
+      final document_id = 'document_${Uuid.generate()}';
       input_document.media = 'attach://${document_id}';
       file = MapEntry(
           '${document_id}',
@@ -221,11 +213,9 @@ class InputMediaLuggage {
         duration: duration?.inSeconds,
         supports_streaming: supports_streaming);
 
-    final uuid_generator = Uuid();
-
     if (thumb != null) {
       if (thumb.type == 'file' || thumb.type == 'bytes') {
-        final thumb_id = 'thumb_video_${uuid_generator.v1()}';
+        final thumb_id = 'thumb_video_${Uuid.generate()}';
         input_video.thumb = 'attach://${thumb_id}';
         thumb_file = MapEntry(
             '${thumb_id}',
@@ -239,7 +229,7 @@ class InputMediaLuggage {
     }
 
     if (video.type == 'file' || video.type == 'bytes') {
-      final video_id = 'video_${uuid_generator.v1()}';
+      final video_id = 'video_${Uuid.generate()}';
       input_video.media = 'attach://${video_id}';
       file = MapEntry(
           '${video_id}',

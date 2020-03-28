@@ -9,7 +9,7 @@ import 'dart:io' as io;
 import 'package:dio/dio.dart';
 import 'package:logger/logger.dart';
 import 'package:paperplane/helpers.dart';
-import 'package:paperplane/src/tools/telegram_client.dart';
+import 'package:paperplane/src/tools/client/telegram_client.dart';
 
 import 'test_values.dart';
 

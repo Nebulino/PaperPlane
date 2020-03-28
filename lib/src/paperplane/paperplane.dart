@@ -38,7 +38,7 @@ class PaperPlane {
     _logger = Logger(
         level: Level.info,
         printer: PrettyPrinter(
-            methodCount: 2,
+            methodCount: 0,
             errorMethodCount: 8,
             lineLength: 120,
             colors: true,
@@ -117,7 +117,7 @@ class PaperPlane {
 
     _polling ??= LongPolling(_telegram, sync_updater: sync_updater)
       ..start(clean)
-      ..updater.onUpdate().listen((update) => _polling_helper);
+      ..updater.onUpdate().listen(_polling_helper);
   }
 
   /// It sends the updates in the dispatcher.
