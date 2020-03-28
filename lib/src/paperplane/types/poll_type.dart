@@ -3,7 +3,7 @@
  * Copyright (c) 2020 Nebulino
  */
 
-/// A list of poll types for telegram.
+/// A list of [Poll] types for telegram.
 class PollType {
   String _type;
 

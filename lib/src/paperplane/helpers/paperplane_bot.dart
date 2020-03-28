@@ -4,7 +4,6 @@
  */
 
 import 'package:json_annotation/json_annotation.dart';
-
 import 'package:paperplane/telegram.dart';
 
 part 'paperplane_bot.g.dart';

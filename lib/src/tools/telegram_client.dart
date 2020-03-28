@@ -1,6 +1,7 @@
-/// This is the brain of my Wrapper.
-/// You need to "import 'package:paperplane/paperplane.dart"
-/// to create a simple Bot using PaperPlane.
+/**
+ * PaperPlane - Just a Telegram Library for Dart
+ * Copyright (c) 2020 Nebulino
+ */
 
 import 'dart:io';
 
@@ -10,6 +11,7 @@ import 'package:meta/meta.dart';
 import 'package:paperplane/paperplane_exceptions.dart';
 import 'package:paperplane/src/tools/telegram_response.dart';
 
+/// It creates a custom instance to send and receive requests.
 class TelegramClient {
   Dio _dio;
 

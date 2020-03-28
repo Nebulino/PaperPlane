@@ -3,7 +3,9 @@
  * Copyright (c) 2020 Nebulino
  */
 
-/// A list of entity type you can find inside a message
+/// A list of entity type you can find inside a [message].
+///
+/// [message]: [Message]
 class MessageEntityType {
   final String _type;
 

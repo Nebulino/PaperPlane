@@ -10,10 +10,8 @@ import 'package:dio/dio.dart';
 import 'package:meta/meta.dart';
 import 'package:paperplane/helpers.dart';
 import 'package:paperplane/paperplane_exceptions.dart';
-import 'package:paperplane/src/paperplane/helpers/input_media_luggage.dart';
-import 'package:paperplane/src/paperplane/helpers/paperplane_bot.dart';
-import 'package:paperplane/src/tools/telegram_client.dart';
 import 'package:paperplane/telegram.dart';
+import 'package:paperplane/telegram_client.dart';
 
 /// You can find all Telegram API methods.
 class API {

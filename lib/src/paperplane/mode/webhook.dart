@@ -4,6 +4,7 @@
  */
 
 /// It helps creating a Webhook bot.
+/// TODO: implement webhook
 class Webhook {
-  // TODO: implement webhook
+  Webhook();
 }

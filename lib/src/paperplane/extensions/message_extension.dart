@@ -6,7 +6,6 @@
 import 'package:meta/meta.dart';
 import 'package:paperplane/helpers.dart';
 import 'package:paperplane/paperplane.dart';
-import 'package:paperplane/src/paperplane/core/api.dart';
 import 'package:paperplane/telegram.dart';
 
 /// Helper for Message.
@@ -293,7 +292,6 @@ extension MessageHelper on Message {
 
   /// Helps replying with a chat action directly.
   Future<bool> replyChatAction({@required ChatAction action}) {
-    return _api.sendChatAction(
-        chat_id: chat.id, action: action);
+    return _api.sendChatAction(chat_id: chat.id, action: action);
   }
 }
