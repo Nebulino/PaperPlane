@@ -20,7 +20,7 @@ void main() {
 
   var user_id = TestValues.MASTER;
 
-  var image_test = io.File('./test.jpg');
+  var image_test = io.File('./files/photos/test.jpg');
   var luggage_photo = Luggage.withFile(file: image_test);
 
   var video_test = io.File('./files/videos/gatcha_experience.mp4');

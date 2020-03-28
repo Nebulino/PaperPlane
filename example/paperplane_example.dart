@@ -18,8 +18,8 @@ void main() {
   // - io.File
   // - token
   var paperplane = PaperPlane.createBot(token: TestValues.TOKEN);
-  final master = TestValues.MASTER;
-  final dev_lab = TestValues.DEV;
+  final master = ChatID.fromID(TestValues.MASTER);
+  final dev_lab = ChatID.fromID(TestValues.DEV);
 
   // => Turn on the engines. Okay it's a paperplane, but still looks cool?
   // If you want to export the bot for future use when turning off.
@@ -51,7 +51,8 @@ void main() {
       .where((onUpdate) => onUpdate.message.text != null)
       .where((onUpdate) => onUpdate.message.text == 'uwu')
       .listen((update) {
-    api.sendMessage(chat_id: update.message.chat.id, text: 'owo');
+    api.sendMessage(
+        chat_id: ChatID.fromID(update.message.chat.id), text: 'owo');
   });
 
   // => If you want to manage events, just do as follows...
@@ -61,7 +62,7 @@ void main() {
       .listen((message) {
     api.sendPhoto(
         // Send an image from a URL.
-        chat_id: message.chat.id,
+        chat_id: ChatID.fromID(message.chat.id),
         photo: Luggage.withLink(
             link: 'https://pbs.twimg.com/media/ETObHKAUUAE7nSM.jpg'));
   });
@@ -69,7 +70,7 @@ void main() {
   paperplane.onMessage().where((message) => message.text == 'voice').listen(
       (message) => api.sendAudio(
           // Send a File. You can also send a blob (Uint8List).
-          chat_id: message.chat.id,
+          chat_id: ChatID.fromID(message.chat.id),
           audio:
               Luggage.withFile(file: io.File('./files/voices/kokodayo.ogg'))));
 

@@ -118,7 +118,7 @@ class API {
   ///
   /// https://core.telegram.org/bots/api#sendmessage
   Future<Message> sendMessage(
-      {@required dynamic chat_id,
+      {@required ChatID chat_id,
       @required String text,
       ParseMode parse_mode,
       bool disable_web_page_preview,
@@ -143,8 +143,8 @@ class API {
   ///
   /// https://core.telegram.org/bots/api#forwardmessage
   Future<Message> forwardMessage(
-      {@required dynamic chat_id,
-      @required dynamic from_chat_id,
+      {@required ChatID chat_id,
+      @required ChatID from_chat_id,
       bool disable_notification,
       @required int message_id}) async {
     final form_data = FormData.fromMap({
@@ -165,7 +165,7 @@ class API {
   ///
   /// https://core.telegram.org/bots/api#sendphoto
   Future<Message> sendPhoto(
-      {@required dynamic chat_id,
+      {@required ChatID chat_id,
       @required Luggage photo,
       String caption,
       ParseMode parse_mode,
@@ -212,7 +212,7 @@ class API {
   ///
   /// https://core.telegram.org/bots/api#sendaudio
   Future<Message> sendAudio(
-      {@required dynamic chat_id,
+      {@required ChatID chat_id,
       @required Luggage audio,
       String caption,
       ParseMode parse_mode,
@@ -283,7 +283,7 @@ class API {
   ///
   /// https://core.telegram.org/bots/api#senddocument
   Future<Message> sendDocument(
-      {@required dynamic chat_id,
+      {@required ChatID chat_id,
       @required Luggage document,
       Luggage thumb,
       String caption,
@@ -348,7 +348,7 @@ class API {
   ///
   /// https://core.telegram.org/bots/api#sendvideo
   Future<Message> sendVideo(
-      {@required dynamic chat_id,
+      {@required ChatID chat_id,
       @required Luggage video,
       Duration duration,
       int width,
@@ -420,7 +420,7 @@ class API {
   ///
   /// https://core.telegram.org/bots/api#sendanimation
   Future<Message> sendAnimation(
-      {@required dynamic chat_id,
+      {@required ChatID chat_id,
       @required Luggage animation,
       Duration duration,
       int width,
@@ -492,7 +492,7 @@ class API {
   ///
   /// https://core.telegram.org/bots/api#sendvoice
   Future<Message> sendVoice(
-      {@required dynamic chat_id,
+      {@required ChatID chat_id,
       @required Luggage voice,
       String caption,
       ParseMode parse_mode,
@@ -538,7 +538,7 @@ class API {
   ///
   /// https://core.telegram.org/bots/api#sendvoice
   Future<Message> sendVideoNote(
-      {@required dynamic chat_id,
+      {@required ChatID chat_id,
       @required Luggage video_note,
       Duration duration,
       int length,
@@ -600,7 +600,7 @@ class API {
   ///
   /// https://core.telegram.org/bots/api#sendmediagroup
   Future<List<Message>> sendMediaGroup(
-      {@required dynamic chat_id,
+      {@required ChatID chat_id,
       @required List<InputMediaLuggage> media,
       bool disable_notification,
       int reply_to_message_id}) async {
@@ -655,7 +655,7 @@ class API {
   ///
   /// https://core.telegram.org/bots/api#sendlocation
   Future<Message> sendLocation(
-      {@required dynamic chat_id,
+      {@required ChatID chat_id,
       @required double latitude,
       @required double longitude,
       int live_period,
@@ -686,7 +686,7 @@ class API {
   ///
   /// https://core.telegram.org/bots/api#editmessagelivelocation
   Future<Message> editMessageLiveLocation(
-      {dynamic chat_id,
+      {ChatID chat_id,
       int message_id,
       String inline_message_id,
       @required double latitude,
@@ -717,7 +717,7 @@ class API {
   ///
   /// https://core.telegram.org/bots/api#stopmessagelivelocation
   Future<Message> stopMessageLiveLocation(
-      {dynamic chat_id,
+      {ChatID chat_id,
       int message_id,
       String inline_message_id,
       ReplyMarkup reply_markup}) async {
@@ -743,7 +743,7 @@ class API {
   ///
   /// https://core.telegram.org/bots/api#sendvenue
   Future<Message> sendVenue(
-      {@required dynamic chat_id,
+      {@required ChatID chat_id,
       @required double latitude,
       @required double longitude,
       @required String title,
@@ -775,7 +775,7 @@ class API {
   ///
   /// https://core.telegram.org/bots/api#sendcontact
   Future<Message> sendContact(
-      {@required dynamic chat_id,
+      {@required ChatID chat_id,
       @required String phone_number,
       @required String first_name,
       String last_name,
@@ -803,7 +803,7 @@ class API {
   ///
   /// https://core.telegram.org/bots/api#sendpoll
   Future<Message> sendPoll(
-      {@required dynamic chat_id,
+      {@required ChatID chat_id,
       @required String question,
       @required List<String> options,
       bool is_anonymous,
@@ -854,7 +854,7 @@ class API {
   ///
   /// https://core.telegram.org/bots/api#sendchataction
   Future<bool> sendChatAction(
-      {@required dynamic chat_id, @required ChatAction action}) async {
+      {@required ChatID chat_id, @required ChatAction action}) async {
     final form_data = FormData.fromMap({'chat_id': chat_id, 'action': action});
 
     return await _client.post(method: 'sendChatAction', form_data: form_data);
@@ -905,7 +905,7 @@ class API {
   ///
   /// https://core.telegram.org/bots/api#kickchatmember
   Future<bool> kickChatMember(
-      {@required dynamic chat_id,
+      {@required ChatID chat_id,
       @required int user_id,
       int until_date}) async {
     final form_data = FormData.fromMap(
@@ -922,7 +922,7 @@ class API {
   ///
   /// https://core.telegram.org/bots/api#unbanchatmember
   Future<bool> unbanChatMember(
-      {@required dynamic chat_id, @required int user_id}) async {
+      {@required ChatID chat_id, @required int user_id}) async {
     final form_data =
         FormData.fromMap({'chat_id': chat_id, 'user_id': user_id});
 
@@ -937,7 +937,7 @@ class API {
   ///
   /// https://core.telegram.org/bots/api#restrictchatmember
   Future<bool> restrictChatMember(
-      {@required dynamic chat_id,
+      {@required ChatID chat_id,
       @required int user_id,
       ChatPermissions permissions,
       int until_date}) async {
@@ -993,7 +993,7 @@ class API {
   ///
   /// https://core.telegram.org/bots/api#setchatadministratorcustomtitle
   Future<bool> setChatAdministratorCustomTitle(
-      {@required dynamic chat_id,
+      {@required ChatID chat_id,
       @required int user_id,
       @required String custom_title}) async {
     final form_data = FormData.fromMap(
@@ -1010,7 +1010,7 @@ class API {
   ///
   /// https://core.telegram.org/bots/api#setchatpermissions
   Future<bool> setChatPermissions(
-      {@required dynamic chat_id,
+      {@required ChatID chat_id,
       @required ChatPermissions permissions}) async {
     final form_data = FormData.fromMap({
       'chat_id': chat_id,
@@ -1028,7 +1028,7 @@ class API {
   /// link as String on success.
   ///
   /// https://core.telegram.org/bots/api#setchatpermissions
-  Future<bool> exportChatInviteLink({@required dynamic chat_id}) async {
+  Future<bool> exportChatInviteLink({@required ChatID chat_id}) async {
     final form_data = FormData.fromMap({'chat_id': chat_id});
 
     return await _client.post(
@@ -1045,7 +1045,7 @@ class API {
   ///
   /// https://core.telegram.org/bots/api#setchatphoto
   Future<bool> setChatPhoto(
-      {@required dynamic chat_id, @required Luggage photo}) async {
+      {@required ChatID chat_id, @required Luggage photo}) async {
     final form_data = FormData.fromMap({'chat_id': chat_id});
 
     switch (photo.type) {
@@ -1073,7 +1073,7 @@ class API {
   /// Returns True on success.
   ///
   /// https://core.telegram.org/bots/api#deletechatphoto
-  Future<bool> deleteChatPhoto({@required dynamic chat_id}) async {
+  Future<bool> deleteChatPhoto({@required ChatID chat_id}) async {
     final form_data = FormData.fromMap({'chat_id': chat_id});
 
     return await _client.post(method: 'deleteChatPhoto', form_data: form_data);
@@ -1087,7 +1087,7 @@ class API {
   ///
   /// https://core.telegram.org/bots/api#setchattitle
   Future<bool> setChatTitle(
-      {@required dynamic chat_id, @required String title}) async {
+      {@required ChatID chat_id, @required String title}) async {
     final form_data = FormData.fromMap({'chat_id': chat_id, 'title': title});
 
     return await _client.post(method: 'setChatTitle', form_data: form_data);
@@ -1101,7 +1101,7 @@ class API {
   ///
   /// https://core.telegram.org/bots/api#setchatdescription
   Future<bool> setChatDescription(
-      {@required dynamic chat_id, String description}) async {
+      {@required ChatID chat_id, String description}) async {
     final form_data =
         FormData.fromMap({'chat_id': chat_id, 'description': description});
 
@@ -1117,7 +1117,7 @@ class API {
   ///
   /// https://core.telegram.org/bots/api#pinchatmessage
   Future<bool> pinChatMessage(
-      {@required dynamic chat_id,
+      {@required ChatID chat_id,
       @required int message_id,
       bool disable_notification}) async {
     final form_data = FormData.fromMap({
@@ -1136,7 +1136,7 @@ class API {
   /// Returns True on success.
   ///
   /// https://core.telegram.org/bots/api#unpinchatmessage
-  Future<bool> unpinChatMessage({@required dynamic chat_id}) async {
+  Future<bool> unpinChatMessage({@required ChatID chat_id}) async {
     final form_data = FormData.fromMap({'chat_id': chat_id});
 
     return await _client.post(method: 'pinChatMessage', form_data: form_data);
@@ -1146,7 +1146,7 @@ class API {
   /// Returns True on success.
   ///
   /// https://core.telegram.org/bots/api#leavechat
-  Future<bool> leaveChat({@required dynamic chat_id}) async {
+  Future<bool> leaveChat({@required ChatID chat_id}) async {
     final form_data = FormData.fromMap({'chat_id': chat_id});
 
     return await _client.post(method: 'leaveChat', form_data: form_data);
@@ -1158,7 +1158,7 @@ class API {
   /// Returns a [Chat] object on success.
   ///
   /// https://core.telegram.org/bots/api#getchat
-  Future<Chat> getChat({@required dynamic chat_id}) async {
+  Future<Chat> getChat({@required ChatID chat_id}) async {
     final form_data = FormData.fromMap({'chat_id': chat_id});
 
     return Chat.fromJson(
@@ -1173,7 +1173,7 @@ class API {
   ///
   /// https://core.telegram.org/bots/api#getchatadministrators
   Future<List<ChatMember>> getChatAdministrators(
-      {@required dynamic chat_id}) async {
+      {@required ChatID chat_id}) async {
     final form_data = FormData.fromMap({'chat_id': chat_id});
 
     return (await _client.post(
@@ -1186,7 +1186,7 @@ class API {
   /// Returns Int on success.
   ///
   /// https://core.telegram.org/bots/api#getchatmemberscount
-  Future<int> getChatMembersCount({@required dynamic chat_id}) async {
+  Future<int> getChatMembersCount({@required ChatID chat_id}) async {
     final form_data = FormData.fromMap({'chat_id': chat_id});
 
     return await _client.post(
@@ -1198,7 +1198,7 @@ class API {
   ///
   /// https://core.telegram.org/bots/api#getchatmember
   Future<ChatMember> getChatMember(
-      {@required dynamic chat_id, @required int user_id}) async {
+      {@required ChatID chat_id, @required int user_id}) async {
     final form_data =
         FormData.fromMap({'chat_id': chat_id, 'user_id': user_id});
 
@@ -1215,7 +1215,7 @@ class API {
   ///
   /// https://core.telegram.org/bots/api#setchatstickerset
   Future<bool> setChatStickerSet(
-      {@required dynamic chat_id, @required String sticker_set_name}) async {
+      {@required ChatID chat_id, @required String sticker_set_name}) async {
     final form_data = FormData.fromMap(
         {'chat_id': chat_id, 'sticker_set_name': sticker_set_name});
 
@@ -1231,7 +1231,7 @@ class API {
   /// Returns True on success.
   ///
   /// https://core.telegram.org/bots/api#deletechatstickerset
-  Future<bool> deleteChatStickerSet({@required dynamic chat_id}) async {
+  Future<bool> deleteChatStickerSet({@required ChatID chat_id}) async {
     final form_data = FormData.fromMap({'chat_id': chat_id});
 
     return await _client.post(
@@ -1275,7 +1275,7 @@ class API {
   ///
   /// https://core.telegram.org/bots/api#editmessagetext
   Future<Message> editMessageText(
-      {dynamic chat_id,
+      {ChatID chat_id,
       int message_id,
       String inline_message_id,
       @required String text,
@@ -1315,7 +1315,7 @@ class API {
   ///
   /// https://core.telegram.org/bots/api#editmessagecaption
   Future<Message> editMessageCaption(
-      {dynamic chat_id,
+      {ChatID chat_id,
       int message_id,
       String inline_message_id,
       String caption,
@@ -1359,7 +1359,7 @@ class API {
   ///
   /// https://core.telegram.org/bots/api#editmessagemedia
   Future editMessageMedia(
-      {dynamic chat_id,
+      {ChatID chat_id,
       int message_id,
       String inline_message_id,
       @required InputMedia media,
@@ -1398,7 +1398,7 @@ class API {
   ///
   /// https://core.telegram.org/bots/api#editmessagereplymarkup
   Future<Message> editMessageReplyMarkup(
-      {dynamic chat_id,
+      {ChatID chat_id,
       int message_id,
       String inline_message_id,
       InlineKeyboardMarkup reply_markup}) async {
@@ -1432,7 +1432,7 @@ class API {
   ///
   /// https://core.telegram.org/bots/api#stoppoll
   Future<Poll> stopPoll(
-      {@required dynamic chat_id,
+      {@required ChatID chat_id,
       @required int message_id,
       InlineKeyboardMarkup reply_markup}) async {
     final form_data = FormData.fromMap({
@@ -1461,7 +1461,7 @@ class API {
   ///
   /// https://core.telegram.org/bots/api#deletemessage
   Future<bool> deleteMessage(
-      {@required dynamic chat_id, @required int message_id}) async {
+      {@required ChatID chat_id, @required int message_id}) async {
     final form_data =
         FormData.fromMap({'chat_id': chat_id, 'message_id': message_id});
 
@@ -1475,7 +1475,7 @@ class API {
   ///
   /// https://core.telegram.org/bots/api#sendsticker
   Future<Message> sendSticker(
-      {@required dynamic chat_id,
+      {@required ChatID chat_id,
       @required Luggage sticker,
       bool disable_notification,
       int reply_to_message_id,
