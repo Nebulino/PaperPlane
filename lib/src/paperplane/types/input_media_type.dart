@@ -7,29 +7,13 @@
 class InputMediaType {
   final String _type;
 
+  static const InputMediaType ANIMATION = InputMediaType._('animation');
+  static const InputMediaType AUDIO = InputMediaType._('audio');
+  static const InputMediaType PHOTO = InputMediaType._('photo');
+  static const InputMediaType DOCUMENT = InputMediaType._('document');
+  static const InputMediaType VIDEO = InputMediaType._('video');
+
   const InputMediaType._(this._type);
-
-  factory InputMediaType.Animation() {
-    return InputMediaType._('animation');
-  }
-
-  factory InputMediaType.Audio() {
-    return InputMediaType._('audio');
-  }
-
-  factory InputMediaType.Photo() {
-    return InputMediaType._('photo');
-  }
-
-  factory InputMediaType.Document() {
-    return InputMediaType._('document');
-  }
-
-  factory InputMediaType.Video() {
-    return InputMediaType._('video');
-  }
-
-  String get type => _type;
 
   @override
   String toString() => _type;

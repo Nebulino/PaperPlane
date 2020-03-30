@@ -19,8 +19,11 @@ class API {
 
   API(this._client);
 
-  /// Use this method to receive incoming updates using long polling.
+  /// Use this method to receive incoming updates using long polling
+  /// ([wiki]).
   /// An Array of [Update] objects is returned.
+  ///
+  /// [wiki]: https://en.wikipedia.org/wiki/Push_technology#Long_polling
   ///
   /// https://core.telegram.org/bots/api#getupdates.
   Future<List<Update>> getUpdates(
@@ -42,14 +45,14 @@ class API {
 
   /// Returns all bot info as a [User] object.
   ///
-  /// https://core.telegram.org/bots/api#getMe
+  /// https://core.telegram.org/bots/api#making-requests
   Future<User> getMe() async {
     return User.fromJson(await _client.get(method: 'getMe'));
   }
 
   /// Returns all bot info as a [Bot] object.
   ///
-  /// https://core.telegram.org/bots/api#getMe
+  /// https://core.telegram.org/bots/api#making-requests
   Future<Bot> getBot() async {
     return Bot.fromJson(await _client.get(method: 'getMe'));
   }
@@ -61,7 +64,7 @@ class API {
   /// containing a JSON-serialized [Update].
   /// In case of an unsuccessful request,
   /// we will give up after a reasonable amount of attempts.
-  /// Returns True on success.
+  /// Returns **True** on success.
   ///
   /// If you'd like to make sure that the
   /// Webhook request comes from Telegram,
@@ -95,7 +98,7 @@ class API {
 
   /// Use this method to remove webhook integration
   /// if you decide to switch back to getUpdates.
-  /// Returns True on success. Requires no parameters.
+  /// Returns **True** on success. Requires no parameters.
   ///
   /// https://core.telegram.org/bots/api#deletewebhook
   Future<bool> deleteWebhook() async {
@@ -106,7 +109,7 @@ class API {
   /// Requires no parameters.
   /// On success, returns a [WebhookInfo] object.
   /// If the bot is using [getUpdates],
-  /// will return an object with the url field empty.
+  /// will return an object with the **url** field empty.
   ///
   /// https://core.telegram.org/bots/api#getwebhookinfo
   Future<WebhookInfo> getWebhookInfo() async {
@@ -118,7 +121,7 @@ class API {
   ///
   /// https://core.telegram.org/bots/api#sendmessage
   Future<Message> sendMessage(
-      {@required dynamic chat_id,
+      {@required ChatID chat_id,
       @required String text,
       ParseMode parse_mode,
       bool disable_web_page_preview,
@@ -128,7 +131,7 @@ class API {
     final form_data = FormData.fromMap({
       'chat_id': chat_id,
       'text': text,
-      'parse_mode': parse_mode?.getMode(),
+      'parse_mode': parse_mode.mode,
       'disable_web_page_preview': disable_web_page_preview,
       'disable_notification': disable_notification,
       'reply_to_message_id': reply_to_message_id,
@@ -143,8 +146,8 @@ class API {
   ///
   /// https://core.telegram.org/bots/api#forwardmessage
   Future<Message> forwardMessage(
-      {@required dynamic chat_id,
-      @required dynamic from_chat_id,
+      {@required ChatID chat_id,
+      @required ChatID from_chat_id,
       bool disable_notification,
       @required int message_id}) async {
     final form_data = FormData.fromMap({
@@ -165,7 +168,7 @@ class API {
   ///
   /// https://core.telegram.org/bots/api#sendphoto
   Future<Message> sendPhoto(
-      {@required dynamic chat_id,
+      {@required ChatID chat_id,
       @required Luggage photo,
       String caption,
       ParseMode parse_mode,
@@ -175,7 +178,7 @@ class API {
     final form_data = FormData.fromMap({
       'chat_id': chat_id,
       'caption': caption,
-      'parse_mode': parse_mode?.getMode(),
+      'parse_mode': parse_mode.mode,
       'disable_notification': disable_notification,
       'reply_to_message_id': reply_to_message_id,
       'reply_markup': jsonEncode(reply_markup)
@@ -212,7 +215,7 @@ class API {
   ///
   /// https://core.telegram.org/bots/api#sendaudio
   Future<Message> sendAudio(
-      {@required dynamic chat_id,
+      {@required ChatID chat_id,
       @required Luggage audio,
       String caption,
       ParseMode parse_mode,
@@ -226,7 +229,7 @@ class API {
     final form_data = FormData.fromMap({
       'chat_id': chat_id,
       'caption': caption,
-      'parse_mode': parse_mode?.getMode(),
+      'parse_mode': parse_mode.mode,
       'duration': duration?.inSeconds,
       'performer': performer,
       'title': title,
@@ -283,7 +286,7 @@ class API {
   ///
   /// https://core.telegram.org/bots/api#senddocument
   Future<Message> sendDocument(
-      {@required dynamic chat_id,
+      {@required ChatID chat_id,
       @required Luggage document,
       Luggage thumb,
       String caption,
@@ -294,7 +297,7 @@ class API {
     final form_data = FormData.fromMap({
       'chat_id': chat_id,
       'caption': caption,
-      'parse_mode': parse_mode?.getMode(),
+      'parse_mode': parse_mode.mode,
       'disable_notification': disable_notification,
       'reply_to_message_id': reply_to_message_id,
       'reply_markup': jsonEncode(reply_markup)
@@ -348,7 +351,7 @@ class API {
   ///
   /// https://core.telegram.org/bots/api#sendvideo
   Future<Message> sendVideo(
-      {@required dynamic chat_id,
+      {@required ChatID chat_id,
       @required Luggage video,
       Duration duration,
       int width,
@@ -366,7 +369,7 @@ class API {
       'width': width,
       'height': height,
       'caption': caption,
-      'parse_mode': parse_mode?.getMode(),
+      'parse_mode': parse_mode.mode,
       'supports_streaming': supports_streaming,
       'disable_notification': disable_notification,
       'reply_to_message_id': reply_to_message_id,
@@ -420,7 +423,7 @@ class API {
   ///
   /// https://core.telegram.org/bots/api#sendanimation
   Future<Message> sendAnimation(
-      {@required dynamic chat_id,
+      {@required ChatID chat_id,
       @required Luggage animation,
       Duration duration,
       int width,
@@ -437,7 +440,7 @@ class API {
       'width': width,
       'height': height,
       'caption': caption,
-      'parse_mode': parse_mode?.getMode(),
+      'parse_mode': parse_mode.mode,
       'disable_notification': disable_notification,
       'reply_to_message_id': reply_to_message_id,
       'reply_markup': jsonEncode(reply_markup)
@@ -492,7 +495,7 @@ class API {
   ///
   /// https://core.telegram.org/bots/api#sendvoice
   Future<Message> sendVoice(
-      {@required dynamic chat_id,
+      {@required ChatID chat_id,
       @required Luggage voice,
       String caption,
       ParseMode parse_mode,
@@ -503,7 +506,7 @@ class API {
     final form_data = FormData.fromMap({
       'chat_id': chat_id,
       'caption': caption,
-      'parse_mode': parse_mode?.getMode(),
+      'parse_mode': parse_mode.mode,
       'duration': duration?.inSeconds,
       'disable_notification': disable_notification,
       'reply_to_message_id': reply_to_message_id,
@@ -538,7 +541,7 @@ class API {
   ///
   /// https://core.telegram.org/bots/api#sendvoice
   Future<Message> sendVideoNote(
-      {@required dynamic chat_id,
+      {@required ChatID chat_id,
       @required Luggage video_note,
       Duration duration,
       int length,
@@ -600,7 +603,7 @@ class API {
   ///
   /// https://core.telegram.org/bots/api#sendmediagroup
   Future<List<Message>> sendMediaGroup(
-      {@required dynamic chat_id,
+      {@required ChatID chat_id,
       @required List<InputMediaLuggage> media,
       bool disable_notification,
       int reply_to_message_id}) async {
@@ -655,7 +658,7 @@ class API {
   ///
   /// https://core.telegram.org/bots/api#sendlocation
   Future<Message> sendLocation(
-      {@required dynamic chat_id,
+      {@required ChatID chat_id,
       @required double latitude,
       @required double longitude,
       int live_period,
@@ -686,7 +689,7 @@ class API {
   ///
   /// https://core.telegram.org/bots/api#editmessagelivelocation
   Future<Message> editMessageLiveLocation(
-      {dynamic chat_id,
+      {ChatID chat_id,
       int message_id,
       String inline_message_id,
       @required double latitude,
@@ -717,7 +720,7 @@ class API {
   ///
   /// https://core.telegram.org/bots/api#stopmessagelivelocation
   Future<Message> stopMessageLiveLocation(
-      {dynamic chat_id,
+      {ChatID chat_id,
       int message_id,
       String inline_message_id,
       ReplyMarkup reply_markup}) async {
@@ -743,7 +746,7 @@ class API {
   ///
   /// https://core.telegram.org/bots/api#sendvenue
   Future<Message> sendVenue(
-      {@required dynamic chat_id,
+      {@required ChatID chat_id,
       @required double latitude,
       @required double longitude,
       @required String title,
@@ -775,7 +778,7 @@ class API {
   ///
   /// https://core.telegram.org/bots/api#sendcontact
   Future<Message> sendContact(
-      {@required dynamic chat_id,
+      {@required ChatID chat_id,
       @required String phone_number,
       @required String first_name,
       String last_name,
@@ -803,7 +806,7 @@ class API {
   ///
   /// https://core.telegram.org/bots/api#sendpoll
   Future<Message> sendPoll(
-      {@required dynamic chat_id,
+      {@required ChatID chat_id,
       @required String question,
       @required List<String> options,
       bool is_anonymous,
@@ -819,7 +822,7 @@ class API {
       'question': question,
       'options': jsonEncode(options),
       'is_anonymous': is_anonymous,
-      'type': (type ?? PollType.Regular()),
+      'type': (type ?? PollType.REGULAR.type),
       'allows_multiple_answers': allows_multiple_answers,
       'correct_option_id': correct_option_id,
       'is_closed': is_closed,
@@ -837,7 +840,7 @@ class API {
   /// The status is set for 5 seconds or less
   /// (when a message arrives from your bot,
   /// Telegram clients clear its typing status).
-  /// Returns True on success.
+  /// Returns **True** on success.
   ///
   /// Example: The [ImageBot] needs some time to process a request
   /// and upload the image.
@@ -848,13 +851,13 @@ class API {
   /// The user will see a “sending photo” status for the bot.
   ///
   /// We only recommend using this method when a response
-  /// from the bot will take a noticeable amount of time to arrive.
+  /// from the bot will take a **noticeable** amount of time to arrive.
   ///
   /// [ImageBot]: https://t.me/imagebot
   ///
   /// https://core.telegram.org/bots/api#sendchataction
   Future<bool> sendChatAction(
-      {@required dynamic chat_id, @required ChatAction action}) async {
+      {@required ChatID chat_id, @required ChatAction action}) async {
     final form_data = FormData.fromMap({'chat_id': chat_id, 'action': action});
 
     return await _client.post(method: 'sendChatAction', form_data: form_data);
@@ -901,13 +904,11 @@ class API {
   /// the user will not be able to return to the group on
   /// their own using invite links, etc., unless unbanned first.
   /// The bot must be an administrator in the chat for this to work
-  /// and must have the appropriate admin rights. Returns True on success.
+  /// and must have the appropriate admin rights. Returns **True** on success.
   ///
   /// https://core.telegram.org/bots/api#kickchatmember
   Future<bool> kickChatMember(
-      {@required dynamic chat_id,
-      @required int user_id,
-      int until_date}) async {
+      {@required ChatID chat_id, @required int user_id, int until_date}) async {
     final form_data = FormData.fromMap(
         {'chat_id': chat_id, 'user_id': user_id, 'until_date': until_date});
 
@@ -918,11 +919,11 @@ class API {
   /// supergroup or channel. The user will not return to the group or channel
   /// automatically, but will be able to join via link, etc.
   /// The bot must be an administrator for this to work.
-  /// Returns True on success.
+  /// Returns **True** on success.
   ///
   /// https://core.telegram.org/bots/api#unbanchatmember
   Future<bool> unbanChatMember(
-      {@required dynamic chat_id, @required int user_id}) async {
+      {@required ChatID chat_id, @required int user_id}) async {
     final form_data =
         FormData.fromMap({'chat_id': chat_id, 'user_id': user_id});
 
@@ -933,11 +934,11 @@ class API {
   /// The bot must be an administrator in the supergroup for this
   /// to work and must have the appropriate admin rights.
   /// Pass True for all permissions to lift restrictions from a user.
-  /// Returns True on success.
+  /// Returns **True** on success.
   ///
   /// https://core.telegram.org/bots/api#restrictchatmember
   Future<bool> restrictChatMember(
-      {@required dynamic chat_id,
+      {@required ChatID chat_id,
       @required int user_id,
       ChatPermissions permissions,
       int until_date}) async {
@@ -956,7 +957,7 @@ class API {
   /// The bot must be an administrator in the chat for this to work and
   /// must have the appropriate admin rights.
   /// Pass False for all boolean parameters to demote a user.
-  /// Returns True on success.
+  /// Returns **True** on success.
   ///
   /// https://core.telegram.org/bots/api#restrictchatmember
   Future<bool> promoteChatMember(
@@ -989,11 +990,11 @@ class API {
 
   /// Use this method to set a custom title for an administrator
   /// in a supergroup promoted by the bot.
-  /// Returns True on success.
+  /// Returns **True** on success.
   ///
   /// https://core.telegram.org/bots/api#setchatadministratorcustomtitle
   Future<bool> setChatAdministratorCustomTitle(
-      {@required dynamic chat_id,
+      {@required ChatID chat_id,
       @required int user_id,
       @required String custom_title}) async {
     final form_data = FormData.fromMap(
@@ -1006,12 +1007,11 @@ class API {
   /// Use this method to set default chat permissions for all members.
   /// The bot must be an administrator in the group or a supergroup
   /// for this to work and must have the can_restrict_members admin rights.
-  /// Returns True on success.
+  /// Returns **True** on success.
   ///
   /// https://core.telegram.org/bots/api#setchatpermissions
   Future<bool> setChatPermissions(
-      {@required dynamic chat_id,
-      @required ChatPermissions permissions}) async {
+      {@required ChatID chat_id, @required ChatPermissions permissions}) async {
     final form_data = FormData.fromMap({
       'chat_id': chat_id,
       'permissions': permissions,
@@ -1028,7 +1028,7 @@ class API {
   /// link as String on success.
   ///
   /// https://core.telegram.org/bots/api#setchatpermissions
-  Future<bool> exportChatInviteLink({@required dynamic chat_id}) async {
+  Future<bool> exportChatInviteLink({@required ChatID chat_id}) async {
     final form_data = FormData.fromMap({'chat_id': chat_id});
 
     return await _client.post(
@@ -1039,13 +1039,13 @@ class API {
   /// Photos can't be changed for private chats.
   /// The bot must be an administrator in the chat
   /// for this to work and must have the appropriate admin rights.
-  /// Returns True on success.
+  /// Returns **True** on success.
   ///
   /// [photo] argument accepts [Luggage] object.
   ///
   /// https://core.telegram.org/bots/api#setchatphoto
   Future<bool> setChatPhoto(
-      {@required dynamic chat_id, @required Luggage photo}) async {
+      {@required ChatID chat_id, @required Luggage photo}) async {
     final form_data = FormData.fromMap({'chat_id': chat_id});
 
     switch (photo.type) {
@@ -1070,10 +1070,10 @@ class API {
   /// Photos can't be changed for private chats.
   /// The bot must be an administrator in the chat for this
   /// to work and must have the appropriate admin rights.
-  /// Returns True on success.
+  /// Returns **True** on success.
   ///
   /// https://core.telegram.org/bots/api#deletechatphoto
-  Future<bool> deleteChatPhoto({@required dynamic chat_id}) async {
+  Future<bool> deleteChatPhoto({@required ChatID chat_id}) async {
     final form_data = FormData.fromMap({'chat_id': chat_id});
 
     return await _client.post(method: 'deleteChatPhoto', form_data: form_data);
@@ -1083,11 +1083,11 @@ class API {
   /// Titles can't be changed for private chats.
   /// The bot must be an administrator in the chat
   /// for this to work and must have the appropriate admin rights.
-  /// Returns True on success.
+  /// Returns **True** on success.
   ///
   /// https://core.telegram.org/bots/api#setchattitle
   Future<bool> setChatTitle(
-      {@required dynamic chat_id, @required String title}) async {
+      {@required ChatID chat_id, @required String title}) async {
     final form_data = FormData.fromMap({'chat_id': chat_id, 'title': title});
 
     return await _client.post(method: 'setChatTitle', form_data: form_data);
@@ -1097,11 +1097,11 @@ class API {
   /// a supergroup or a channel.
   /// The bot must be an administrator in the chat
   /// for this to work and must have the appropriate admin rights.
-  /// Returns True on success.
+  /// Returns **True** on success.
   ///
   /// https://core.telegram.org/bots/api#setchatdescription
   Future<bool> setChatDescription(
-      {@required dynamic chat_id, String description}) async {
+      {@required ChatID chat_id, String description}) async {
     final form_data =
         FormData.fromMap({'chat_id': chat_id, 'description': description});
 
@@ -1113,11 +1113,11 @@ class API {
   /// The bot must be an administrator in the chat for this to work and must
   /// have the ‘can_pin_messages’ admin right in the supergroup or
   /// ‘can_edit_messages’ admin right in the channel.
-  /// Returns True on success.
+  /// Returns **True** on success.
   ///
   /// https://core.telegram.org/bots/api#pinchatmessage
   Future<bool> pinChatMessage(
-      {@required dynamic chat_id,
+      {@required ChatID chat_id,
       @required int message_id,
       bool disable_notification}) async {
     final form_data = FormData.fromMap({
@@ -1133,20 +1133,20 @@ class API {
   /// The bot must be an administrator in the chat for this to
   /// work and must have the ‘can_pin_messages’ admin right in
   /// the supergroup or ‘can_edit_messages’ admin right in the channel.
-  /// Returns True on success.
+  /// Returns **True** on success.
   ///
   /// https://core.telegram.org/bots/api#unpinchatmessage
-  Future<bool> unpinChatMessage({@required dynamic chat_id}) async {
+  Future<bool> unpinChatMessage({@required ChatID chat_id}) async {
     final form_data = FormData.fromMap({'chat_id': chat_id});
 
     return await _client.post(method: 'pinChatMessage', form_data: form_data);
   }
 
   /// Use this method for your bot to leave a group, supergroup or channel.
-  /// Returns True on success.
+  /// Returns **True** on success.
   ///
   /// https://core.telegram.org/bots/api#leavechat
-  Future<bool> leaveChat({@required dynamic chat_id}) async {
+  Future<bool> leaveChat({@required ChatID chat_id}) async {
     final form_data = FormData.fromMap({'chat_id': chat_id});
 
     return await _client.post(method: 'leaveChat', form_data: form_data);
@@ -1158,7 +1158,7 @@ class API {
   /// Returns a [Chat] object on success.
   ///
   /// https://core.telegram.org/bots/api#getchat
-  Future<Chat> getChat({@required dynamic chat_id}) async {
+  Future<Chat> getChat({@required ChatID chat_id}) async {
     final form_data = FormData.fromMap({'chat_id': chat_id});
 
     return Chat.fromJson(
@@ -1173,7 +1173,7 @@ class API {
   ///
   /// https://core.telegram.org/bots/api#getchatadministrators
   Future<List<ChatMember>> getChatAdministrators(
-      {@required dynamic chat_id}) async {
+      {@required ChatID chat_id}) async {
     final form_data = FormData.fromMap({'chat_id': chat_id});
 
     return (await _client.post(
@@ -1186,7 +1186,7 @@ class API {
   /// Returns Int on success.
   ///
   /// https://core.telegram.org/bots/api#getchatmemberscount
-  Future<int> getChatMembersCount({@required dynamic chat_id}) async {
+  Future<int> getChatMembersCount({@required ChatID chat_id}) async {
     final form_data = FormData.fromMap({'chat_id': chat_id});
 
     return await _client.post(
@@ -1198,7 +1198,7 @@ class API {
   ///
   /// https://core.telegram.org/bots/api#getchatmember
   Future<ChatMember> getChatMember(
-      {@required dynamic chat_id, @required int user_id}) async {
+      {@required ChatID chat_id, @required int user_id}) async {
     final form_data =
         FormData.fromMap({'chat_id': chat_id, 'user_id': user_id});
 
@@ -1211,11 +1211,11 @@ class API {
   /// must have the appropriate admin rights. Use the field can_set_sticker_set
   /// optionally returned in getChat requests to check
   /// if the bot can use this method.
-  /// Returns True on success.
+  /// Returns **True** on success.
   ///
   /// https://core.telegram.org/bots/api#setchatstickerset
   Future<bool> setChatStickerSet(
-      {@required dynamic chat_id, @required String sticker_set_name}) async {
+      {@required ChatID chat_id, @required String sticker_set_name}) async {
     final form_data = FormData.fromMap(
         {'chat_id': chat_id, 'sticker_set_name': sticker_set_name});
 
@@ -1228,10 +1228,10 @@ class API {
   /// and must have the appropriate admin rights.
   /// Use the field can_set_sticker_set optionally returned in getChat
   /// requests to check if the bot can use this method.
-  /// Returns True on success.
+  /// Returns **True** on success.
   ///
   /// https://core.telegram.org/bots/api#deletechatstickerset
-  Future<bool> deleteChatStickerSet({@required dynamic chat_id}) async {
+  Future<bool> deleteChatStickerSet({@required ChatID chat_id}) async {
     final form_data = FormData.fromMap({'chat_id': chat_id});
 
     return await _client.post(
@@ -1275,7 +1275,7 @@ class API {
   ///
   /// https://core.telegram.org/bots/api#editmessagetext
   Future<Message> editMessageText(
-      {dynamic chat_id,
+      {ChatID chat_id,
       int message_id,
       String inline_message_id,
       @required String text,
@@ -1315,7 +1315,7 @@ class API {
   ///
   /// https://core.telegram.org/bots/api#editmessagecaption
   Future<Message> editMessageCaption(
-      {dynamic chat_id,
+      {ChatID chat_id,
       int message_id,
       String inline_message_id,
       String caption,
@@ -1359,7 +1359,7 @@ class API {
   ///
   /// https://core.telegram.org/bots/api#editmessagemedia
   Future editMessageMedia(
-      {dynamic chat_id,
+      {ChatID chat_id,
       int message_id,
       String inline_message_id,
       @required InputMedia media,
@@ -1377,7 +1377,7 @@ class API {
       'message_id': message_id,
       'inline_message_id': inline_message_id,
       'media': jsonEncode(media),
-      'parse_mode': parse_mode.getMode(),
+      'parse_mode': parse_mode.mode,
       'reply_markup': jsonEncode(reply_markup)
     });
 
@@ -1398,7 +1398,7 @@ class API {
   ///
   /// https://core.telegram.org/bots/api#editmessagereplymarkup
   Future<Message> editMessageReplyMarkup(
-      {dynamic chat_id,
+      {ChatID chat_id,
       int message_id,
       String inline_message_id,
       InlineKeyboardMarkup reply_markup}) async {
@@ -1432,7 +1432,7 @@ class API {
   ///
   /// https://core.telegram.org/bots/api#stoppoll
   Future<Poll> stopPoll(
-      {@required dynamic chat_id,
+      {@required ChatID chat_id,
       @required int message_id,
       InlineKeyboardMarkup reply_markup}) async {
     final form_data = FormData.fromMap({
@@ -1457,11 +1457,11 @@ class API {
   /// message there.
   /// - If the bot has can_delete_messages permission in a supergroup or a
   /// channel, it can delete any message there.
-  /// Returns True on success.
+  /// Returns **True** on success.
   ///
   /// https://core.telegram.org/bots/api#deletemessage
   Future<bool> deleteMessage(
-      {@required dynamic chat_id, @required int message_id}) async {
+      {@required ChatID chat_id, @required int message_id}) async {
     final form_data =
         FormData.fromMap({'chat_id': chat_id, 'message_id': message_id});
 
@@ -1475,7 +1475,7 @@ class API {
   ///
   /// https://core.telegram.org/bots/api#sendsticker
   Future<Message> sendSticker(
-      {@required dynamic chat_id,
+      {@required ChatID chat_id,
       @required Luggage sticker,
       bool disable_notification,
       int reply_to_message_id,
@@ -1549,7 +1549,7 @@ class API {
 
   /// Use this method to create new sticker set owned by a user.
   /// The bot will be able to edit the created sticker set.
-  /// Returns True on success.
+  /// Returns **True** on success.
   ///
   /// [png_sticker] argument accepts [Luggage] object.
   ///
@@ -1558,10 +1558,17 @@ class API {
       {@required int user_id,
       @required String name,
       @required String title,
-      @required Luggage png_sticker,
+      Luggage png_sticker,
+      Luggage tgs_sticker,
       @required String emojis,
       bool contains_masks,
       MaskPosition mask_position}) async {
+    if (png_sticker == null && tgs_sticker == null) {
+      return Future.error(PaperPlaneException(
+          description:
+              'You must send at least a png_sticker or a tgs_sticker.'));
+    }
+
     final me = await getMe();
 
     final form_data = FormData.fromMap({
@@ -1576,8 +1583,7 @@ class API {
     switch (png_sticker.type) {
       case 'link':
       case 'file_id':
-        return Future.error(
-            ApiException(description: 'This method accepts only files.'));
+        form_data.fields.add(MapEntry('png_sticker', png_sticker.toString()));
         break;
       case 'file':
       case 'bytes':
@@ -1588,22 +1594,51 @@ class API {
         break;
     }
 
+    if (tgs_sticker != null) {
+      switch (tgs_sticker.type) {
+        case 'link':
+        case 'file_id':
+          return Future.error(
+              ApiException(description: 'This method accepts only files.'));
+          break;
+        case 'file':
+        case 'bytes':
+          form_data.files.add(MapEntry<String, MultipartFile>(
+              'tgs_sticker',
+              MultipartFile.fromBytes(tgs_sticker.getBytes(),
+                  filename: tgs_sticker.getName(type: 'tgs_sticker'))));
+          break;
+      }
+    }
+
     return await _client.post(
         method: 'createNewStickerSet', form_data: form_data);
   }
 
   /// Use this method to add a new sticker to a set created by the bot.
-  /// Returns True on success.
+  /// You must use exactly one of the fields png_sticker or tgs_sticker.
+  /// Animated stickers can be added to animated sticker sets and only to them.
+  /// Animated sticker sets can have up to 50 stickers.
+  /// Static sticker sets can have up to 120 stickers.
+  /// Returns **True** on success.
   ///
   /// [png_sticker] argument accepts [Luggage] object.
+  /// [tgs_sticker] argument accepts [Luggage] object.
   ///
   /// https://core.telegram.org/bots/api#addstickertoset
   Future<bool> addStickerToSet(
       {@required int user_id,
       @required String name,
-      @required Luggage png_sticker,
+      Luggage png_sticker,
+      Luggage tgs_sticker,
       @required String emojis,
       MaskPosition mask_position}) async {
+    if (png_sticker == null && tgs_sticker == null) {
+      return Future.error(PaperPlaneException(
+          description:
+              'You must send at least a png_sticker or a tgs_sticker.'));
+    }
+
     final form_data = FormData.fromMap({
       'user_id': user_id,
       'name': name,
@@ -1614,8 +1649,7 @@ class API {
     switch (png_sticker.type) {
       case 'link':
       case 'file_id':
-        return Future.error(
-            ApiException(description: 'This method accepts only files.'));
+        form_data.fields.add(MapEntry('png_sticker', png_sticker.toString()));
         break;
       case 'file':
       case 'bytes':
@@ -1626,12 +1660,29 @@ class API {
         break;
     }
 
+    if (tgs_sticker != null) {
+      switch (tgs_sticker.type) {
+        case 'link':
+        case 'file_id':
+          return Future.error(
+              ApiException(description: 'This method accepts only files.'));
+          break;
+        case 'file':
+        case 'bytes':
+          form_data.files.add(MapEntry<String, MultipartFile>(
+              'tgs_sticker',
+              MultipartFile.fromBytes(tgs_sticker.getBytes(),
+                  filename: tgs_sticker.getName(type: 'tgs_sticker'))));
+          break;
+      }
+    }
+
     return await _client.post(method: 'addStickerToSet', form_data: form_data);
   }
 
   /// Use this method to move a sticker in a set created
   /// by the bot to a specific position.
-  /// Returns True on success.
+  /// Returns **True** on success.
   ///
   /// https://core.telegram.org/bots/api#setstickerpositioninset
   Future<bool> setStickerPositionInSet(
@@ -1644,7 +1695,7 @@ class API {
   }
 
   /// Use this method to delete a sticker from a set created by the bot.
-  /// Returns True on success.
+  /// Returns **True** on success.
   ///
   /// https://core.telegram.org/bots/api#deletestickerfromset
   Future<bool> deleteStickerFromSet({@required String sticker}) async {
@@ -1804,7 +1855,7 @@ class API {
   /// to you until the errors are fixed
   /// (the contents of the field for which you returned the error
   /// must change).
-  /// Returns True on success.
+  /// Returns **True** on success.
   ///
   /// Use this if the data submitted by the user doesn't
   /// satisfy the standards your service requires for any reason.
@@ -1911,5 +1962,83 @@ class API {
         .map<GameHighScore>(
             (gameHighScore) => GameHighScore.fromJson(gameHighScore))
         .toList();
+  }
+
+  /// Use this method to send a dice,
+  /// which will have a random value from 1 to 6.
+  /// On success, the sent [Message] is returned.
+  /// (Yes, we're aware of the **“proper”** singular of **die**.
+  /// But it's awkward, and we decided to help it change.
+  /// One dice at a time!)
+  Future<Message> sendDice(
+      {@required ChatID chat_id,
+      bool disable_notification,
+      int reply_to_message_id,
+      ReplyMarkup reply_markup}) async {
+    final form_data = FormData.fromMap({
+      'chat_id': chat_id,
+      'disable_notification': disable_notification,
+      'reply_to_message_id': reply_to_message_id,
+      'reply_markup': jsonEncode(reply_markup)
+    });
+
+    return Message.fromJson(
+        await _client.post(method: 'sendDice', form_data: form_data));
+  }
+
+  /// Use this method to get the current list of the bot's commands.
+  /// Requires no parameters. Returns Array of [BotCommand] on success.
+  ///
+  /// https://core.telegram.org/bots/api#getmycommands
+  Future<List<BotCommand>> getMyCommands() async {
+    return (await _client.get(method: 'getMyCommands'))
+        .map<BotCommand>((botCommand) => BotCommand.fromJson(botCommand))
+        .toList();
+  }
+
+  /// Use this method to change the list of the bot's commands.
+  /// Returns **True** on success.
+  ///
+  /// https://core.telegram.org/bots/api#setmycommands
+  Future<bool> setMyCommands({@required List<BotCommand> commands}) async {
+    for (var command in commands) {
+      if (command.command == null || command.description == null) {
+        return Future.error(PaperPlaneException(
+            description: 'Check the commands, at least one is not correct.'));
+      }
+    }
+
+    final form_data = FormData.fromMap({'commands': commands});
+
+    return await _client.post(method: 'setMyCommands', form_data: form_data);
+  }
+
+  /// Use this method to set the thumbnail of a sticker set.
+  /// Animated thumbnails can be set for animated sticker sets only.
+  /// Returns **True** on success.
+  ///
+  /// [thumb] argument accepts [Luggage] object.
+  ///
+  /// https://core.telegram.org/bots/api#setstickersetthumb
+  Future<bool> setStickerSetThumb(
+      {@required name, @required int user_id, Luggage thumb}) async {
+    final form_data = FormData.fromMap({'name': name, 'user_id': user_id});
+
+    switch (thumb.type) {
+      case 'link':
+      case 'file_id':
+        form_data.fields.add(MapEntry('thumb', thumb.toString()));
+        break;
+      case 'file':
+      case 'bytes':
+        form_data.files.add(MapEntry<String, MultipartFile>(
+            'photo',
+            MultipartFile.fromBytes(thumb.getBytes(),
+                filename: thumb.getName(type: 'thumb'))));
+        break;
+    }
+
+    return await _client.post(
+        method: 'setStickerSetThumb', form_data: form_data);
   }
 }

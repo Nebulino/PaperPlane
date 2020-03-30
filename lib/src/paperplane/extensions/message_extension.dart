@@ -24,7 +24,7 @@ extension MessageHelper on Message {
       bool disable_notification,
       ReplyMarkup reply_markup}) {
     return _api.sendMessage(
-        chat_id: chat.id,
+        chat_id: ChatID.fromID(chat.id),
         text: text,
         parse_mode: parse_mode,
         disable_web_page_preview: disable_web_page_preview,
@@ -42,7 +42,7 @@ extension MessageHelper on Message {
       bool disable_notification,
       ReplyMarkup reply_markup}) {
     return _api.sendPhoto(
-        chat_id: chat.id,
+        chat_id: ChatID.fromID(chat.id),
         photo: photo,
         caption: caption,
         parse_mode: parse_mode,
@@ -64,7 +64,7 @@ extension MessageHelper on Message {
       bool disable_notification,
       ReplyMarkup reply_markup}) {
     return _api.sendAudio(
-        chat_id: chat.id,
+        chat_id: ChatID.fromID(chat.id),
         audio: audio,
         caption: caption,
         parse_mode: parse_mode,
@@ -86,7 +86,7 @@ extension MessageHelper on Message {
       bool disable_notification,
       ReplyMarkup reply_markup}) {
     return _api.sendDocument(
-        chat_id: chat.id,
+        chat_id: ChatID.fromID(chat.id),
         document: document,
         thumb: thumb,
         caption: caption,
@@ -110,7 +110,7 @@ extension MessageHelper on Message {
       bool disable_notification,
       ReplyMarkup reply_markup}) {
     return _api.sendVideo(
-        chat_id: chat.id,
+        chat_id: ChatID.fromID(chat.id),
         video: video,
         duration: duration,
         width: width,
@@ -137,7 +137,7 @@ extension MessageHelper on Message {
       bool disable_notification,
       ReplyMarkup reply_markup}) {
     return _api.sendAnimation(
-        chat_id: chat.id,
+        chat_id: ChatID.fromID(chat.id),
         animation: animation,
         duration: duration,
         width: width,
@@ -160,7 +160,7 @@ extension MessageHelper on Message {
       bool disable_notification,
       ReplyMarkup reply_markup}) {
     return _api.sendVoice(
-        chat_id: chat.id,
+        chat_id: ChatID.fromID(chat.id),
         voice: voice,
         caption: caption,
         parse_mode: parse_mode,
@@ -180,7 +180,7 @@ extension MessageHelper on Message {
       bool disable_notification,
       ReplyMarkup reply_markup}) {
     return _api.sendVideoNote(
-        chat_id: chat.id,
+        chat_id: ChatID.fromID(chat.id),
         video_note: video_note,
         duration: duration,
         length: length,
@@ -196,7 +196,7 @@ extension MessageHelper on Message {
       bool quote_message = true,
       bool disable_notification}) {
     return _api.sendMediaGroup(
-        chat_id: chat.id,
+        chat_id: ChatID.fromID(chat.id),
         media: media,
         disable_notification: disable_notification,
         reply_to_message_id: quote_message ? message_id : null);
@@ -211,7 +211,7 @@ extension MessageHelper on Message {
       bool disable_notification,
       ReplyMarkup reply_markup}) {
     return _api.sendLocation(
-        chat_id: chat.id,
+        chat_id: ChatID.fromID(chat.id),
         latitude: latitude,
         longitude: longitude,
         live_period: live_period,
@@ -232,7 +232,7 @@ extension MessageHelper on Message {
       bool disable_notification,
       ReplyMarkup reply_markup}) {
     return _api.sendVenue(
-        chat_id: chat.id,
+        chat_id: ChatID.fromID(chat.id),
         latitude: latitude,
         longitude: longitude,
         title: title,
@@ -254,7 +254,7 @@ extension MessageHelper on Message {
       bool disable_notification,
       ReplyMarkup reply_markup}) {
     return _api.sendContact(
-        chat_id: chat.id,
+        chat_id: ChatID.fromID(chat.id),
         phone_number: phone_number,
         first_name: first_name,
         last_name: last_name,
@@ -277,7 +277,7 @@ extension MessageHelper on Message {
       bool disable_notification,
       ReplyMarkup reply_markup}) {
     return _api.sendPoll(
-        chat_id: chat.id,
+        chat_id: ChatID.fromID(chat.id),
         question: question,
         options: options,
         is_anonymous: is_anonymous,
@@ -292,6 +292,18 @@ extension MessageHelper on Message {
 
   /// Helps replying with a chat action directly.
   Future<bool> replyChatAction({@required ChatAction action}) {
-    return _api.sendChatAction(chat_id: chat.id, action: action);
+    return _api.sendChatAction(chat_id: ChatID.fromID(chat.id), action: action);
+  }
+
+  /// Helps replying with a dice directly.
+  Future<Message> replyDice(
+      {bool quote_message = true,
+      bool disable_notification,
+      ReplyMarkup reply_markup}) async {
+    return _api.sendDice(
+        chat_id: ChatID.fromID(chat.id),
+        disable_notification: disable_notification,
+        reply_to_message_id: quote_message ? message_id : null,
+        reply_markup: reply_markup);
   }
 }

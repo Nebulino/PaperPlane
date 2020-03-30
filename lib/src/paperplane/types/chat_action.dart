@@ -6,22 +6,41 @@
 /// Contains every type of [chat action]
 ///
 /// [chat action] : [API]
-class ChatAction {
-  final String _action;
+enum ChatAction {
+  TYPING,
+  UPLOAD_PHOTO,
+  RECORD_VIDEO,
+  RECORD_AUDIO,
+  UPLOAD_AUDIO,
+  UPLOAD_DOCUMENT,
+  FIND_LOCATION,
+  RECORD_VIDEO_NOTE,
+  UPLOAD_VIDEO_NOTE
+}
 
-  static const ChatAction TYPING = ChatAction._('TYPING');
-  static const ChatAction UPLOAD_PHOTO = ChatAction._('UPLOAD_PHOTO');
-  static const ChatAction RECORD_VIDEO = ChatAction._('RECORD_VIDEO');
-  static const ChatAction UPLOAD_VIDEO = ChatAction._('UPLOAD_VIDEO');
-  static const ChatAction RECORD_AUDIO = ChatAction._('RECORD_AUDIO');
-  static const ChatAction UPLOAD_AUDIO = ChatAction._('UPLOAD_AUDIO');
-  static const ChatAction UPLOAD_DOCUMENT = ChatAction._('UPLOAD_DOCUMENT');
-  static const ChatAction FIND_LOCATION = ChatAction._('FIND_LOCATION');
-  static const ChatAction RECORD_VIDEO_NOTE = ChatAction._('RECORD_VIDEO_NOTE');
-  static const ChatAction UPLOAD_VIDEO_NOTE = ChatAction._('UPLOAD_VIDEO_NOTE');
-
-  const ChatAction._(this._action);
-
-  @override
-  String toString() => _action;
+extension ChatActionExtension on ChatAction {
+  String get action {
+    switch (this) {
+      case ChatAction.TYPING:
+        return 'typing';
+      case ChatAction.UPLOAD_PHOTO:
+        return 'upload_photo';
+      case ChatAction.RECORD_VIDEO:
+        return 'record_video';
+      case ChatAction.RECORD_AUDIO:
+        return 'record_audio';
+      case ChatAction.UPLOAD_AUDIO:
+        return 'upload_audio';
+      case ChatAction.UPLOAD_DOCUMENT:
+        return 'upload_document';
+      case ChatAction.FIND_LOCATION:
+        return 'find_location';
+      case ChatAction.RECORD_VIDEO_NOTE:
+        return 'record_video_note';
+      case ChatAction.UPLOAD_VIDEO_NOTE:
+        return 'upload_video_note';
+      default:
+        return null;
+    }
+  }
 }

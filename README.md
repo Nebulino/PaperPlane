@@ -8,7 +8,7 @@ A package to interact with the official
 
 [![Dart Version](https://img.shields.io/badge/Dart-2.7.2-blue.svg?style=flat-square&logo=dart)](https://dart.dev)
 [![Build Status](https://img.shields.io/travis/Nebulino/PaperPlane/master?style=flat-square&logo=travis)](https://travis-ci.org/github/Nebulino/PaperPlane)
-[![Bot API](https://img.shields.io/badge/Bot%20API-v.4.6-00aced.svg?style=flat-square&logo=telegram)](https://core.telegram.org/bots/api)
+[![Bot API](https://img.shields.io/badge/Bot%20API-v.4.7-00aced.svg?style=flat-square&logo=telegram)](https://core.telegram.org/bots/api)
 [![Nebulino](https://img.shields.io/badge/💬%20Telegram-Nebulino-blue.svg?style=flat-square)](https://t.me/Nebulino/)
 
 </div>
@@ -74,12 +74,12 @@ dependencies:
 From pub.dev:
 ```yaml
 dependencies:
-  paperplane: ^0.5.1
+  paperplane: ^0.5.2
 ```
 
 ## Features and bugs
 
-#### All API up-to v4.6 are supported.
+#### All API up-to v4.7 are supported.
 ##### Implemented a base for a future solid implementation of Long Polling.
 
 Still not implemented the Webhook.

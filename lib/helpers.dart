@@ -8,6 +8,7 @@
 library paperplane_helpers;
 
 export 'package:paperplane/src/paperplane/helpers/bot_file.dart';
+export 'package:paperplane/src/paperplane/helpers/chat_id.dart';
 export 'package:paperplane/src/paperplane/helpers/constant.dart';
 export 'package:paperplane/src/paperplane/helpers/input_media_luggage.dart';
 export 'package:paperplane/src/paperplane/helpers/luggage.dart';

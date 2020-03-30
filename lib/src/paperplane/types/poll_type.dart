@@ -4,19 +4,17 @@
  */
 
 /// A list of [Poll] types for telegram.
-class PollType {
-  String _type;
+enum PollType { QUIZ, REGULAR }
 
-  PollType._(this._type);
-
-  factory PollType.Quiz() {
-    return PollType._('quiz');
+extension PollTypeExtension on PollType {
+  String get type {
+    switch (this) {
+      case PollType.QUIZ:
+        return 'quiz';
+      case PollType.REGULAR:
+        return 'regular';
+      default:
+        return null;
+    }
   }
-
-  factory PollType.Regular() {
-    return PollType._('regular');
-  }
-
-  @override
-  String toString() => _type;
 }

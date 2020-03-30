@@ -1,3 +1,13 @@
+## 0.5.2
+#### Big update.
+
+- Updated to Telegram API v4.7.
+- Modified some docs.
+- Created new examples.
+- Implemented and modified ChatID.
+- Transformed some types into enums.
+- Modified TelegramClient to remove null fields.
+
 ## 0.5.1
 
 - Fixed a problem with the dispatcher.

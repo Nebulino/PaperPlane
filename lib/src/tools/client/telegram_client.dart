@@ -24,9 +24,9 @@ class TelegramClient {
     )..interceptors
           .add(InterceptorsWrapper(onRequest: (RequestOptions options) {
         if (options.data is FormData) {
-          (options.data as FormData)
-              .fields
-              .removeWhere((map_entry) => map_entry.value == 'null');
+          (options.data as FormData).fields
+            ..removeWhere((map_entry) => map_entry.value == null)
+            ..removeWhere((map_entry) => map_entry.value == 'null');
           return options;
         }
 
