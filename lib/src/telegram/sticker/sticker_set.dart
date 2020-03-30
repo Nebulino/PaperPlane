@@ -15,13 +15,15 @@ class StickerSet {
   bool is_animated;
   bool contains_masks;
   List<Sticker> stickers;
+  PhotoSize thumb;
 
   StickerSet(
       {this.name,
       this.title,
       this.is_animated,
       this.contains_masks,
-      this.stickers});
+      this.stickers,
+      this.thumb});
 
   factory StickerSet.fromJson(Map<String, dynamic> json) =>
       _$StickerSetFromJson(json);

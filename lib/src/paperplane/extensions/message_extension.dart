@@ -294,4 +294,16 @@ extension MessageHelper on Message {
   Future<bool> replyChatAction({@required ChatAction action}) {
     return _api.sendChatAction(chat_id: ChatID.fromID(chat.id), action: action);
   }
+
+  /// Helps replying with a dice directly.
+  Future<Message> replyDice(
+      {bool quote_message = true,
+      bool disable_notification,
+      ReplyMarkup reply_markup}) async {
+    return _api.sendDice(
+        chat_id: ChatID.fromID(chat.id),
+        disable_notification: disable_notification,
+        reply_to_message_id: quote_message ? message_id : null,
+        reply_markup: reply_markup);
+  }
 }

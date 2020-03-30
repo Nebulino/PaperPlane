@@ -41,6 +41,7 @@ class Message {
   Location location;
   Venue venue;
   Poll poll;
+  Dice dice;
   List<User> new_chat_members;
   User left_chat_member;
   String new_chat_title;

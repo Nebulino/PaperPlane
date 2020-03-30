@@ -19,7 +19,7 @@ class Dispatcher {
   StreamController<ChosenInlineResult> _chosen_inline_result_dispatcher;
   StreamController<CallbackQuery> _callback_query_dispatcher;
   StreamController<ShippingQuery> _shipping_query_dispatcher;
-  StreamController<PreCheckoutQuery> _precheckout_query_dispatcher;
+  StreamController<PreCheckoutQuery> _pre_checkout_query_dispatcher;
   StreamController<Poll> _poll_dispatcher;
   StreamController<PollAnswer> _poll_answer_dispatcher;
 
@@ -31,9 +31,11 @@ class Dispatcher {
     _edited_message_dispatcher = StreamController.broadcast(sync: sync);
     _channel_post_dispatcher = StreamController.broadcast(sync: sync);
     _edited_channel_post_dispatcher = StreamController.broadcast(sync: sync);
+    _inline_query_dispatcher = StreamController.broadcast(sync: sync);
     _chosen_inline_result_dispatcher = StreamController.broadcast(sync: sync);
     _callback_query_dispatcher = StreamController.broadcast(sync: sync);
     _shipping_query_dispatcher = StreamController.broadcast(sync: sync);
+    _pre_checkout_query_dispatcher = StreamController.broadcast(sync: sync);
     _poll_dispatcher = StreamController.broadcast(sync: sync);
     _poll_answer_dispatcher = StreamController.broadcast(sync: sync);
   }
@@ -60,7 +62,7 @@ class Dispatcher {
     } else if (update.shipping_query != null) {
       _shipping_query_dispatcher.add(update.shipping_query);
     } else if (update.pre_checkout_query != null) {
-      _precheckout_query_dispatcher.add(update.pre_checkout_query);
+      _pre_checkout_query_dispatcher.add(update.pre_checkout_query);
     } else if (update.poll != null) {
       _poll_dispatcher.add(update.poll);
     } else if (update.poll_answer != null) {
@@ -91,7 +93,7 @@ class Dispatcher {
   Stream<ShippingQuery> onShippingQuery() => _shipping_query_dispatcher.stream;
 
   Stream<PreCheckoutQuery> onPreCheckoutQuery() =>
-      _precheckout_query_dispatcher.stream;
+      _pre_checkout_query_dispatcher.stream;
 
   Stream<Poll> onPoll() => _poll_dispatcher.stream;
 

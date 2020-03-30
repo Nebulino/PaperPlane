@@ -40,7 +40,7 @@ class InputMediaLuggage {
 
     final input_animation = InputMediaAnimation();
     input_animation.caption ??= caption;
-    input_animation.parse_mode = parse_mode?.getMode();
+    input_animation.parse_mode = parse_mode.mode;
     input_animation.width = width;
     input_animation.height = height;
     input_animation.duration = duration?.inSeconds;
@@ -72,7 +72,7 @@ class InputMediaLuggage {
     }
 
     return InputMediaLuggage._(
-        InputMediaType.Animation(), input_animation, file, thumb_file);
+        InputMediaType.ANIMATION, input_animation, file, thumb_file);
   }
 
   /// Create an InputMedia with an Audio.
@@ -89,7 +89,7 @@ class InputMediaLuggage {
 
     final input_audio = InputMediaAudio();
     input_audio.caption = caption;
-    input_audio.parse_mode = parse_mode?.getMode();
+    input_audio.parse_mode = parse_mode.mode;
     input_audio.duration = duration?.inSeconds;
     input_audio.performer = performer;
     input_audio.title = title;
@@ -121,7 +121,7 @@ class InputMediaLuggage {
     }
 
     return InputMediaLuggage._(
-        InputMediaType.Audio(), input_audio, file, thumb_file);
+        InputMediaType.AUDIO, input_audio, file, thumb_file);
   }
 
   /// Create an InputMedia with a Photo.
@@ -133,7 +133,7 @@ class InputMediaLuggage {
     MapEntry<String, MultipartFile> file;
 
     final input_photo =
-        InputMediaPhoto(caption: caption, parse_mode: parse_mode?.getMode());
+        InputMediaPhoto(caption: caption, parse_mode: parse_mode.mode);
 
     if (photo.type == 'file' || photo.type == 'bytes') {
       final photo_id = 'photo_${Uuid.generate()}';
@@ -146,7 +146,7 @@ class InputMediaLuggage {
       input_photo.media = input_photo.toString();
     }
 
-    return InputMediaLuggage._(InputMediaType.Photo(), input_photo, file, null);
+    return InputMediaLuggage._(InputMediaType.PHOTO, input_photo, file, null);
   }
 
   /// Create an InputMedia with a Document.
@@ -160,7 +160,7 @@ class InputMediaLuggage {
 
     final input_document = InputMediaDocument();
     input_document.caption = caption;
-    input_document.parse_mode = parse_mode?.getMode();
+    input_document.parse_mode = parse_mode.mode;
 
     if (thumb != null) {
       if (thumb.type == 'file' || thumb.type == 'bytes') {
@@ -189,7 +189,7 @@ class InputMediaLuggage {
     }
 
     return InputMediaLuggage._(
-        InputMediaType.Document(), input_document, file, thumb_file);
+        InputMediaType.DOCUMENT, input_document, file, thumb_file);
   }
 
   /// Create an InputMedia with a Video.
@@ -207,7 +207,7 @@ class InputMediaLuggage {
 
     final input_video = InputMediaVideo(
         caption: caption,
-        parse_mode: parse_mode?.getMode(),
+        parse_mode: parse_mode.mode,
         width: width,
         height: height,
         duration: duration?.inSeconds,
@@ -240,10 +240,10 @@ class InputMediaLuggage {
     }
 
     return InputMediaLuggage._(
-        InputMediaType.Video(), input_video, file, thumb_file);
+        InputMediaType.VIDEO, input_video, file, thumb_file);
   }
 
-  String get type => _type.type;
+  String get type => _type.toString();
 
   InputMedia get media => _media;
 

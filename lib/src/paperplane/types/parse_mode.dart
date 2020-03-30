@@ -4,22 +4,19 @@
  */
 
 /// A list of parsing mode types for telegram.
-class ParseMode {
-  String _mode;
+enum ParseMode { MARKDOWN, MARKDOWNV2, HTML }
 
-  ParseMode._(this._mode);
-
-  factory ParseMode.MarkDown() {
-    return ParseMode._('MARKDOWN');
+extension ParseModeExtension on ParseMode {
+  String get mode {
+    switch (this) {
+      case ParseMode.MARKDOWN:
+        return 'MARKDOWN';
+      case ParseMode.MARKDOWNV2:
+        return 'MARKDOWNV2';
+      case ParseMode.HTML:
+        return 'HTML';
+      default:
+        return null;
+    }
   }
-
-  factory ParseMode.MarkDownV2() {
-    return ParseMode._('MARKDOWNV2');
-  }
-
-  factory ParseMode.HTML() {
-    return ParseMode._('HTML');
-  }
-
-  String getMode() => _mode;
 }
