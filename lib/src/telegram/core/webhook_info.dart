@@ -24,8 +24,11 @@ class WebhookInfo {
 
   /// Optional. Unix time for the most recent error that
   /// happened when trying to deliver an update via webhook.
-  @JsonKey(name: 'last_error_date')
-  int lastErrorDate;
+  @JsonKey(
+      name: 'last_error_date',
+      fromJson: _dateTimeFromTelegramInt,
+      toJson: _dateTimeToTelegramInt)
+  DateTime lastErrorDate;
 
   /// Optional. Error message in human-readable format for the most recent error
   /// that happened when trying to deliver an update via webhook.
@@ -55,4 +58,14 @@ class WebhookInfo {
       _$WebhookInfoFromJson(json);
 
   Map<String, dynamic> toJson() => _$WebhookInfoToJson(this);
+
+  /// Helper: converts into a DateTime type from
+  /// a int (unix time) received from Telegram API.
+  static DateTime _dateTimeFromTelegramInt(int unixTime) =>
+      unixTime == null ? null : DateTime.fromMillisecondsSinceEpoch(unixTime);
+
+  /// Helper: converts from a DateTime type into
+  /// a int (unix time) to be sent to Telegram API.
+  static int _dateTimeToTelegramInt(DateTime dateTime) =>
+      dateTime?.millisecondsSinceEpoch;
 }

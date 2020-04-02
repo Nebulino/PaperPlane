@@ -29,7 +29,7 @@ extension MessageHelper on Message {
         parseMode: parseMode,
         disableWebPagePreview: disable_web_page_preview,
         disableNotification: disableNotification,
-        replyToMessageID: quote_message ? message_id : null,
+        replyToMessageID: quote_message ? messageID : null,
         replyMarkup: replyMarkup);
   }
 
@@ -47,7 +47,7 @@ extension MessageHelper on Message {
         caption: caption,
         parseMode: parseMode,
         disableNotification: disableNotification,
-        replyToMessageID: quote_message ? message_id : null,
+        replyToMessageID: quote_message ? messageID : null,
         replyMarkup: replyMarkup);
   }
 
@@ -73,7 +73,7 @@ extension MessageHelper on Message {
         title: title,
         thumb: thumb,
         disableNotification: disableNotification,
-        replyToMessageID: quote_message ? message_id : null);
+        replyToMessageID: quote_message ? messageID : null);
   }
 
   /// Helps replying a document directly.
@@ -92,7 +92,7 @@ extension MessageHelper on Message {
         caption: caption,
         parseMode: parseMode,
         disableNotification: disableNotification,
-        replyToMessageID: quote_message ? message_id : null,
+        replyToMessageID: quote_message ? messageID : null,
         replyMarkup: replyMarkup);
   }
 
@@ -120,7 +120,7 @@ extension MessageHelper on Message {
         parseMode: parseMode,
         supportsStreaming: supportsStreaming,
         disableNotification: disableNotification,
-        replyToMessageID: quote_message ? message_id : null,
+        replyToMessageID: quote_message ? messageID : null,
         replyMarkup: replyMarkup);
   }
 
@@ -146,7 +146,7 @@ extension MessageHelper on Message {
         caption: caption,
         parseMode: parseMode,
         disableNotification: disableNotification,
-        replyToMessageID: quote_message ? message_id : null,
+        replyToMessageID: quote_message ? messageID : null,
         replyMarkup: replyMarkup);
   }
 
@@ -166,7 +166,7 @@ extension MessageHelper on Message {
         parseMode: parseMode,
         duration: duration,
         disableNotification: disableNotification,
-        replyToMessageID: quote_message ? message_id : null,
+        replyToMessageID: quote_message ? messageID : null,
         replyMarkup: replyMarkup);
   }
 
@@ -186,7 +186,7 @@ extension MessageHelper on Message {
         length: length,
         thumb: thumb,
         disableNotification: disableNotification,
-        replyToMessageID: quote_message ? message_id : null,
+        replyToMessageID: quote_message ? messageID : null,
         replyMarkup: replyMarkup);
   }
 
@@ -199,7 +199,7 @@ extension MessageHelper on Message {
         chatID: ChatID.fromID(chat.id),
         media: media,
         disableNotification: disableNotification,
-        replyToMessageID: quote_message ? message_id : null);
+        replyToMessageID: quote_message ? messageID : null);
   }
 
   /// Helps replying with a location directly.
@@ -216,7 +216,7 @@ extension MessageHelper on Message {
         longitude: longitude,
         livePeriod: live_period,
         disableNotification: disableNotification,
-        replyToMessageID: quote_message ? message_id : null,
+        replyToMessageID: quote_message ? messageID : null,
         replyMarkup: replyMarkup);
   }
 
@@ -240,7 +240,7 @@ extension MessageHelper on Message {
         foursquareID: foursquare_id,
         foursquareType: foursquare_type,
         disableNotification: disableNotification,
-        replyToMessageID: quote_message ? message_id : null,
+        replyToMessageID: quote_message ? messageID : null,
         replyMarkup: replyMarkup);
   }
 
@@ -260,7 +260,7 @@ extension MessageHelper on Message {
         lastName: last_name,
         vcard: vcard,
         disableNotification: disableNotification,
-        replyToMessageID: quote_message ? message_id : null,
+        replyToMessageID: quote_message ? messageID : null,
         replyMarkup: replyMarkup);
   }
 
@@ -286,7 +286,7 @@ extension MessageHelper on Message {
         correctOptionID: correct_option_id,
         isClosed: is_closed,
         disableNotification: disableNotification,
-        replyToMessageID: quote_message ? message_id : null,
+        replyToMessageID: quote_message ? messageID : null,
         replyMarkup: replyMarkup);
   }
 
@@ -303,7 +303,7 @@ extension MessageHelper on Message {
     return _api.sendDice(
         chatID: ChatID.fromID(chat.id),
         disableNotification: disableNotification,
-        replyToMessageID: quote_message ? message_id : null,
+        replyToMessageID: quote_message ? messageID : null,
         replyMarkup: replyMarkup);
   }
 }

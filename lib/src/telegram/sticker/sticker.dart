@@ -10,28 +10,60 @@ part of sticker;
 /// https://core.telegram.org/bots/api#sticker
 @JsonSerializable(includeIfNull: false)
 class Sticker {
-  String file_id;
-  String file_unique_id;
+  /// Identifier for this file, which can be used to download or reuse the file.
+  @JsonKey(name: 'file_id', required: true)
+  String fileID;
+
+  /// Unique identifier for this file, which is supposed to be the same over
+  /// time and for different bots. Can't be used to download or reuse the file.
+  @JsonKey(name: 'file_unique_id', required: true)
+  String fileUniqueID;
+
+  /// Sticker width.
+  @JsonKey(name: 'width', required: true)
   int width;
+
+  /// Sticker height.
+  @JsonKey(name: 'height', required: true)
   int height;
-  bool is_animated;
+
+  /// True, if the sticker is [animated].
+  ///
+  /// [animated]: https://telegram.org/blog/animated-stickers
+  @JsonKey(name: 'is_animated', required: true)
+  bool isAnimated;
+
+  /// Optional. Sticker thumbnail in the .WEBP or .JPG format.
+  @JsonKey(name: 'thumb')
   PhotoSize thumb;
+
+  /// Optional. Emoji associated with the sticker.
+  @JsonKey(name: 'emoji')
   String emoji;
-  String set_name;
-  MaskPosition mask_position;
-  int file_size;
+
+  /// Optional. Name of the sticker set to which the sticker belongs.
+  @JsonKey(name: 'set_name')
+  String setName;
+
+  /// Optional. For mask stickers, the position where the mask should be placed.
+  @JsonKey(name: 'mask_position')
+  MaskPosition maskPosition;
+
+  /// Optional. File size.
+  @JsonKey(name: 'file_size')
+  int fileSize;
 
   Sticker(
-      {this.file_id,
-      this.file_unique_id,
+      {this.fileID,
+      this.fileUniqueID,
       this.width,
       this.height,
-      this.is_animated,
+      this.isAnimated,
       this.thumb,
       this.emoji,
-      this.set_name,
-      this.mask_position,
-      this.file_size});
+      this.setName,
+      this.maskPosition,
+      this.fileSize});
 
   factory Sticker.fromJson(Map<String, dynamic> json) =>
       _$StickerFromJson(json);

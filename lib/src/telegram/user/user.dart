@@ -10,20 +10,39 @@ part of user;
 /// https://core.telegram.org/bots/api#user
 @JsonSerializable(includeIfNull: false)
 class User {
+  /// Unique identifier for this user or bot.
+  @JsonKey(name: 'id', required: true)
   int id;
-  bool is_bot;
-  String first_name;
-  String last_name;
+
+  /// True, if this user is a bot.
+  @JsonKey(name: 'is_bot', required: true)
+  bool isBot;
+
+  /// User‘s or bot’s first name.
+  @JsonKey(name: 'first_name', required: true)
+  String firstName;
+
+  /// Optional. User‘s or bot’s last name.
+  @JsonKey(name: 'last_name')
+  String lastName;
+
+  /// Optional. User‘s or bot’s username.
+  @JsonKey(name: 'username')
   String username;
-  String language_code;
+
+  /// Optional. [IETF language tag] of the user's language.
+  ///
+  /// [IETF language tag]: https://en.wikipedia.org/wiki/IETF_language_tag
+  @JsonKey(name: 'language_code')
+  String languageCode;
 
   User(
       {this.id,
-      this.is_bot,
-      this.first_name,
-      this.last_name,
+      this.isBot,
+      this.firstName,
+      this.lastName,
       this.username,
-      this.language_code});
+      this.languageCode});
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 

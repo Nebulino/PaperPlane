@@ -27,9 +27,9 @@ void main() {
   // good if you create a bot using a TOKEN for example.
   paperplane.engine()
     ..then((bot) => paperplane.export(bot: bot, file_name: 'bot.json'))
-    ..then((bot) => paperplane.api.getChat(chat_id: master).then(
-        (master_data) => paperplane.api.sendMessage(
-            chat_id: master,
+    ..then((bot) => paperplane.api.getChat(chatID: master).then((master_data) =>
+        paperplane.api.sendMessage(
+            chatID: master,
             text: "I'm departed master ${master_data.username}...")));
 
   paperplane.setLoggerLevel(level: Level.debug);
@@ -51,8 +51,7 @@ void main() {
       .where((onUpdate) => onUpdate.message.text != null)
       .where((onUpdate) => onUpdate.message.text == 'uwu')
       .listen((update) {
-    api.sendMessage(
-        chat_id: ChatID.fromID(update.message.chat.id), text: 'owo');
+    api.sendMessage(chatID: ChatID.fromID(update.message.chat.id), text: 'owo');
   });
 
   // => If you want to manage events, just do as follows...
@@ -62,7 +61,7 @@ void main() {
       .listen((message) {
     api.sendPhoto(
         // Send an image from a URL.
-        chat_id: ChatID.fromID(message.chat.id),
+        chatID: ChatID.fromID(message.chat.id),
         photo: Luggage.withLink(
             link: 'https://pbs.twimg.com/media/ETObHKAUUAE7nSM.jpg'));
   });
@@ -70,7 +69,7 @@ void main() {
   paperplane.onMessage().where((message) => message.text == 'voice').listen(
       (message) => api.sendAudio(
           // Send a File. You can also send a blob (Uint8List).
-          chat_id: ChatID.fromID(message.chat.id),
+          chatID: ChatID.fromID(message.chat.id),
           audio:
               Luggage.withFile(file: io.File('./files/voices/kokodayo.ogg'))));
 

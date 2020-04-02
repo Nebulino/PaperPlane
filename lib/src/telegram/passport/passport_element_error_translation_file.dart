@@ -11,19 +11,34 @@ part of passport;
 /// https://core.telegram.org/bots/api#passportelementerrortranslationfile
 @JsonSerializable(includeIfNull: false)
 class PassportElementErrorTranslationFile implements PassportElementError {
+  /// Error source, must be *translation_file*.
+  @JsonKey(name: 'source', required: true)
   @override
-  String source;
+  EncryptedPassportElementSource source;
 
-  /// Type of the result, must be *gif*
+  /// Type of element of the user's Telegram Passport
+  /// which has the issue, one of “passport”, “driver_license”,
+  /// “identity_card”, “internal_passport”, “utility_bill”,
+  /// “bank_statement”, “rental_agreement”,
+  /// “passport_registration”, “temporary_registration”.
   @JsonKey(name: 'type', required: true)
   @override
-  String type;
+  EncryptedPassportElementType type;
+
+  /// Base64-encoded file hash.
+  @JsonKey(name: 'file_hash', required: true)
+  String fileHash;
+
+  /// Error message.
+  @JsonKey(name: 'message', required: true)
   @override
   String message;
-  String file_hash;
 
   PassportElementErrorTranslationFile(
-      {this.source, this.type, this.message, this.file_hash});
+      {this.source = EncryptedPassportElementSource.translation_file,
+      this.type,
+      this.fileHash,
+      this.message});
 
   factory PassportElementErrorTranslationFile.fromJson(
           Map<String, dynamic> json) =>

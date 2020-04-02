@@ -10,18 +10,35 @@ part of media;
 /// https://core.telegram.org/bots/api#venue
 @JsonSerializable(includeIfNull: false)
 class Venue {
+  /// Venue location.
+  @JsonKey(name: 'location', required: true)
   Location location;
+
+  /// Name of the venue.
+  @JsonKey(name: 'title', required: true)
   String title;
+
+  /// Address of the venue.
+  @JsonKey(name: 'address', required: true)
   String address;
-  String foursquare_id;
-  String foursquare_type;
+
+  /// Optional. Foursquare identifier of the venue.
+  @JsonKey(name: 'foursquare_id')
+  String foursquareID;
+
+  /// Optional.
+  /// Foursquare type of the venue.
+  /// (For example, “arts_entertainment/default”,
+  /// “arts_entertainment/aquarium” or “food/icecream”.)
+  @JsonKey(name: 'foursquare_type')
+  String foursquareType;
 
   Venue(
       {this.location,
       this.title,
       this.address,
-      this.foursquare_id,
-      this.foursquare_type});
+      this.foursquareID,
+      this.foursquareType});
 
   factory Venue.fromJson(Map<String, dynamic> json) => _$VenueFromJson(json);
 

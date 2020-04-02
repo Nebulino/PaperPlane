@@ -22,6 +22,6 @@ void main() {
           ..title = 'test'
           ..inputMessageContent = (InputTextMessageContent()
             ..messageText = '*done!*'
-            ..parse_mode = ParseMode.MARKDOWN.toString())
+            ..parseMode = ParseMode.MARKDOWN)
       ]));
 }

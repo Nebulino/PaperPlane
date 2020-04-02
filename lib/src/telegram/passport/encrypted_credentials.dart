@@ -17,8 +17,19 @@ part of passport;
 /// https://core.telegram.org/bots/api#encryptedcredentials
 @JsonSerializable(includeIfNull: false)
 class EncryptedCredentials {
+  /// Base64-encoded encrypted JSON-serialized data with
+  /// unique user's payload, data hashes and secrets required
+  /// for EncryptedPassportElement decryption and authentication.
+  @JsonKey(name: 'data', required: true)
   String data;
+
+  /// Base64-encoded data hash for data authentication.
+  @JsonKey(name: 'hash', required: true)
   String hash;
+
+  /// Base64-encoded secret, encrypted with the bot's public RSA key,
+  /// required for data decryption.
+  @JsonKey(name: 'secret', required: true)
   String secret;
 
   EncryptedCredentials({this.data, this.hash, this.secret});

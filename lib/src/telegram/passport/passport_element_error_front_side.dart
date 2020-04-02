@@ -12,19 +12,32 @@ part of passport;
 /// https://core.telegram.org/bots/api#passportelementerrorfrontside
 @JsonSerializable(includeIfNull: false)
 class PassportElementErrorFrontSide implements PassportElementError {
+  /// 	Error source, must be *front_side*.
+  @JsonKey(name: 'source', required: true)
   @override
-  String source;
+  EncryptedPassportElementSource source;
 
-  /// Type of the result, must be *gif*
+  /// The section of the user's Telegram Passport which has
+  /// the issue, one of “passport”, “driver_license”,
+  /// “identity_card”, “internal_passport”.
   @JsonKey(name: 'type', required: true)
   @override
-  String type;
+  EncryptedPassportElementType type;
+
+  /// Base64-encoded hash of the file with the front side of the document.
+  @JsonKey(name: 'file_hash', required: true)
+  String fileHash;
+
+  /// Error message.
+  @JsonKey(name: 'message', required: true)
   @override
   String message;
-  String file_hash;
 
   PassportElementErrorFrontSide(
-      {this.source, this.type, this.message, this.file_hash});
+      {this.source = EncryptedPassportElementSource.front_side,
+      this.type,
+      this.fileHash,
+      this.message});
 
   factory PassportElementErrorFrontSide.fromJson(Map<String, dynamic> json) =>
       _$PassportElementErrorFrontSideFromJson(json);

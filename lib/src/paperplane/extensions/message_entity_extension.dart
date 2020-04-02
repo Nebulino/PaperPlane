@@ -10,7 +10,7 @@ import 'package:paperplane/telegram.dart';
 extension MessageEntityHelper on Message {
   /// It returns the entities list of a type.
   List<MessageEntity> getEntitiesByType(MessageEntityType type) {
-    var entity_list = entities ?? caption_entities;
+    var entity_list = entities ?? captionEntities;
     for (var entity in entity_list) {
       if (entity.type != type.toString()) {
         entity_list.remove(entity);
@@ -21,7 +21,7 @@ extension MessageEntityHelper on Message {
 
   /// It returns the entity index given a type.
   int entityIndex(MessageEntityType type) {
-    var entity_list = entities ?? caption_entities;
+    var entity_list = entities ?? captionEntities;
 
     if (entity_list != null) {
       for (var entity in entity_list) {
@@ -36,7 +36,7 @@ extension MessageEntityHelper on Message {
     var index = entityIndex(type);
 
     if (index >= 0) {
-      return (entities ?? caption_entities)[index];
+      return (entities ?? captionEntities)[index];
     }
 
     return null;

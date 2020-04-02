@@ -10,10 +10,15 @@ part of user;
 /// https://core.telegram.org/bots/api#userprofilephotos
 @JsonSerializable(includeIfNull: false)
 class UserProfilePhotos {
-  int total_count;
+  /// Total number of profile pictures the target user has.
+  @JsonKey(name: 'total_count', required: true)
+  int totalCount;
+
+  /// Requested profile pictures (in up to 4 sizes each).
+  @JsonKey(name: 'photos', required: true)
   List<List<PhotoSize>> photos;
 
-  UserProfilePhotos({this.total_count, this.photos});
+  UserProfilePhotos({this.totalCount, this.photos});
 
   factory UserProfilePhotos.fromJson(Map<String, dynamic> json) =>
       _$UserProfilePhotosFromJson(json);

@@ -21,7 +21,7 @@ class InputMediaPhoto implements InputMedia {
   /// pass an HTTP URL for Telegram to get a file from the Internet,
   /// or pass “attach://<file_attach_name>” to upload a new
   /// one using multipart/form-data under <file_attach_name> name.
-  /// [More info on Sending Files »].
+  /// [More info on Sending Files »]
   ///
   /// [More info on Sending Files »]: https://core.telegram.org/bots/api#sending-files
   @JsonKey(name: 'media', required: true)
@@ -44,7 +44,7 @@ class InputMediaPhoto implements InputMedia {
   /// [bold, italic, fixed-width text or inline URLs]: https://core.telegram.org/bots/api#formatting-options
   @JsonKey(name: 'parse_mode')
   @override
-  String parseMode;
+  ParseMode parseMode;
 
   InputMediaPhoto(
       {this.type = 'photo', this.media, this.caption, this.parseMode});

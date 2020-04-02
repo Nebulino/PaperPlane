@@ -25,8 +25,11 @@ class ChatMember {
 
   /// Optional. Restricted and kicked only.
   /// Date when restrictions will be lifted for this user; unix time.
-  @JsonKey(name: 'until_date')
-  int untilDate;
+  @JsonKey(
+      name: 'until_date',
+      fromJson: _dateTimeFromTelegramInt,
+      toJson: _dateTimeToTelegramInt)
+  DateTime untilDate;
 
   /// Optional. Administrators only.
   /// True, if the bot is allowed to edit administrator privileges of that user.
@@ -134,4 +137,14 @@ class ChatMember {
       _$ChatMemberFromJson(json);
 
   Map<String, dynamic> toJson() => _$ChatMemberToJson(this);
+
+  /// Helper: converts into a DateTime type from
+  /// a int (unix time) received from Telegram API.
+  static DateTime _dateTimeFromTelegramInt(int unixTime) =>
+      unixTime == null ? null : DateTime.fromMillisecondsSinceEpoch(unixTime);
+
+  /// Helper: converts from a DateTime type into
+  /// a int (unix time) to be sent to Telegram API.
+  static int _dateTimeToTelegramInt(DateTime dateTime) =>
+      dateTime?.millisecondsSinceEpoch;
 }

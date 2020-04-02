@@ -21,7 +21,7 @@ class InputMediaVideo implements InputMedia {
   /// pass an HTTP URL for Telegram to get a file from the Internet,
   /// or pass “attach://<file_attach_name>” to upload a new
   /// one using multipart/form-data under <file_attach_name> name.
-  /// [More info on Sending Files »].
+  /// [More info on Sending Files »]
   ///
   /// [More info on Sending Files »]: https://core.telegram.org/bots/api#sending-files
   @JsonKey(name: 'media', required: true)
@@ -38,7 +38,7 @@ class InputMediaVideo implements InputMedia {
   /// so you can pass “attach://<file_attach_name>”
   /// if the thumbnail was uploaded using multipart/form-data under
   /// <file_attach_name>.
-  /// [More info on Sending Files »].
+  /// [More info on Sending Files »]
   ///
   /// [More info on Sending Files »]: https://core.telegram.org/bots/api#sending-files
   @JsonKey(name: 'thumb')
@@ -60,7 +60,7 @@ class InputMediaVideo implements InputMedia {
   /// [bold, italic, fixed-width text or inline URLs]: https://core.telegram.org/bots/api#formatting-options
   @JsonKey(name: 'parse_mode')
   @override
-  String parseMode;
+  ParseMode parseMode;
 
   /// Optional. Video width.
   @JsonKey(name: 'width')
@@ -102,7 +102,7 @@ class InputMediaVideo implements InputMedia {
   /// Helper: converts into a Duration type from
   /// a int received from Telegram API.
   static Duration _durationFromTelegramSeconds(int seconds) =>
-      Duration(seconds: seconds);
+      seconds == null ? null : Duration(seconds: seconds);
 
   /// Helper: converts into a Duration type into
   /// a int to be sent to Telegram API.

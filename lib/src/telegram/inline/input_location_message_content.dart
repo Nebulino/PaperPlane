@@ -41,7 +41,7 @@ class InputLocationMessageContent implements InputMessageContent {
   /// Helper: converts into a Duration type from
   /// a int received from Telegram API.
   static Duration _durationFromTelegramSeconds(int seconds) =>
-      Duration(seconds: seconds);
+      seconds == null ? null : Duration(seconds: seconds);
 
   /// Helper: converts into a Duration type into
   /// a int to be sent to Telegram API.

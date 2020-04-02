@@ -46,7 +46,7 @@ class InlineQueryResultCachedAudio implements InlineQueryResult {
   /// [HTML]: https://core.telegram.org/bots/api#html-style
   /// [bold, italic, fixed-width text or inline URLs]: https://core.telegram.org/bots/api#formatting-options
   @JsonKey(name: 'parse_mode')
-  String parseMode;
+  ParseMode parseMode;
 
   /// Optional. [Inline keyboard] attached to the message.
   ///

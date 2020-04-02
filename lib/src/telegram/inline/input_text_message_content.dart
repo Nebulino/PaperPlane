@@ -24,7 +24,7 @@ class InputTextMessageContent implements InputMessageContent {
   /// [HTML]: https://core.telegram.org/bots/api#html-style
   /// [bold, italic, fixed-width text or inline URLs]: https://core.telegram.org/bots/api#formatting-options
   @JsonKey(name: 'parse_mode')
-  String parseMode;
+  ParseMode parseMode;
 
   /// Optional. Disables link previews for links in the sent message.
   @JsonKey(name: 'disable_web_page_preview')

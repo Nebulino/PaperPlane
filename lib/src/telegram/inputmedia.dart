@@ -7,6 +7,7 @@
 library inputmedia;
 
 import 'package:json_annotation/json_annotation.dart';
+import 'package:paperplane/helpers.dart';
 
 part '../telegram/inputmedia/input_media.dart';
 part '../telegram/inputmedia/input_media_animation.dart';

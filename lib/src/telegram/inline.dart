@@ -7,6 +7,7 @@
 library inline;
 
 import 'package:json_annotation/json_annotation.dart';
+import 'package:paperplane/helpers.dart';
 import 'package:paperplane/telegram.dart';
 
 part '../telegram/inline/chosen_inline_result.dart';

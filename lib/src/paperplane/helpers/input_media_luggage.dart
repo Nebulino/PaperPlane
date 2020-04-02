@@ -40,7 +40,7 @@ class InputMediaLuggage {
 
     final input_animation = InputMediaAnimation();
     input_animation.caption ??= caption;
-    input_animation.parseMode = parseMode?.mode;
+    input_animation.parseMode = parseMode;
     input_animation.width = width;
     input_animation.height = height;
     input_animation.duration = duration;
@@ -89,7 +89,7 @@ class InputMediaLuggage {
 
     final input_audio = InputMediaAudio();
     input_audio.caption = caption;
-    input_audio.parseMode = parseMode?.mode;
+    input_audio.parseMode = parseMode;
     input_audio.duration = duration;
     input_audio.performer = performer;
     input_audio.title = title;
@@ -132,8 +132,7 @@ class InputMediaLuggage {
   }) {
     MapEntry<String, MultipartFile> file;
 
-    final input_photo =
-        InputMediaPhoto(caption: caption, parseMode: parseMode.mode);
+    final input_photo = InputMediaPhoto(caption: caption, parseMode: parseMode);
 
     if (photo.type == 'file' || photo.type == 'bytes') {
       final photo_id = 'photo_${Uuid.generate()}';
@@ -160,7 +159,7 @@ class InputMediaLuggage {
 
     final input_document = InputMediaDocument();
     input_document.caption = caption;
-    input_document.parseMode = parseMode?.mode;
+    input_document.parseMode = parseMode;
 
     if (thumb != null) {
       if (thumb.type == 'file' || thumb.type == 'bytes') {
@@ -207,7 +206,7 @@ class InputMediaLuggage {
 
     final input_video = InputMediaVideo(
         caption: caption,
-        parseMode: parseMode.mode,
+        parseMode: parseMode,
         width: width,
         height: height,
         duration: duration,

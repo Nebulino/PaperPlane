@@ -68,7 +68,7 @@ class InlineQueryResultCachedMpeg4Gif implements InlineQueryResult {
   /// [HTML]: https://core.telegram.org/bots/api#html-style
   /// [bold, italic, fixed-width text or inline URLs]: https://core.telegram.org/bots/api#formatting-options
   @JsonKey(name: 'parse_mode')
-  String parseMode;
+  ParseMode parseMode;
 
   /// Optional. [Inline keyboard] attached to the message.
   ///
@@ -104,7 +104,7 @@ class InlineQueryResultCachedMpeg4Gif implements InlineQueryResult {
   /// Helper: converts into a Duration type from
   /// a int received from Telegram API.
   static Duration _durationFromTelegramSeconds(int seconds) =>
-      Duration(seconds: seconds);
+      seconds == null ? null : Duration(seconds: seconds);
 
   /// Helper: converts into a Duration type into
   /// a int to be sent to Telegram API.
