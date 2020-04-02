@@ -36,11 +36,11 @@ class VideoNote {
       toJson: _durationToTelegramSeconds)
   Duration duration;
 
-  /// Optional. Video thumbnail.
+  /// *Optional.* Video thumbnail.
   @JsonKey(name: 'thumb')
   PhotoSize thumb;
 
-  /// Optional. File size.
+  /// *Optional.* File size.
   @JsonKey(name: 'file_size')
   int fileSize;
 

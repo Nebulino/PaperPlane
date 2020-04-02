@@ -30,11 +30,11 @@ class SuccessfulPayment {
   @JsonKey(name: 'invoice_payload', required: true)
   String invoicePayload;
 
-  /// Optional. Identifier of the shipping option chosen by the user.
+  /// *Optional.* Identifier of the shipping option chosen by the user.
   @JsonKey(name: 'shipping_option_id')
   String shippingOptionID;
 
-  /// Optional. Order info provided by the user.
+  /// *Optional.* Order info provided by the user.
   @JsonKey(name: 'order_info')
   OrderInfo orderInfo;
 

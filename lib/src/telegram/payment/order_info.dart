@@ -10,19 +10,19 @@ part of payment;
 /// https://core.telegram.org/bots/api#orderinfo
 @JsonSerializable(includeIfNull: false)
 class OrderInfo {
-  /// Optional. User name.
+  /// *Optional.* User name.
   @JsonKey(name: 'name')
   String name;
 
-  /// Optional. User's phone number.
+  /// *Optional.* User's phone number.
   @JsonKey(name: 'phone_number')
   String phoneNumber;
 
-  /// Optional. User email.
+  /// *Optional.* User email.
   @JsonKey(name: 'email')
   String email;
 
-  /// Optional. User shipping address.
+  /// *Optional.* User shipping address.
   @JsonKey(name: 'shipping_address')
   ShippingAddress shippingAddress;
 

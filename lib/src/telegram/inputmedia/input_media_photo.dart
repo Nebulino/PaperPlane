@@ -28,13 +28,13 @@ class InputMediaPhoto implements InputMedia {
   @override
   dynamic media;
 
-  /// Optional. Caption of the audio to be sent,
+  /// *Optional.* Caption of the audio to be sent,
   /// 0-1024 characters after entities parsing.
   @JsonKey(name: 'caption')
   @override
   String caption;
 
-  /// Optional.
+  /// *Optional.*
   /// Send *[Markdown]* or *[HTML]*,
   /// if you want Telegram apps to show [bold, italic,
   /// fixed-width text or inline URLs] in the media caption.

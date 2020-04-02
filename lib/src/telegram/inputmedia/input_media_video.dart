@@ -28,7 +28,7 @@ class InputMediaVideo implements InputMedia {
   @override
   dynamic media;
 
-  /// Optional.
+  /// *Optional.*
   /// Thumbnail of the file sent; can be ignored if thumbnail
   /// generation for the file is supported server-side.
   /// The thumbnail should be in JPEG format and less than 200 kB in size.
@@ -44,13 +44,13 @@ class InputMediaVideo implements InputMedia {
   @JsonKey(name: 'thumb')
   dynamic thumb;
 
-  /// Optional. Caption of the video to be sent,
+  /// *Optional.* Caption of the video to be sent,
   /// 0-1024 characters after entities parsing.
   @JsonKey(name: 'caption')
   @override
   String caption;
 
-  /// Optional.
+  /// *Optional.*
   /// Send *[Markdown]* or *[HTML]*,
   /// if you want Telegram apps to show [bold, italic,
   /// fixed-width text or inline URLs] in the media caption.
@@ -62,22 +62,22 @@ class InputMediaVideo implements InputMedia {
   @override
   ParseMode parseMode;
 
-  /// Optional. Video width.
+  /// *Optional.* Video width.
   @JsonKey(name: 'width')
   int width;
 
-  /// Optional. Video height.
+  /// *Optional.* Video height.
   @JsonKey(name: 'height')
   int height;
 
-  /// Optional. Video duration.
+  /// *Optional.* Video duration.
   @JsonKey(
       name: 'duration',
       fromJson: _durationFromTelegramSeconds,
       toJson: _durationToTelegramSeconds)
   Duration duration;
 
-  /// Optional.
+  /// *Optional.*
   /// Pass True, if the uploaded video is suitable for streaming.
   @JsonKey(name: 'supports_streaming', required: true)
   bool supportsStreaming;

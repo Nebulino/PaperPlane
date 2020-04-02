@@ -21,11 +21,11 @@ class InputContactMessageContent implements InputMessageContent {
   @JsonKey(name: 'first_name')
   String firstName;
 
-  /// Optional. Contact's last name.
+  /// *Optional.* Contact's last name.
   @JsonKey(name: 'last_name')
   String lastName;
 
-  /// Optional. Additional data about
+  /// *Optional.* Additional data about
   /// the contact in the form of a [vCard], 0-2048 bytes.
   ///
   /// [vCard]: https://en.wikipedia.org/wiki/VCard

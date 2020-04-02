@@ -27,11 +27,11 @@ class Voice {
       toJson: _durationToTelegramSeconds)
   Duration duration;
 
-  /// Optional. MIME type of the file as defined by sender.
+  /// *Optional.* MIME type of the file as defined by sender.
   @JsonKey(name: 'mime_type')
   String mimeType;
 
-  /// Optional. File size.
+  /// *Optional.* File size.
   @JsonKey(name: 'file_size')
   int file_size;
 

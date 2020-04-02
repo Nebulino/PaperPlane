@@ -6,6 +6,7 @@
 - Created EncryptedPassportElementType.
 - Converted some types into enums.
 - Created a helper to transform every response from int to Dart Primitives.
+- More documentation.
 
 ## 0.5.2
 #### Big update.

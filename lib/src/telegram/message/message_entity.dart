@@ -41,16 +41,16 @@ class MessageEntity {
   @JsonKey(name: 'length', required: true)
   int length;
 
-  /// Optional. For “text_link” only, url that will be
+  /// *Optional.* For “text_link” only, url that will be
   /// opened after user taps on the text.
   @JsonKey(name: 'url')
   String url;
 
-  /// Optional. For “text_mention” only, the mentioned user.
+  /// *Optional.* For “text_mention” only, the mentioned user.
   @JsonKey(name: 'user')
   User user;
 
-  /// Optional. For “pre” only, the programming language of the entity text.
+  /// *Optional.* For “pre” only, the programming language of the entity text.
   @JsonKey(name: 'language')
   String language;
 

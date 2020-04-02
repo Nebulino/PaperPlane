@@ -37,13 +37,13 @@ class CallbackQuery {
   @JsonKey(name: 'from', required: true)
   User from;
 
-  /// Optional. Message with the callback button that originated the query.
+  /// *Optional.* Message with the callback button that originated the query.
   /// Note that message content and message date will not be available
   /// if the message is too old.
   @JsonKey(name: 'message')
   Message message;
 
-  /// Optional. Identifier of the message sent via the bot in inline mode, that originated the query.
+  /// *Optional.* Identifier of the message sent via the bot in inline mode, that originated the query.
   @JsonKey(name: 'inline_message_id')
   String inlineMessageID;
 
@@ -55,12 +55,12 @@ class CallbackQuery {
   @JsonKey(name: 'chat_instance', required: true)
   String chatInstance;
 
-  /// Optional. Data associated with the callback button.
+  /// *Optional.* Data associated with the callback button.
   /// Be aware that a bad client can send arbitrary data in this field.
   @JsonKey(name: 'data')
   String data;
 
-  /// Optional. Short name of a Game to be returned,
+  /// *Optional.* Short name of a Game to be returned,
   /// serves as the unique identifier for the game.
   @JsonKey(name: 'game_short_name')
   String gameShortName;

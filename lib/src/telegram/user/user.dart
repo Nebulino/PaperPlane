@@ -22,15 +22,15 @@ class User {
   @JsonKey(name: 'first_name', required: true)
   String firstName;
 
-  /// Optional. User‘s or bot’s last name.
+  /// *Optional.* User‘s or bot’s last name.
   @JsonKey(name: 'last_name')
   String lastName;
 
-  /// Optional. User‘s or bot’s username.
+  /// *Optional.* User‘s or bot’s username.
   @JsonKey(name: 'username')
   String username;
 
-  /// Optional. [IETF language tag] of the user's language.
+  /// *Optional.* [IETF language tag] of the user's language.
   ///
   /// [IETF language tag]: https://en.wikipedia.org/wiki/IETF_language_tag
   @JsonKey(name: 'language_code')

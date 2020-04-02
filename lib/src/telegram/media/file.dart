@@ -29,11 +29,11 @@ class File {
   @JsonKey(name: 'file_unique_id', required: true)
   String fileUniqueID;
 
-  /// Optional. File size, if known.
+  /// *Optional.* File size, if known.
   @JsonKey(name: 'file_size')
   int fileSize;
 
-  /// Optional. File path.
+  /// *Optional.* File path.
   /// Use [https://api.telegram.org/file/bot<token>/<file_path>]
   /// to get the file.
   @JsonKey(name: 'file_path')

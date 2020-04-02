@@ -17,7 +17,7 @@ class EncryptedPassportElement {
   @JsonKey(name: 'type', required: true)
   EncryptedPassportElementType type;
 
-  /// Optional. Base64-encoded encrypted Telegram Passport element data
+  /// *Optional.* Base64-encoded encrypted Telegram Passport element data
   /// provided by the user, available for “personal_details”,
   /// “passport”, “driver_license”, “identity_card”,
   /// “internal_passport” and “address” types.
@@ -26,17 +26,17 @@ class EncryptedPassportElement {
   @JsonKey(name: 'data', required: true)
   String data;
 
-  /// 	Optional. User's verified phone number,
+  /// 	*Optional.* User's verified phone number,
   /// available only for “phone_number” type.
   @JsonKey(name: 'phone_number', required: true)
   String phoneNumber;
 
-  /// Optional. User's verified email address,
+  /// *Optional.* User's verified email address,
   /// available only for “email” type.
   @JsonKey(name: 'email')
   String email;
 
-  /// Optional. Array of encrypted files with documents
+  /// *Optional.* Array of encrypted files with documents
   /// provided by the user, available for “utility_bill”,
   /// “bank_statement”, “rental_agreement”,
   /// “passport_registration” and “temporary_registration” types.
@@ -45,7 +45,7 @@ class EncryptedPassportElement {
   @JsonKey(name: 'files')
   List<PassportFile> files;
 
-  /// Optional. Encrypted file with the front side of the document,
+  /// *Optional.* Encrypted file with the front side of the document,
   /// provided by the user. Available for “passport”,
   /// “driver_license”, “identity_card” and “internal_passport”.
   /// The file can be decrypted and verified using the accompanying
@@ -53,7 +53,7 @@ class EncryptedPassportElement {
   @JsonKey(name: 'front_side')
   PassportFile frontSide;
 
-  /// 	Optional. Encrypted file with the reverse side of the document,
+  /// 	*Optional.* Encrypted file with the reverse side of the document,
   /// provided by the user.
   /// Available for “driver_license” and “identity_card”.
   /// The file can be decrypted and verified using the
@@ -61,7 +61,7 @@ class EncryptedPassportElement {
   @JsonKey(name: 'reverse_side')
   PassportFile reverseSide;
 
-  /// Optional. Encrypted file with the selfie of the user holding a document,
+  /// *Optional.* Encrypted file with the selfie of the user holding a document,
   /// provided by the user; available for “passport”,
   /// “driver_license”, “identity_card” and “internal_passport”.
   /// The file can be decrypted and verified using the
@@ -69,7 +69,7 @@ class EncryptedPassportElement {
   @JsonKey(name: 'selfie')
   PassportFile selfie;
 
-  /// Optional. Array of encrypted files with translated
+  /// *Optional.* Array of encrypted files with translated
   /// versions of documents provided by the user.
   /// Available if requested for “passport”, “driver_license”,
   /// “identity_card”, “internal_passport”, “utility_bill”,

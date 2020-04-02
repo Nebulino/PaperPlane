@@ -29,7 +29,7 @@ class InputMediaAnimation implements InputMedia {
   @override
   dynamic media;
 
-  /// Optional.
+  /// *Optional.*
   /// Thumbnail of the file sent; can be ignored if thumbnail
   /// generation for the file is supported server-side.
   /// The thumbnail should be in JPEG format and less than 200 kB in size.
@@ -45,13 +45,13 @@ class InputMediaAnimation implements InputMedia {
   @JsonKey(name: 'thumb')
   dynamic thumb;
 
-  /// Optional. Caption of the animation to be sent,
+  /// *Optional.* Caption of the animation to be sent,
   /// 0-1024 characters after entities parsing.
   @JsonKey(name: 'caption')
   @override
   String caption;
 
-  /// Optional.
+  /// *Optional.*
   /// Send *[Markdown]* or *[HTML]*,
   /// if you want Telegram apps to show [bold, italic,
   /// fixed-width text or inline URLs] in the media caption.
@@ -63,15 +63,15 @@ class InputMediaAnimation implements InputMedia {
   @override
   ParseMode parseMode;
 
-  /// Optional. Animation width.
+  /// *Optional.* Animation width.
   @JsonKey(name: 'width')
   int width;
 
-  /// Optional. Animation height.
+  /// *Optional.* Animation height.
   @JsonKey(name: 'height')
   int height;
 
-  /// Optional. Animation duration.
+  /// *Optional.* Animation duration.
   @JsonKey(
       name: 'duration',
       fromJson: _durationFromTelegramSeconds,

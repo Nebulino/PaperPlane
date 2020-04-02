@@ -15,25 +15,25 @@ class InlineKeyboardButton {
   @JsonKey(name: 'text', required: true)
   String text;
 
-  /// Optional. HTTP or tg:// url to be opened when button is pressed.
+  /// *Optional.* HTTP or tg:// url to be opened when button is pressed.
   @JsonKey(name: 'url')
   String url;
 
-  /// Optional. An HTTP URL used to automatically authorize the user.
+  /// *Optional.* An HTTP URL used to automatically authorize the user.
   /// Can be used as a replacement for the [Telegram Login Widget].
   ///
   /// [Telegram Login Widget]: https://core.telegram.org/widgets/login
   @JsonKey(name: 'login_url')
   LoginUrl loginUrl;
 
-  /// Optional. Data to be sent in a
+  /// *Optional.* Data to be sent in a
   /// [callback query] to the bot when button is pressed, 1-64 bytes.
   ///
   /// [callback query]: [CallbackQuery]
   @JsonKey(name: 'callback_data')
   String callbackData;
 
-  /// Optional. If set, pressing the button will prompt the user
+  /// *Optional.* If set, pressing the button will prompt the user
   /// to select one of their chats, open that chat and insert the
   /// bot‘s username and the specified inline query in the input field.
   /// Can be empty, in which case just the bot’s username will be inserted.
@@ -50,7 +50,7 @@ class InlineKeyboardButton {
   @JsonKey(name: 'switch_inline_query')
   String switchInlineQuery;
 
-  /// Optional. If set, pressing the button will insert the bot‘s
+  /// *Optional.* If set, pressing the button will insert the bot‘s
   /// username and the specified inline query in the current
   /// chat's input field. Can be empty, in which case only the
   /// bot’s username will be inserted.
@@ -61,7 +61,7 @@ class InlineKeyboardButton {
   @JsonKey(name: 'switch_inline_query_current_chat')
   String switchInlineQueryCurrentChat;
 
-  /// Optional. Description of the game that will be launched
+  /// *Optional.* Description of the game that will be launched
   /// when the user presses the button.
   ///
   /// **NOTE:** This type of button **must** always be
@@ -69,7 +69,7 @@ class InlineKeyboardButton {
   @JsonKey(name: 'callback_game')
   CallbackGame callbackGame;
 
-  /// Optional.
+  /// *Optional.*
   /// Specify True, to send a [Pay button].
   ///
   /// **NOTE:** This type of button **must** always be the

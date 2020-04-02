@@ -28,23 +28,23 @@ class Audio {
       toJson: _durationToTelegramSeconds)
   Duration duration;
 
-  /// Optional. Performer of the audio as defined by sender or by audio tags.
+  /// *Optional.* Performer of the audio as defined by sender or by audio tags.
   @JsonKey(name: 'performer')
   String performer;
 
-  /// Optional. Title of the audio as defined by sender or by audio tags.
+  /// *Optional.* Title of the audio as defined by sender or by audio tags.
   @JsonKey(name: 'title')
   String title;
 
-  /// Optional. MIME type of the file as defined by sender.
+  /// *Optional.* MIME type of the file as defined by sender.
   @JsonKey(name: 'mime_type')
   String mimeType;
 
-  /// Optional. File size.
+  /// *Optional.* File size.
   @JsonKey(name: 'file_size')
   int fileSize;
 
-  /// Optional. Thumbnail of the album cover to which the music file belongs.
+  /// *Optional.* Thumbnail of the album cover to which the music file belongs.
   @JsonKey(name: 'thumb')
   PhotoSize thumb;
 

@@ -15,7 +15,7 @@ class InputTextMessageContent implements InputMessageContent {
   @JsonKey(name: 'message_text', required: true)
   String messageText;
 
-  /// Optional.
+  /// *Optional.*
   /// Send *[Markdown]* or *[HTML]*,
   /// if you want Telegram apps to show [bold, italic,
   /// fixed-width text or inline URLs] in the media caption.
@@ -26,7 +26,7 @@ class InputTextMessageContent implements InputMessageContent {
   @JsonKey(name: 'parse_mode')
   ParseMode parseMode;
 
-  /// Optional. Disables link previews for links in the sent message.
+  /// *Optional.* Disables link previews for links in the sent message.
   @JsonKey(name: 'disable_web_page_preview')
   bool disableWebPagePreview;
 

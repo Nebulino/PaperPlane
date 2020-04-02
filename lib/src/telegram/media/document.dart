@@ -24,19 +24,19 @@ class Document {
   @JsonKey(name: 'file_unique_id', required: true)
   String fileUniqueID;
 
-  /// Optional. Document thumbnail as defined by sender.
+  /// *Optional.* Document thumbnail as defined by sender.
   @JsonKey(name: 'thumb')
   PhotoSize thumb;
 
-  /// Optional. Original filename as defined by sender.
+  /// *Optional.* Original filename as defined by sender.
   @JsonKey(name: 'file_name')
   String fileName;
 
-  /// Optional. MIME type of the file as defined by sender.
+  /// *Optional.* MIME type of the file as defined by sender.
   @JsonKey(name: 'mime_type')
   String mimeType;
 
-  /// Optional. File size.
+  /// *Optional.* File size.
   @JsonKey(name: 'file_size')
   int file_size;
 

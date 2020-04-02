@@ -24,11 +24,11 @@ class ChosenInlineResult {
   @JsonKey(name: 'from', required: true)
   User from;
 
-  /// Optional. Sender location, only for bots that require user location
+  /// *Optional.* Sender location, only for bots that require user location
   @JsonKey(name: 'location')
   Location location;
 
-  /// Optional. Identifier of the sent inline message.
+  /// *Optional.* Identifier of the sent inline message.
   /// Available only if there is an [inline keyboard]
   /// attached to the message.
   /// Will be also received in [callback queries] and can

@@ -24,7 +24,7 @@ class Game {
   @JsonKey(name: 'photo', required: true)
   List<PhotoSize> photo;
 
-  /// Optional. Brief description of the game or high scores
+  /// *Optional.* Brief description of the game or high scores
   /// included in the game message.
   /// Can be automatically edited to include current high scores
   /// for the game when the bot calls [setGameScore],
@@ -33,12 +33,12 @@ class Game {
   @JsonKey(name: 'text', required: true)
   String text;
 
-  /// Optional. Special entities that appear in text, such as usernames,
+  /// *Optional.* Special entities that appear in text, such as usernames,
   /// URLs, bot commands, etc.
   @JsonKey(name: 'text_entities', required: true)
   List<MessageEntity> textEntities;
 
-  /// Optional. Animation that will be displayed in the game message in chats.
+  /// *Optional.* Animation that will be displayed in the game message in chats.
   /// Upload via [BotFather]
   ///
   /// [BotFather]: https://t.me/botfather

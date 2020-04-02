@@ -30,16 +30,16 @@ class InlineQueryResultCachedGif implements InlineQueryResult {
   @JsonKey(name: 'gif_file_id', required: true)
   String gifFileID;
 
-  /// Optional. Title for the result.
+  /// *Optional.* Title for the result.
   @JsonKey(name: 'title')
   String title;
 
-  /// Optional. Caption of the GIF file to be sent,
+  /// *Optional.* Caption of the GIF file to be sent,
   /// 0-1024 characters after entities parsing.
   @JsonKey(name: 'caption')
   String caption;
 
-  /// Optional.
+  /// *Optional.*
   /// Send *[Markdown]* or *[HTML]*,
   /// if you want Telegram apps to show [bold, italic,
   /// fixed-width text or inline URLs] in the media caption.
@@ -50,13 +50,13 @@ class InlineQueryResultCachedGif implements InlineQueryResult {
   @JsonKey(name: 'parse_mode')
   ParseMode parseMode;
 
-  /// Optional. [Inline keyboard] attached to the message.
+  /// *Optional.* [Inline keyboard] attached to the message.
   ///
   /// [Inline keyboard]: https://core.telegram.org/bots#inline-keyboards-and-on-the-fly-updating
   @JsonKey(name: 'reply_markup')
   InlineKeyboardMarkup replyMarkup;
 
-  /// Optional. Content of the message to be sent instead of the GIF animation.
+  /// *Optional.* Content of the message to be sent instead of the GIF animation.
   @JsonKey(name: 'input_message_content')
   InputMessageContent inputMessageContent;
 

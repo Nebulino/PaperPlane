@@ -29,11 +29,11 @@ class InputVenueMessageContent implements InputMessageContent {
   @JsonKey(name: 'address', required: true)
   String address;
 
-  /// Optional. Foursquare identifier of the venue, if known.
+  /// *Optional.* Foursquare identifier of the venue, if known.
   @JsonKey(name: 'foursquare_id')
   String foursquareID;
 
-  /// Optional. Foursquare type of the venue, if known.
+  /// *Optional.* Foursquare type of the venue, if known.
   /// (For example, “arts_entertainment/default”,
   /// “arts_entertainment/aquarium” or “food/icecream”.)
   @JsonKey(name: 'foursquare_type')

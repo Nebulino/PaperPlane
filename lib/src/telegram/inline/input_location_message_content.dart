@@ -21,7 +21,7 @@ class InputLocationMessageContent implements InputMessageContent {
   @JsonKey(name: 'longitude', required: true)
   double longitude;
 
-  /// Optional. Period in seconds for which the location can be updated,
+  /// *Optional.* Period in seconds for which the location can be updated,
   /// should be between 60 and 86400.
   @JsonKey(
       name: 'live_period',

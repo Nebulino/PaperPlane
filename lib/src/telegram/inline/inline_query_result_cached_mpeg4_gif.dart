@@ -31,15 +31,15 @@ class InlineQueryResultCachedMpeg4Gif implements InlineQueryResult {
   @JsonKey(name: 'mpeg4_url', required: true)
   String mpeg4Url;
 
-  /// Optional. Video width.
+  /// *Optional.* Video width.
   @JsonKey(name: 'mpeg4_width')
   int mpeg4Width;
 
-  /// Optional. Video height.
+  /// *Optional.* Video height.
   @JsonKey(name: 'mpeg4_height')
   int mpeg4Height;
 
-  /// Optional. Video duration
+  /// *Optional.* Video duration
   @JsonKey(
       name: 'mpeg4_duration',
       fromJson: _durationFromTelegramSeconds,
@@ -50,16 +50,16 @@ class InlineQueryResultCachedMpeg4Gif implements InlineQueryResult {
   @JsonKey(name: 'thumb_url', required: true)
   String thumbUrl;
 
-  /// Optional. Title for the result.
+  /// *Optional.* Title for the result.
   @JsonKey(name: 'title')
   String title;
 
-  /// Optional. Caption of the MPEG-4 file to be sent,
+  /// *Optional.* Caption of the MPEG-4 file to be sent,
   /// 0-1024 characters after entities parsing.
   @JsonKey(name: 'caption')
   String caption;
 
-  /// Optional.
+  /// *Optional.*
   /// Send *[Markdown]* or *[HTML]*,
   /// if you want Telegram apps to show [bold, italic,
   /// fixed-width text or inline URLs] in the media caption.
@@ -70,13 +70,13 @@ class InlineQueryResultCachedMpeg4Gif implements InlineQueryResult {
   @JsonKey(name: 'parse_mode')
   ParseMode parseMode;
 
-  /// Optional. [Inline keyboard] attached to the message.
+  /// *Optional.* [Inline keyboard] attached to the message.
   ///
   /// [Inline keyboard]: https://core.telegram.org/bots#inline-keyboards-and-on-the-fly-updating
   @JsonKey(name: 'reply_markup')
   InlineKeyboardMarkup replyMarkup;
 
-  /// Optional. Content of the message to be sent instead of the video animation.
+  /// *Optional.* Content of the message to be sent instead of the video animation.
   @JsonKey(name: 'input_message_content')
   InputMessageContent inputMessageContent;
 

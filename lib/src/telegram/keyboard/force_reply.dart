@@ -41,7 +41,7 @@ class ForceReply implements ReplyMarkup {
   @JsonKey(name: 'force_reply', required: true)
   bool forceReply;
 
-  /// Optional. Use this parameter if you want to force reply
+  /// *Optional.* Use this parameter if you want to force reply
   /// from specific users only.
   /// Targets:
   /// 1) users that are @mentioned in the text of the [Message] object;

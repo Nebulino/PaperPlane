@@ -20,12 +20,12 @@ class InlineQuery {
   @JsonKey(name: 'from', required: true)
   User from;
 
-  /// Optional. Sender location,
+  /// *Optional.* Sender location,
   /// only for bots that request user location.
   @JsonKey(name: 'location')
   Location location;
 
-  /// Optional. Sender location,
+  /// *Optional.* Sender location,
   /// only for bots that request user location.
   @JsonKey(name: 'query', required: true)
   String query;

@@ -10,7 +10,7 @@ part of core;
 /// https://core.telegram.org/bots/api#responseparameters
 @JsonSerializable(includeIfNull: false)
 class ResponseParameters {
-  /// Optional. The group has been migrated to a supergroup
+  /// *Optional.* The group has been migrated to a supergroup
   /// with the specified identifier.
   /// This number may be greater than 32 bits
   /// and some programming languages may have
@@ -21,7 +21,7 @@ class ResponseParameters {
   @JsonKey(name: 'migrate_to_chat_id')
   int migrateToChatID;
 
-  /// Optional. In case of exceeding flood control,
+  /// *Optional.* In case of exceeding flood control,
   /// the number of seconds left to wait before the request can be repeated.
   @JsonKey(name: 'retry_after')
   int retryAfter;

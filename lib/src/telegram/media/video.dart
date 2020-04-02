@@ -35,15 +35,15 @@ class Video {
       toJson: _durationToTelegramSeconds)
   Duration duration;
 
-  /// Optional. Video thumbnail.
+  /// *Optional.* Video thumbnail.
   @JsonKey(name: 'thumb')
   PhotoSize thumb;
 
-  /// Optional. Mime type of a file as defined by sender.
+  /// *Optional.* Mime type of a file as defined by sender.
   @JsonKey(name: 'mime_type')
   String mimeType;
 
-  /// Optional. File size.
+  /// *Optional.* File size.
   @JsonKey(name: 'file_size')
   int fileSize;
 

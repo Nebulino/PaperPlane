@@ -45,35 +45,35 @@ class InlineQueryResultVenue implements InlineQueryResult {
   @JsonKey(name: 'address', required: true)
   String address;
 
-  /// Optional. Foursquare identifier of the venue if known.
+  /// *Optional.* Foursquare identifier of the venue if known.
   @JsonKey(name: 'foursquare_id')
   String foursquareID;
 
-  /// Optional. Foursquare type of the venue, if known.
+  /// *Optional.* Foursquare type of the venue, if known.
   /// (For example, “arts_entertainment/default”,
   /// “arts_entertainment/aquarium” or “food/icecream”.).
   @JsonKey(name: 'foursquare_type')
   String foursquareType;
 
-  /// Optional. [Inline keyboard] attached to the message.
+  /// *Optional.* [Inline keyboard] attached to the message.
   ///
   /// [Inline keyboard]: https://core.telegram.org/bots#inline-keyboards-and-on-the-fly-updating
   @JsonKey(name: 'reply_markup')
   InlineKeyboardMarkup replyMarkup;
 
-  /// Optional. Content of the message to be sent instead of the venue.
+  /// *Optional.* Content of the message to be sent instead of the venue.
   @JsonKey(name: 'input_message_content')
   InputMessageContent inputMessageContent;
 
-  /// Optional. Url of the thumbnail for the result.
+  /// *Optional.* Url of the thumbnail for the result.
   @JsonKey(name: 'thumb_url')
   String thumbUrl;
 
-  /// Optional. Thumbnail width.
+  /// *Optional.* Thumbnail width.
   @JsonKey(name: 'thumb_width')
   int thumbWidth;
 
-  /// Optional. Thumbnail height.
+  /// *Optional.* Thumbnail height.
   @JsonKey(name: 'thumb_height')
   int thumbHeight;
 

@@ -35,13 +35,13 @@ class InlineQueryResultCachedSticker implements InlineQueryResult {
   @JsonKey(name: 'sticker_file_id', required: true)
   String stickerFileID;
 
-  /// Optional. [Inline keyboard] attached to the message.
+  /// *Optional.* [Inline keyboard] attached to the message.
   ///
   /// [Inline keyboard]: https://core.telegram.org/bots#inline-keyboards-and-on-the-fly-updating
   @JsonKey(name: 'reply_markup')
   InlineKeyboardMarkup replyMarkup;
 
-  /// Optional. Content of the message to be sent instead of the sticker.
+  /// *Optional.* Content of the message to be sent instead of the sticker.
   @JsonKey(name: 'input_message_content')
   InputMessageContent inputMessageContent;
 

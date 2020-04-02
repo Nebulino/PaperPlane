@@ -26,7 +26,7 @@ class ReplyKeyboardRemove implements ReplyMarkup {
   @JsonKey(name: 'remove_keyboard', required: true)
   bool remove_keyboard;
 
-  /// Optional.
+  /// *Optional.*
   /// Use this parameter if you want to remove the keyboard for
   /// specific users only.
   /// Targets:

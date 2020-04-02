@@ -22,7 +22,7 @@ class WebhookInfo {
   @JsonKey(name: 'pending_update_count', required: true)
   int pendingUpdateCount;
 
-  /// Optional. Unix time for the most recent error that
+  /// *Optional.* Unix time for the most recent error that
   /// happened when trying to deliver an update via webhook.
   @JsonKey(
       name: 'last_error_date',
@@ -30,17 +30,17 @@ class WebhookInfo {
       toJson: _dateTimeToTelegramInt)
   DateTime lastErrorDate;
 
-  /// Optional. Error message in human-readable format for the most recent error
+  /// *Optional.* Error message in human-readable format for the most recent error
   /// that happened when trying to deliver an update via webhook.
   @JsonKey(name: 'last_error_message')
   String lastErrorMessage;
 
-  /// Optional. Maximum allowed number of simultaneous HTTPS connections to the
+  /// *Optional.* Maximum allowed number of simultaneous HTTPS connections to the
   /// webhook for update delivery.
   @JsonKey(name: 'max_connections')
   int maxConnections;
 
-  /// Optional. A list of update types the bot is subscribed to.
+  /// *Optional.* A list of update types the bot is subscribed to.
   /// Defaults to all update types
   @JsonKey(name: 'allowed_updates')
   List<String> allowedUpdates;

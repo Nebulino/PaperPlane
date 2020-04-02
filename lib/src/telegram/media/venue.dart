@@ -22,11 +22,11 @@ class Venue {
   @JsonKey(name: 'address', required: true)
   String address;
 
-  /// Optional. Foursquare identifier of the venue.
+  /// *Optional.* Foursquare identifier of the venue.
   @JsonKey(name: 'foursquare_id')
   String foursquareID;
 
-  /// Optional.
+  /// *Optional.*
   /// Foursquare type of the venue.
   /// (For example, “arts_entertainment/default”,
   /// “arts_entertainment/aquarium” or “food/icecream”.)

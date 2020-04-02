@@ -32,7 +32,7 @@ class PhotoSize {
   @JsonKey(name: 'height', required: true)
   int height;
 
-  /// Optional. File size.
+  /// *Optional.* File size.
   @JsonKey(name: 'file_size')
   int fileSize;
 

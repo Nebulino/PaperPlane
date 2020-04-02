@@ -33,23 +33,23 @@ class Sticker {
   @JsonKey(name: 'is_animated', required: true)
   bool isAnimated;
 
-  /// Optional. Sticker thumbnail in the .WEBP or .JPG format.
+  /// *Optional.* Sticker thumbnail in the .WEBP or .JPG format.
   @JsonKey(name: 'thumb')
   PhotoSize thumb;
 
-  /// Optional. Emoji associated with the sticker.
+  /// *Optional.* Emoji associated with the sticker.
   @JsonKey(name: 'emoji')
   String emoji;
 
-  /// Optional. Name of the sticker set to which the sticker belongs.
+  /// *Optional.* Name of the sticker set to which the sticker belongs.
   @JsonKey(name: 'set_name')
   String setName;
 
-  /// Optional. For mask stickers, the position where the mask should be placed.
+  /// *Optional.* For mask stickers, the position where the mask should be placed.
   @JsonKey(name: 'mask_position')
   MaskPosition maskPosition;
 
-  /// Optional. File size.
+  /// *Optional.* File size.
   @JsonKey(name: 'file_size')
   int fileSize;
 

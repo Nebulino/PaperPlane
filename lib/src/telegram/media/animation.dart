@@ -36,19 +36,19 @@ class Animation {
       toJson: _durationToTelegramSeconds)
   Duration duration;
 
-  /// Optional. Animation thumbnail as defined by sender.
+  /// *Optional.* Animation thumbnail as defined by sender.
   @JsonKey(name: 'thumb')
   PhotoSize thumb;
 
-  /// Optional. Original animation filename as defined by sender.
+  /// *Optional.* Original animation filename as defined by sender.
   @JsonKey(name: 'file_name')
   String fileName;
 
-  /// Optional. MIME type of the file as defined by sender.
+  /// *Optional.* MIME type of the file as defined by sender.
   @JsonKey(name: 'mime_type')
   String mimeType;
 
-  /// Optional. File size.
+  /// *Optional.* File size.
   @JsonKey(name: 'file_size')
   int fileSize;
 

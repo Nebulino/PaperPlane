@@ -47,12 +47,12 @@ class InlineQueryResultVideo implements InlineQueryResult {
   @JsonKey(name: 'title', required: true)
   String title;
 
-  /// Optional. Caption of the video to be sent,
+  /// *Optional.* Caption of the video to be sent,
   /// 0-1024 characters after entities parsing
   @JsonKey(name: 'caption')
   String caption;
 
-  /// Optional.
+  /// *Optional.*
   /// Send *[Markdown]* or *[HTML]*,
   /// if you want Telegram apps to show [bold, italic,
   /// fixed-width text or inline URLs] in the media caption.
@@ -63,32 +63,32 @@ class InlineQueryResultVideo implements InlineQueryResult {
   @JsonKey(name: 'parse_mode')
   ParseMode parseMode;
 
-  /// Optional. Video width.
+  /// *Optional.* Video width.
   @JsonKey(name: 'video_width')
   int videoWidth;
 
-  /// Optional. Video height.
+  /// *Optional.* Video height.
   @JsonKey(name: 'video_height')
   int videoHeight;
 
-  /// Optional. Video duration in seconds.
+  /// *Optional.* Video duration in seconds.
   @JsonKey(
       name: 'video_duration',
       fromJson: _durationFromTelegramSeconds,
       toJson: _durationToTelegramSeconds)
   Duration videoDuration;
 
-  /// Optional. Short description of the result.
+  /// *Optional.* Short description of the result.
   @JsonKey(name: 'description')
   String description;
 
-  /// Optional. [Inline keyboard] attached to the message.
+  /// *Optional.* [Inline keyboard] attached to the message.
   ///
   /// [Inline keyboard]: https://core.telegram.org/bots#inline-keyboards-and-on-the-fly-updating
   @JsonKey(name: 'reply_markup')
   InlineKeyboardMarkup replyMarkup;
 
-  /// Optional.
+  /// *Optional.*
   /// Content of the message to be sent instead of the video.
   /// This field is **required** if InlineQueryResultVideo
   /// is used to send an HTML-page as a result

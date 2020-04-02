@@ -31,7 +31,7 @@ class InlineQueryResultGame implements InlineQueryResult {
   @JsonKey(name: 'game_short_name', required: true)
   String gameShortName;
 
-  /// Optional. [Inline keyboard] attached to the message.
+  /// *Optional.* [Inline keyboard] attached to the message.
   ///
   /// [Inline keyboard]: https://core.telegram.org/bots#inline-keyboards-and-on-the-fly-updating
   @JsonKey(name: 'reply_markup')

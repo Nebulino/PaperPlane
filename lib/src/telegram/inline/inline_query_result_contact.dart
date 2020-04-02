@@ -37,37 +37,37 @@ class InlineQueryResultContact implements InlineQueryResult {
   @JsonKey(name: 'first_name', required: true)
   String firstName;
 
-  /// Optional. Contact's last name.
+  /// *Optional.* Contact's last name.
   @JsonKey(name: 'last_name')
   String lastName;
 
-  /// Optional. Additional data about the contact
+  /// *Optional.* Additional data about the contact
   /// in the form of a [vCard], 0-2048 bytes.
   ///
   /// [vCard]: https://en.wikipedia.org/wiki/VCard
   @JsonKey(name: 'vcard')
   String vcard;
 
-  /// Optional. [Inline keyboard] attached to the message.
+  /// *Optional.* [Inline keyboard] attached to the message.
   ///
   /// [Inline keyboard]: https://core.telegram.org/bots#inline-keyboards-and-on-the-fly-updating
   @JsonKey(name: 'reply_markup')
   InlineKeyboardMarkup replyMarkup;
 
-  /// Optional.
+  /// *Optional.*
   /// Content of the message to be sent instead of the contact
   @JsonKey(name: 'input_message_content')
   InputMessageContent inputMessageContent;
 
-  /// Optional. Url of the thumbnail for the result.
+  /// *Optional.* Url of the thumbnail for the result.
   @JsonKey(name: 'thumb_url')
   String thumbUrl;
 
-  /// Optional. Thumbnail width.
+  /// *Optional.* Thumbnail width.
   @JsonKey(name: 'thumb_width')
   int thumbWidth;
 
-  /// Optional. Thumbnail height.
+  /// *Optional.* Thumbnail height.
   @JsonKey(name: 'thumb_height')
   int thumbHeight;
 

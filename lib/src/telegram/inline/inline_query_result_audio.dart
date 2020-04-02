@@ -34,11 +34,11 @@ class InlineQueryResultAudio implements InlineQueryResult {
   @JsonKey(name: 'title', required: true)
   String title;
 
-  /// Optional. Caption, 0-1024 characters after entities parsing.
+  /// *Optional.* Caption, 0-1024 characters after entities parsing.
   @JsonKey(name: 'caption')
   String caption;
 
-  /// Optional.
+  /// *Optional.*
   /// Send *[Markdown]* or *[HTML]*,
   /// if you want Telegram apps to show [bold, italic,
   /// fixed-width text or inline URLs] in the media caption.
@@ -49,24 +49,24 @@ class InlineQueryResultAudio implements InlineQueryResult {
   @JsonKey(name: 'parse_mode')
   ParseMode parseMode;
 
-  /// Optional. Performer.
+  /// *Optional.* Performer.
   @JsonKey(name: 'performer')
   String performer;
 
-  /// Optional. Audio duration in seconds.
+  /// *Optional.* Audio duration in seconds.
   @JsonKey(
       name: 'audio_duration',
       fromJson: _durationFromTelegramSeconds,
       toJson: _durationToTelegramSeconds)
   Duration audioDuration;
 
-  /// Optional. [Inline keyboard] attached to the message.
+  /// *Optional.* [Inline keyboard] attached to the message.
   ///
   /// [Inline keyboard]: https://core.telegram.org/bots#inline-keyboards-and-on-the-fly-updating
   @JsonKey(name: 'reply_markup')
   InlineKeyboardMarkup replyMarkup;
 
-  /// Optional. Content of the message to be sent instead of the audio.
+  /// *Optional.* Content of the message to be sent instead of the audio.
   @JsonKey(name: 'input_message_content')
   InputMessageContent inputMessageContent;
 

@@ -11,7 +11,7 @@ part of keyboard;
 /// https://core.telegram.org/bots/api#keyboardbuttonpolltype
 @JsonSerializable(includeIfNull: false)
 class KeyboardButtonPollType {
-  /// Optional. If *quiz* is passed, the user will be allowed to
+  /// *Optional.* If *quiz* is passed, the user will be allowed to
   /// create only polls in the quiz mode.
   /// If *regular* is passed, only regular polls will be allowed.
   /// Otherwise, the user will be allowed to create a poll of any type.

@@ -40,12 +40,12 @@ class InlineQueryResultVoice implements InlineQueryResult {
   @JsonKey(name: 'title', required: true)
   String title;
 
-  /// Optional. Caption,
+  /// *Optional.* Caption,
   /// 0-1024 characters after entities parsing.
   @JsonKey(name: 'caption')
   String caption;
 
-  /// Optional.
+  /// *Optional.*
   /// Send *[Markdown]* or *[HTML]*,
   /// if you want Telegram apps to show [bold, italic,
   /// fixed-width text or inline URLs] in the media caption.
@@ -62,13 +62,13 @@ class InlineQueryResultVoice implements InlineQueryResult {
       toJson: _durationToTelegramSeconds)
   Duration voiceDuration;
 
-  /// Optional. [Inline keyboard] attached to the message.
+  /// *Optional.* [Inline keyboard] attached to the message.
   ///
   /// [Inline keyboard]: https://core.telegram.org/bots#inline-keyboards-and-on-the-fly-updating
   @JsonKey(name: 'reply_markup')
   InlineKeyboardMarkup replyMarkup;
 
-  /// Optional. Content of the message to be sent instead of the voice recording.
+  /// *Optional.* Content of the message to be sent instead of the voice recording.
   @JsonKey(name: 'input_message_content')
   InputMessageContent inputMessageContent;
 

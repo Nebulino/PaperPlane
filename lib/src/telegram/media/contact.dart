@@ -18,15 +18,15 @@ class Contact {
   @JsonKey(name: 'first_name', required: true)
   String firstName;
 
-  /// Optional. Contact's last name.
+  /// *Optional.* Contact's last name.
   @JsonKey(name: 'last_name')
   String lastName;
 
-  /// Optional. Contact's user identifier in Telegram.
+  /// *Optional.* Contact's user identifier in Telegram.
   @JsonKey(name: 'user_id')
   int userID;
 
-  /// Optional. Additional data about the contact in the form of a [vCard].
+  /// *Optional.* Additional data about the contact in the form of a [vCard].
   ///
   /// [vCard]: https://en.wikipedia.org/wiki/VCard
   @JsonKey(name: 'vcard')

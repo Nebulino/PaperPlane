@@ -32,7 +32,7 @@ class StickerSet {
   @JsonKey(name: 'stickers', required: true)
   List<Sticker> stickers;
 
-  /// Optional. Sticker set thumbnail in the .WEBP or .TGS format.
+  /// *Optional.* Sticker set thumbnail in the .WEBP or .TGS format.
   @JsonKey(name: 'thumb')
   PhotoSize thumb;
 
