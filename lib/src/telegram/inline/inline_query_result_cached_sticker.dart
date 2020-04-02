@@ -21,20 +21,36 @@ part of inline;
 /// https://core.telegram.org/bots/api#inlinequeryresultcachedsticker
 @JsonSerializable(includeIfNull: false)
 class InlineQueryResultCachedSticker implements InlineQueryResult {
-  @override
-  String id;
+  /// Type of the result, must be *sticker*.
+  @JsonKey(name: 'type', required: true)
   @override
   String type;
-  String sticker_file_id;
-  InlineKeyboardMarkup reply_markup;
-  InputMessageContent input_message_content;
+
+  /// Unique identifier for this result, 1-64 bytes.
+  @JsonKey(name: 'id', required: true)
+  @override
+  String id;
+
+  /// A valid file identifier of the sticker
+  @JsonKey(name: 'sticker_file_id', required: true)
+  String stickerFileID;
+
+  /// *Optional.* [Inline keyboard] attached to the message.
+  ///
+  /// [Inline keyboard]: https://core.telegram.org/bots#inline-keyboards-and-on-the-fly-updating
+  @JsonKey(name: 'reply_markup')
+  InlineKeyboardMarkup replyMarkup;
+
+  /// *Optional.* Content of the message to be sent instead of the sticker.
+  @JsonKey(name: 'input_message_content')
+  InputMessageContent inputMessageContent;
 
   InlineQueryResultCachedSticker(
-      {this.id,
-      this.type = 'sticker',
-      this.sticker_file_id,
-      this.reply_markup,
-      this.input_message_content});
+      {this.type = 'sticker',
+      this.id,
+      this.stickerFileID,
+      this.replyMarkup,
+      this.inputMessageContent});
 
   factory InlineQueryResultCachedSticker.fromJson(Map<String, dynamic> json) =>
       _$InlineQueryResultCachedStickerFromJson(json);

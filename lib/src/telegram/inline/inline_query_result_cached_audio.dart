@@ -19,24 +19,53 @@ part of inline;
 /// https://core.telegram.org/bots/api#inlinequeryresultcachedaudio
 @JsonSerializable(includeIfNull: false)
 class InlineQueryResultCachedAudio implements InlineQueryResult {
-  @override
-  String id;
+  /// Type of the result, must be *audio*.
+  @JsonKey(name: 'type', required: true)
   @override
   String type;
-  String audio_file_id;
+
+  /// Unique identifier for this result, 1-64 bytes.
+  @JsonKey(name: 'id', required: true)
+  @override
+  String id;
+
+  /// A valid file identifier for the audio file.
+  @JsonKey(name: 'audio_file_id', required: true)
+  String audioFileID;
+
+  /// *Optional.* Caption, 0-1024 characters after entities parsing.
+  @JsonKey(name: 'caption')
   String caption;
-  String parse_mode;
-  InlineKeyboardMarkup reply_markup;
-  InputMessageContent input_message_content;
+
+  /// *Optional.*
+  /// Send *[Markdown]* or *[HTML]*,
+  /// if you want Telegram apps to show [bold, italic,
+  /// fixed-width text or inline URLs] in the media caption.
+  ///
+  /// [Markdown]: https://core.telegram.org/bots/api#markdown-style
+  /// [HTML]: https://core.telegram.org/bots/api#html-style
+  /// [bold, italic, fixed-width text or inline URLs]: https://core.telegram.org/bots/api#formatting-options
+  @JsonKey(name: 'parse_mode')
+  ParseMode parseMode;
+
+  /// *Optional.* [Inline keyboard] attached to the message.
+  ///
+  /// [Inline keyboard]: https://core.telegram.org/bots#inline-keyboards-and-on-the-fly-updating
+  @JsonKey(name: 'reply_markup')
+  InlineKeyboardMarkup replyMarkup;
+
+  /// *Optional.* Content of the message to be sent instead of the audio.
+  @JsonKey(name: 'input_message_content')
+  InputMessageContent inputMessageContent;
 
   InlineQueryResultCachedAudio(
-      {this.id,
-      this.type = 'audio',
-      this.audio_file_id,
+      {this.type = 'audio',
+      this.id,
+      this.audioFileID,
       this.caption,
-      this.parse_mode,
-      this.reply_markup,
-      this.input_message_content});
+      this.parseMode,
+      this.replyMarkup,
+      this.inputMessageContent});
 
   factory InlineQueryResultCachedAudio.fromJson(Map<String, dynamic> json) =>
       _$InlineQueryResultCachedAudioFromJson(json);

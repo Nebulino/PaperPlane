@@ -13,19 +13,33 @@ part of media;
 /// When the link expires, a new one can be requested
 /// by calling [getFile].
 ///
-/// *Maximum file size to download is 20 MB*
+/// **Maximum file size to download is 20 MB**
 ///
 /// [getFile]: https://core.telegram.org/bots/api#getfile
 ///
 /// https://core.telegram.org/bots/api#file
 @JsonSerializable(includeIfNull: false)
 class File {
-  String file_id;
-  String file_unique_id;
-  int file_size;
-  String file_path;
+  /// Identifier for this file, which can be used to download or reuse the file.
+  @JsonKey(name: 'file_id', required: true)
+  String fileID;
 
-  File({this.file_id, this.file_unique_id, this.file_size, this.file_path});
+  /// Unique identifier for this file, which is supposed to be the same over
+  /// time and for different bots. Can't be used to download or reuse the file.
+  @JsonKey(name: 'file_unique_id', required: true)
+  String fileUniqueID;
+
+  /// *Optional.* File size, if known.
+  @JsonKey(name: 'file_size')
+  int fileSize;
+
+  /// *Optional.* File path.
+  /// Use [https://api.telegram.org/file/bot<token>/<file_path>]
+  /// to get the file.
+  @JsonKey(name: 'file_path')
+  String filePath;
+
+  File({this.fileID, this.fileUniqueID, this.fileSize, this.filePath});
 
   factory File.fromJson(Map<String, dynamic> json) => _$FileFromJson(json);
 

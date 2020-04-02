@@ -11,8 +11,16 @@ part of game;
 /// https://core.telegram.org/bots/api#gamehighscore
 @JsonSerializable(includeIfNull: false)
 class GameHighScore {
+  /// Position in high score table for the game
+  @JsonKey(name: 'position', required: true)
   int position;
+
+  /// User.
+  @JsonKey(name: 'user', required: true)
   User user;
+
+  /// Score.
+  @JsonKey(name: 'score', required: true)
   int score;
 
   GameHighScore({this.position, this.user, this.score});

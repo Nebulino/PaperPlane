@@ -7,10 +7,7 @@
 library core;
 
 import 'package:json_annotation/json_annotation.dart';
-
 import 'package:paperplane/telegram.dart';
-
-part 'core.g.dart';
 
 part '../telegram/core/bot_command.dart';
 part '../telegram/core/callback_query.dart';
@@ -19,3 +16,4 @@ part '../telegram/core/login_url.dart';
 part '../telegram/core/response_parameters.dart';
 part '../telegram/core/update.dart';
 part '../telegram/core/webhook_info.dart';
+part 'core.g.dart';

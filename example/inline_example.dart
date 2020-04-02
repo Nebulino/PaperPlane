@@ -16,12 +16,12 @@ void main() {
   paperplane.startPolling();
 
   paperplane.onInlineQuery().listen((query) =>
-      paperplane.api.answerInlineQuery(inline_query_id: query.id, results: [
+      paperplane.api.answerInlineQuery(inlineQueryID: query.id, results: [
         InlineQueryResultArticle()
           ..id = 'test'
           ..title = 'test'
-          ..input_message_content = (InputTextMessageContent()
-            ..message_text = '*done!*'
-            ..parse_mode = ParseMode.MARKDOWN.toString())
+          ..inputMessageContent = (InputTextMessageContent()
+            ..messageText = '*done!*'
+            ..parseMode = ParseMode.MARKDOWN)
       ]));
 }

@@ -17,15 +17,28 @@ part of inline;
 /// https://core.telegram.org/bots/api#inlinequeryresultgame
 @JsonSerializable(includeIfNull: false)
 class InlineQueryResultGame implements InlineQueryResult {
-  @override
-  String id;
+  /// Type of the result, must be *game*.
+  @JsonKey(name: 'type', required: true)
   @override
   String type;
-  String game_short_name;
-  InlineKeyboardMarkup reply_markup;
+
+  /// Unique identifier for this result, 1-64 bytes.
+  @JsonKey(name: 'id', required: true)
+  @override
+  String id;
+
+  /// Short name of the game.
+  @JsonKey(name: 'game_short_name', required: true)
+  String gameShortName;
+
+  /// *Optional.* [Inline keyboard] attached to the message.
+  ///
+  /// [Inline keyboard]: https://core.telegram.org/bots#inline-keyboards-and-on-the-fly-updating
+  @JsonKey(name: 'reply_markup')
+  InlineKeyboardMarkup replyMarkup;
 
   InlineQueryResultGame(
-      {this.id, this.type = 'game', this.game_short_name, this.reply_markup});
+      {this.type = 'game', this.id, this.gameShortName, this.replyMarkup});
 
   factory InlineQueryResultGame.fromJson(Map<String, dynamic> json) =>
       _$InlineQueryResultGameFromJson(json);

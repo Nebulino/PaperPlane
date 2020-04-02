@@ -11,16 +11,30 @@ part of passport;
 /// https://core.telegram.org/bots/api#passportelementerrorunspecified
 @JsonSerializable(includeIfNull: false)
 class PassportElementErrorUnspecified implements PassportElementError {
+  /// Error source, must be unspecified.
+  @JsonKey(name: 'source', required: true)
   @override
-  String source;
+  EncryptedPassportElementSource source;
+
+  /// Type of element of the user's Telegram Passport which has the issue.
+  @JsonKey(name: 'type', required: true)
   @override
-  String type;
+  EncryptedPassportElementType type;
+
+  /// Base64-encoded element hash.
+  @JsonKey(name: 'file_hash', required: true)
+  String fileHash;
+
+  /// Error message.
+  @JsonKey(name: 'message', required: true)
   @override
   String message;
-  String file_hash;
 
   PassportElementErrorUnspecified(
-      {this.source, this.type, this.message, this.file_hash});
+      {this.source = EncryptedPassportElementSource.unspecified,
+      this.type,
+      this.fileHash,
+      this.message});
 
   factory PassportElementErrorUnspecified.fromJson(Map<String, dynamic> json) =>
       _$PassportElementErrorUnspecifiedFromJson(json);

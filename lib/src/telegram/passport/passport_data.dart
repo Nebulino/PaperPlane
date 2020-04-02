@@ -11,7 +11,13 @@ part of passport;
 /// https://core.telegram.org/bots/api#passportdata
 @JsonSerializable(includeIfNull: false)
 class PassportData {
+  /// Array with information about documents and other
+  /// Telegram Passport elements that was shared with the bot.
+  @JsonKey(name: 'data', required: true)
   List<EncryptedPassportElement> data;
+
+  /// Encrypted credentials required to decrypt the data.
+  @JsonKey(name: 'credentials', required: true)
   EncryptedCredentials credentials;
 
   PassportData({this.data, this.credentials});

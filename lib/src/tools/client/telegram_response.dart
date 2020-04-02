@@ -12,16 +12,30 @@ part 'telegram_response.g.dart';
 /// The response in input is managed and returned as it should be.
 @JsonSerializable(includeIfNull: false)
 class TelegramResponse {
+  /// It says if the response is valid.
+  @JsonKey(name: 'ok', required: true)
   bool valid;
+
+  /// If the response is valid. It contains the result.
+  @JsonKey(name: 'result')
   dynamic result;
-  int error_code;
+
+  /// If the response is not valid, It contains the error code.
+  @JsonKey(name: 'error_code')
+  int errorCode;
+
+  /// If the response is not valid, It contains the error description.
+  @JsonKey(name: 'description')
   String description;
+
+  /// If the response is valid, It can contains some important information.
+  @JsonKey(name: 'response_parameters')
   ResponseParameters responseParameters;
 
   TelegramResponse(
       {this.valid,
       this.result,
-      this.error_code,
+      this.errorCode,
       this.description,
       this.responseParameters});
 

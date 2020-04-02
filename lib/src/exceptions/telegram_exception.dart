@@ -7,13 +7,13 @@ import 'package:dio/dio.dart';
 import 'package:meta/meta.dart';
 
 /// It extends [DioError] class.
-/// You can find [error_code] and [error_name] received from the Telegram Api.
+/// You can find [errorCode] and [errorName] received from the Telegram Api.
 class TelegramException extends DioError {
-  int error_code;
-  String error_name;
+  int errorCode;
+  String errorName;
 
-  TelegramException({@required this.error_code, @required this.error_name});
+  TelegramException({@required this.errorCode, @required this.errorName});
 
   @override
-  String toString() => '[TelegramException]: ${error_code} - ${error_name}';
+  String toString() => '[TelegramException]: ${errorCode} - ${errorName}';
 }

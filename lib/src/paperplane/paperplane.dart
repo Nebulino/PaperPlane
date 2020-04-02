@@ -84,7 +84,7 @@ class PaperPlane {
   void export({@required Bot bot, String file_name}) {
     if (_is_flying) {
       _logger.i('Exporting occurs on landing...');
-      BotFile.export(bot: bot, file_name: file_name);
+      BotFile.export(bot: bot, fileName: file_name);
     } else {
       throw PaperPlaneException(
           description: "Can't export... "
@@ -92,6 +92,7 @@ class PaperPlane {
     }
   }
 
+  /// Setup the [LongPolling] before running it.
   void setupLongPolling(
       {int offset = 0,
       int limit = 100,
@@ -120,7 +121,7 @@ class PaperPlane {
       ..updater.onUpdate().listen(_polling_helper);
   }
 
-  /// It sends the updates in the dispatcher.
+  /// It sends the [Update] in the [Dispatcher].
   void _polling_helper(Update update) => dispatcher.dispatchUpdate(update);
 
   /// It stops the bot.

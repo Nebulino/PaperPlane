@@ -16,17 +16,39 @@ part of inline;
 /// https://core.telegram.org/bots/api#choseninlineresult
 @JsonSerializable(includeIfNull: false)
 class ChosenInlineResult {
-  String result_id;
+  ///	The unique identifier for the result that was chosen.
+  @JsonKey(name: 'result_id', required: true)
+  String resultID;
+
+  /// The user that chose the result.
+  @JsonKey(name: 'from', required: true)
   User from;
+
+  /// *Optional.* Sender location, only for bots that require user location
+  @JsonKey(name: 'location')
   Location location;
-  String inline_message_id;
+
+  /// *Optional.* Identifier of the sent inline message.
+  /// Available only if there is an [inline keyboard]
+  /// attached to the message.
+  /// Will be also received in [callback queries] and can
+  /// be used to [edit] the message.
+  ///
+  /// [inline keyboard]: https://core.telegram.org/bots/api#inlinekeyboardmarkup
+  /// [callback queries]: https://core.telegram.org/bots/api#callbackquery
+  /// [edit]: https://core.telegram.org/bots/api#updating-messages
+  @JsonKey(name: 'inline_message_id')
+  String inlineMessageID;
+
+  /// The query that was used to obtain the result.
+  @JsonKey(name: 'query', required: true)
   String query;
 
   ChosenInlineResult(
-      {this.result_id,
+      {this.resultID,
       this.from,
       this.location,
-      this.inline_message_id,
+      this.inlineMessageID,
       this.query});
 
   factory ChosenInlineResult.fromJson(Map<String, dynamic> json) =>

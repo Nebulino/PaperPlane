@@ -14,23 +14,56 @@ part of media;
 /// https://core.telegram.org/bots/api#videonote
 @JsonSerializable(includeIfNull: false)
 class VideoNote {
-  String file_id;
-  String file_unique_id;
+  /// Identifier for this file, which can be used to download or reuse the file.
+  @JsonKey(name: 'file_id', required: true)
+  String fileID;
+
+  /// Unique identifier for this file, which is supposed to be the same over
+  /// time and for different bots. Can't be used to download or reuse the file.
+  @JsonKey(name: 'file_unique_id', required: true)
+  String fileUniqueID;
+
+  /// Video width and height (diameter of the video message)
+  /// as defined by sender.
+  @JsonKey(name: 'length', required: true)
   int length;
-  int duration;
+
+  /// Duration of the video in seconds as defined by sender.
+  @JsonKey(
+      name: 'duration',
+      required: true,
+      fromJson: _durationFromTelegramSeconds,
+      toJson: _durationToTelegramSeconds)
+  Duration duration;
+
+  /// *Optional.* Video thumbnail.
+  @JsonKey(name: 'thumb')
   PhotoSize thumb;
-  int file_size;
+
+  /// *Optional.* File size.
+  @JsonKey(name: 'file_size')
+  int fileSize;
 
   VideoNote(
-      {this.file_id,
-      this.file_unique_id,
+      {this.fileID,
+      this.fileUniqueID,
       this.length,
       this.duration,
       this.thumb,
-      this.file_size});
+      this.fileSize});
 
   factory VideoNote.fromJson(Map<String, dynamic> json) =>
       _$VideoNoteFromJson(json);
 
   Map<String, dynamic> toJson() => _$VideoNoteToJson(this);
+
+  /// Helper: converts into a Duration type from
+  /// a int received from Telegram API.
+  static Duration _durationFromTelegramSeconds(int seconds) =>
+      seconds == null ? null : Duration(seconds: seconds);
+
+  /// Helper: converts into a Duration type into
+  /// a int to be sent to Telegram API.
+  static int _durationToTelegramSeconds(Duration duration) =>
+      duration?.inSeconds;
 }

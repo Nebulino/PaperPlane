@@ -10,20 +10,37 @@ part of payment;
 /// https://core.telegram.org/bots/api#shippingaddress
 @JsonSerializable(includeIfNull: false)
 class ShippingAddress {
-  String country_code;
+  /// ISO 3166-1 alpha-2 country code.
+  @JsonKey(name: 'country_code', required: true)
+  String countryCode;
+
+  /// State, if applicable.
+  @JsonKey(name: 'state', required: true)
   String state;
+
+  /// City.
+  @JsonKey(name: 'city', required: true)
   String city;
-  String street_line1;
-  String street_line2;
-  String post_code;
+
+  /// First line for the address.
+  @JsonKey(name: 'street_line1', required: true)
+  String streetLine1;
+
+  /// Second line for the address.
+  @JsonKey(name: 'street_line2', required: true)
+  String streetLine2;
+
+  /// Address post code.
+  @JsonKey(name: 'post_code', required: true)
+  String postcode;
 
   ShippingAddress(
-      {this.country_code,
+      {this.countryCode,
       this.state,
       this.city,
-      this.street_line1,
-      this.street_line2,
-      this.post_code});
+      this.streetLine1,
+      this.streetLine2,
+      this.postcode});
 
   factory ShippingAddress.fromJson(Map<String, dynamic> json) =>
       _$ShippingAddressFromJson(json);
