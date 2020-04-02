@@ -57,7 +57,12 @@ class Message {
   SuccessfulPayment successful_payment;
   String connected_website;
   PassportData passport_data;
-  InlineKeyboardMarkup reply_markup;
+
+  /// Optional. [Inline keyboard] attached to the message.
+  ///
+  /// [Inline keyboard]: https://core.telegram.org/bots#inline-keyboards-and-on-the-fly-updating
+  @JsonKey(name: 'reply_markup')
+  InlineKeyboardMarkup replyMarkup;
 
   Message(
       {this.message_id,
@@ -106,7 +111,7 @@ class Message {
       this.successful_payment,
       this.connected_website,
       this.passport_data,
-      this.reply_markup});
+      this.replyMarkup});
 
   factory Message.fromJson(Map<String, dynamic> json) =>
       _$MessageFromJson(json);

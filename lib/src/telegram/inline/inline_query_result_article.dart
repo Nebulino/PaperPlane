@@ -10,32 +10,67 @@ part of inline;
 /// https://core.telegram.org/bots/api#inlinequeryresultarticle
 @JsonSerializable(includeIfNull: false)
 class InlineQueryResultArticle implements InlineQueryResult {
-  @override
-  String id;
+  /// Type of the result, must be *article*.
+  @JsonKey(name: 'type', required: true)
   @override
   String type;
+
+  /// Unique identifier for this result, 1-64 bytes.
+  @JsonKey(name: 'id', required: true)
+  @override
+  String id;
+
+  /// Title of the result.
+  @JsonKey(name: 'title', required: true)
   String title;
-  InputMessageContent input_message_content;
-  InlineKeyboardMarkup reply_markup;
+
+  /// Content of the message to be sent.
+  @JsonKey(name: 'input_message_content', required: true)
+  InputMessageContent inputMessageContent;
+
+  /// Optional. [Inline keyboard] attached to the message
+  ///
+  /// [Inline keyboard]: https://core.telegram.org/bots#inline-keyboards-and-on-the-fly-updating
+  @JsonKey(name: 'reply_markup')
+  InlineKeyboardMarkup replyMarkup;
+
+  /// Optional. URL of the result.
+  @JsonKey(name: 'url')
   String url;
-  bool hide_url;
+
+  /// Optional.
+  /// Pass True, if you don't want the URL to be shown in the message.
+  @JsonKey(name: 'hide_url')
+  bool hideUrl;
+
+  /// Optional. Short description of the result.
+  @JsonKey(name: 'description')
   String description;
-  String thumb_url;
-  String thumb_width;
-  String thumb_height;
+
+  /// Optional. Url of the thumbnail for the result.
+  @JsonKey(name: 'thumb_url')
+  String thumbUrl;
+
+  /// Optional. Thumbnail width.
+  @JsonKey(name: 'thumb_width')
+  String thumbWidth;
+
+  /// Optional. Thumbnail height.
+  @JsonKey(name: 'thumb_height')
+  String thumbHeight;
 
   InlineQueryResultArticle(
-      {this.id,
-      this.type = 'article',
+      {this.type = 'article',
+      this.id,
       this.title,
-      this.input_message_content,
-      this.reply_markup,
+      this.inputMessageContent,
+      this.replyMarkup,
       this.url,
-      this.hide_url,
+      this.hideUrl,
       this.description,
-      this.thumb_url,
-      this.thumb_width,
-      this.thumb_height});
+      this.thumbUrl,
+      this.thumbWidth,
+      this.thumbHeight});
 
   factory InlineQueryResultArticle.fromJson(Map<String, dynamic> json) =>
       _$InlineQueryResultArticleFromJson(json);

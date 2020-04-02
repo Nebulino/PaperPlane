@@ -19,28 +19,68 @@ part of inline;
 /// https://core.telegram.org/bots/api#inlinequeryresultcacheddocument
 @JsonSerializable(includeIfNull: false)
 class InlineQueryResultCachedDocument implements InlineQueryResult {
-  @override
-  String id;
+  /// Type of the result, must be *document*.
+  @JsonKey(name: 'type', required: true)
   @override
   String type;
+
+  /// Unique identifier for this result, 1-64 bytes.
+  @JsonKey(name: 'id', required: true)
+  @override
+  String id;
+
+  /// Title for the result.
+  @JsonKey(name: 'title', required: true)
   String title;
-  String document_file_id;
+
+  /// A valid file identifier for the file.
+  @JsonKey(name: 'document_file_id', required: true)
+  String documentFileID;
+
+  /// Optional. Short description of the result.
+  @JsonKey(name: 'description')
   String description;
+
+  /// Optional. Caption of the document to be sent,
+  /// 0-1024 characters after entities parsing.
+  @JsonKey(name: 'caption')
+
+  /// Optional. Caption of the document to be sent,
+  /// 0-1024 characters after entities parsing
+  @JsonKey(name: 'caption')
   String caption;
-  String parse_mode;
-  InlineKeyboardMarkup reply_markup;
-  InputMessageContent input_message_content;
+
+  /// Optional.
+  /// Send *[Markdown]* or *[HTML]*,
+  /// if you want Telegram apps to show [bold, italic,
+  /// fixed-width text or inline URLs] in the media caption.
+  ///
+  /// [Markdown]: https://core.telegram.org/bots/api#markdown-style
+  /// [HTML]: https://core.telegram.org/bots/api#html-style
+  /// [bold, italic, fixed-width text or inline URLs]: https://core.telegram.org/bots/api#formatting-options
+  @JsonKey(name: 'parse_mode')
+  String parseMode;
+
+  /// Optional. [Inline keyboard] attached to the message.
+  ///
+  /// [Inline keyboard]: https://core.telegram.org/bots#inline-keyboards-and-on-the-fly-updating
+  @JsonKey(name: 'reply_markup')
+  InlineKeyboardMarkup replyMarkup;
+
+  /// Optional. Content of the message to be sent instead of the file.
+  @JsonKey(name: 'input_message_content')
+  InputMessageContent inputMessageContent;
 
   InlineQueryResultCachedDocument(
-      {this.id,
-      this.type = 'document',
+      {this.type = 'document',
+      this.id,
       this.title,
-      this.document_file_id,
+      this.documentFileID,
       this.description,
       this.caption,
-      this.parse_mode,
-      this.reply_markup,
-      this.input_message_content});
+      this.parseMode,
+      this.replyMarkup,
+      this.inputMessageContent});
 
   factory InlineQueryResultCachedDocument.fromJson(Map<String, dynamic> json) =>
       _$InlineQueryResultCachedDocumentFromJson(json);

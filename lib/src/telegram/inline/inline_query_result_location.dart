@@ -19,29 +19,67 @@ part of inline;
 /// https://core.telegram.org/bots/api#inlinequeryresultlocation
 @JsonSerializable(includeIfNull: false)
 class InlineQueryResultLocation implements InlineQueryResult {
-  @override
-  String id;
+  /// Type of the result, must be *location*.
+  @JsonKey(name: 'type', required: true)
   @override
   String type;
+
+  /// Unique identifier for this result, 1-64 bytes.
+  @JsonKey(name: 'id', required: true)
+  @override
+  String id;
+
+  /// Location latitude in degrees.
+  @JsonKey(name: 'latitude', required: true)
   double latitude;
+
+  /// Location longitude in degrees.
+  @JsonKey(name: 'longitude', required: true)
   double longitude;
+
+  /// Location title.
+  @JsonKey(name: 'title', required: true)
   String title;
-  int live_period;
-  InlineKeyboardMarkup reply_markup;
-  InputMessageContent input_message_content;
+
+  /// Optional. Period in seconds for which the location can be updated,
+  /// should be between 60 and 86400.
+  @JsonKey(
+      name: 'live_period',
+      fromJson: _durationFromTelegramSeconds,
+      toJson: _durationToTelegramSeconds)
+  Duration live_period;
+
+  /// Optional. [Inline keyboard] attached to the message.
+  ///
+  /// [Inline keyboard]: https://core.telegram.org/bots#inline-keyboards-and-on-the-fly-updating
+  @JsonKey(name: 'reply_markup')
+  InlineKeyboardMarkup replyMarkup;
+
+  /// 	Optional. Content of the message to be sent instead of the location.
+  @JsonKey(name: 'input_message_content')
+  InputMessageContent inputMessageContent;
+
+  /// Optional. Url of the thumbnail for the result.
+  @JsonKey(name: 'thumb_url')
   String thumb_url;
+
+  /// Optional. Thumbnail width.
+  @JsonKey(name: 'thumb_width')
   int thumb_width;
+
+  /// Optional. Thumbnail height.
+  @JsonKey(name: 'thumb_height')
   int thumb_height;
 
   InlineQueryResultLocation(
-      {this.id,
-      this.type = 'location',
+      {this.type = 'location',
+      this.id,
       this.latitude,
       this.longitude,
       this.title,
       this.live_period,
-      this.reply_markup,
-      this.input_message_content,
+      this.replyMarkup,
+      this.inputMessageContent,
       this.thumb_url,
       this.thumb_width,
       this.thumb_height});
@@ -51,4 +89,14 @@ class InlineQueryResultLocation implements InlineQueryResult {
 
   @override
   Map<String, dynamic> toJson() => _$InlineQueryResultLocationToJson(this);
+
+  /// Helper: converts into a Duration type from
+  /// a int received from Telegram API.
+  static Duration _durationFromTelegramSeconds(int seconds) =>
+      Duration(seconds: seconds);
+
+  /// Helper: converts into a Duration type into
+  /// a int to be sent to Telegram API.
+  static int _durationToTelegramSeconds(Duration duration) =>
+      duration?.inSeconds;
 }

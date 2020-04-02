@@ -48,11 +48,11 @@ class TelegramClient {
           return TelegramClientException(description: 'Timeout Exception.');
           // or retry?
         } else if (error.type == DioErrorType.RESPONSE) {
-          var telegram_error_info =
+          var telegramErrorInfo =
               TelegramResponse.fromJson(error.response.data);
           return TelegramException(
-              error_code: telegram_error_info.error_code,
-              error_name: telegram_error_info.description);
+              errorCode: telegramErrorInfo.errorCode,
+              errorName: telegramErrorInfo.description);
         } else {
           return error;
         }
@@ -68,13 +68,15 @@ class TelegramClient {
     }
   }
 
+  /// It executes a GET request.
   Future<dynamic> get(
       {@required String method, Map<String, dynamic> parameters}) async {
     return (await _dio.get(method, queryParameters: parameters ?? {})).data;
   }
 
+  /// It executes a Multipart/form-data request.
   Future<dynamic> post(
-      {@required String method, @required FormData form_data}) async {
-    return (await _dio.post(method, data: form_data)).data;
+      {@required String method, @required FormData formData}) async {
+    return (await _dio.post(method, data: formData)).data;
   }
 }

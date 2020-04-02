@@ -30,7 +30,7 @@ class InputMediaLuggage {
   factory InputMediaLuggage.withAnimation(
       {@required Luggage animation,
       String caption,
-      ParseMode parse_mode,
+      ParseMode parseMode,
       Luggage thumb,
       int width,
       int height,
@@ -40,10 +40,10 @@ class InputMediaLuggage {
 
     final input_animation = InputMediaAnimation();
     input_animation.caption ??= caption;
-    input_animation.parse_mode = parse_mode.mode;
+    input_animation.parseMode = parseMode?.mode;
     input_animation.width = width;
     input_animation.height = height;
-    input_animation.duration = duration?.inSeconds;
+    input_animation.duration = duration;
 
     if (thumb != null) {
       if (thumb.type == 'file' || thumb.type == 'bytes') {
@@ -79,7 +79,7 @@ class InputMediaLuggage {
   factory InputMediaLuggage.withAudio(
       {@required Luggage audio,
       String caption,
-      ParseMode parse_mode,
+      ParseMode parseMode,
       Luggage thumb,
       Duration duration,
       String performer,
@@ -89,8 +89,8 @@ class InputMediaLuggage {
 
     final input_audio = InputMediaAudio();
     input_audio.caption = caption;
-    input_audio.parse_mode = parse_mode.mode;
-    input_audio.duration = duration?.inSeconds;
+    input_audio.parseMode = parseMode?.mode;
+    input_audio.duration = duration;
     input_audio.performer = performer;
     input_audio.title = title;
 
@@ -128,12 +128,12 @@ class InputMediaLuggage {
   factory InputMediaLuggage.withPhoto({
     @required Luggage photo,
     String caption,
-    ParseMode parse_mode,
+    ParseMode parseMode,
   }) {
     MapEntry<String, MultipartFile> file;
 
     final input_photo =
-        InputMediaPhoto(caption: caption, parse_mode: parse_mode.mode);
+        InputMediaPhoto(caption: caption, parseMode: parseMode.mode);
 
     if (photo.type == 'file' || photo.type == 'bytes') {
       final photo_id = 'photo_${Uuid.generate()}';
@@ -153,14 +153,14 @@ class InputMediaLuggage {
   factory InputMediaLuggage.withDocument(
       {@required Luggage document,
       String caption,
-      ParseMode parse_mode,
+      ParseMode parseMode,
       Luggage thumb}) {
     MapEntry<String, MultipartFile> file;
     MapEntry<String, MultipartFile> thumb_file;
 
     final input_document = InputMediaDocument();
     input_document.caption = caption;
-    input_document.parse_mode = parse_mode.mode;
+    input_document.parseMode = parseMode?.mode;
 
     if (thumb != null) {
       if (thumb.type == 'file' || thumb.type == 'bytes') {
@@ -196,22 +196,22 @@ class InputMediaLuggage {
   factory InputMediaLuggage.withVideo(
       {@required Luggage video,
       String caption,
-      ParseMode parse_mode,
+      ParseMode parseMode,
       Luggage thumb,
       int width,
       int height,
       Duration duration,
-      bool supports_streaming}) {
+      bool supportsStreaming}) {
     MapEntry<String, MultipartFile> file;
     MapEntry<String, MultipartFile> thumb_file;
 
     final input_video = InputMediaVideo(
         caption: caption,
-        parse_mode: parse_mode.mode,
+        parseMode: parseMode.mode,
         width: width,
         height: height,
-        duration: duration?.inSeconds,
-        supports_streaming: supports_streaming);
+        duration: duration,
+        supportsStreaming: supportsStreaming);
 
     if (thumb != null) {
       if (thumb.type == 'file' || thumb.type == 'bytes') {

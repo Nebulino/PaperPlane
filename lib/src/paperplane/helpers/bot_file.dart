@@ -13,10 +13,10 @@ import 'package:paperplane/paperplane_exceptions.dart';
 /// It creates a virtual BotFile from a file.
 /// It helps creating a PaperPlane instance from a file.
 class BotFile {
-  String file_name;
+  String fileName;
   final Bot _bot;
 
-  BotFile._(this._bot, {this.file_name});
+  BotFile._(this._bot, {this.fileName});
 
   /// Creates a BotFile from a file.
   factory BotFile.fromFile(io.File file) {
@@ -25,20 +25,20 @@ class BotFile {
 
   /// Import a PaperPlane file.
   static Future<BotFile> import(
-      {String file_name = 'PaperPlaneBot.json'}) async {
-    if (io.FileSystemEntity.typeSync('${file_name}') ==
+      {String fileName = 'PaperPlaneBot.json'}) async {
+    if (io.FileSystemEntity.typeSync('${fileName}') ==
         io.FileSystemEntityType.notFound) {
       throw PaperPlaneException(description: 'BotFile not found.');
     }
 
-    final content = await io.File(file_name).readAsString();
-    return BotFile._(Bot.fromJson(jsonDecode(content)), file_name: file_name);
+    final content = await io.File(fileName).readAsString();
+    return BotFile._(Bot.fromJson(jsonDecode(content)), fileName: fileName);
   }
 
   /// Export a PaperPlane file.
   static void export(
-      {@required Bot bot, String file_name = 'PaperPlaneBot.json'}) {
-    io.File(file_name).writeAsString(jsonEncode(bot.toJson()));
+      {@required Bot bot, String fileName = 'PaperPlaneBot.json'}) {
+    io.File(fileName).writeAsString(jsonEncode(bot.toJson()));
   }
 
   /// Get a [Bot] object from the file.

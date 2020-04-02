@@ -16,12 +16,30 @@ part of inputmedia;
 /// https://core.telegram.org/bots/api#inputmedia
 @JsonSerializable(includeIfNull: false)
 class InputMedia {
+  /// Type of the result.
+  @JsonKey(name: 'type', required: true)
   String type;
-  String media;
-  String caption;
-  String parse_mode;
 
-  InputMedia({this.type, this.media, this.caption, this.parse_mode});
+  /// Container of the media.
+  @JsonKey(name: 'media', required: true)
+  dynamic media;
+
+  /// Caption, 0-1024 characters after entities parsing.
+  @JsonKey(name: 'caption')
+  String caption;
+
+  /// Optional.
+  /// Send *[Markdown]* or *[HTML]*,
+  /// if you want Telegram apps to show [bold, italic,
+  /// fixed-width text or inline URLs] in the media caption.
+  ///
+  /// [Markdown]: https://core.telegram.org/bots/api#markdown-style
+  /// [HTML]: https://core.telegram.org/bots/api#html-style
+  /// [bold, italic, fixed-width text or inline URLs]: https://core.telegram.org/bots/api#formatting-options
+  @JsonKey(name: 'parse_mode')
+  String parseMode;
+
+  InputMedia({this.type, this.media, this.caption, this.parseMode});
 
   factory InputMedia.fromJson(Map<String, dynamic> json) =>
       _$InputMediaFromJson(json);

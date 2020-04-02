@@ -13,28 +13,47 @@ part 'paperplane_bot.g.dart';
 /// This object represents a Telegram [Bot], a [User] with more information.
 @JsonSerializable(includeIfNull: false)
 class Bot {
+  @JsonKey(name: 'token', required: true)
   String token;
+
+  @JsonKey(name: 'id', required: true)
   int id;
-  bool is_bot;
-  String first_name;
-  String last_name;
+
+  @JsonKey(name: 'is_bot', required: true)
+  bool isBot;
+
+  @JsonKey(name: 'first_name', required: true)
+  String firstName;
+
+  @JsonKey(name: 'last_name')
+  String lastName;
+
+  @JsonKey(name: 'username')
   String username;
-  String language_code;
-  bool can_join_groups;
-  bool can_read_all_group_messages;
-  bool supports_inline_queries;
+
+  @JsonKey(name: 'language_code')
+  String languageCode;
+
+  @JsonKey(name: 'can_join_groups')
+  bool canJoinGroups;
+
+  @JsonKey(name: 'can_read_all_group_messages')
+  bool canReadAllGroupMessages;
+
+  @JsonKey(name: 'supports_inline_queries')
+  bool supportsInlineQueries;
 
   Bot(
       {this.token,
       this.id,
-      this.is_bot,
-      this.first_name,
-      this.last_name,
+      this.isBot,
+      this.firstName,
+      this.lastName,
       this.username,
-      this.language_code,
-      this.can_join_groups,
-      this.can_read_all_group_messages,
-      this.supports_inline_queries});
+      this.languageCode,
+      this.canJoinGroups,
+      this.canReadAllGroupMessages,
+      this.supportsInlineQueries});
 
   factory Bot.fromJson(Map<String, dynamic> json) => _$BotFromJson(json);
 

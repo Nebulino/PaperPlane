@@ -10,46 +10,125 @@ part of chat;
 /// https://core.telegram.org/bots/api#chatmember
 @JsonSerializable(includeIfNull: false)
 class ChatMember {
+  /// Information about the user.
+  @JsonKey(name: 'user', required: true)
   User user;
+
+  /// The member's status in the chat. Can be “creator”,
+  /// “administrator”, “member”, “restricted”, “left” or “kicked”.
+  @JsonKey(name: 'status', required: true)
   String status;
-  String custom_title;
-  int until_date;
-  bool can_be_edited;
-  bool can_post_messages;
-  bool can_edit_messages;
-  bool can_delete_messages;
-  bool can_restrict_members;
-  bool can_promote_members;
-  bool can_change_info;
-  bool can_invite_users;
-  bool can_pin_messages;
-  bool is_member;
-  bool can_send_messages;
-  bool can_send_media_messages;
-  bool can_send_polls;
-  bool can_send_other_messages;
-  bool can_add_web_page_previews;
+
+  /// Optional. Owner and administrators only. Custom title for this user.
+  @JsonKey(name: 'custom_title')
+  String customTitle;
+
+  /// Optional. Restricted and kicked only.
+  /// Date when restrictions will be lifted for this user; unix time.
+  @JsonKey(name: 'until_date')
+  int untilDate;
+
+  /// Optional. Administrators only.
+  /// True, if the bot is allowed to edit administrator privileges of that user.
+  @JsonKey(name: 'can_be_edited')
+  bool canBeEdited;
+
+  /// Optional. Administrators only.
+  /// True, if the administrator can post in the channel; channels only.
+  @JsonKey(name: 'can_post_messages')
+  bool canPostMessages;
+
+  /// Optional. Administrators only. True,
+  /// if the administrator can edit messages of other users and
+  /// can pin messages; channels only.
+  @JsonKey(name: 'can_edit_messages')
+  bool canEditMessages;
+
+  /// Optional. Administrators only.
+  /// True, if the administrator can delete messages of other users.
+  @JsonKey(name: 'can_delete_messages')
+  bool canDeleteMessages;
+
+  /// Optional. Administrators only.
+  /// True, if the administrator can restrict, ban or unban chat members.
+  @JsonKey(name: 'can_restrict_members')
+  bool canRestrictMembers;
+
+  /// Optional. Administrators only.
+  /// True, if the administrator can add new administrators
+  /// with a subset of his own privileges or demote administrators
+  /// that he has promoted, directly or indirectly
+  /// (promoted by administrators that were appointed by the user).
+  @JsonKey(name: 'can_promote_members')
+  bool canPromoteMembers;
+
+  /// Optional. Administrators and restricted only.
+  /// True, if the user is allowed to change the chat title,
+  /// photo and other settings.
+  @JsonKey(name: 'can_change_info')
+  bool canChangeInfo;
+
+  /// Optional. Administrators and restricted only.
+  /// True, if the user is allowed to invite new users to the chat.
+  @JsonKey(name: 'can_invite_users')
+  bool canInviteUsers;
+
+  /// Optional. Administrators and restricted only.
+  /// True, if the user is allowed to pin messages; groups and supergroups only.
+  @JsonKey(name: 'can_pin_messages')
+  bool canPinMessages;
+
+  /// Optional. Restricted only.
+  /// True, if the user is a member of the chat at the moment of the request.
+  @JsonKey(name: 'is_member')
+  bool isMember;
+
+  /// Optional. Restricted only.
+  /// True, if the user is allowed to send text messages, contacts,
+  /// locations and venues.
+  @JsonKey(name: 'can_send_messages')
+  bool canSendMessages;
+
+  /// Optional. Restricted only. True, if the user is allowed
+  /// to send audios, documents, photos, videos, video notes and voice notes.
+  @JsonKey(name: 'can_send_media_messages')
+  bool canSendMediaMessages;
+
+  /// Optional. Restricted only. True, if the user is allowed to send polls.
+  @JsonKey(name: 'can_send_polls')
+  bool canSendPolls;
+
+  /// Optional. Restricted only.
+  /// True, if the user is allowed to send animations,
+  /// games, stickers and use inline bots.
+  @JsonKey(name: 'can_send_other_messages')
+  bool canSendOtherMessages;
+
+  /// Optional. Restricted only.
+  /// True, if the user is allowed to add web page previews to their messages.
+  @JsonKey(name: 'can_add_web_page_previews')
+  bool canAddWebPagePreviews;
 
   ChatMember(
       {this.user,
       this.status,
-      this.custom_title,
-      this.until_date,
-      this.can_be_edited,
-      this.can_post_messages,
-      this.can_edit_messages,
-      this.can_delete_messages,
-      this.can_restrict_members,
-      this.can_promote_members,
-      this.can_change_info,
-      this.can_invite_users,
-      this.can_pin_messages,
-      this.is_member,
-      this.can_send_messages,
-      this.can_send_media_messages,
-      this.can_send_polls,
-      this.can_send_other_messages,
-      this.can_add_web_page_previews});
+      this.customTitle,
+      this.untilDate,
+      this.canBeEdited,
+      this.canPostMessages,
+      this.canEditMessages,
+      this.canDeleteMessages,
+      this.canRestrictMembers,
+      this.canPromoteMembers,
+      this.canChangeInfo,
+      this.canInviteUsers,
+      this.canPinMessages,
+      this.isMember,
+      this.canSendMessages,
+      this.canSendMediaMessages,
+      this.canSendPolls,
+      this.canSendOtherMessages,
+      this.canAddWebPagePreviews});
 
   factory ChatMember.fromJson(Map<String, dynamic> json) =>
       _$ChatMemberFromJson(json);

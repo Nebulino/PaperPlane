@@ -14,6 +14,9 @@ part of passport;
 class PassportElementErrorFiles implements PassportElementError {
   @override
   String source;
+
+  /// Type of the result, must be *gif*
+  @JsonKey(name: 'type', required: true)
   @override
   String type;
   @override

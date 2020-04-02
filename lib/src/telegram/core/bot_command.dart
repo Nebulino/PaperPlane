@@ -10,7 +10,13 @@ part of core;
 /// https://core.telegram.org/bots/api#botcommand
 @JsonSerializable(includeIfNull: false)
 class BotCommand {
+  /// Text of the command, 1-32 characters.
+  /// Can contain only lowercase English letters, digits and underscores.
+  @JsonKey(name: 'command', required: true)
   String command;
+
+  /// Description of the command, 3-256 characters.
+  @JsonKey(name: 'description', required: true)
   String description;
 
   BotCommand({this.command, this.description});

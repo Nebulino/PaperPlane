@@ -45,7 +45,7 @@ void main() {
   form_data.files.add(photo_input_luggage.file);
   form_data.files.add(video_input_luggage.file);
 
-  client.post(method: 'sendMediaGroup', form_data: form_data);
+  client.post(method: 'sendMediaGroup', formData: form_data);
 
   // ################################################################
 }

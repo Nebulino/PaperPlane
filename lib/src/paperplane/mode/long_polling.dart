@@ -66,13 +66,13 @@ class LongPolling {
               offset: offset,
               limit: limit,
               timeout: timeout,
-              allowed_updates: allowed_updates)
+              allowedUpdates: allowed_updates)
           .then((updates) {
         if (updates.isNotEmpty) {
           for (var update in updates) {
             // It adds all the updates in the queue.
             updater.updateQueue(update);
-            offset = update.update_id + 1;
+            offset = update.updateID + 1;
           }
         }
         _long_polling();

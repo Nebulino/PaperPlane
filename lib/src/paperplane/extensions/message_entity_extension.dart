@@ -8,6 +8,7 @@ import 'package:paperplane/telegram.dart';
 
 /// It helps managing a [MessageEntity] or more inside a message.
 extension MessageEntityHelper on Message {
+  /// It returns the entities list of a type.
   List<MessageEntity> getEntitiesByType(MessageEntityType type) {
     var entity_list = entities ?? caption_entities;
     for (var entity in entity_list) {
@@ -18,6 +19,7 @@ extension MessageEntityHelper on Message {
     return entity_list;
   }
 
+  /// It returns the entity index given a type.
   int entityIndex(MessageEntityType type) {
     var entity_list = entities ?? caption_entities;
 
@@ -29,6 +31,7 @@ extension MessageEntityHelper on Message {
     return -1;
   }
 
+  /// It returns the message entity.
   MessageEntity getMessageEntity(MessageEntityType type) {
     var index = entityIndex(type);
 
@@ -39,6 +42,7 @@ extension MessageEntityHelper on Message {
     return null;
   }
 
+  /// It returns the text of a given message entity.
   String getEntityText(MessageEntityType type) {
     var entity = getMessageEntity(type);
 

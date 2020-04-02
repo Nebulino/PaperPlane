@@ -8,8 +8,6 @@ library media;
 
 import 'package:json_annotation/json_annotation.dart';
 
-part 'media.g.dart';
-
 part '../telegram/media/animation.dart';
 part '../telegram/media/audio.dart';
 part '../telegram/media/contact.dart';
@@ -21,3 +19,4 @@ part '../telegram/media/venue.dart';
 part '../telegram/media/video.dart';
 part '../telegram/media/video_note.dart';
 part '../telegram/media/voice.dart';
+part 'media.g.dart';

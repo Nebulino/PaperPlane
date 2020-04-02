@@ -7,10 +7,8 @@
 library user;
 
 import 'package:json_annotation/json_annotation.dart';
-
 import 'package:paperplane/telegram.dart';
-
-part 'user.g.dart';
 
 part '../telegram/user/user.dart';
 part '../telegram/user/user_profile_photos.dart';
+part 'user.g.dart';

@@ -7,11 +7,9 @@
 library sticker;
 
 import 'package:json_annotation/json_annotation.dart';
-
 import 'package:paperplane/telegram.dart';
-
-part 'sticker.g.dart';
 
 part '../telegram/sticker/mask_position.dart';
 part '../telegram/sticker/sticker.dart';
 part '../telegram/sticker/sticker_set.dart';
+part 'sticker.g.dart';
