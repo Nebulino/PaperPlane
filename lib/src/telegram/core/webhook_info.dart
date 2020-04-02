@@ -61,11 +61,13 @@ class WebhookInfo {
 
   /// Helper: converts into a DateTime type from
   /// a int (unix time) received from Telegram API.
-  static DateTime _dateTimeFromTelegramInt(int unixTime) =>
-      unixTime == null ? null : DateTime.fromMillisecondsSinceEpoch(unixTime);
+  static DateTime _dateTimeFromTelegramInt(int unixTime) => unixTime == null
+      ? null
+      : DateTime.fromMillisecondsSinceEpoch(unixTime * 1000);
 
   /// Helper: converts from a DateTime type into
   /// a int (unix time) to be sent to Telegram API.
-  static int _dateTimeToTelegramInt(DateTime dateTime) =>
-      dateTime?.millisecondsSinceEpoch;
+  static int _dateTimeToTelegramInt(DateTime dateTime) => dateTime == null
+      ? null
+      : (dateTime.millisecondsSinceEpoch / 1000).round();
 }
