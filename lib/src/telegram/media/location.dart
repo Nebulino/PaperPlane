@@ -10,7 +10,12 @@ part of media;
 /// https://core.telegram.org/bots/api#location
 @JsonSerializable(includeIfNull: false)
 class Location {
+  /// Longitude as defined by sender.
+  @JsonKey(name: 'longitude', required: true)
   double longitude;
+
+  /// Latitude as defined by sender.
+  @JsonKey(name: 'latitude', required: true)
   double latitude;
 
   Location({this.longitude, this.latitude});

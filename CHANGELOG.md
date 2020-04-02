@@ -1,3 +1,13 @@
+## 0.6.0
+#### Hello Primitives!
+
+- Started using Dart Primitives for some parameters in Telegram API Library.
+- Started renaming all variables to follow Dart Effective Language Rules.
+- Created EncryptedPassportElementType.
+- Converted some types into enums.
+- Created a helper to transform every response from int to Dart Primitives.
+- More documentation.
+
 ## 0.5.2
 #### Big update.
 

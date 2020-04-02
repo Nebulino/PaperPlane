@@ -14,18 +14,30 @@ part of media;
 /// https://core.telegram.org/bots/api#photosize
 @JsonSerializable(includeIfNull: false)
 class PhotoSize {
-  String file_id;
-  String file_unique_id;
+  /// Identifier for this file,
+  /// which can be used to download or reuse the file.
+  @JsonKey(name: 'file_id', required: true)
+  String fileID;
+
+  /// Unique identifier for this file, which is supposed to be the same over
+  /// time and for different bots. Can't be used to download or reuse the file.
+  @JsonKey(name: 'file_unique_id', required: true)
+  String fileUniqueID;
+
+  /// Photo width.
+  @JsonKey(name: 'width', required: true)
   int width;
+
+  /// Photo height.
+  @JsonKey(name: 'height', required: true)
   int height;
-  int file_size;
+
+  /// *Optional.* File size.
+  @JsonKey(name: 'file_size')
+  int fileSize;
 
   PhotoSize(
-      {this.file_id,
-      this.file_unique_id,
-      this.width,
-      this.height,
-      this.file_size});
+      {this.fileID, this.fileUniqueID, this.width, this.height, this.fileSize});
 
   factory PhotoSize.fromJson(Map<String, dynamic> json) =>
       _$PhotoSizeFromJson(json);

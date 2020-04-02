@@ -11,29 +11,70 @@ part of media;
 /// https://core.telegram.org/bots/api#animation
 @JsonSerializable(includeIfNull: false)
 class Animation {
-  String file_id;
-  String file_unique_id;
+  /// Identifier for this file, which can be used to download or reuse the file.
+  @JsonKey(name: 'file_id', required: true)
+  String fileID;
+
+  /// Unique identifier for this file, which is supposed to be the same over
+  /// time and for different bots. Can't be used to download or reuse the file.
+  @JsonKey(name: 'file_unique_id', required: true)
+  String fileUniqueID;
+
+  /// Video width as defined by sender.
+  @JsonKey(name: 'width', required: true)
   int width;
+
+  /// Video height as defined by sender.
+  @JsonKey(name: 'height', required: true)
   int height;
-  int duration;
+
+  /// Duration of the video in seconds as defined by sender.
+  @JsonKey(
+      name: 'duration',
+      required: true,
+      fromJson: _durationFromTelegramSeconds,
+      toJson: _durationToTelegramSeconds)
+  Duration duration;
+
+  /// *Optional.* Animation thumbnail as defined by sender.
+  @JsonKey(name: 'thumb')
   PhotoSize thumb;
-  String file_name;
-  String mime_type;
-  int file_size;
+
+  /// *Optional.* Original animation filename as defined by sender.
+  @JsonKey(name: 'file_name')
+  String fileName;
+
+  /// *Optional.* MIME type of the file as defined by sender.
+  @JsonKey(name: 'mime_type')
+  String mimeType;
+
+  /// *Optional.* File size.
+  @JsonKey(name: 'file_size')
+  int fileSize;
 
   Animation(
-      {this.file_id,
-      this.file_unique_id,
+      {this.fileID,
+      this.fileUniqueID,
       this.width,
       this.height,
       this.duration,
       this.thumb,
-      this.file_name,
-      this.mime_type,
-      this.file_size});
+      this.fileName,
+      this.mimeType,
+      this.fileSize});
 
   factory Animation.fromJson(Map<String, dynamic> json) =>
       _$AnimationFromJson(json);
 
   Map<String, dynamic> toJson() => _$AnimationToJson(this);
+
+  /// Helper: converts into a Duration type from
+  /// a int received from Telegram API.
+  static Duration _durationFromTelegramSeconds(int seconds) =>
+      seconds == null ? null : Duration(seconds: seconds);
+
+  /// Helper: converts into a Duration type into
+  /// a int to be sent to Telegram API.
+  static int _durationToTelegramSeconds(Duration duration) =>
+      duration?.inSeconds;
 }

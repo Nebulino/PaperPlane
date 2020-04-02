@@ -10,17 +10,33 @@ part of media;
 /// https://core.telegram.org/bots/api#contact
 @JsonSerializable(includeIfNull: false)
 class Contact {
-  String phone_number;
-  String first_name;
-  String last_name;
-  int user_id;
+  /// Contact's phone number.
+  @JsonKey(name: 'phone_number', required: true)
+  String phoneNumber;
+
+  /// Contact's first name.
+  @JsonKey(name: 'first_name', required: true)
+  String firstName;
+
+  /// *Optional.* Contact's last name.
+  @JsonKey(name: 'last_name')
+  String lastName;
+
+  /// *Optional.* Contact's user identifier in Telegram.
+  @JsonKey(name: 'user_id')
+  int userID;
+
+  /// *Optional.* Additional data about the contact in the form of a [vCard].
+  ///
+  /// [vCard]: https://en.wikipedia.org/wiki/VCard
+  @JsonKey(name: 'vcard')
   String vcard;
 
   Contact(
-      {this.phone_number,
-      this.first_name,
-      this.last_name,
-      this.user_id,
+      {this.phoneNumber,
+      this.firstName,
+      this.lastName,
+      this.userID,
       this.vcard});
 
   factory Contact.fromJson(Map<String, dynamic> json) =>

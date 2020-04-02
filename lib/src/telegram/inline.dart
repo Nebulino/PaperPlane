@@ -7,10 +7,8 @@
 library inline;
 
 import 'package:json_annotation/json_annotation.dart';
-
+import 'package:paperplane/helpers.dart';
 import 'package:paperplane/telegram.dart';
-
-part 'inline.g.dart';
 
 part '../telegram/inline/chosen_inline_result.dart';
 part '../telegram/inline/inline_query.dart';
@@ -40,3 +38,4 @@ part '../telegram/inline/input_location_message_content.dart';
 part '../telegram/inline/input_message_content.dart';
 part '../telegram/inline/input_text_message_content.dart';
 part '../telegram/inline/input_venue_message_content.dart';
+part 'inline.g.dart';

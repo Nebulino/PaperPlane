@@ -12,16 +12,30 @@ part of passport;
 /// https://core.telegram.org/bots/api#passportelementerrorreverseside
 @JsonSerializable(includeIfNull: false)
 class PassportElementErrorReverseSide implements PassportElementError {
+  /// Error source, must be *reverse_side*.
+  @JsonKey(name: 'source', required: true)
   @override
-  String source;
+  EncryptedPassportElementSource source;
+
+  /// Type of the result, must be *gif*
+  @JsonKey(name: 'type', required: true)
   @override
-  String type;
+  EncryptedPassportElementType type;
+
+  /// Error message.
+  @JsonKey(name: 'message', required: true)
   @override
   String message;
+
+  /// Error source, must be reverse_side.
+  @JsonKey(name: 'file_hash', required: true)
   String file_hash;
 
   PassportElementErrorReverseSide(
-      {this.source, this.type, this.message, this.file_hash});
+      {this.source = EncryptedPassportElementSource.reverse_side,
+      this.type,
+      this.file_hash,
+      this.message});
 
   factory PassportElementErrorReverseSide.fromJson(Map<String, dynamic> json) =>
       _$PassportElementErrorReverseSideFromJson(json);

@@ -15,19 +15,37 @@ part of media;
 /// https://core.telegram.org/bots/api#document
 @JsonSerializable(includeIfNull: false)
 class Document {
-  String file_id;
-  String file_unique_id;
+  /// Identifier for this file, which can be used to download or reuse the file.
+  @JsonKey(name: 'file_id', required: true)
+  String fileID;
+
+  /// Unique identifier for this file, which is supposed to be the same over
+  /// time and for different bots. Can't be used to download or reuse the file.
+  @JsonKey(name: 'file_unique_id', required: true)
+  String fileUniqueID;
+
+  /// *Optional.* Document thumbnail as defined by sender.
+  @JsonKey(name: 'thumb')
   PhotoSize thumb;
-  String file_name;
-  String mime_type;
+
+  /// *Optional.* Original filename as defined by sender.
+  @JsonKey(name: 'file_name')
+  String fileName;
+
+  /// *Optional.* MIME type of the file as defined by sender.
+  @JsonKey(name: 'mime_type')
+  String mimeType;
+
+  /// *Optional.* File size.
+  @JsonKey(name: 'file_size')
   int file_size;
 
   Document(
-      {this.file_id,
-      this.file_unique_id,
+      {this.fileID,
+      this.fileUniqueID,
       this.thumb,
-      this.file_name,
-      this.mime_type,
+      this.fileName,
+      this.mimeType,
       this.file_size});
 
   factory Document.fromJson(Map<String, dynamic> json) =>

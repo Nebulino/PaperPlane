@@ -21,8 +21,16 @@ part of passport;
 /// https://core.telegram.org/bots/api#passportelementerror
 @JsonSerializable(includeIfNull: false)
 class PassportElementError {
-  String source;
-  String type;
+  /// Error source.
+  @JsonKey(name: 'source', required: true)
+  EncryptedPassportElementSource source;
+
+  /// Error type.
+  @JsonKey(name: 'type', required: true)
+  EncryptedPassportElementType type;
+
+  /// Error message.
+  @JsonKey(name: 'message', required: true)
   String message;
 
   PassportElementError({this.source, this.type, this.message});

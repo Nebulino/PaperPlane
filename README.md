@@ -53,7 +53,7 @@ void main() {
   
   updater
     .where((onUpdate) => onUpdate.message.text == 'animate')
-    .listen((update) => methods.sendAnimation(
+    .listen((update) => api.sendAnimation(
       chat_id: message.chat.id,
       animation: Luggage.withFile(file: io.File('./files/gifs/bunny_girl.gif'))));
 }
@@ -74,7 +74,7 @@ dependencies:
 From pub.dev:
 ```yaml
 dependencies:
-  paperplane: ^0.5.2
+  paperplane: ^0.6.0
 ```
 
 ## Features and bugs

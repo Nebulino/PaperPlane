@@ -20,36 +20,85 @@ part of inline;
 /// https://core.telegram.org/bots/api#inlinequeryresultdocument
 @JsonSerializable(includeIfNull: false)
 class InlineQueryResultDocument implements InlineQueryResult {
-  @override
-  String id;
+  /// Type of the result, must be *document*.
+  @JsonKey(name: 'type', required: true)
   @override
   String type;
+
+  /// Unique identifier for this result, 1-64 bytes.
+  @JsonKey(name: 'id', required: true)
+  @override
+  String id;
+
+  /// Title for the result.
+  @JsonKey(name: 'title', required: true)
   String title;
+
+  /// *Optional.* Caption of the document to be sent,
+  /// 0-1024 characters after entities parsing
+  @JsonKey(name: 'caption')
   String caption;
-  String parse_mode;
-  String document_url;
-  String mime_type;
+
+  /// *Optional.*
+  /// Send *[Markdown]* or *[HTML]*,
+  /// if you want Telegram apps to show [bold, italic,
+  /// fixed-width text or inline URLs] in the media caption.
+  ///
+  /// [Markdown]: https://core.telegram.org/bots/api#markdown-style
+  /// [HTML]: https://core.telegram.org/bots/api#html-style
+  /// [bold, italic, fixed-width text or inline URLs]: https://core.telegram.org/bots/api#formatting-options
+  @JsonKey(name: 'parse_mode')
+  ParseMode parseMode;
+
+  /// A valid URL for the file.
+  @JsonKey(name: 'document_url', required: true)
+  String documentUrl;
+
+  /// Mime type of the content of the file,
+  /// either “application/pdf” or “application/zip”.
+  @JsonKey(name: 'mime_type', required: true)
+  String mimeType;
+
+  /// *Optional.* Short description of the result.
+  @JsonKey(name: 'description')
   String description;
-  InlineKeyboardMarkup reply_markup;
-  InputMessageContent input_message_content;
-  String thumb_url;
-  int thumb_width;
-  int thumb_height;
+
+  /// *Optional.* [Inline keyboard] attached to the message.
+  ///
+  /// [Inline keyboard]: https://core.telegram.org/bots#inline-keyboards-and-on-the-fly-updating
+  @JsonKey(name: 'reply_markup')
+  InlineKeyboardMarkup replyMarkup;
+
+  /// *Optional.* Content of the message to be sent instead of the file.
+  @JsonKey(name: 'input_message_content')
+  InputMessageContent inputMessageContent;
+
+  /// *Optional.* URL of the thumbnail (jpeg only) for the file.
+  @JsonKey(name: 'thumb_url')
+  String thumbUrl;
+
+  /// *Optional.* Thumbnail width.
+  @JsonKey(name: 'thumb_width')
+  int thumbWidth;
+
+  /// *Optional.* Thumbnail height.
+  @JsonKey(name: 'thumb_height')
+  int thumbHeight;
 
   InlineQueryResultDocument(
-      {this.id,
-      this.type = 'document',
+      {this.type = 'document',
+      this.id,
       this.title,
       this.caption,
-      this.parse_mode,
-      this.document_url,
-      this.mime_type,
+      this.parseMode,
+      this.documentUrl,
+      this.mimeType,
       this.description,
-      this.reply_markup,
-      this.input_message_content,
-      this.thumb_url,
-      this.thumb_width,
-      this.thumb_height});
+      this.replyMarkup,
+      this.inputMessageContent,
+      this.thumbUrl,
+      this.thumbWidth,
+      this.thumbHeight});
 
   factory InlineQueryResultDocument.fromJson(Map<String, dynamic> json) =>
       _$InlineQueryResultDocumentFromJson(json);

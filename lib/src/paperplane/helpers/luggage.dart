@@ -10,9 +10,17 @@ import 'package:meta/meta.dart';
 import 'package:paperplane/paperplane_exceptions.dart';
 import 'package:path/path.dart' as path;
 
-/// It represent an attachment to be sent over the Telegram API.
-/// Used for better readability and helps the user
-/// not making mistakes in writing a bot.
+/// This object represents the contents of a file to be uploaded.
+/// Must be posted using multipart/form-data in the usual way that
+/// files are uploaded via the browser.
+///
+/// *FunFact:* instead of calling it InputFile, I called Luggage,
+/// because it's a PaperPlane (?)
+/// Got it?! ^-^
+///
+/// [More info...]
+///
+/// [More info...]: https://core.telegram.org/bots/api#inputfile
 class Luggage {
   /// The type of the Luggage content.
   /// It can be: io.File, bytes, url, file_id,

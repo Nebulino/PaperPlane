@@ -10,13 +10,24 @@ part of payment;
 /// https://core.telegram.org/bots/api#shippingquery
 @JsonSerializable(includeIfNull: false)
 class ShippingQuery {
+  /// Unique query identifier.
+  @JsonKey(name: 'id', required: true)
   String id;
+
+  /// User who sent the query.
+  @JsonKey(name: 'from', required: true)
   User from;
-  String invoice_payload;
-  ShippingAddress shipping_address;
+
+  /// Bot specified invoice payload.
+  @JsonKey(name: 'invoice_payload', required: true)
+  String invoicePayload;
+
+  /// User specified shipping address.
+  @JsonKey(name: 'shipping_address', required: true)
+  ShippingAddress shippingAddress;
 
   ShippingQuery(
-      {this.id, this.from, this.invoice_payload, this.shipping_address});
+      {this.id, this.from, this.invoicePayload, this.shippingAddress});
 
   factory ShippingQuery.fromJson(Map<String, dynamic> json) =>
       _$ShippingQueryFromJson(json);

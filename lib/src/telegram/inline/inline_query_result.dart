@@ -31,7 +31,12 @@ part of inline;
 /// https://core.telegram.org/bots/api#inlinequeryresult
 @JsonSerializable(includeIfNull: false)
 class InlineQueryResult {
+  /// Type of the result.
+  @JsonKey(name: 'type', required: true)
   String type;
+
+  /// Unique identifier for this result, 1-64 Bytes.
+  @JsonKey(name: 'id', required: true)
   String id;
 
   InlineQueryResult({this.type, this.id});
