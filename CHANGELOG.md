@@ -1,3 +1,7 @@
+## 0.6.0+1
+
+- Fixed DateTime from Unix int in seconds from telegram and vice versa.
+
 ## 0.6.0
 #### Hello Primitives!
 
