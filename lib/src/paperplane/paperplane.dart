@@ -3,6 +3,8 @@
  * Copyright (c) 2020 Nebulino
  */
 
+import 'dart:io' as io;
+
 import 'package:logger/logger.dart';
 import 'package:meta/meta.dart';
 import 'package:paperplane/helpers.dart';
@@ -29,7 +31,7 @@ class PaperPlane {
   LongPolling _polling;
   Webhook _webhook;
   Bot _me;
-  bool _is_flying = false;
+  bool _isFlying = false;
 
   Dispatcher dispatcher;
 
@@ -76,13 +78,13 @@ class PaperPlane {
     _logger.d('Starting the crosscheck.');
     _me = bot;
     _me.token = _telegram.token;
-    _is_flying = true;
+    _isFlying = true;
     _logger.i('${_me.username} is ready to fly!');
   }
 
   /// It exports a [BotFile] in the same directory of the executable.
   void export({@required Bot bot, String file_name}) {
-    if (_is_flying) {
+    if (_isFlying) {
       _logger.i('Exporting occurs on landing...');
       BotFile.export(bot: bot, fileName: file_name);
     } else {
@@ -103,7 +105,7 @@ class PaperPlane {
         offset: offset,
         limit: limit,
         timeout: timeout,
-        allowed_updates: allowed_updates,
+        allowedUpdates: allowed_updates,
         sync_updater: sync_updater);
   }
 
@@ -111,34 +113,70 @@ class PaperPlane {
   Future<void> startPolling(
       {bool clean = false, bool sync_updater = false}) async {
     _logger.d('Start Polling with clean: ${false}');
-    if (_is_flying) {
+    if (_isFlying) {
       throw PaperPlaneException(
           description: 'The PaperPlane is already on air.');
     }
 
     _polling ??= LongPolling(_telegram, sync_updater: sync_updater)
       ..start(clean)
-      ..updater.onUpdate().listen(_polling_helper);
+      ..updater.onUpdate().listen(_dispatchUpdate);
   }
 
   /// It sends the [Update] in the [Dispatcher].
-  void _polling_helper(Update update) => dispatcher.dispatchUpdate(update);
+  void _dispatchUpdate(Update update) => dispatcher.dispatchUpdate(update);
+
+  /// Setup the [Webhook] before running it.
+  Future<void> setupWebhook(
+      {@required url,
+      @required secretPath,
+      io.File certificate,
+      io.File privateKey,
+      int port = 443,
+      bool toBeUploaded = false,
+      int maxConnections = Constant.MAX_WEBHOOK_CONNECTIONS,
+      List<UpdateType> allowedUpdates}) async {
+    _webhook = Webhook(_telegram,
+        url: url,
+        secretPath: secretPath,
+        certificate: certificate,
+        privateKey: privateKey);
+
+    await _webhook.setWebhook();
+  }
+
+  /// Starts a [Bot] as [Webhook].
+  Future<void> startWebhook() async {
+    if (_isFlying) {
+      throw PaperPlaneException(
+          description: 'The PaperPlane is already on air.');
+    }
+
+    if (_webhook == null) {
+      throw PaperPlaneException(description: 'No webhook to be runned.');
+    }
+
+    await _webhook.start();
+    _webhook.updater.onUpdate().listen(_dispatchUpdate);
+  }
 
   /// It stops the bot.
   void stop() {
-    if (!_is_flying) {
+    if (!_isFlying) {
       throw PaperPlaneException(description: 'No PaperPlane departed.');
     }
     _logger.i('${_me.username} is landing...');
 
     if (_polling != null) {
-      _polling.stop_polling();
+      _polling.stopPolling();
       _polling = null;
     }
 
     if (_webhook != null) {
-      // TODO: implement webhook
-      _webhook = null;
+      _webhook.deleteWebhook().then((_) {
+        _webhook.stopServer();
+        _webhook = null;
+      });
     }
   }
 
@@ -158,12 +196,15 @@ class PaperPlane {
   ///
   /// [updates]: [Update]
   Updater get updater {
-    if (_polling == null) {
+    if (_polling != null) {
+      return _polling.updater;
+    } else if (_webhook != null) {
+      return _webhook.updater;
+    } else {
       throw PaperPlaneException(
           description: "Can't get the updater, "
-              "You're not running a LongPolling bot.");
+              "You're not running the bot as LongPolling or Webhook.");
     }
-    return _polling.updater;
   }
 
   /// Returns the [PaperPlane] instance.
@@ -182,5 +223,5 @@ class PaperPlane {
   Bot get pilot => _me;
 
   /// Return **true** if the bot is running.
-  bool get isFlying => _is_flying;
+  bool get isFlying => _isFlying;
 }

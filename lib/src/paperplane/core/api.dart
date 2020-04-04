@@ -79,7 +79,7 @@ class API {
       {@required String url,
       io.File certificate,
       int maxConnections,
-      List<String> allowedUpdates}) async {
+      List<UpdateType> allowedUpdates}) async {
     final formData = FormData.fromMap({
       'url': url,
       'max_connections': maxConnections,

@@ -12,7 +12,7 @@ class LongPolling {
   int offset;
   int limit;
   int timeout;
-  List<UpdateType> allowed_updates;
+  List<UpdateType> allowedUpdates;
 
   Updater updater;
 
@@ -24,7 +24,7 @@ class LongPolling {
       {this.offset = Constant.POLLING_OFFSET,
       this.limit = Constant.POLLING_LIMIT,
       this.timeout = Constant.POLLING_TIMEOUT,
-      this.allowed_updates,
+      this.allowedUpdates,
       bool sync_updater}) {
     if (limit > Constant.POLLING_LIMIT || limit < 1) {
       throw PaperPlaneException(description: 'Polling Offset is incoherent.');
@@ -51,7 +51,7 @@ class LongPolling {
     if (!_polling) {
       _polling = true;
       if (clean) _cleanUpdates();
-      _long_polling();
+      _longPolling();
     } else {
       PaperPlaneException(
           description: 'PaperPlane is already in polling mode.');
@@ -59,14 +59,14 @@ class LongPolling {
   }
 
   /// It cycle the polling.
-  void _long_polling() {
+  void _longPolling() {
     if (_polling) {
       _telegram.methods
           .getUpdates(
               offset: offset,
               limit: limit,
               timeout: timeout,
-              allowedUpdates: allowed_updates)
+              allowedUpdates: allowedUpdates)
           .then((updates) {
         if (updates.isNotEmpty) {
           for (var update in updates) {
@@ -75,13 +75,13 @@ class LongPolling {
             offset = update.updateID + 1;
           }
         }
-        _long_polling();
+        _longPolling();
       });
     }
   }
 
   /// It stops the polling.
-  void stop_polling() {
+  void stopPolling() {
     if (!_polling) {
       throw PaperPlaneException(description: 'No polling is running.');
     }

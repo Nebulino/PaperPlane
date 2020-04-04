@@ -1,3 +1,8 @@
+## 0.6.1
+#### Hello Webhook!
+
+- A webhook implementation test.
+
 ## 0.6.0+1
 
 - Fixed DateTime from Unix int in seconds from telegram and vice versa.
