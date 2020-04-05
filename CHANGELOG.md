@@ -1,3 +1,13 @@
+## 0.6.2
+#### Fixed LongPolling setup.
+
+- Removed for now UpdateType. Need to check the behaviour.
+
+## 0.6.1
+#### Hello Webhook!
+
+- A webhook implementation test.
+
 ## 0.6.0+1
 
 - Fixed DateTime from Unix int in seconds from telegram and vice versa.

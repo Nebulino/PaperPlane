@@ -25,19 +25,19 @@ class Dispatcher {
 
   /// It creates the Dispatcher that helps dividing each updates into different
   /// queue.
-  Dispatcher({bool sync = false}) {
+  Dispatcher() {
     // Creating all StreamControllers...
-    _messageDispatcher = StreamController.broadcast(sync: sync);
-    _editedMessageDispatcher = StreamController.broadcast(sync: sync);
-    _channelPostDispatcher = StreamController.broadcast(sync: sync);
-    _editedChannelPostDispatcher = StreamController.broadcast(sync: sync);
-    _inlineQueryDispatcher = StreamController.broadcast(sync: sync);
-    _chosenInlineResultDispatcher = StreamController.broadcast(sync: sync);
-    _callbackQueryDispatcher = StreamController.broadcast(sync: sync);
-    _shippingQueryDispatcher = StreamController.broadcast(sync: sync);
-    _preCheckoutQueryDispatcher = StreamController.broadcast(sync: sync);
-    _PollDispatcher = StreamController.broadcast(sync: sync);
-    _pollAnswerDispatcher = StreamController.broadcast(sync: sync);
+    _messageDispatcher = StreamController.broadcast();
+    _editedMessageDispatcher = StreamController.broadcast();
+    _channelPostDispatcher = StreamController.broadcast();
+    _editedChannelPostDispatcher = StreamController.broadcast();
+    _inlineQueryDispatcher = StreamController.broadcast();
+    _chosenInlineResultDispatcher = StreamController.broadcast();
+    _callbackQueryDispatcher = StreamController.broadcast();
+    _shippingQueryDispatcher = StreamController.broadcast();
+    _preCheckoutQueryDispatcher = StreamController.broadcast();
+    _PollDispatcher = StreamController.broadcast();
+    _pollAnswerDispatcher = StreamController.broadcast();
   }
 
   /// Dispatch the update into each queues.

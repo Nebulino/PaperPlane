@@ -30,7 +30,7 @@ class API {
       {int offset,
       int limit,
       int timeout,
-      List<UpdateType> allowedUpdates}) async {
+      List<String> allowedUpdates}) async {
     final parameters = <String, dynamic>{
       'offset': offset,
       'limit': limit,
@@ -79,7 +79,7 @@ class API {
       {@required String url,
       io.File certificate,
       int maxConnections,
-      List<String> allowedUpdates}) async {
+      List<UpdateType> allowedUpdates}) async {
     final formData = FormData.fromMap({
       'url': url,
       'max_connections': maxConnections,
