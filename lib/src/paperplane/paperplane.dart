@@ -35,8 +35,8 @@ class PaperPlane {
 
   Dispatcher dispatcher;
 
-  PaperPlane._(this._telegram, {bool sync = false}) {
-    dispatcher = Dispatcher(sync: sync);
+  PaperPlane._(this._telegram) {
+    dispatcher = Dispatcher();
     _logger = Logger(
         level: Level.info,
         printer: PrettyPrinter(
@@ -99,26 +99,26 @@ class PaperPlane {
       {int offset = 0,
       int limit = 100,
       int timeout = 30,
-      List<UpdateType> allowed_updates,
-      bool sync_updater = false}) {
+      List<String> allowedUpdates}) {
     _polling = LongPolling(_telegram,
         offset: offset,
         limit: limit,
         timeout: timeout,
-        allowedUpdates: allowed_updates,
-        sync_updater: sync_updater);
+        allowedUpdates: allowedUpdates,
+        );
   }
 
   /// Starts a [Bot] as [LongPolling].
   Future<void> startPolling(
-      {bool clean = false, bool sync_updater = false}) async {
+      {bool clean = false}) async {
     _logger.d('Start Polling with clean: ${false}');
     if (_isFlying) {
       throw PaperPlaneException(
           description: 'The PaperPlane is already on air.');
     }
 
-    _polling ??= LongPolling(_telegram, sync_updater: sync_updater)
+    _polling ??= LongPolling(_telegram);
+    _polling
       ..start(clean)
       ..updater.onUpdate().listen(_dispatchUpdate);
   }

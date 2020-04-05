@@ -38,15 +38,14 @@ class Webhook {
       this.port = 433,
       this.toBeUploaded = false,
       this.maxConnections = Constant.MAX_WEBHOOK_CONNECTIONS,
-      this.allowedUpdates,
-      bool sync_updater}) {
+      this.allowedUpdates}) {
     if (Constant.SUPPORT_WEBHOOK_PORTS.contains(port)) {
       throw PaperPlaneException(
           description: 'Port not supported.'
               ' Only [443, 80, 88, 8443] are supported.');
     }
 
-    updater = Updater(sync_updater);
+    updater = Updater();
 
     _securityContext = io.SecurityContext();
     _securityContext.useCertificateChainBytes(certificate.readAsBytesSync());

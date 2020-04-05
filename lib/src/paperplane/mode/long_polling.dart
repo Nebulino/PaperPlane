@@ -12,7 +12,7 @@ class LongPolling {
   int offset;
   int limit;
   int timeout;
-  List<UpdateType> allowedUpdates;
+  List<String> allowedUpdates;
 
   Updater updater;
 
@@ -25,7 +25,7 @@ class LongPolling {
       this.limit = Constant.POLLING_LIMIT,
       this.timeout = Constant.POLLING_TIMEOUT,
       this.allowedUpdates,
-      bool sync_updater}) {
+      }) {
     if (limit > Constant.POLLING_LIMIT || limit < 1) {
       throw PaperPlaneException(description: 'Polling Offset is incoherent.');
     }
@@ -34,7 +34,7 @@ class LongPolling {
       throw PaperPlaneException(description: 'Timeout is not valid.');
     }
 
-    updater = Updater(sync_updater);
+    updater = Updater();
   }
 
   /// Returns the status of the polling.

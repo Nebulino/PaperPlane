@@ -14,8 +14,8 @@ class Updater {
   StreamController<Update> _queue;
 
   /// It creates the Updater.
-  Updater(bool sync) {
-    _queue = StreamController.broadcast(sync: sync);
+  Updater() {
+    _queue = StreamController.broadcast();
   }
 
   /// It adds a new update in the update queue.

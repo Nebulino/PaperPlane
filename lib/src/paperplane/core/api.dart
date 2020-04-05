@@ -30,7 +30,7 @@ class API {
       {int offset,
       int limit,
       int timeout,
-      List<UpdateType> allowedUpdates}) async {
+      List<String> allowedUpdates}) async {
     final parameters = <String, dynamic>{
       'offset': offset,
       'limit': limit,

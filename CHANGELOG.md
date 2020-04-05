@@ -1,3 +1,8 @@
+## 0.6.2
+#### Fixed LongPolling setup.
+
+- Removed for now UpdateType. Need to check the behaviour.
+
 ## 0.6.1
 #### Hello Webhook!
 
