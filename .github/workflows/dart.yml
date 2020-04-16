@@ -17,6 +17,9 @@ jobs:
     - name: Install dependencies.
       run: pub get
       
+    - name: Clean the project if necessary
+      run: sh ./clean.sh
+      
     - name: Generate .g.dart object files.
       run: pub run build_runner build
       
