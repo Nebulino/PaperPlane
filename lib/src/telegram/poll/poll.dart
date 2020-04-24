@@ -49,6 +49,32 @@ class Poll {
   @JsonKey(name: 'correct_option_id')
   int correctOptionID;
 
+  /// *Optional.* Text that is shown when a user chooses an incorrect answer
+  /// or taps on the lamp icon in a quiz-style poll, 0-200 characters.
+  @JsonKey(name: 'explanation')
+  String explanation;
+
+  /// *Optional.* Special entities like usernames, URLs, bot commands, etc.
+  /// that appear in the *explanation*.
+  @JsonKey(name: 'explanation_entities')
+  List<MessageEntity> explanation_entities;
+
+  /// *Optional.*
+  /// Amount of time in seconds the poll will be active after creation.
+  @JsonKey(
+      name: 'open_period',
+      fromJson: _durationFromTelegramSeconds,
+      toJson: _durationToTelegramSeconds)
+  Duration openPeriod;
+
+  /// *Optional.*
+  /// Point in time (Unix timestamp) when the poll will be automatically closed.
+  @JsonKey(
+      name: 'close_date',
+      fromJson: _dateTimeFromTelegramInt,
+      toJson: _dateTimeToTelegramInt)
+  DateTime closeDate;
+
   Poll(
       {this.id,
       this.question,
@@ -58,9 +84,35 @@ class Poll {
       this.isAnonymous,
       this.type,
       this.allowsMultipleAnswers,
-      this.correctOptionID});
+      this.correctOptionID,
+      this.explanation,
+      this.explanation_entities,
+      this.openPeriod,
+      this.closeDate});
 
   factory Poll.fromJson(Map<String, dynamic> json) => _$PollFromJson(json);
 
   Map<String, dynamic> toJson() => _$PollToJson(this);
+
+  /// Helper: converts into a Duration type from
+  /// a int received from Telegram API.
+  static Duration _durationFromTelegramSeconds(int seconds) =>
+      seconds == null ? null : Duration(seconds: seconds);
+
+  /// Helper: converts into a Duration type into
+  /// a int to be sent to Telegram API.
+  static int _durationToTelegramSeconds(Duration duration) =>
+      duration?.inSeconds;
+
+  /// Helper: converts into a DateTime type from
+  /// a int (unix time) received from Telegram API.
+  static DateTime _dateTimeFromTelegramInt(int unixTime) => unixTime == null
+      ? null
+      : DateTime.fromMillisecondsSinceEpoch(unixTime * 1000);
+
+  /// Helper: converts from a DateTime type into
+  /// a int (unix time) to be sent to Telegram API.
+  static int _dateTimeToTelegramInt(DateTime dateTime) => dateTime == null
+      ? null
+      : (dateTime.millisecondsSinceEpoch / 1000).round();
 }

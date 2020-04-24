@@ -273,6 +273,10 @@ extension MessageHelper on Message {
       PollType type,
       bool allows_multiple_answers,
       int correct_option_id,
+      String explanation,
+      ParseMode explanationParseMode,
+      Duration openPeriod,
+      DateTime closeDate,
       bool is_closed,
       bool disableNotification,
       ReplyMarkup replyMarkup}) {
@@ -284,6 +288,10 @@ extension MessageHelper on Message {
         type: type,
         allowsMultipleAnswers: allows_multiple_answers,
         correctOptionID: correct_option_id,
+        explanation: explanation,
+        explanationParseMode: explanationParseMode,
+        openPeriod: openPeriod,
+        closeDate: closeDate,
         isClosed: is_closed,
         disableNotification: disableNotification,
         replyToMessageID: quote_message ? messageID : null,
@@ -297,11 +305,13 @@ extension MessageHelper on Message {
 
   /// Helps replying with a dice directly.
   Future<Message> replyDice(
-      {bool quote_message = true,
+      {DiceType emoji,
+      bool quote_message = true,
       bool disableNotification,
       ReplyMarkup replyMarkup}) async {
     return _api.sendDice(
         chatID: ChatID.fromID(chat.id),
+        emoji: emoji,
         disableNotification: disableNotification,
         replyToMessageID: quote_message ? messageID : null,
         replyMarkup: replyMarkup);

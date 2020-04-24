@@ -29,12 +29,12 @@ void main() async {
   final validate = await api.setMyCommands(commands: commands);
 
   await api.sendMessage(
-      chatID: ChatID.fromID(TestValues.DEV),
+      chatID: ChatID.fromID(TestValues.MASTER),
       text: '${start_command.command} and '
           '${help_command.command} set: ${validate}');
 
   final message_commands = await api.getMyCommands();
   print(message_commands);
 
-  await api.sendDice(chatID: ChatID.fromID(TestValues.DEV));
+  await api.sendDice(chatID: ChatID.fromID(TestValues.MASTER));
 }

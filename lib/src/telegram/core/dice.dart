@@ -13,11 +13,15 @@ part of core;
 /// https://core.telegram.org/bots/api#dice
 @JsonSerializable(includeIfNull: false)
 class Dice {
+  /// Emoji on which the dice throw animation is based.
+  @JsonKey(name: 'emoji')
+  String emoji;
+
   /// Value of the dice, 1-6.
   @JsonKey(name: 'value', required: true)
   int value;
 
-  Dice({this.value});
+  Dice({this.emoji, this.value});
 
   factory Dice.fromJson(Map<String, dynamic> json) => _$DiceFromJson(json);
 

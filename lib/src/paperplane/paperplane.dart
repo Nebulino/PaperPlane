@@ -100,17 +100,17 @@ class PaperPlane {
       int limit = 100,
       int timeout = 30,
       List<String> allowedUpdates}) {
-    _polling = LongPolling(_telegram,
-        offset: offset,
-        limit: limit,
-        timeout: timeout,
-        allowedUpdates: allowedUpdates,
-        );
+    _polling = LongPolling(
+      _telegram,
+      offset: offset,
+      limit: limit,
+      timeout: timeout,
+      allowedUpdates: allowedUpdates,
+    );
   }
 
   /// Starts a [Bot] as [LongPolling].
-  Future<void> startPolling(
-      {bool clean = false}) async {
+  Future<void> startPolling({bool clean = false}) async {
     _logger.d('Start Polling with clean: ${false}');
     if (_isFlying) {
       throw PaperPlaneException(

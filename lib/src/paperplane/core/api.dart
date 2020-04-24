@@ -27,10 +27,7 @@ class API {
   ///
   /// https://core.telegram.org/bots/api#getupdates.
   Future<List<Update>> getUpdates(
-      {int offset,
-      int limit,
-      int timeout,
-      List<String> allowedUpdates}) async {
+      {int offset, int limit, int timeout, List<String> allowedUpdates}) async {
     final parameters = <String, dynamic>{
       'offset': offset,
       'limit': limit,
@@ -813,10 +810,18 @@ class API {
       PollType type,
       bool allowsMultipleAnswers,
       int correctOptionID,
+      String explanation,
+      ParseMode explanationParseMode,
+      Duration openPeriod,
+      DateTime closeDate,
       bool isClosed,
       bool disableNotification,
       int replyToMessageID,
       ReplyMarkup replyMarkup}) async {
+    int _dateTimeToTelegramInt(DateTime dateTime) => dateTime == null
+        ? null
+        : (dateTime.millisecondsSinceEpoch / 1000).round();
+
     var formData = FormData.fromMap({
       'chat_id': chatID,
       'question': question,
@@ -825,6 +830,10 @@ class API {
       'type': (type ?? PollType.REGULAR.type),
       'allows_multiple_answers': allowsMultipleAnswers,
       'correct_option_id': correctOptionID,
+      'explanation': explanation,
+      'explanation_parse_mode': explanationParseMode,
+      'open_period': openPeriod?.inSeconds,
+      'close_date': _dateTimeToTelegramInt(closeDate),
       'is_closed': isClosed,
       'disable_notification': disableNotification,
       'reply_to_message_id': replyToMessageID,
@@ -1963,11 +1972,13 @@ class API {
   /// One dice at a time!)
   Future<Message> sendDice(
       {@required ChatID chatID,
+      DiceType emoji,
       bool disableNotification,
       int replyToMessageID,
       ReplyMarkup replyMarkup}) async {
     final formData = FormData.fromMap({
       'chat_id': chatID,
+      'emoji': emoji?.emoji ?? DiceType.dice.emoji,
       'disable_notification': disableNotification,
       'reply_to_message_id': replyToMessageID,
       'reply_markup': jsonEncode(replyMarkup)
