@@ -20,12 +20,13 @@ class LongPolling {
 
   bool _polling = false;
 
-  LongPolling(this._telegram,
-      {this.offset = Constant.POLLING_OFFSET,
-      this.limit = Constant.POLLING_LIMIT,
-      this.timeout = Constant.POLLING_TIMEOUT,
-      this.allowedUpdates,
-      }) {
+  LongPolling(
+    this._telegram, {
+    this.offset = Constant.POLLING_OFFSET,
+    this.limit = Constant.POLLING_LIMIT,
+    this.timeout = Constant.POLLING_TIMEOUT,
+    this.allowedUpdates,
+  }) {
     if (limit > Constant.POLLING_LIMIT || limit < 1) {
       throw PaperPlaneException(description: 'Polling Offset is incoherent.');
     }

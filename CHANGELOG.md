@@ -1,3 +1,11 @@
+## 0.6.3
+#### Big update.
+
+- Updated to Telegram API v4.8.
+- Modified some docs.
+- Modified examples and created dice/dart example.
+- Created DiceType to control which emoji are usable.
+
 ## 0.6.2
 #### Fixed LongPolling setup.
 

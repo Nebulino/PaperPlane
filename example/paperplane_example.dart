@@ -19,7 +19,6 @@ void main() {
   // - token
   var paperplane = PaperPlane.createBot(token: TestValues.TOKEN);
   final master = ChatID.fromID(TestValues.MASTER);
-  final dev_lab = ChatID.fromID(TestValues.DEV);
 
   // => Turn on the engines. Okay it's a paperplane, but still looks cool?
   // If you want to export the bot for future use when turning off.
