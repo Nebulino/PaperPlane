@@ -79,8 +79,8 @@ dependencies:
 
 ## Features and bugs
 
-#### All API up-to v4.7 are supported.
-##### Implemented a base for a future solid implementation of Long Polling.
+### All API up-to v4.7 are supported
+#### Implemented a base for a future solid implementation of Long Polling
 
 Still not implemented the Webhook.
 
@@ -90,6 +90,6 @@ I have created all Telegram API Classes for each Telegram Types.
 
 Please file feature requests and bugs at the [issue tracker][tracker].
 
-[tracker]: http://github.com/Nebulino/PaperPlane/issues
-
 ##### Copyright © 2020 Nebulino
+
+[tracker]: http://github.com/Nebulino/PaperPlane/issues
