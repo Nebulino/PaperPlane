@@ -79,10 +79,10 @@ dependencies:
 
 ## Features and bugs
 
-### All API up-to v4.7 are supported
+### All API up-to v4.8 are supported
 #### Implemented a base for a future solid implementation of Long Polling
 
-Still not implemented the Webhook.
+Still, not implemented the Webhook.
 
 You can use Long Polling mode for now. 
 
