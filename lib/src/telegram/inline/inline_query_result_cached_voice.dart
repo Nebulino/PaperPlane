@@ -59,15 +59,16 @@ class InlineQueryResultCachedVoice implements InlineQueryResult {
   @JsonKey(name: 'input_message_content')
   InputMessageContent inputMessageContent;
 
-  InlineQueryResultCachedVoice(
-      {this.type = 'voice',
-      this.id,
-      this.voiceFileID,
-      this.title,
-      this.caption,
-      this.parseMode,
-      this.replyMarkup,
-      this.inputMessageContent});
+  InlineQueryResultCachedVoice({
+    this.type = 'voice',
+    this.id,
+    this.voiceFileID,
+    this.title,
+    this.caption,
+    this.parseMode,
+    this.replyMarkup,
+    this.inputMessageContent,
+  });
 
   factory InlineQueryResultCachedVoice.fromJson(Map<String, dynamic> json) =>
       _$InlineQueryResultCachedVoiceFromJson(json);

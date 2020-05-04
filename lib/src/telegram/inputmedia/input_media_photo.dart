@@ -46,8 +46,12 @@ class InputMediaPhoto implements InputMedia {
   @override
   ParseMode parseMode;
 
-  InputMediaPhoto(
-      {this.type = 'photo', this.media, this.caption, this.parseMode});
+  InputMediaPhoto({
+    this.type = 'photo',
+    this.media,
+    this.caption,
+    this.parseMode,
+  });
 
   factory InputMediaPhoto.fromJson(Map<String, dynamic> json) =>
       _$InputMediaPhotoFromJson(json);

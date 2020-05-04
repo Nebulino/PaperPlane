@@ -49,15 +49,19 @@ class PaperPlane {
   }
 
   /// Creates a PaperPlane instance from a token.
-  PaperPlane.createBot({@required String token})
-      : this._(Telegram(token: token));
+  PaperPlane.createBot({
+    @required String token,
+  }) : this._(Telegram(token: token));
 
   /// Creates a PaperPlane instance from a [BotFile] object.
-  PaperPlane.createFromFile({@required BotFile bot_file})
-      : this._(Telegram(token: (bot_file.data.token)));
+  PaperPlane.createFromFile({
+    @required BotFile bot_file,
+  }) : this._(Telegram(token: (bot_file.data.token)));
 
   /// Creates a PaperPlane instance from a [Telegram] Object.
-  PaperPlane.importTelegram({@required Telegram telegram}) : this._(telegram);
+  PaperPlane.importTelegram({
+    @required Telegram telegram,
+  }) : this._(telegram);
 
   /// Buckle up. We're turning on the engine.
   /// It starts the api stuff...
@@ -74,7 +78,9 @@ class PaperPlane {
 
   /// Fasten your seat belts, we're going to fly.
   /// It set up the [Bot] information.
-  void _crosscheck(Bot bot) {
+  void _crosscheck(
+    Bot bot,
+  ) {
     _logger.d('Starting the crosscheck.');
     _me = bot;
     _me.token = _telegram.token;
@@ -83,7 +89,10 @@ class PaperPlane {
   }
 
   /// It exports a [BotFile] in the same directory of the executable.
-  void export({@required Bot bot, String file_name}) {
+  void export({
+    @required Bot bot,
+    String file_name,
+  }) {
     if (_isFlying) {
       _logger.i('Exporting occurs on landing...');
       BotFile.export(bot: bot, fileName: file_name);
@@ -95,11 +104,12 @@ class PaperPlane {
   }
 
   /// Setup the [LongPolling] before running it.
-  void setupLongPolling(
-      {int offset = 0,
-      int limit = 100,
-      int timeout = 30,
-      List<String> allowedUpdates}) {
+  void setupLongPolling({
+    int offset = 0,
+    int limit = 100,
+    int timeout = 30,
+    List<String> allowedUpdates,
+  }) {
     _polling = LongPolling(
       _telegram,
       offset: offset,
@@ -110,7 +120,9 @@ class PaperPlane {
   }
 
   /// Starts a [Bot] as [LongPolling].
-  Future<void> startPolling({bool clean = false}) async {
+  Future<void> startPolling({
+    bool clean = false,
+  }) async {
     _logger.d('Start Polling with clean: ${false}');
     if (_isFlying) {
       throw PaperPlaneException(
@@ -127,20 +139,23 @@ class PaperPlane {
   void _dispatchUpdate(Update update) => dispatcher.dispatchUpdate(update);
 
   /// Setup the [Webhook] before running it.
-  Future<void> setupWebhook(
-      {@required url,
-      @required secretPath,
-      io.File certificate,
-      io.File privateKey,
-      int port = 443,
-      bool toBeUploaded = false,
-      int maxConnections = Constant.MAX_WEBHOOK_CONNECTIONS,
-      List<UpdateType> allowedUpdates}) async {
-    _webhook = Webhook(_telegram,
-        url: url,
-        secretPath: secretPath,
-        certificate: certificate,
-        privateKey: privateKey);
+  Future<void> setupWebhook({
+    @required url,
+    @required secretPath,
+    io.File certificate,
+    io.File privateKey,
+    int port = 443,
+    bool toBeUploaded = false,
+    int maxConnections = Constant.MAX_WEBHOOK_CONNECTIONS,
+    List<UpdateType> allowedUpdates,
+  }) async {
+    _webhook = Webhook(
+      _telegram,
+      url: url,
+      secretPath: secretPath,
+      certificate: certificate,
+      privateKey: privateKey,
+    );
 
     await _webhook.setWebhook();
   }
@@ -187,7 +202,9 @@ class PaperPlane {
   }
 
   /// Set a log level. The default is **Level.info**.
-  void setLoggerLevel({@required Level level}) {
+  void setLoggerLevel({
+    @required Level level,
+  }) {
     Logger.level = level;
     _logger.d('Settings the logger level to ${level}.');
   }

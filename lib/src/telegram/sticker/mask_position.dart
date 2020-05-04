@@ -34,7 +34,12 @@ class MaskPosition {
   @JsonKey(name: 'scale', required: true)
   double scale;
 
-  MaskPosition({this.point, this.xShift, this.yShift, this.scale});
+  MaskPosition({
+    this.point,
+    this.xShift,
+    this.yShift,
+    this.scale,
+  });
 
   factory MaskPosition.fromJson(Map<String, dynamic> json) =>
       _$MaskPositionFromJson(json);

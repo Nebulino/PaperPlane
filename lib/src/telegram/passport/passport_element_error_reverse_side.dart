@@ -31,11 +31,12 @@ class PassportElementErrorReverseSide implements PassportElementError {
   @JsonKey(name: 'file_hash', required: true)
   String file_hash;
 
-  PassportElementErrorReverseSide(
-      {this.source = EncryptedPassportElementSource.reverse_side,
-      this.type,
-      this.file_hash,
-      this.message});
+  PassportElementErrorReverseSide({
+    this.source = EncryptedPassportElementSource.reverse_side,
+    this.type,
+    this.file_hash,
+    this.message,
+  });
 
   factory PassportElementErrorReverseSide.fromJson(Map<String, dynamic> json) =>
       _$PassportElementErrorReverseSideFromJson(json);

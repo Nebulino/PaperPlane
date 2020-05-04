@@ -75,20 +75,21 @@ class Poll {
       toJson: _dateTimeToTelegramInt)
   DateTime closeDate;
 
-  Poll(
-      {this.id,
-      this.question,
-      this.options,
-      this.totalVoterCount,
-      this.isClosed,
-      this.isAnonymous,
-      this.type,
-      this.allowsMultipleAnswers,
-      this.correctOptionID,
-      this.explanation,
-      this.explanation_entities,
-      this.openPeriod,
-      this.closeDate});
+  Poll({
+    this.id,
+    this.question,
+    this.options,
+    this.totalVoterCount,
+    this.isClosed,
+    this.isAnonymous,
+    this.type,
+    this.allowsMultipleAnswers,
+    this.correctOptionID,
+    this.explanation,
+    this.explanation_entities,
+    this.openPeriod,
+    this.closeDate,
+  });
 
   factory Poll.fromJson(Map<String, dynamic> json) => _$PollFromJson(json);
 

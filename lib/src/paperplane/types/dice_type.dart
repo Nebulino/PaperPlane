@@ -6,7 +6,10 @@
 /// Contains every type of [sendDice] animations.
 ///
 /// [sendDice] : https://telegram.org/blog/400-million#bullseye
-enum DiceType { dice, dart }
+enum DiceType {
+  dice,
+  dart,
+}
 
 extension DiceTypeExtension on DiceType {
   String get emoji {

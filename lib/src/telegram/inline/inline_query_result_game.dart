@@ -37,8 +37,12 @@ class InlineQueryResultGame implements InlineQueryResult {
   @JsonKey(name: 'reply_markup')
   InlineKeyboardMarkup replyMarkup;
 
-  InlineQueryResultGame(
-      {this.type = 'game', this.id, this.gameShortName, this.replyMarkup});
+  InlineQueryResultGame({
+    this.type = 'game',
+    this.id,
+    this.gameShortName,
+    this.replyMarkup,
+  });
 
   factory InlineQueryResultGame.fromJson(Map<String, dynamic> json) =>
       _$InlineQueryResultGameFromJson(json);

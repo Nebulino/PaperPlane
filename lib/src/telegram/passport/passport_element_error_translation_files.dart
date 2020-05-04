@@ -35,11 +35,12 @@ class PassportElementErrorTranslationFiles implements PassportElementError {
   @override
   String message;
 
-  PassportElementErrorTranslationFiles(
-      {this.source = EncryptedPassportElementSource.translation_files,
-      this.type,
-      this.fileHashes,
-      this.message});
+  PassportElementErrorTranslationFiles({
+    this.source = EncryptedPassportElementSource.translation_files,
+    this.type,
+    this.fileHashes,
+    this.message,
+  });
 
   factory PassportElementErrorTranslationFiles.fromJson(
           Map<String, dynamic> json) =>

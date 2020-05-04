@@ -35,7 +35,7 @@ enum EncryptedPassportElementType {
   passport_registration,
   temporary_registration,
   phone_number,
-  email
+  email,
 }
 
 extension EncryptedPassportElementTypeExtension

@@ -64,16 +64,17 @@ class InlineQueryResultCachedPhoto implements InlineQueryResult {
   @JsonKey(name: 'input_message_content')
   InputMessageContent inputMessageContent;
 
-  InlineQueryResultCachedPhoto(
-      {this.type = 'photo',
-      this.id,
-      this.photoFileID,
-      this.title,
-      this.description,
-      this.caption,
-      this.parseMode,
-      this.replyMarkup,
-      this.inputMessageContent});
+  InlineQueryResultCachedPhoto({
+    this.type = 'photo',
+    this.id,
+    this.photoFileID,
+    this.title,
+    this.description,
+    this.caption,
+    this.parseMode,
+    this.replyMarkup,
+    this.inputMessageContent,
+  });
 
   factory InlineQueryResultCachedPhoto.fromJson(Map<String, dynamic> json) =>
       _$InlineQueryResultCachedPhotoFromJson(json);

@@ -19,7 +19,10 @@ class BotCommand {
   @JsonKey(name: 'description', required: true)
   String description;
 
-  BotCommand({this.command, this.description});
+  BotCommand({
+    this.command,
+    this.description,
+  });
 
   factory BotCommand.fromJson(Map<String, dynamic> json) =>
       _$BotCommandFromJson(json);

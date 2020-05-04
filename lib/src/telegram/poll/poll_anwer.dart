@@ -23,7 +23,11 @@ class PollAnswer {
   @JsonKey(name: 'options_ids', required: true)
   List<int> optionsIDs;
 
-  PollAnswer({this.pollID, this.user, this.optionsIDs});
+  PollAnswer({
+    this.pollID,
+    this.user,
+    this.optionsIDs,
+  });
 
   factory PollAnswer.fromJson(Map<String, dynamic> json) =>
       _$PollAnswerFromJson(json);

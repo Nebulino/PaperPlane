@@ -29,8 +29,11 @@ class InputLocationMessageContent implements InputMessageContent {
       toJson: _durationToTelegramSeconds)
   Duration live_period;
 
-  InputLocationMessageContent(
-      {this.latitude, this.longitude, this.live_period});
+  InputLocationMessageContent({
+    this.latitude,
+    this.longitude,
+    this.live_period,
+  });
 
   factory InputLocationMessageContent.fromJson(Map<String, dynamic> json) =>
       _$InputLocationMessageContentFromJson(json);

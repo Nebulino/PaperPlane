@@ -33,12 +33,13 @@ class Venue {
   @JsonKey(name: 'foursquare_type')
   String foursquareType;
 
-  Venue(
-      {this.location,
-      this.title,
-      this.address,
-      this.foursquareID,
-      this.foursquareType});
+  Venue({
+    this.location,
+    this.title,
+    this.address,
+    this.foursquareID,
+    this.foursquareType,
+  });
 
   factory Venue.fromJson(Map<String, dynamic> json) => _$VenueFromJson(json);
 

@@ -39,13 +39,14 @@ class InputVenueMessageContent implements InputMessageContent {
   @JsonKey(name: 'foursquare_type')
   String foursquareType;
 
-  InputVenueMessageContent(
-      {this.latitude,
-      this.longitude,
-      this.title,
-      this.address,
-      this.foursquareID,
-      this.foursquareType});
+  InputVenueMessageContent({
+    this.latitude,
+    this.longitude,
+    this.title,
+    this.address,
+    this.foursquareID,
+    this.foursquareType,
+  });
 
   factory InputVenueMessageContent.fromJson(Map<String, dynamic> json) =>
       _$InputVenueMessageContentFromJson(json);

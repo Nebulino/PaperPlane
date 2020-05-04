@@ -4,7 +4,10 @@
  */
 
 /// A list of [Poll] types for telegram.
-enum PollType { QUIZ, REGULAR }
+enum PollType {
+  QUIZ,
+  REGULAR,
+}
 
 extension PollTypeExtension on PollType {
   String get type {

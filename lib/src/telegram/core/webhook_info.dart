@@ -45,14 +45,15 @@ class WebhookInfo {
   @JsonKey(name: 'allowed_updates')
   List<String> allowedUpdates;
 
-  WebhookInfo(
-      {this.url,
-      this.hasCustomCertificate,
-      this.pendingUpdateCount,
-      this.lastErrorDate,
-      this.lastErrorMessage,
-      this.maxConnections,
-      this.allowedUpdates});
+  WebhookInfo({
+    this.url,
+    this.hasCustomCertificate,
+    this.pendingUpdateCount,
+    this.lastErrorDate,
+    this.lastErrorMessage,
+    this.maxConnections,
+    this.allowedUpdates,
+  });
 
   factory WebhookInfo.fromJson(Map<String, dynamic> json) =>
       _$WebhookInfoFromJson(json);

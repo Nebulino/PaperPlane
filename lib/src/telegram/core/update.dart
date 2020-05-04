@@ -88,19 +88,20 @@ class Update {
   @JsonKey(name: 'poll_answer')
   PollAnswer pollAnswer;
 
-  Update(
-      {this.updateID,
-      this.message,
-      this.editedMessage,
-      this.channelPost,
-      this.editedChannelPost,
-      this.inlineQuery,
-      this.chosenInlineResult,
-      this.callbackQuery,
-      this.shippingQuery,
-      this.preCheckoutQuery,
-      this.poll,
-      this.pollAnswer});
+  Update({
+    this.updateID,
+    this.message,
+    this.editedMessage,
+    this.channelPost,
+    this.editedChannelPost,
+    this.inlineQuery,
+    this.chosenInlineResult,
+    this.callbackQuery,
+    this.shippingQuery,
+    this.preCheckoutQuery,
+    this.poll,
+    this.pollAnswer,
+  });
 
   factory Update.fromJson(Map<String, dynamic> json) => _$UpdateFromJson(json);
 

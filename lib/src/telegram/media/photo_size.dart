@@ -36,8 +36,13 @@ class PhotoSize {
   @JsonKey(name: 'file_size')
   int fileSize;
 
-  PhotoSize(
-      {this.fileID, this.fileUniqueID, this.width, this.height, this.fileSize});
+  PhotoSize({
+    this.fileID,
+    this.fileUniqueID,
+    this.width,
+    this.height,
+    this.fileSize,
+  });
 
   factory PhotoSize.fromJson(Map<String, dynamic> json) =>
       _$PhotoSizeFromJson(json);

@@ -85,17 +85,18 @@ class EncryptedPassportElement {
   @JsonKey(name: 'hash')
   String hash;
 
-  EncryptedPassportElement(
-      {this.type,
-      this.data,
-      this.phoneNumber,
-      this.email,
-      this.files,
-      this.frontSide,
-      this.reverseSide,
-      this.selfie,
-      this.translation,
-      this.hash});
+  EncryptedPassportElement({
+    this.type,
+    this.data,
+    this.phoneNumber,
+    this.email,
+    this.files,
+    this.frontSide,
+    this.reverseSide,
+    this.selfie,
+    this.translation,
+    this.hash,
+  });
 
   factory EncryptedPassportElement.fromJson(Map<String, dynamic> json) =>
       _$EncryptedPassportElementFromJson(json);

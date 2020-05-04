@@ -46,14 +46,15 @@ class SuccessfulPayment {
   @JsonKey(name: 'provider_payment_charge_id')
   String providerPaymentChargeID;
 
-  SuccessfulPayment(
-      {this.currency,
-      this.totalAmount,
-      this.invoicePayload,
-      this.shippingOptionID,
-      this.orderInfo,
-      this.telegramPaymentChargeID,
-      this.providerPaymentChargeID});
+  SuccessfulPayment({
+    this.currency,
+    this.totalAmount,
+    this.invoicePayload,
+    this.shippingOptionID,
+    this.orderInfo,
+    this.telegramPaymentChargeID,
+    this.providerPaymentChargeID,
+  });
 
   factory SuccessfulPayment.fromJson(Map<String, dynamic> json) =>
       _$SuccessfulPaymentFromJson(json);

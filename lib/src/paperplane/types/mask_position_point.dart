@@ -6,7 +6,12 @@
 /// Contains every type of [mask position point].
 ///
 /// [mask position point]: [MaskPosition]
-enum MaskPositionPoint { forehead, eyes, mouth, chin }
+enum MaskPositionPoint {
+  forehead,
+  eyes,
+  mouth,
+  chin,
+}
 
 extension MaskPositionPointExtension on MaskPositionPoint {
   String get position {

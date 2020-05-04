@@ -10,13 +10,19 @@ import 'package:paperplane/paperplane_exceptions.dart';
 class ChatID {
   dynamic _identifier;
 
-  ChatID._(this._identifier);
+  ChatID._(
+    this._identifier,
+  );
 
   /// It creates a ChatID using a integer chat_id.
-  ChatID.fromID(int id) : this._(id);
+  ChatID.fromID(
+    int id,
+  ) : this._(id);
 
   /// It creates a ChatID using a name of the Target Channel or Group.
-  ChatID.fromName(String name) : this._(name);
+  ChatID.fromName(
+    String name,
+  ) : this._(name);
 
   int get id {
     if (_identifier.runtimeType == int) {

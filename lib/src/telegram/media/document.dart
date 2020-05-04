@@ -40,13 +40,14 @@ class Document {
   @JsonKey(name: 'file_size')
   int file_size;
 
-  Document(
-      {this.fileID,
-      this.fileUniqueID,
-      this.thumb,
-      this.fileName,
-      this.mimeType,
-      this.file_size});
+  Document({
+    this.fileID,
+    this.fileUniqueID,
+    this.thumb,
+    this.fileName,
+    this.mimeType,
+    this.file_size,
+  });
 
   factory Document.fromJson(Map<String, dynamic> json) =>
       _$DocumentFromJson(json);

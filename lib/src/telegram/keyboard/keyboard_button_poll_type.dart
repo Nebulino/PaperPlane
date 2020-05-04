@@ -18,7 +18,9 @@ class KeyboardButtonPollType {
   @JsonKey(name: 'type')
   String type;
 
-  KeyboardButtonPollType({this.type});
+  KeyboardButtonPollType({
+    this.type,
+  });
 
   factory KeyboardButtonPollType.fromJson(Map<String, dynamic> json) =>
       _$KeyboardButtonPollTypeFromJson(json);

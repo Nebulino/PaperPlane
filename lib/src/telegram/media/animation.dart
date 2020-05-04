@@ -52,16 +52,17 @@ class Animation {
   @JsonKey(name: 'file_size')
   int fileSize;
 
-  Animation(
-      {this.fileID,
-      this.fileUniqueID,
-      this.width,
-      this.height,
-      this.duration,
-      this.thumb,
-      this.fileName,
-      this.mimeType,
-      this.fileSize});
+  Animation({
+    this.fileID,
+    this.fileUniqueID,
+    this.width,
+    this.height,
+    this.duration,
+    this.thumb,
+    this.fileName,
+    this.mimeType,
+    this.fileSize,
+  });
 
   factory Animation.fromJson(Map<String, dynamic> json) =>
       _$AnimationFromJson(json);

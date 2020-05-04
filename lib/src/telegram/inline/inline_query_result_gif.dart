@@ -79,19 +79,20 @@ class InlineQueryResultGif implements InlineQueryResult {
   @JsonKey(name: 'input_message_content')
   InputMessageContent inputMessageContent;
 
-  InlineQueryResultGif(
-      {this.type = 'gif',
-      this.id,
-      this.gifUrl,
-      this.gifWidth,
-      this.gifHeight,
-      this.gifDuration,
-      this.thumbUrl,
-      this.title,
-      this.caption,
-      this.parseMode,
-      this.replyMarkup,
-      this.inputMessageContent});
+  InlineQueryResultGif({
+    this.type = 'gif',
+    this.id,
+    this.gifUrl,
+    this.gifWidth,
+    this.gifHeight,
+    this.gifDuration,
+    this.thumbUrl,
+    this.title,
+    this.caption,
+    this.parseMode,
+    this.replyMarkup,
+    this.inputMessageContent,
+  });
 
   factory InlineQueryResultGif.fromJson(Map<String, dynamic> json) =>
       _$InlineQueryResultGifFromJson(json);

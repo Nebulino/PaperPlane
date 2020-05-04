@@ -35,7 +35,13 @@ class InlineQuery {
   @JsonKey(name: 'offset', required: true)
   String offset;
 
-  InlineQuery({this.id, this.from, this.location, this.query, this.offset});
+  InlineQuery({
+    this.id,
+    this.from,
+    this.location,
+    this.query,
+    this.offset,
+  });
 
   factory InlineQuery.fromJson(Map<String, dynamic> json) =>
       _$InlineQueryFromJson(json);

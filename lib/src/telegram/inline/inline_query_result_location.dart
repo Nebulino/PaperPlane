@@ -71,18 +71,19 @@ class InlineQueryResultLocation implements InlineQueryResult {
   @JsonKey(name: 'thumb_height')
   int thumb_height;
 
-  InlineQueryResultLocation(
-      {this.type = 'location',
-      this.id,
-      this.latitude,
-      this.longitude,
-      this.title,
-      this.live_period,
-      this.replyMarkup,
-      this.inputMessageContent,
-      this.thumb_url,
-      this.thumb_width,
-      this.thumb_height});
+  InlineQueryResultLocation({
+    this.type = 'location',
+    this.id,
+    this.latitude,
+    this.longitude,
+    this.title,
+    this.live_period,
+    this.replyMarkup,
+    this.inputMessageContent,
+    this.thumb_url,
+    this.thumb_width,
+    this.thumb_height,
+  });
 
   factory InlineQueryResultLocation.fromJson(Map<String, dynamic> json) =>
       _$InlineQueryResultLocationFromJson(json);

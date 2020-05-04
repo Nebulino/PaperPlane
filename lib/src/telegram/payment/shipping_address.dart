@@ -34,13 +34,14 @@ class ShippingAddress {
   @JsonKey(name: 'post_code', required: true)
   String postcode;
 
-  ShippingAddress(
-      {this.countryCode,
-      this.state,
-      this.city,
-      this.streetLine1,
-      this.streetLine2,
-      this.postcode});
+  ShippingAddress({
+    this.countryCode,
+    this.state,
+    this.city,
+    this.streetLine1,
+    this.streetLine2,
+    this.postcode,
+  });
 
   factory ShippingAddress.fromJson(Map<String, dynamic> json) =>
       _$ShippingAddressFromJson(json);

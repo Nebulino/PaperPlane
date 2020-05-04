@@ -35,12 +35,13 @@ class Voice {
   @JsonKey(name: 'file_size')
   int file_size;
 
-  Voice(
-      {this.fileID,
-      this.fileUniqueID,
-      this.duration,
-      this.mimeType,
-      this.file_size});
+  Voice({
+    this.fileID,
+    this.fileUniqueID,
+    this.duration,
+    this.mimeType,
+    this.file_size,
+  });
 
   factory Voice.fromJson(Map<String, dynamic> json) => _$VoiceFromJson(json);
 

@@ -50,7 +50,10 @@ class ForceReply implements ReplyMarkup {
   @JsonKey(name: 'selective')
   bool selective;
 
-  ForceReply({this.forceReply, this.selective});
+  ForceReply({
+    this.forceReply,
+    this.selective,
+  });
 
   factory ForceReply.fromJson(Map<String, dynamic> json) =>
       _$ForceReplyFromJson(json);

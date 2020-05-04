@@ -34,11 +34,12 @@ class ChatPhoto {
   @JsonKey(name: 'big_file_unique_id', required: true)
   String bigFileUniqueID;
 
-  ChatPhoto(
-      {this.smallFileID,
-      this.smallFileUniqueID,
-      this.bigFileID,
-      this.bigFileUniqueID});
+  ChatPhoto({
+    this.smallFileID,
+    this.smallFileUniqueID,
+    this.bigFileID,
+    this.bigFileUniqueID,
+  });
 
   factory ChatPhoto.fromJson(Map<String, dynamic> json) =>
       _$ChatPhotoFromJson(json);

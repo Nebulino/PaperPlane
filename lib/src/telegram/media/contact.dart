@@ -32,12 +32,13 @@ class Contact {
   @JsonKey(name: 'vcard')
   String vcard;
 
-  Contact(
-      {this.phoneNumber,
-      this.firstName,
-      this.lastName,
-      this.userID,
-      this.vcard});
+  Contact({
+    this.phoneNumber,
+    this.firstName,
+    this.lastName,
+    this.userID,
+    this.vcard,
+  });
 
   factory Contact.fromJson(Map<String, dynamic> json) =>
       _$ContactFromJson(json);

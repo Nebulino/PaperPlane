@@ -44,12 +44,13 @@ class ChosenInlineResult {
   @JsonKey(name: 'query', required: true)
   String query;
 
-  ChosenInlineResult(
-      {this.resultID,
-      this.from,
-      this.location,
-      this.inlineMessageID,
-      this.query});
+  ChosenInlineResult({
+    this.resultID,
+    this.from,
+    this.location,
+    this.inlineMessageID,
+    this.query,
+  });
 
   factory ChosenInlineResult.fromJson(Map<String, dynamic> json) =>
       _$ChosenInlineResultFromJson(json);

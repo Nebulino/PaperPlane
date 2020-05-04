@@ -32,12 +32,13 @@ class TelegramResponse {
   @JsonKey(name: 'response_parameters')
   ResponseParameters responseParameters;
 
-  TelegramResponse(
-      {this.valid,
-      this.result,
-      this.errorCode,
-      this.description,
-      this.responseParameters});
+  TelegramResponse({
+    this.valid,
+    this.result,
+    this.errorCode,
+    this.description,
+    this.responseParameters,
+  });
 
   factory TelegramResponse.fromJson(Map<String, dynamic> response) =>
       _$TelegramResponseFromJson(response);

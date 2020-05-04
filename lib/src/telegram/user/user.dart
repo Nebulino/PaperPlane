@@ -36,13 +36,14 @@ class User {
   @JsonKey(name: 'language_code')
   String languageCode;
 
-  User(
-      {this.id,
-      this.isBot,
-      this.firstName,
-      this.lastName,
-      this.username,
-      this.languageCode});
+  User({
+    this.id,
+    this.isBot,
+    this.firstName,
+    this.lastName,
+    this.username,
+    this.languageCode,
+  });
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 

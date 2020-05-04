@@ -59,18 +59,19 @@ class InlineQueryResultArticle implements InlineQueryResult {
   @JsonKey(name: 'thumb_height')
   String thumbHeight;
 
-  InlineQueryResultArticle(
-      {this.type = 'article',
-      this.id,
-      this.title,
-      this.inputMessageContent,
-      this.replyMarkup,
-      this.url,
-      this.hideUrl,
-      this.description,
-      this.thumbUrl,
-      this.thumbWidth,
-      this.thumbHeight});
+  InlineQueryResultArticle({
+    this.type = 'article',
+    this.id,
+    this.title,
+    this.inputMessageContent,
+    this.replyMarkup,
+    this.url,
+    this.hideUrl,
+    this.description,
+    this.thumbUrl,
+    this.thumbWidth,
+    this.thumbHeight,
+  });
 
   factory InlineQueryResultArticle.fromJson(Map<String, dynamic> json) =>
       _$InlineQueryResultArticleFromJson(json);

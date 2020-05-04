@@ -26,7 +26,10 @@ class ResponseParameters {
   @JsonKey(name: 'retry_after')
   int retryAfter;
 
-  ResponseParameters({this.migrateToChatID, this.retryAfter});
+  ResponseParameters({
+    this.migrateToChatID,
+    this.retryAfter,
+  });
 
   factory ResponseParameters.fromJson(Map<String, dynamic> json) =>
       _$ResponseParametersFromJson(json);

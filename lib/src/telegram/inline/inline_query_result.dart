@@ -39,7 +39,10 @@ class InlineQueryResult {
   @JsonKey(name: 'id', required: true)
   String id;
 
-  InlineQueryResult({this.type, this.id});
+  InlineQueryResult({
+    this.type,
+    this.id,
+  });
 
   factory InlineQueryResult.fromJson(Map<String, dynamic> json) =>
       _$InlineQueryResultFromJson(json);

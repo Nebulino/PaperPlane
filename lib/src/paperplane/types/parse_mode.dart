@@ -4,7 +4,11 @@
  */
 
 /// A list of parsing mode types for telegram.
-enum ParseMode { MARKDOWN, MARKDOWNV2, HTML }
+enum ParseMode {
+  MARKDOWN,
+  MARKDOWNV2,
+  HTML,
+}
 
 extension ParseModeExtension on ParseMode {
   String get mode {

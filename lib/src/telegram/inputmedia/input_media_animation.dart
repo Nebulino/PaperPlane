@@ -78,15 +78,16 @@ class InputMediaAnimation implements InputMedia {
       toJson: _durationToTelegramSeconds)
   Duration duration;
 
-  InputMediaAnimation(
-      {this.type = 'animation',
-      this.media,
-      this.thumb,
-      this.caption,
-      this.parseMode,
-      this.width,
-      this.height,
-      this.duration});
+  InputMediaAnimation({
+    this.type = 'animation',
+    this.media,
+    this.thumb,
+    this.caption,
+    this.parseMode,
+    this.width,
+    this.height,
+    this.duration,
+  });
 
   factory InputMediaAnimation.fromJson(Map<String, dynamic> json) =>
       _$InputMediaAnimationFromJson(json);

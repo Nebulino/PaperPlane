@@ -26,7 +26,12 @@ class OrderInfo {
   @JsonKey(name: 'shipping_address')
   ShippingAddress shippingAddress;
 
-  OrderInfo({this.name, this.phoneNumber, this.email, this.shippingAddress});
+  OrderInfo({
+    this.name,
+    this.phoneNumber,
+    this.email,
+    this.shippingAddress,
+  });
 
   factory OrderInfo.fromJson(Map<String, dynamic> json) =>
       _$OrderInfoFromJson(json);

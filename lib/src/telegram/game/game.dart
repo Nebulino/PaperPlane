@@ -45,13 +45,14 @@ class Game {
   @JsonKey(name: 'animation', required: true)
   Animation animation;
 
-  Game(
-      {this.title,
-      this.description,
-      this.photo,
-      this.text,
-      this.textEntities,
-      this.animation});
+  Game({
+    this.title,
+    this.description,
+    this.photo,
+    this.text,
+    this.textEntities,
+    this.animation,
+  });
 
   factory Game.fromJson(Map<String, dynamic> json) => _$GameFromJson(json);
 

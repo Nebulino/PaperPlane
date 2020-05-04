@@ -77,20 +77,21 @@ class InlineQueryResultVenue implements InlineQueryResult {
   @JsonKey(name: 'thumb_height')
   int thumbHeight;
 
-  InlineQueryResultVenue(
-      {this.type = 'venue',
-      this.id,
-      this.latitude,
-      this.longitude,
-      this.title,
-      this.address,
-      this.foursquareID,
-      this.foursquareType,
-      this.replyMarkup,
-      this.inputMessageContent,
-      this.thumbUrl,
-      this.thumbWidth,
-      this.thumbHeight});
+  InlineQueryResultVenue({
+    this.type = 'venue',
+    this.id,
+    this.latitude,
+    this.longitude,
+    this.title,
+    this.address,
+    this.foursquareID,
+    this.foursquareType,
+    this.replyMarkup,
+    this.inputMessageContent,
+    this.thumbUrl,
+    this.thumbWidth,
+    this.thumbHeight,
+  });
 
   factory InlineQueryResultVenue.fromJson(Map<String, dynamic> json) =>
       _$InlineQueryResultVenueFromJson(json);

@@ -22,21 +22,27 @@ class InputMediaLuggage {
   final InputMediaType _type;
   final InputMedia _media;
   final MapEntry<String, MultipartFile> _file;
-  final MapEntry<String, MultipartFile> _thumb_file;
+  final MapEntry<String, MultipartFile> _thumbFile;
 
-  InputMediaLuggage._(this._type, this._media, this._file, this._thumb_file);
+  InputMediaLuggage._(
+    this._type,
+    this._media,
+    this._file,
+    this._thumbFile,
+  );
 
   /// Create an InputMedia with an Animation.
-  factory InputMediaLuggage.withAnimation(
-      {@required Luggage animation,
-      String caption,
-      ParseMode parseMode,
-      Luggage thumb,
-      int width,
-      int height,
-      Duration duration}) {
+  factory InputMediaLuggage.withAnimation({
+    @required Luggage animation,
+    String caption,
+    ParseMode parseMode,
+    Luggage thumb,
+    int width,
+    int height,
+    Duration duration,
+  }) {
     MapEntry<String, MultipartFile> file;
-    MapEntry<String, MultipartFile> thumb_file;
+    MapEntry<String, MultipartFile> thumbFile;
 
     final input_animation = InputMediaAnimation();
     input_animation.caption ??= caption;
@@ -49,7 +55,7 @@ class InputMediaLuggage {
       if (thumb.type == 'file' || thumb.type == 'bytes') {
         final thumb_id = 'thumb_animation${Uuid.generate()}';
         input_animation.thumb = 'attach://${thumb_id}';
-        thumb_file = MapEntry(
+        thumbFile = MapEntry(
             '${thumb_id}',
             MultipartFile.fromBytes(thumb.getBytes(),
                 filename: thumb.getName(type: 'thumb')));
@@ -72,20 +78,25 @@ class InputMediaLuggage {
     }
 
     return InputMediaLuggage._(
-        InputMediaType.ANIMATION, input_animation, file, thumb_file);
+      InputMediaType.ANIMATION,
+      input_animation,
+      file,
+      thumbFile,
+    );
   }
 
   /// Create an InputMedia with an Audio.
-  factory InputMediaLuggage.withAudio(
-      {@required Luggage audio,
-      String caption,
-      ParseMode parseMode,
-      Luggage thumb,
-      Duration duration,
-      String performer,
-      String title}) {
+  factory InputMediaLuggage.withAudio({
+    @required Luggage audio,
+    String caption,
+    ParseMode parseMode,
+    Luggage thumb,
+    Duration duration,
+    String performer,
+    String title,
+  }) {
     MapEntry<String, MultipartFile> file;
-    MapEntry<String, MultipartFile> thumb_file;
+    MapEntry<String, MultipartFile> thumbFile;
 
     final input_audio = InputMediaAudio();
     input_audio.caption = caption;
@@ -98,7 +109,7 @@ class InputMediaLuggage {
       if (thumb.type == 'file' || thumb.type == 'bytes') {
         final thumb_id = 'thumb_audio${Uuid.generate()}';
         input_audio.thumb = 'attach://${thumb_id}';
-        thumb_file = MapEntry(
+        thumbFile = MapEntry(
             '${thumb_id}',
             MultipartFile.fromBytes(thumb.getBytes(),
                 filename: thumb.getName(type: 'thumb')));
@@ -121,7 +132,11 @@ class InputMediaLuggage {
     }
 
     return InputMediaLuggage._(
-        InputMediaType.AUDIO, input_audio, file, thumb_file);
+      InputMediaType.AUDIO,
+      input_audio,
+      file,
+      thumbFile,
+    );
   }
 
   /// Create an InputMedia with a Photo.
@@ -145,17 +160,23 @@ class InputMediaLuggage {
       input_photo.media = input_photo.toString();
     }
 
-    return InputMediaLuggage._(InputMediaType.PHOTO, input_photo, file, null);
+    return InputMediaLuggage._(
+      InputMediaType.PHOTO,
+      input_photo,
+      file,
+      null,
+    );
   }
 
   /// Create an InputMedia with a Document.
-  factory InputMediaLuggage.withDocument(
-      {@required Luggage document,
-      String caption,
-      ParseMode parseMode,
-      Luggage thumb}) {
+  factory InputMediaLuggage.withDocument({
+    @required Luggage document,
+    String caption,
+    ParseMode parseMode,
+    Luggage thumb,
+  }) {
     MapEntry<String, MultipartFile> file;
-    MapEntry<String, MultipartFile> thumb_file;
+    MapEntry<String, MultipartFile> thumbFile;
 
     final input_document = InputMediaDocument();
     input_document.caption = caption;
@@ -165,7 +186,7 @@ class InputMediaLuggage {
       if (thumb.type == 'file' || thumb.type == 'bytes') {
         final thumb_id = 'thumb_document_${Uuid.generate()}';
         input_document.thumb = 'attach://${thumb_id}';
-        thumb_file = MapEntry(
+        thumbFile = MapEntry(
             '${thumb_id}',
             MultipartFile.fromBytes(thumb.getBytes(),
                 filename: thumb.getName(type: 'thumb')));
@@ -188,21 +209,26 @@ class InputMediaLuggage {
     }
 
     return InputMediaLuggage._(
-        InputMediaType.DOCUMENT, input_document, file, thumb_file);
+      InputMediaType.DOCUMENT,
+      input_document,
+      file,
+      thumbFile,
+    );
   }
 
   /// Create an InputMedia with a Video.
-  factory InputMediaLuggage.withVideo(
-      {@required Luggage video,
-      String caption,
-      ParseMode parseMode,
-      Luggage thumb,
-      int width,
-      int height,
-      Duration duration,
-      bool supportsStreaming}) {
+  factory InputMediaLuggage.withVideo({
+    @required Luggage video,
+    String caption,
+    ParseMode parseMode,
+    Luggage thumb,
+    int width,
+    int height,
+    Duration duration,
+    bool supportsStreaming,
+  }) {
     MapEntry<String, MultipartFile> file;
-    MapEntry<String, MultipartFile> thumb_file;
+    MapEntry<String, MultipartFile> thumbFile;
 
     final input_video = InputMediaVideo(
         caption: caption,
@@ -216,7 +242,7 @@ class InputMediaLuggage {
       if (thumb.type == 'file' || thumb.type == 'bytes') {
         final thumb_id = 'thumb_video_${Uuid.generate()}';
         input_video.thumb = 'attach://${thumb_id}';
-        thumb_file = MapEntry(
+        thumbFile = MapEntry(
             '${thumb_id}',
             MultipartFile.fromBytes(thumb.getBytes(),
                 filename: thumb.getName(type: 'thumb')));
@@ -239,7 +265,11 @@ class InputMediaLuggage {
     }
 
     return InputMediaLuggage._(
-        InputMediaType.VIDEO, input_video, file, thumb_file);
+      InputMediaType.VIDEO,
+      input_video,
+      file,
+      thumbFile,
+    );
   }
 
   String get type => _type.toString();
@@ -248,5 +278,5 @@ class InputMediaLuggage {
 
   MapEntry<String, MultipartFile> get file => _file;
 
-  MapEntry<String, MultipartFile> get thumb => _thumb_file;
+  MapEntry<String, MultipartFile> get thumb => _thumbFile;
 }

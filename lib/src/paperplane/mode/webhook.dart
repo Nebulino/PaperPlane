@@ -1,3 +1,8 @@
+/**
+ * PaperPlane - Just a Telegram Library for Dart
+ * Copyright (c) 2020 Nebulino
+ */
+
 import 'dart:convert';
 import 'dart:io' as io;
 

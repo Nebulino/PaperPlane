@@ -62,12 +62,13 @@ class InputMediaDocument implements InputMedia {
   @override
   ParseMode parseMode;
 
-  InputMediaDocument(
-      {this.type = 'document',
-      this.media,
-      this.thumb,
-      this.caption,
-      this.parseMode});
+  InputMediaDocument({
+    this.type = 'document',
+    this.media,
+    this.thumb,
+    this.caption,
+    this.parseMode,
+  });
 
   factory InputMediaDocument.fromJson(Map<String, dynamic> json) =>
       _$InputMediaDocumentFromJson(json);

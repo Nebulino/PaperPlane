@@ -18,7 +18,10 @@ class PollOption {
   @JsonKey(name: 'voter_count', required: true)
   int voterCount;
 
-  PollOption({this.text, this.voterCount});
+  PollOption({
+    this.text,
+    this.voterCount,
+  });
 
   factory PollOption.fromJson(Map<String, dynamic> json) =>
       _$PollOptionFromJson(json);

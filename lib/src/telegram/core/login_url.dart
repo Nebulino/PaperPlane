@@ -56,8 +56,12 @@ class LoginUrl {
   @JsonKey(name: 'request_write_access')
   bool requestWriteAccess;
 
-  LoginUrl(
-      {this.url, this.forwardText, this.botUsername, this.requestWriteAccess});
+  LoginUrl({
+    this.url,
+    this.forwardText,
+    this.botUsername,
+    this.requestWriteAccess,
+  });
 
   factory LoginUrl.fromJson(Map<String, dynamic> json) =>
       _$LoginUrlFromJson(json);

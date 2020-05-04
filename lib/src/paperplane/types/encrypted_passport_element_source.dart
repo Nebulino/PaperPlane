@@ -15,5 +15,5 @@ enum EncryptedPassportElementSource {
   selfie,
   translation_file,
   translation_files,
-  unspecified
+  unspecified,
 }

@@ -54,13 +54,14 @@ class MessageEntity {
   @JsonKey(name: 'language')
   String language;
 
-  MessageEntity(
-      {this.type,
-      this.offset,
-      this.length,
-      this.url,
-      this.user,
-      this.language});
+  MessageEntity({
+    this.type,
+    this.offset,
+    this.length,
+    this.url,
+    this.user,
+    this.language,
+  });
 
   factory MessageEntity.fromJson(Map<String, dynamic> json) =>
       _$MessageEntityFromJson(json);

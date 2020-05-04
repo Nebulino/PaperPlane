@@ -18,14 +18,19 @@ class Telegram {
   TelegramClient _client;
   API _api;
 
-  Telegram._(this._token, {String proxy}) {
+  Telegram._(
+    this._token, {
+    String proxy,
+  }) {
     _client = TelegramClient(token: _token, proxy: proxy);
     _api = API(_client);
   }
 
   /// Helps the user understanding how to create a [Telegram] object.
-  Telegram({@required String token, String proxy})
-      : this._(token, proxy: proxy);
+  Telegram({
+    @required String token,
+    String proxy,
+  }) : this._(token, proxy: proxy);
 
   /// Return the token used to create the [APIs].
   ///

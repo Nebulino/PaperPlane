@@ -23,7 +23,9 @@ class InlineKeyboardMarkup implements ReplyMarkup {
   /// [InlineKeyboardButton]: https://core.telegram.org/bots/api#inlinekeyboardbutton
   List<List<InlineKeyboardButton>> inline_keyboard;
 
-  InlineKeyboardMarkup({this.inline_keyboard});
+  InlineKeyboardMarkup({
+    this.inline_keyboard,
+  });
 
   factory InlineKeyboardMarkup.fromJson(Map<String, dynamic> json) =>
       _$InlineKeyboardMarkupFromJson(json);

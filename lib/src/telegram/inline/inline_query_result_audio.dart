@@ -70,17 +70,18 @@ class InlineQueryResultAudio implements InlineQueryResult {
   @JsonKey(name: 'input_message_content')
   InputMessageContent inputMessageContent;
 
-  InlineQueryResultAudio(
-      {this.type = 'audio',
-      this.id,
-      this.audioUrl,
-      this.title,
-      this.caption,
-      this.parseMode,
-      this.performer,
-      this.audioDuration,
-      this.replyMarkup,
-      this.inputMessageContent});
+  InlineQueryResultAudio({
+    this.type = 'audio',
+    this.id,
+    this.audioUrl,
+    this.title,
+    this.caption,
+    this.parseMode,
+    this.performer,
+    this.audioDuration,
+    this.replyMarkup,
+    this.inputMessageContent,
+  });
 
   factory InlineQueryResultAudio.fromJson(Map<String, dynamic> json) =>
       _$InlineQueryResultAudioFromJson(json);

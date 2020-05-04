@@ -26,8 +26,12 @@ class ShippingQuery {
   @JsonKey(name: 'shipping_address', required: true)
   ShippingAddress shippingAddress;
 
-  ShippingQuery(
-      {this.id, this.from, this.invoicePayload, this.shippingAddress});
+  ShippingQuery({
+    this.id,
+    this.from,
+    this.invoicePayload,
+    this.shippingAddress,
+  });
 
   factory ShippingQuery.fromJson(Map<String, dynamic> json) =>
       _$ShippingQueryFromJson(json);
