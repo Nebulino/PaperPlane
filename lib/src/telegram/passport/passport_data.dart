@@ -20,7 +20,10 @@ class PassportData {
   @JsonKey(name: 'credentials', required: true)
   EncryptedCredentials credentials;
 
-  PassportData({this.data, this.credentials});
+  PassportData({
+    this.data,
+    this.credentials,
+  });
 
   factory PassportData.fromJson(Map<String, dynamic> json) =>
       _$PassportDataFromJson(json);

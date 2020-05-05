@@ -77,15 +77,16 @@ class InlineKeyboardButton {
   @JsonKey(name: 'pay')
   bool pay;
 
-  InlineKeyboardButton(
-      {this.text,
-      this.url,
-      this.loginUrl,
-      this.callbackData,
-      this.switchInlineQuery,
-      this.switchInlineQueryCurrentChat,
-      this.callbackGame,
-      this.pay});
+  InlineKeyboardButton({
+    this.text,
+    this.url,
+    this.loginUrl,
+    this.callbackData,
+    this.switchInlineQuery,
+    this.switchInlineQueryCurrentChat,
+    this.callbackGame,
+    this.pay,
+  });
 
   factory InlineKeyboardButton.fromJson(Map<String, dynamic> json) =>
       _$InlineKeyboardButtonFromJson(json);

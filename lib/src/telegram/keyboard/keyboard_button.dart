@@ -43,8 +43,12 @@ class KeyboardButton {
   @JsonKey(name: 'request_poll')
   KeyboardButtonPollType requestPoll;
 
-  KeyboardButton(
-      {this.text, this.requestContact, this.requestLocation, this.requestPoll});
+  KeyboardButton({
+    this.text,
+    this.requestContact,
+    this.requestLocation,
+    this.requestPoll,
+  });
 
   factory KeyboardButton.fromJson(Map<String, dynamic> json) =>
       _$KeyboardButtonFromJson(json);

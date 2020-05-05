@@ -48,15 +48,16 @@ class Audio {
   @JsonKey(name: 'thumb')
   PhotoSize thumb;
 
-  Audio(
-      {this.fileID,
-      this.fileUniqueID,
-      this.duration,
-      this.performer,
-      this.title,
-      this.mimeType,
-      this.fileSize,
-      this.thumb});
+  Audio({
+    this.fileID,
+    this.fileUniqueID,
+    this.duration,
+    this.performer,
+    this.title,
+    this.mimeType,
+    this.fileSize,
+    this.thumb,
+  });
 
   factory Audio.fromJson(Map<String, dynamic> json) => _$AudioFromJson(json);
 

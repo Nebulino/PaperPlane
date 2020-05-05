@@ -18,7 +18,10 @@ class UserProfilePhotos {
   @JsonKey(name: 'photos', required: true)
   List<List<PhotoSize>> photos;
 
-  UserProfilePhotos({this.totalCount, this.photos});
+  UserProfilePhotos({
+    this.totalCount,
+    this.photos,
+  });
 
   factory UserProfilePhotos.fromJson(Map<String, dynamic> json) =>
       _$UserProfilePhotosFromJson(json);

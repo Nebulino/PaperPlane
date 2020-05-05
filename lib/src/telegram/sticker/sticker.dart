@@ -53,17 +53,18 @@ class Sticker {
   @JsonKey(name: 'file_size')
   int fileSize;
 
-  Sticker(
-      {this.fileID,
-      this.fileUniqueID,
-      this.width,
-      this.height,
-      this.isAnimated,
-      this.thumb,
-      this.emoji,
-      this.setName,
-      this.maskPosition,
-      this.fileSize});
+  Sticker({
+    this.fileID,
+    this.fileUniqueID,
+    this.width,
+    this.height,
+    this.isAnimated,
+    this.thumb,
+    this.emoji,
+    this.setName,
+    this.maskPosition,
+    this.fileSize,
+  });
 
   factory Sticker.fromJson(Map<String, dynamic> json) =>
       _$StickerFromJson(json);

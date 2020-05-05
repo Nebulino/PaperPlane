@@ -32,7 +32,11 @@ class EncryptedCredentials {
   @JsonKey(name: 'secret', required: true)
   String secret;
 
-  EncryptedCredentials({this.data, this.hash, this.secret});
+  EncryptedCredentials({
+    this.data,
+    this.hash,
+    this.secret,
+  });
 
   factory EncryptedCredentials.fromJson(Map<String, dynamic> json) =>
       _$EncryptedCredentialsFromJson(json);

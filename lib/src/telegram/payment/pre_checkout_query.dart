@@ -46,14 +46,15 @@ class PreCheckoutQuery {
   @JsonKey(name: 'order_info')
   OrderInfo orderInfo;
 
-  PreCheckoutQuery(
-      {this.id,
-      this.from,
-      this.currency,
-      this.totalAmount,
-      this.invoicePayload,
-      this.shippingOptionID,
-      this.orderInfo});
+  PreCheckoutQuery({
+    this.id,
+    this.from,
+    this.currency,
+    this.totalAmount,
+    this.invoicePayload,
+    this.shippingOptionID,
+    this.orderInfo,
+  });
 
   factory PreCheckoutQuery.fromJson(Map<String, dynamic> json) =>
       _$PreCheckoutQueryFromJson(json);

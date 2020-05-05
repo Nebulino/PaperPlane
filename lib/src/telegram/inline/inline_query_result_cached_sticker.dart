@@ -45,12 +45,13 @@ class InlineQueryResultCachedSticker implements InlineQueryResult {
   @JsonKey(name: 'input_message_content')
   InputMessageContent inputMessageContent;
 
-  InlineQueryResultCachedSticker(
-      {this.type = 'sticker',
-      this.id,
-      this.stickerFileID,
-      this.replyMarkup,
-      this.inputMessageContent});
+  InlineQueryResultCachedSticker({
+    this.type = 'sticker',
+    this.id,
+    this.stickerFileID,
+    this.replyMarkup,
+    this.inputMessageContent,
+  });
 
   factory InlineQueryResultCachedSticker.fromJson(Map<String, dynamic> json) =>
       _$InlineQueryResultCachedStickerFromJson(json);

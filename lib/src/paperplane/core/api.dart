@@ -26,13 +26,17 @@ class API {
   /// [wiki]: https://en.wikipedia.org/wiki/Push_technology#Long_polling
   ///
   /// https://core.telegram.org/bots/api#getupdates.
-  Future<List<Update>> getUpdates(
-      {int offset, int limit, int timeout, List<String> allowedUpdates}) async {
+  Future<List<Update>> getUpdates({
+    int offset,
+    int limit,
+    int timeout,
+    List<String> allowedUpdates,
+  }) async {
     final parameters = <String, dynamic>{
       'offset': offset,
       'limit': limit,
       'timeout': timeout,
-      'allowed_updates': jsonEncode(allowedUpdates)
+      'allowed_updates': jsonEncode(allowedUpdates),
     };
 
     return (await _client.get(method: 'getUpdates', parameters: parameters))
@@ -72,15 +76,16 @@ class API {
   /// you can be pretty sure it’s us.
   ///
   /// https://core.telegram.org/bots/api#setwebhook
-  Future<bool> setWebhook(
-      {@required String url,
-      io.File certificate,
-      int maxConnections,
-      List<UpdateType> allowedUpdates}) async {
+  Future<bool> setWebhook({
+    @required String url,
+    io.File certificate,
+    int maxConnections,
+    List<UpdateType> allowedUpdates,
+  }) async {
     final formData = FormData.fromMap({
       'url': url,
       'max_connections': maxConnections,
-      'allowed_updates': jsonEncode(allowedUpdates)
+      'allowed_updates': jsonEncode(allowedUpdates),
     });
 
     if (certificate != null) {
@@ -117,14 +122,15 @@ class API {
   /// On success, the sent [Message] is returned.
   ///
   /// https://core.telegram.org/bots/api#sendmessage
-  Future<Message> sendMessage(
-      {@required ChatID chatID,
-      @required String text,
-      ParseMode parseMode,
-      bool disableWebPagePreview,
-      bool disableNotification,
-      int replyToMessageID,
-      ReplyMarkup replyMarkup}) async {
+  Future<Message> sendMessage({
+    @required ChatID chatID,
+    @required String text,
+    ParseMode parseMode,
+    bool disableWebPagePreview,
+    bool disableNotification,
+    int replyToMessageID,
+    ReplyMarkup replyMarkup,
+  }) async {
     final formData = FormData.fromMap({
       'chat_id': chatID,
       'text': text,
@@ -132,7 +138,7 @@ class API {
       'disable_web_page_preview': disableWebPagePreview,
       'disable_notification': disableNotification,
       'reply_to_message_id': replyToMessageID,
-      'reply_markup': jsonEncode(replyMarkup)
+      'reply_markup': jsonEncode(replyMarkup),
     });
     return Message.fromJson(
         await _client.post(method: 'sendMessage', formData: formData));
@@ -142,11 +148,12 @@ class API {
   /// On success, the sent [Message] is returned.
   ///
   /// https://core.telegram.org/bots/api#forwardmessage
-  Future<Message> forwardMessage(
-      {@required ChatID chatID,
-      @required ChatID fromChatID,
-      bool disableNotification,
-      @required int messageID}) async {
+  Future<Message> forwardMessage({
+    @required ChatID chatID,
+    @required ChatID fromChatID,
+    bool disableNotification,
+    @required int messageID,
+  }) async {
     final formData = FormData.fromMap({
       'chat_id': chatID,
       'from_chat_id': fromChatID,
@@ -164,21 +171,22 @@ class API {
   /// [photo] argument accepts [Luggage] object.
   ///
   /// https://core.telegram.org/bots/api#sendphoto
-  Future<Message> sendPhoto(
-      {@required ChatID chatID,
-      @required Luggage photo,
-      String caption,
-      ParseMode parseMode,
-      bool disableNotification,
-      int replyToMessageID,
-      ReplyMarkup replyMarkup}) async {
+  Future<Message> sendPhoto({
+    @required ChatID chatID,
+    @required Luggage photo,
+    String caption,
+    ParseMode parseMode,
+    bool disableNotification,
+    int replyToMessageID,
+    ReplyMarkup replyMarkup,
+  }) async {
     final formData = FormData.fromMap({
       'chat_id': chatID,
       'caption': caption,
       'parse_mode': parseMode.mode,
       'disable_notification': disableNotification,
       'reply_to_message_id': replyToMessageID,
-      'reply_markup': jsonEncode(replyMarkup)
+      'reply_markup': jsonEncode(replyMarkup),
     });
 
     // Check if Photo is a String/URL or an Picture io.File.
@@ -211,18 +219,19 @@ class API {
   /// [thumb] argument accepts [Luggage] object.
   ///
   /// https://core.telegram.org/bots/api#sendaudio
-  Future<Message> sendAudio(
-      {@required ChatID chatID,
-      @required Luggage audio,
-      String caption,
-      ParseMode parseMode,
-      Duration duration,
-      String performer,
-      String title,
-      Luggage thumb,
-      bool disableNotification,
-      int replyToMessageID,
-      ReplyMarkup replyMarkup}) async {
+  Future<Message> sendAudio({
+    @required ChatID chatID,
+    @required Luggage audio,
+    String caption,
+    ParseMode parseMode,
+    Duration duration,
+    String performer,
+    String title,
+    Luggage thumb,
+    bool disableNotification,
+    int replyToMessageID,
+    ReplyMarkup replyMarkup,
+  }) async {
     final formData = FormData.fromMap({
       'chat_id': chatID,
       'caption': caption,
@@ -232,7 +241,7 @@ class API {
       'title': title,
       'disable_notification': disableNotification,
       'reply_to_message_id': replyToMessageID,
-      'reply_markup': jsonEncode(replyMarkup)
+      'reply_markup': jsonEncode(replyMarkup),
     });
 
     // Check if audio is a File (or Blob) or a String
@@ -282,22 +291,23 @@ class API {
   /// [thumb] argument accepts [Luggage] object.
   ///
   /// https://core.telegram.org/bots/api#senddocument
-  Future<Message> sendDocument(
-      {@required ChatID chatID,
-      @required Luggage document,
-      Luggage thumb,
-      String caption,
-      ParseMode parseMode,
-      bool disableNotification,
-      int replyToMessageID,
-      ReplyMarkup replyMarkup}) async {
+  Future<Message> sendDocument({
+    @required ChatID chatID,
+    @required Luggage document,
+    Luggage thumb,
+    String caption,
+    ParseMode parseMode,
+    bool disableNotification,
+    int replyToMessageID,
+    ReplyMarkup replyMarkup,
+  }) async {
     final formData = FormData.fromMap({
       'chat_id': chatID,
       'caption': caption,
       'parse_mode': parseMode.mode,
       'disable_notification': disableNotification,
       'reply_to_message_id': replyToMessageID,
-      'reply_markup': jsonEncode(replyMarkup)
+      'reply_markup': jsonEncode(replyMarkup),
     });
 
     switch (document.type) {
@@ -347,19 +357,20 @@ class API {
   /// [thumb] argument accepts [Luggage] object.
   ///
   /// https://core.telegram.org/bots/api#sendvideo
-  Future<Message> sendVideo(
-      {@required ChatID chatID,
-      @required Luggage video,
-      Duration duration,
-      int width,
-      int height,
-      Luggage thumb,
-      String caption,
-      ParseMode parseMode,
-      bool supportsStreaming,
-      bool disableNotification,
-      int replyToMessageID,
-      ReplyMarkup replyMarkup}) async {
+  Future<Message> sendVideo({
+    @required ChatID chatID,
+    @required Luggage video,
+    Duration duration,
+    int width,
+    int height,
+    Luggage thumb,
+    String caption,
+    ParseMode parseMode,
+    bool supportsStreaming,
+    bool disableNotification,
+    int replyToMessageID,
+    ReplyMarkup replyMarkup,
+  }) async {
     final formData = FormData.fromMap({
       'chat_id': chatID,
       'duration': duration?.inSeconds,
@@ -370,7 +381,7 @@ class API {
       'supports_streaming': supportsStreaming,
       'disable_notification': disableNotification,
       'reply_to_message_id': replyToMessageID,
-      'reply_markup': jsonEncode(replyMarkup)
+      'reply_markup': jsonEncode(replyMarkup),
     });
 
     switch (video.type) {
@@ -419,18 +430,19 @@ class API {
   /// [thumb] argument accepts [Luggage] object.
   ///
   /// https://core.telegram.org/bots/api#sendanimation
-  Future<Message> sendAnimation(
-      {@required ChatID chatID,
-      @required Luggage animation,
-      Duration duration,
-      int width,
-      int height,
-      Luggage thumb,
-      String caption,
-      ParseMode parseMode,
-      bool disableNotification,
-      int replyToMessageID,
-      ReplyMarkup replyMarkup}) async {
+  Future<Message> sendAnimation({
+    @required ChatID chatID,
+    @required Luggage animation,
+    Duration duration,
+    int width,
+    int height,
+    Luggage thumb,
+    String caption,
+    ParseMode parseMode,
+    bool disableNotification,
+    int replyToMessageID,
+    ReplyMarkup replyMarkup,
+  }) async {
     final formData = FormData.fromMap({
       'chat_id': chatID,
       'duration': duration?.inSeconds,
@@ -440,7 +452,7 @@ class API {
       'parse_mode': parseMode.mode,
       'disable_notification': disableNotification,
       'reply_to_message_id': replyToMessageID,
-      'reply_markup': jsonEncode(replyMarkup)
+      'reply_markup': jsonEncode(replyMarkup),
     });
 
     switch (animation.type) {
@@ -491,15 +503,16 @@ class API {
   /// [voice] argument accepts [Luggage] object.
   ///
   /// https://core.telegram.org/bots/api#sendvoice
-  Future<Message> sendVoice(
-      {@required ChatID chatID,
-      @required Luggage voice,
-      String caption,
-      ParseMode parseMode,
-      Duration duration,
-      bool disableNotification,
-      int replyToMessageID,
-      ReplyMarkup replyMarkup}) async {
+  Future<Message> sendVoice({
+    @required ChatID chatID,
+    @required Luggage voice,
+    String caption,
+    ParseMode parseMode,
+    Duration duration,
+    bool disableNotification,
+    int replyToMessageID,
+    ReplyMarkup replyMarkup,
+  }) async {
     final formData = FormData.fromMap({
       'chat_id': chatID,
       'caption': caption,
@@ -507,7 +520,7 @@ class API {
       'duration': duration?.inSeconds,
       'disable_notification': disableNotification,
       'reply_to_message_id': replyToMessageID,
-      'reply_markup': jsonEncode(replyMarkup)
+      'reply_markup': jsonEncode(replyMarkup),
     });
 
     switch (voice.type) {
@@ -537,22 +550,23 @@ class API {
   /// [thumb] argument accepts [Luggage] object.
   ///
   /// https://core.telegram.org/bots/api#sendvoice
-  Future<Message> sendVideoNote(
-      {@required ChatID chatID,
-      @required Luggage videoNote,
-      Duration duration,
-      int length,
-      Luggage thumb,
-      bool disableNotification,
-      int replyToMessageID,
-      ReplyMarkup replyMarkup}) async {
+  Future<Message> sendVideoNote({
+    @required ChatID chatID,
+    @required Luggage videoNote,
+    Duration duration,
+    int length,
+    Luggage thumb,
+    bool disableNotification,
+    int replyToMessageID,
+    ReplyMarkup replyMarkup,
+  }) async {
     final formData = FormData.fromMap({
       'chat_id': chatID,
       'duration': duration?.inSeconds,
       'lenght': length,
       'disable_notification': disableNotification,
       'reply_to_message_id': replyToMessageID,
-      'reply_markup': jsonEncode(replyMarkup)
+      'reply_markup': jsonEncode(replyMarkup),
     });
 
     switch (videoNote.type) {
@@ -599,11 +613,12 @@ class API {
   /// [Messages]: [message]
   ///
   /// https://core.telegram.org/bots/api#sendmediagroup
-  Future<List<Message>> sendMediaGroup(
-      {@required ChatID chatID,
-      @required List<InputMediaLuggage> media,
-      bool disableNotification,
-      int replyToMessageID}) async {
+  Future<List<Message>> sendMediaGroup({
+    @required ChatID chatID,
+    @required List<InputMediaLuggage> media,
+    bool disableNotification,
+    int replyToMessageID,
+  }) async {
     if (media.length < 2) {
       return Future.error(ApiException(
           description: 'The media list has to contain at least 2 InputMedia.'));
@@ -640,7 +655,7 @@ class API {
       'chat_id': chatID,
       'media': jsonEncode(media_to_send),
       'disable_notification': disableNotification,
-      'reply_to_message_id': replyToMessageID
+      'reply_to_message_id': replyToMessageID,
     });
 
     formData.files.addAll(media_file_to_send);
@@ -654,14 +669,15 @@ class API {
   /// On success, the sent [Message] is returned.
   ///
   /// https://core.telegram.org/bots/api#sendlocation
-  Future<Message> sendLocation(
-      {@required ChatID chatID,
-      @required double latitude,
-      @required double longitude,
-      int livePeriod,
-      bool disableNotification,
-      int replyToMessageID,
-      ReplyMarkup replyMarkup}) async {
+  Future<Message> sendLocation({
+    @required ChatID chatID,
+    @required double latitude,
+    @required double longitude,
+    int livePeriod,
+    bool disableNotification,
+    int replyToMessageID,
+    ReplyMarkup replyMarkup,
+  }) async {
     final formData = FormData.fromMap({
       'chat_id': chatID,
       'latitude': latitude,
@@ -669,7 +685,7 @@ class API {
       'live_period': livePeriod,
       'disable_notification': disableNotification,
       'reply_to_message_id': replyToMessageID,
-      'reply_markup': jsonEncode(replyMarkup)
+      'reply_markup': jsonEncode(replyMarkup),
     });
 
     return Message.fromJson(
@@ -685,13 +701,14 @@ class API {
   /// otherwise True is returned.
   ///
   /// https://core.telegram.org/bots/api#editmessagelivelocation
-  Future<Message> editMessageLiveLocation(
-      {ChatID chatID,
-      int messageID,
-      String inlineMessageID,
-      @required double latitude,
-      @required double longitude,
-      InlineKeyboardMarkup replyMarkup}) async {
+  Future<Message> editMessageLiveLocation({
+    ChatID chatID,
+    int messageID,
+    String inlineMessageID,
+    @required double latitude,
+    @required double longitude,
+    InlineKeyboardMarkup replyMarkup,
+  }) async {
     if (inlineMessageID == null && (chatID == null || messageID == null)) {
       return Future.error(ApiException(
           description: 'At least inlineMessageID is required. '
@@ -703,7 +720,7 @@ class API {
       'message_id': messageID,
       'latitude': latitude,
       'longitude': longitude,
-      'reply_markup': jsonEncode(replyMarkup)
+      'reply_markup': jsonEncode(replyMarkup),
     });
 
     return Message.fromJson(await _client.post(
@@ -716,11 +733,12 @@ class API {
   /// the sent [Message] is returned, otherwise True is returned.
   ///
   /// https://core.telegram.org/bots/api#stopmessagelivelocation
-  Future<Message> stopMessageLiveLocation(
-      {ChatID chatID,
-      int messageID,
-      String inlineMessageID,
-      ReplyMarkup replyMarkup}) async {
+  Future<Message> stopMessageLiveLocation({
+    ChatID chatID,
+    int messageID,
+    String inlineMessageID,
+    ReplyMarkup replyMarkup,
+  }) async {
     if (inlineMessageID == null && (chatID == null || messageID == null)) {
       return Future.error(ApiException(
           description: 'At least inlineMessageID is required. '
@@ -731,7 +749,7 @@ class API {
       'chat_id': chatID,
       'message_id': messageID,
       'inline_message_id': inlineMessageID,
-      'reply_markup': jsonEncode(replyMarkup)
+      'reply_markup': jsonEncode(replyMarkup),
     });
 
     return Message.fromJson(await _client.post(
@@ -742,17 +760,18 @@ class API {
   /// On success, the sent [Message] is returned.
   ///
   /// https://core.telegram.org/bots/api#sendvenue
-  Future<Message> sendVenue(
-      {@required ChatID chatID,
-      @required double latitude,
-      @required double longitude,
-      @required String title,
-      @required String address,
-      String foursquareID,
-      String foursquareType,
-      bool disableNotification,
-      int replyToMessageID,
-      ReplyMarkup replyMarkup}) async {
+  Future<Message> sendVenue({
+    @required ChatID chatID,
+    @required double latitude,
+    @required double longitude,
+    @required String title,
+    @required String address,
+    String foursquareID,
+    String foursquareType,
+    bool disableNotification,
+    int replyToMessageID,
+    ReplyMarkup replyMarkup,
+  }) async {
     final formData = FormData.fromMap({
       'chat_id': chatID,
       'latitude': latitude,
@@ -763,7 +782,7 @@ class API {
       'foursquare_type': foursquareType,
       'disable_notification': disableNotification,
       'reply_to_message_id': replyToMessageID,
-      'reply_markup': jsonEncode(replyMarkup)
+      'reply_markup': jsonEncode(replyMarkup),
     });
 
     return Message.fromJson(
@@ -774,15 +793,16 @@ class API {
   /// On success, the sent [Message] is returned.
   ///
   /// https://core.telegram.org/bots/api#sendcontact
-  Future<Message> sendContact(
-      {@required ChatID chatID,
-      @required String phoneNumber,
-      @required String firstName,
-      String lastName,
-      String vcard,
-      bool disableNotification,
-      int replyToMessageID,
-      ReplyMarkup replyMarkup}) async {
+  Future<Message> sendContact({
+    @required ChatID chatID,
+    @required String phoneNumber,
+    @required String firstName,
+    String lastName,
+    String vcard,
+    bool disableNotification,
+    int replyToMessageID,
+    ReplyMarkup replyMarkup,
+  }) async {
     final formData = FormData.fromMap({
       'chat_id': chatID,
       'phone_number': phoneNumber,
@@ -791,7 +811,7 @@ class API {
       'vcard': vcard,
       'disable_notification': disableNotification,
       'reply_to_message_id': replyToMessageID,
-      'reply_markup': jsonEncode(replyMarkup)
+      'reply_markup': jsonEncode(replyMarkup),
     });
 
     return Message.fromJson(
@@ -802,22 +822,23 @@ class API {
   /// On success, the sent [Message] is returned.
   ///
   /// https://core.telegram.org/bots/api#sendpoll
-  Future<Message> sendPoll(
-      {@required ChatID chatID,
-      @required String question,
-      @required List<String> options,
-      bool isAnonymous,
-      PollType type,
-      bool allowsMultipleAnswers,
-      int correctOptionID,
-      String explanation,
-      ParseMode explanationParseMode,
-      Duration openPeriod,
-      DateTime closeDate,
-      bool isClosed,
-      bool disableNotification,
-      int replyToMessageID,
-      ReplyMarkup replyMarkup}) async {
+  Future<Message> sendPoll({
+    @required ChatID chatID,
+    @required String question,
+    @required List<String> options,
+    bool isAnonymous,
+    PollType type,
+    bool allowsMultipleAnswers,
+    int correctOptionID,
+    String explanation,
+    ParseMode explanationParseMode,
+    Duration openPeriod,
+    DateTime closeDate,
+    bool isClosed,
+    bool disableNotification,
+    int replyToMessageID,
+    ReplyMarkup replyMarkup,
+  }) async {
     int _dateTimeToTelegramInt(DateTime dateTime) => dateTime == null
         ? null
         : (dateTime.millisecondsSinceEpoch / 1000).round();
@@ -837,7 +858,7 @@ class API {
       'is_closed': isClosed,
       'disable_notification': disableNotification,
       'reply_to_message_id': replyToMessageID,
-      'reply_markup': jsonEncode(replyMarkup)
+      'reply_markup': jsonEncode(replyMarkup),
     });
 
     return Message.fromJson(
@@ -865,9 +886,14 @@ class API {
   /// [ImageBot]: https://t.me/imagebot
   ///
   /// https://core.telegram.org/bots/api#sendchataction
-  Future<bool> sendChatAction(
-      {@required ChatID chatID, @required ChatAction action}) async {
-    final formData = FormData.fromMap({'chat_id': chatID, 'action': action});
+  Future<bool> sendChatAction({
+    @required ChatID chatID,
+    @required ChatAction action,
+  }) async {
+    final formData = FormData.fromMap({
+      'chat_id': chatID,
+      'action': action,
+    });
 
     return await _client.post(method: 'sendChatAction', formData: formData);
   }
@@ -876,10 +902,16 @@ class API {
   /// Returns a [UserProfilePhotos] object.
   ///
   /// https://core.telegram.org/bots/api#getuserprofilephotos
-  Future<UserProfilePhotos> getUserProfilePhotos(
-      {@required int userID, int offset, int limit}) async {
-    final formData =
-        FormData.fromMap({'user_id': userID, 'offset': offset, 'limit': limit});
+  Future<UserProfilePhotos> getUserProfilePhotos({
+    @required int userID,
+    int offset,
+    int limit,
+  }) async {
+    final formData = FormData.fromMap({
+      'user_id': userID,
+      'offset': offset,
+      'limit': limit,
+    });
 
     return UserProfilePhotos.fromJson(
         await _client.post(method: 'getUserProfilePhotos', formData: formData));
@@ -901,8 +933,12 @@ class API {
   /// when the File object is received.
   ///
   /// https://core.telegram.org/bots/api#getfile
-  Future<File> getFile({@required String fileID}) async {
-    final formData = FormData.fromMap({'file_id': fileID});
+  Future<File> getFile({
+    @required String fileID,
+  }) async {
+    final formData = FormData.fromMap({
+      'file_id': fileID,
+    });
 
     return File.fromJson(
         await _client.post(method: 'getFile', formData: formData));
@@ -916,10 +952,16 @@ class API {
   /// and must have the appropriate admin rights. Returns **True** on success.
   ///
   /// https://core.telegram.org/bots/api#kickchatmember
-  Future<bool> kickChatMember(
-      {@required ChatID chatID, @required int userID, int untilDate}) async {
-    final formData = FormData.fromMap(
-        {'chat_id': chatID, 'user_id': userID, 'until_date': untilDate});
+  Future<bool> kickChatMember({
+    @required ChatID chatID,
+    @required int userID,
+    int untilDate,
+  }) async {
+    final formData = FormData.fromMap({
+      'chat_id': chatID,
+      'user_id': userID,
+      'until_date': untilDate,
+    });
 
     return await _client.post(method: 'kickChatMember', formData: formData);
   }
@@ -931,9 +973,14 @@ class API {
   /// Returns **True** on success.
   ///
   /// https://core.telegram.org/bots/api#unbanchatmember
-  Future<bool> unbanChatMember(
-      {@required ChatID chatID, @required int userID}) async {
-    final formData = FormData.fromMap({'chat_id': chatID, 'user_id': userID});
+  Future<bool> unbanChatMember({
+    @required ChatID chatID,
+    @required int userID,
+  }) async {
+    final formData = FormData.fromMap({
+      'chat_id': chatID,
+      'user_id': userID,
+    });
 
     return await _client.post(method: 'unbanChatMember', formData: formData);
   }
@@ -945,16 +992,17 @@ class API {
   /// Returns **True** on success.
   ///
   /// https://core.telegram.org/bots/api#restrictchatmember
-  Future<bool> restrictChatMember(
-      {@required ChatID chatID,
-      @required int userID,
-      ChatPermissions permissions,
-      int untilDate}) async {
+  Future<bool> restrictChatMember({
+    @required ChatID chatID,
+    @required int userID,
+    ChatPermissions permissions,
+    int untilDate,
+  }) async {
     final formData = FormData.fromMap({
       'chat_id': chatID,
       'user_id': userID,
       'permissions': jsonEncode(permissions),
-      'until_date': untilDate
+      'until_date': untilDate,
     });
 
     return await _client.post(method: 'restrictChatMember', formData: formData);
@@ -967,17 +1015,18 @@ class API {
   /// Returns **True** on success.
   ///
   /// https://core.telegram.org/bots/api#restrictchatmember
-  Future<bool> promoteChatMember(
-      {@required int chatID,
-      @required int userID,
-      bool canChangeInfo,
-      bool canPostMessages,
-      bool canEditMessages,
-      bool canDeleteMessages,
-      bool canInviteUsers,
-      bool canRestrictMembers,
-      bool canPinMessages,
-      bool canPromoteMembers}) async {
+  Future<bool> promoteChatMember({
+    @required int chatID,
+    @required int userID,
+    bool canChangeInfo,
+    bool canPostMessages,
+    bool canEditMessages,
+    bool canDeleteMessages,
+    bool canInviteUsers,
+    bool canRestrictMembers,
+    bool canPinMessages,
+    bool canPromoteMembers,
+  }) async {
     final formData = FormData.fromMap({
       'chat_id': chatID,
       'user_id': userID,
@@ -988,7 +1037,7 @@ class API {
       'can_invite_users': canInviteUsers,
       'can_restrict_members': canRestrictMembers,
       'can_pin_messages': canPinMessages,
-      'can_promote_members': canPromoteMembers
+      'can_promote_members': canPromoteMembers,
     });
 
     return await _client.post(method: 'promoteChatMember', formData: formData);
@@ -999,12 +1048,16 @@ class API {
   /// Returns **True** on success.
   ///
   /// https://core.telegram.org/bots/api#setchatadministratorcustomtitle
-  Future<bool> setChatAdministratorCustomTitle(
-      {@required ChatID chatID,
-      @required int userID,
-      @required String customTitle}) async {
-    final formData = FormData.fromMap(
-        {'chat_id': chatID, 'user_id': userID, 'custom_title': customTitle});
+  Future<bool> setChatAdministratorCustomTitle({
+    @required ChatID chatID,
+    @required int userID,
+    @required String customTitle,
+  }) async {
+    final formData = FormData.fromMap({
+      'chat_id': chatID,
+      'user_id': userID,
+      'custom_title': customTitle,
+    });
 
     return await _client.post(
         method: 'setChatAdministratorCustomTitle', formData: formData);
@@ -1016,8 +1069,10 @@ class API {
   /// Returns **True** on success.
   ///
   /// https://core.telegram.org/bots/api#setchatpermissions
-  Future<bool> setChatPermissions(
-      {@required ChatID chatID, @required ChatPermissions permissions}) async {
+  Future<bool> setChatPermissions({
+    @required ChatID chatID,
+    @required ChatPermissions permissions,
+  }) async {
     final formData = FormData.fromMap({
       'chat_id': chatID,
       'permissions': permissions,
@@ -1033,8 +1088,12 @@ class API {
   /// link as String on success.
   ///
   /// https://core.telegram.org/bots/api#setchatpermissions
-  Future<bool> exportChatInviteLink({@required ChatID chatID}) async {
-    final formData = FormData.fromMap({'chat_id': chatID});
+  Future<bool> exportChatInviteLink({
+    @required ChatID chatID,
+  }) async {
+    final formData = FormData.fromMap({
+      'chat_id': chatID,
+    });
 
     return await _client.post(
         method: 'exportChatInviteLink', formData: formData);
@@ -1049,9 +1108,13 @@ class API {
   /// [photo] argument accepts [Luggage] object.
   ///
   /// https://core.telegram.org/bots/api#setchatphoto
-  Future<bool> setChatPhoto(
-      {@required ChatID chatID, @required Luggage photo}) async {
-    final formData = FormData.fromMap({'chat_id': chatID});
+  Future<bool> setChatPhoto({
+    @required ChatID chatID,
+    @required Luggage photo,
+  }) async {
+    final formData = FormData.fromMap({
+      'chat_id': chatID,
+    });
 
     switch (photo.type) {
       case 'link':
@@ -1078,8 +1141,12 @@ class API {
   /// Returns **True** on success.
   ///
   /// https://core.telegram.org/bots/api#deletechatphoto
-  Future<bool> deleteChatPhoto({@required ChatID chatID}) async {
-    final formData = FormData.fromMap({'chat_id': chatID});
+  Future<bool> deleteChatPhoto({
+    @required ChatID chatID,
+  }) async {
+    final formData = FormData.fromMap({
+      'chat_id': chatID,
+    });
 
     return await _client.post(method: 'deleteChatPhoto', formData: formData);
   }
@@ -1091,9 +1158,14 @@ class API {
   /// Returns **True** on success.
   ///
   /// https://core.telegram.org/bots/api#setchattitle
-  Future<bool> setChatTitle(
-      {@required ChatID chatID, @required String title}) async {
-    final formData = FormData.fromMap({'chat_id': chatID, 'title': title});
+  Future<bool> setChatTitle({
+    @required ChatID chatID,
+    @required String title,
+  }) async {
+    final formData = FormData.fromMap({
+      'chat_id': chatID,
+      'title': title,
+    });
 
     return await _client.post(method: 'setChatTitle', formData: formData);
   }
@@ -1105,10 +1177,14 @@ class API {
   /// Returns **True** on success.
   ///
   /// https://core.telegram.org/bots/api#setchatdescription
-  Future<bool> setChatDescription(
-      {@required ChatID chatID, String description}) async {
-    final formData =
-        FormData.fromMap({'chat_id': chatID, 'description': description});
+  Future<bool> setChatDescription({
+    @required ChatID chatID,
+    String description,
+  }) async {
+    final formData = FormData.fromMap({
+      'chat_id': chatID,
+      'description': description,
+    });
 
     return await _client.post(method: 'setChatDescription', formData: formData);
   }
@@ -1120,14 +1196,15 @@ class API {
   /// Returns **True** on success.
   ///
   /// https://core.telegram.org/bots/api#pinchatmessage
-  Future<bool> pinChatMessage(
-      {@required ChatID chatID,
-      @required int messageID,
-      bool disableNotification}) async {
+  Future<bool> pinChatMessage({
+    @required ChatID chatID,
+    @required int messageID,
+    bool disableNotification,
+  }) async {
     final formData = FormData.fromMap({
       'chat_id': chatID,
       'message_id': messageID,
-      'disable_notification': disableNotification
+      'disable_notification': disableNotification,
     });
 
     return await _client.post(method: 'pinChatMessage', formData: formData);
@@ -1140,8 +1217,12 @@ class API {
   /// Returns **True** on success.
   ///
   /// https://core.telegram.org/bots/api#unpinchatmessage
-  Future<bool> unpinChatMessage({@required ChatID chatID}) async {
-    final formData = FormData.fromMap({'chat_id': chatID});
+  Future<bool> unpinChatMessage({
+    @required ChatID chatID,
+  }) async {
+    final formData = FormData.fromMap({
+      'chat_id': chatID,
+    });
 
     return await _client.post(method: 'pinChatMessage', formData: formData);
   }
@@ -1150,8 +1231,12 @@ class API {
   /// Returns **True** on success.
   ///
   /// https://core.telegram.org/bots/api#leavechat
-  Future<bool> leaveChat({@required ChatID chatID}) async {
-    final formData = FormData.fromMap({'chat_id': chatID});
+  Future<bool> leaveChat({
+    @required ChatID chatID,
+  }) async {
+    final formData = FormData.fromMap({
+      'chat_id': chatID,
+    });
 
     return await _client.post(method: 'leaveChat', formData: formData);
   }
@@ -1162,8 +1247,12 @@ class API {
   /// Returns a [Chat] object on success.
   ///
   /// https://core.telegram.org/bots/api#getchat
-  Future<Chat> getChat({@required ChatID chatID}) async {
-    final formData = FormData.fromMap({'chat_id': chatID});
+  Future<Chat> getChat({
+    @required ChatID chatID,
+  }) async {
+    final formData = FormData.fromMap({
+      'chat_id': chatID,
+    });
 
     return Chat.fromJson(
         await _client.post(method: 'getChat', formData: formData));
@@ -1176,9 +1265,12 @@ class API {
   /// were appointed, only the creator will be returned.
   ///
   /// https://core.telegram.org/bots/api#getchatadministrators
-  Future<List<ChatMember>> getChatAdministrators(
-      {@required ChatID chatID}) async {
-    final formData = FormData.fromMap({'chat_id': chatID});
+  Future<List<ChatMember>> getChatAdministrators({
+    @required ChatID chatID,
+  }) async {
+    final formData = FormData.fromMap({
+      'chat_id': chatID,
+    });
 
     return (await _client.post(
             method: 'getChatAdministrators', formData: formData))
@@ -1190,8 +1282,12 @@ class API {
   /// Returns Int on success.
   ///
   /// https://core.telegram.org/bots/api#getchatmemberscount
-  Future<int> getChatMembersCount({@required ChatID chatID}) async {
-    final formData = FormData.fromMap({'chat_id': chatID});
+  Future<int> getChatMembersCount({
+    @required ChatID chatID,
+  }) async {
+    final formData = FormData.fromMap({
+      'chat_id': chatID,
+    });
 
     return await _client.post(
         method: 'getChatMembersCount', formData: formData);
@@ -1201,9 +1297,14 @@ class API {
   /// Returns a [ChatMember] object on success.
   ///
   /// https://core.telegram.org/bots/api#getchatmember
-  Future<ChatMember> getChatMember(
-      {@required ChatID chatID, @required int userID}) async {
-    final formData = FormData.fromMap({'chat_id': chatID, 'user_id': userID});
+  Future<ChatMember> getChatMember({
+    @required ChatID chatID,
+    @required int userID,
+  }) async {
+    final formData = FormData.fromMap({
+      'chat_id': chatID,
+      'user_id': userID,
+    });
 
     return ChatMember.fromJson(
         await _client.post(method: 'getChatMember', formData: formData));
@@ -1217,10 +1318,14 @@ class API {
   /// Returns **True** on success.
   ///
   /// https://core.telegram.org/bots/api#setchatstickerset
-  Future<bool> setChatStickerSet(
-      {@required ChatID chatID, @required String stickerSetName}) async {
-    final formData = FormData.fromMap(
-        {'chat_id': chatID, 'sticker_set_name': stickerSetName});
+  Future<bool> setChatStickerSet({
+    @required ChatID chatID,
+    @required String stickerSetName,
+  }) async {
+    final formData = FormData.fromMap({
+      'chat_id': chatID,
+      'sticker_set_name': stickerSetName,
+    });
 
     return await _client.post(method: 'setChatStickerSet', formData: formData);
   }
@@ -1233,8 +1338,12 @@ class API {
   /// Returns **True** on success.
   ///
   /// https://core.telegram.org/bots/api#deletechatstickerset
-  Future<bool> deleteChatStickerSet({@required ChatID chatID}) async {
-    final formData = FormData.fromMap({'chat_id': chatID});
+  Future<bool> deleteChatStickerSet({
+    @required ChatID chatID,
+  }) async {
+    final formData = FormData.fromMap({
+      'chat_id': chatID,
+    });
 
     return await _client.post(
         method: 'deleteChatStickerSet', formData: formData);
@@ -1253,18 +1362,19 @@ class API {
   /// that open your bot with a parameter.
   ///
   /// https://core.telegram.org/bots/api#answercallbackquery
-  Future<bool> answerCallbackQuery(
-      {@required String callbackQueryID,
-      String text,
-      bool showAlert,
-      String url,
-      int cacheTime}) async {
+  Future<bool> answerCallbackQuery({
+    @required String callbackQueryID,
+    String text,
+    bool showAlert,
+    String url,
+    int cacheTime,
+  }) async {
     final formData = FormData.fromMap({
       'callback_query_id': callbackQueryID,
       'text': text,
       'show_alert': showAlert,
       'url': url,
-      'cache_time': cacheTime
+      'cache_time': cacheTime,
     });
 
     return await _client.post(
@@ -1276,14 +1386,15 @@ class API {
   /// the edited [Message] is returned, otherwise True is returned.
   ///
   /// https://core.telegram.org/bots/api#editmessagetext
-  Future<Message> editMessageText(
-      {ChatID chatID,
-      int messageID,
-      String inlineMessageID,
-      @required String text,
-      ParseMode parseMode,
-      bool disableWebPagePreview,
-      InlineKeyboardMarkup replyMarkup}) async {
+  Future<Message> editMessageText({
+    ChatID chatID,
+    int messageID,
+    String inlineMessageID,
+    @required String text,
+    ParseMode parseMode,
+    bool disableWebPagePreview,
+    InlineKeyboardMarkup replyMarkup,
+  }) async {
     if (inlineMessageID == null && (chatID == null || messageID == null)) {
       return Future.error(ApiException(
           description: 'At least inlineMessageID is required. '
@@ -1297,7 +1408,7 @@ class API {
       'text': text,
       'parse_mode': parseMode.mode,
       'disable_web_page_preview': disableWebPagePreview,
-      'reply_markup': jsonEncode(replyMarkup)
+      'reply_markup': jsonEncode(replyMarkup),
     });
 
     final response =
@@ -1316,13 +1427,14 @@ class API {
   /// the edited [Message] is returned, otherwise True is returned.
   ///
   /// https://core.telegram.org/bots/api#editmessagecaption
-  Future<Message> editMessageCaption(
-      {ChatID chatID,
-      int messageID,
-      String inlineMessageID,
-      String caption,
-      ParseMode parseMode,
-      InlineKeyboardMarkup replyMarkup}) async {
+  Future<Message> editMessageCaption({
+    ChatID chatID,
+    int messageID,
+    String inlineMessageID,
+    String caption,
+    ParseMode parseMode,
+    InlineKeyboardMarkup replyMarkup,
+  }) async {
     if (inlineMessageID == null && (chatID == null || messageID == null)) {
       return Future.error(ApiException(
           description: 'At least inlineMessageID is required. '
@@ -1335,7 +1447,7 @@ class API {
       'inline_message_id': inlineMessageID,
       'caption': caption,
       'parse_mode': parseMode.mode,
-      'reply_markup': jsonEncode(replyMarkup)
+      'reply_markup': jsonEncode(replyMarkup),
     });
 
     final response =
@@ -1360,13 +1472,14 @@ class API {
   /// the edited [Message] is returned, otherwise True is returned.
   ///
   /// https://core.telegram.org/bots/api#editmessagemedia
-  Future editMessageMedia(
-      {ChatID chatID,
-      int messageID,
-      String inlineMessageID,
-      @required InputMedia media,
-      ParseMode parseMode,
-      InlineKeyboardMarkup replyMarkup}) async {
+  Future editMessageMedia({
+    ChatID chatID,
+    int messageID,
+    String inlineMessageID,
+    @required InputMedia media,
+    ParseMode parseMode,
+    InlineKeyboardMarkup replyMarkup,
+  }) async {
     if (inlineMessageID == null &&
         (chatID == null || inlineMessageID == null)) {
       return Future.error(ApiException(
@@ -1380,7 +1493,7 @@ class API {
       'inline_message_id': inlineMessageID,
       'media': jsonEncode(media),
       'parse_mode': parseMode.mode,
-      'reply_markup': jsonEncode(replyMarkup)
+      'reply_markup': jsonEncode(replyMarkup),
     });
 
     final response =
@@ -1399,11 +1512,12 @@ class API {
   /// the edited [Message] is returned, otherwise True is returned.
   ///
   /// https://core.telegram.org/bots/api#editmessagereplymarkup
-  Future<Message> editMessageReplyMarkup(
-      {ChatID chatID,
-      int messageID,
-      String inlineMessageID,
-      InlineKeyboardMarkup replyMarkup}) async {
+  Future<Message> editMessageReplyMarkup({
+    ChatID chatID,
+    int messageID,
+    String inlineMessageID,
+    InlineKeyboardMarkup replyMarkup,
+  }) async {
     if (inlineMessageID == null &&
         (chatID == null || inlineMessageID == null)) {
       return Future.error(ApiException(
@@ -1415,7 +1529,7 @@ class API {
       'chat_id': chatID,
       'message_id': messageID,
       'inline_message_id': inlineMessageID,
-      'reply_markup': jsonEncode(replyMarkup)
+      'reply_markup': jsonEncode(replyMarkup),
     });
 
     final response =
@@ -1433,14 +1547,15 @@ class API {
   /// On success, the stopped [Poll] with the final results is returned.
   ///
   /// https://core.telegram.org/bots/api#stoppoll
-  Future<Poll> stopPoll(
-      {@required ChatID chatID,
-      @required int messageID,
-      InlineKeyboardMarkup replyMarkup}) async {
+  Future<Poll> stopPoll({
+    @required ChatID chatID,
+    @required int messageID,
+    InlineKeyboardMarkup replyMarkup,
+  }) async {
     final formData = FormData.fromMap({
       'chat_id': chatID,
       'message_id': messageID,
-      'reply_markup': jsonEncode(replyMarkup)
+      'reply_markup': jsonEncode(replyMarkup),
     });
 
     return Poll.fromJson(
@@ -1462,10 +1577,14 @@ class API {
   /// Returns **True** on success.
   ///
   /// https://core.telegram.org/bots/api#deletemessage
-  Future<bool> deleteMessage(
-      {@required ChatID chatID, @required int messageID}) async {
-    final formData =
-        FormData.fromMap({'chat_id': chatID, 'message_id': messageID});
+  Future<bool> deleteMessage({
+    @required ChatID chatID,
+    @required int messageID,
+  }) async {
+    final formData = FormData.fromMap({
+      'chat_id': chatID,
+      'message_id': messageID,
+    });
 
     return await _client.post(method: 'deleteMessage', formData: formData);
   }
@@ -1476,17 +1595,18 @@ class API {
   /// [photo] argument accepts [Luggage] object.
   ///
   /// https://core.telegram.org/bots/api#sendsticker
-  Future<Message> sendSticker(
-      {@required ChatID chatID,
-      @required Luggage sticker,
-      bool disableNotification,
-      int replyToMessageID,
-      ReplyMarkup replyMarkup}) async {
+  Future<Message> sendSticker({
+    @required ChatID chatID,
+    @required Luggage sticker,
+    bool disableNotification,
+    int replyToMessageID,
+    ReplyMarkup replyMarkup,
+  }) async {
     final formData = FormData.fromMap({
       'chat_id': chatID,
       'disable_notification': disableNotification,
       'reply_to_message_id': replyToMessageID,
-      'reply_markup': jsonEncode(replyMarkup)
+      'reply_markup': jsonEncode(replyMarkup),
     });
 
     switch (sticker.type) {
@@ -1511,8 +1631,12 @@ class API {
   /// On success, a StickerSet object is returned.
   ///
   /// https://core.telegram.org/bots/api#sendsticker
-  Future<StickerSet> getStickerSet({@required String name}) async {
-    final formData = FormData.fromMap({'name': name});
+  Future<StickerSet> getStickerSet({
+    @required String name,
+  }) async {
+    final formData = FormData.fromMap({
+      'name': name,
+    });
 
     return StickerSet.fromJson(
         await _client.post(method: 'getStickerSet', formData: formData));
@@ -1523,14 +1647,18 @@ class API {
   /// methods (can be used multiple times).
   /// Returns the uploaded [File] on success.
   ///
-  /// [png_sticker] argument accepts [Luggage] object.
+  /// [pngSticker] argument accepts [Luggage] object.
   ///
   /// https://core.telegram.org/bots/api#uploadstickerfile
-  Future<File> uploadStickerFile(
-      {@required int userID, @required Luggage png_sticker}) async {
-    final formData = FormData.fromMap({'user_id': userID});
+  Future<File> uploadStickerFile({
+    @required int userID,
+    @required Luggage pngSticker,
+  }) async {
+    final formData = FormData.fromMap({
+      'user_id': userID,
+    });
 
-    switch (png_sticker.type) {
+    switch (pngSticker.type) {
       case 'link':
       case 'file_id':
         return Future.error(
@@ -1540,8 +1668,8 @@ class API {
       case 'bytes':
         formData.files.add(MapEntry<String, MultipartFile>(
             'photo',
-            MultipartFile.fromBytes(png_sticker.getBytes(),
-                filename: png_sticker.getName(type: 'png_sticker'))));
+            MultipartFile.fromBytes(pngSticker.getBytes(),
+                filename: pngSticker.getName(type: 'png_sticker'))));
         break;
     }
 
@@ -1556,15 +1684,16 @@ class API {
   /// [pngSticker] argument accepts [Luggage] object.
   ///
   /// https://core.telegram.org/bots/api#createnewstickerset
-  Future<bool> createNewStickerSet(
-      {@required int userID,
-      @required String name,
-      @required String title,
-      Luggage pngSticker,
-      Luggage tgsSticker,
-      @required String emojis,
-      bool containsMasks,
-      MaskPosition maskPosition}) async {
+  Future<bool> createNewStickerSet({
+    @required int userID,
+    @required String name,
+    @required String title,
+    Luggage pngSticker,
+    Luggage tgsSticker,
+    @required String emojis,
+    bool containsMasks,
+    MaskPosition maskPosition,
+  }) async {
     if (pngSticker == null && tgsSticker == null) {
       return Future.error(PaperPlaneException(
           description:
@@ -1579,7 +1708,7 @@ class API {
       'title': title,
       'emojis': emojis,
       'contains_masks': containsMasks,
-      'mask_position': jsonEncode(maskPosition)
+      'mask_position': jsonEncode(maskPosition),
     });
 
     switch (pngSticker.type) {
@@ -1628,13 +1757,14 @@ class API {
   /// [tgsSticker] argument accepts [Luggage] object.
   ///
   /// https://core.telegram.org/bots/api#addstickertoset
-  Future<bool> addStickerToSet(
-      {@required int userID,
-      @required String name,
-      Luggage pngSticker,
-      Luggage tgsSticker,
-      @required String emojis,
-      MaskPosition maskPosition}) async {
+  Future<bool> addStickerToSet({
+    @required int userID,
+    @required String name,
+    Luggage pngSticker,
+    Luggage tgsSticker,
+    @required String emojis,
+    MaskPosition maskPosition,
+  }) async {
     if (pngSticker == null && tgsSticker == null) {
       return Future.error(PaperPlaneException(
           description:
@@ -1645,7 +1775,7 @@ class API {
       'user_id': userID,
       'name': name,
       'emojis': emojis,
-      'mask_position': jsonEncode(maskPosition)
+      'mask_position': jsonEncode(maskPosition),
     });
 
     switch (pngSticker.type) {
@@ -1687,10 +1817,14 @@ class API {
   /// Returns **True** on success.
   ///
   /// https://core.telegram.org/bots/api#setstickerpositioninset
-  Future<bool> setStickerPositionInSet(
-      {@required String sticker, @required int position}) async {
-    final formData =
-        FormData.fromMap({'sticker': sticker, 'position': position});
+  Future<bool> setStickerPositionInSet({
+    @required String sticker,
+    @required int position,
+  }) async {
+    final formData = FormData.fromMap({
+      'sticker': sticker,
+      'position': position,
+    });
 
     return await _client.post(
         method: 'setStickerPositionInSet', formData: formData);
@@ -1700,8 +1834,12 @@ class API {
   /// Returns **True** on success.
   ///
   /// https://core.telegram.org/bots/api#deletestickerfromset
-  Future<bool> deleteStickerFromSet({@required String sticker}) async {
-    final formData = FormData.fromMap({'sticker': sticker});
+  Future<bool> deleteStickerFromSet({
+    @required String sticker,
+  }) async {
+    final formData = FormData.fromMap({
+      'sticker': sticker,
+    });
 
     return await _client.post(
         method: 'deleteStickerFromSet', formData: formData);
@@ -1713,14 +1851,15 @@ class API {
   /// No more than 50 results per query are allowed.
   ///
   /// https://core.telegram.org/bots/api#answerinlinequery
-  Future<bool> answerInlineQuery(
-      {@required String inlineQueryID,
-      @required List<InlineQueryResult> results,
-      int cacheTime,
-      bool isPersonal,
-      String nextOffset,
-      String switchPmText,
-      String switchPmParameters}) async {
+  Future<bool> answerInlineQuery({
+    @required String inlineQueryID,
+    @required List<InlineQueryResult> results,
+    int cacheTime,
+    bool isPersonal,
+    String nextOffset,
+    String switchPmText,
+    String switchPmParameters,
+  }) async {
     final formData = FormData.fromMap({
       'inline_query_id': inlineQueryID,
       'results': jsonEncode(results),
@@ -1738,30 +1877,31 @@ class API {
   /// On success, the sent [Message] is returned.
   ///
   /// https://core.telegram.org/bots/api#sendinvoice
-  Future<Message> sendInvoice(
-      {@required int chatID,
-      @required String title,
-      @required String description,
-      @required String payload,
-      @required String providerToken,
-      @required String startParameter,
-      @required String currency,
-      @required List<LabeledPrice> prices,
-      String providerData,
-      String photoUrl,
-      int photoSize,
-      int photoWidth,
-      int photoHeight,
-      bool needName,
-      bool needPhoneNumber,
-      bool needEmail,
-      bool needShippingAddress,
-      bool sendPhoneNumberToProvider,
-      bool sendEmailToProvider,
-      bool isFlexible,
-      bool disableNotification,
-      int replyToMessageID,
-      InlineKeyboardMarkup replyMarkup}) async {
+  Future<Message> sendInvoice({
+    @required int chatID,
+    @required String title,
+    @required String description,
+    @required String payload,
+    @required String providerToken,
+    @required String startParameter,
+    @required String currency,
+    @required List<LabeledPrice> prices,
+    String providerData,
+    String photoUrl,
+    int photoSize,
+    int photoWidth,
+    int photoHeight,
+    bool needName,
+    bool needPhoneNumber,
+    bool needEmail,
+    bool needShippingAddress,
+    bool sendPhoneNumberToProvider,
+    bool sendEmailToProvider,
+    bool isFlexible,
+    bool disableNotification,
+    int replyToMessageID,
+    InlineKeyboardMarkup replyMarkup,
+  }) async {
     final formData = FormData.fromMap({
       'chat_id': chatID,
       'title': title,
@@ -1785,7 +1925,7 @@ class API {
       'is_flexible': isFlexible,
       'disable_notification': disableNotification,
       'reply_to_message_id': replyToMessageID,
-      'reply_markup': jsonEncode(replyMarkup)
+      'reply_markup': jsonEncode(replyMarkup),
     });
 
     return Message.fromJson(
@@ -1800,11 +1940,12 @@ class API {
   /// On success, True is returned.
   ///
   /// https://core.telegram.org/bots/api#answershippingquery
-  Future<bool> answerShippingQuery(
-      {@required String shippingQueryID,
-      @required bool possible,
-      List<ShippingOption> shippingOptions,
-      String errorMessage}) async {
+  Future<bool> answerShippingQuery({
+    @required String shippingQueryID,
+    @required bool possible,
+    List<ShippingOption> shippingOptions,
+    String errorMessage,
+  }) async {
     if (!possible && (shippingOptions == null || errorMessage == null)) {
       return Future.error("If it's not possible, "
           'shipping_options and error_message can not be null.');
@@ -1814,7 +1955,7 @@ class API {
       'shipping_query_id': shippingQueryID,
       'ok': possible,
       'shipping_options': jsonEncode(shippingOptions),
-      'error_message': errorMessage
+      'error_message': errorMessage,
     });
 
     return await _client.post(
@@ -1831,10 +1972,11 @@ class API {
   /// after the pre-checkout query was sent.
   ///
   /// https://core.telegram.org/bots/api#answerprecheckoutquery
-  Future<bool> answerPreCheckoutQuery(
-      {@required String preCheckoutQueryID,
-      @required bool possible,
-      String errorMessage}) async {
+  Future<bool> answerPreCheckoutQuery({
+    @required String preCheckoutQueryID,
+    @required bool possible,
+    String errorMessage,
+  }) async {
     if (!possible && errorMessage == null) {
       return Future.error(ApiException(
           description: "If it's not possible, "
@@ -1843,7 +1985,7 @@ class API {
     final formData = FormData.fromMap({
       'pre_checkout_query_id': preCheckoutQueryID,
       'ok': possible,
-      'error_message': errorMessage
+      'error_message': errorMessage,
     });
 
     return await _client.post(
@@ -1867,11 +2009,14 @@ class API {
   /// the user knows how to correct the issues.
   ///
   /// https://core.telegram.org/bots/api#setpassportdataerrors
-  Future<bool> setPassportDataErrors(
-      {@required int userID,
-      @required List<PassportElementError> errors}) async {
-    final formData =
-        FormData.fromMap({'user_id': userID, 'errors': jsonEncode(errors)});
+  Future<bool> setPassportDataErrors({
+    @required int userID,
+    @required List<PassportElementError> errors,
+  }) async {
+    final formData = FormData.fromMap({
+      'user_id': userID,
+      'errors': jsonEncode(errors),
+    });
 
     return await _client.post(
         method: 'setPassportDataErrors', formData: formData);
@@ -1881,18 +2026,19 @@ class API {
   /// On success, the sent [Message] is returned.
   ///
   /// https://core.telegram.org/bots/api#sendgame
-  Future<Message> sendGame(
-      {@required int chatID,
-      @required String gameShortName,
-      bool disableNotification,
-      int replyToMessageID,
-      InlineKeyboardMarkup replyMarkup}) async {
+  Future<Message> sendGame({
+    @required int chatID,
+    @required String gameShortName,
+    bool disableNotification,
+    int replyToMessageID,
+    InlineKeyboardMarkup replyMarkup,
+  }) async {
     final formData = FormData.fromMap({
       'chat_id': chatID,
       'game_short_name': gameShortName,
       'disable_notification': disableNotification,
       'reply_to_message_id': replyToMessageID,
-      'reply_markup': jsonEncode(replyMarkup)
+      'reply_markup': jsonEncode(replyMarkup),
     });
 
     return Message.fromJson(
@@ -1906,14 +2052,15 @@ class API {
   /// user's current score in the chat and force is False.
   ///
   /// https://core.telegram.org/bots/api#setgamescore
-  Future<Message> setGameScore(
-      {@required int userID,
-      @required int score,
-      bool force,
-      bool disableEditMessage,
-      int chatID,
-      int messageID,
-      String inlineMessageID}) async {
+  Future<Message> setGameScore({
+    @required int userID,
+    @required int score,
+    bool force,
+    bool disableEditMessage,
+    int chatID,
+    int messageID,
+    String inlineMessageID,
+  }) async {
     if (inlineMessageID == null && (chatID == null || messageID == null)) {
       return Future.error(ApiException(
           description: 'At least inlineMessageID is required. '
@@ -1927,7 +2074,7 @@ class API {
       'disable_edit_message': disableEditMessage,
       'chat_id': chatID,
       'message_id': messageID,
-      'inline_message_id': inlineMessageID
+      'inline_message_id': inlineMessageID,
     });
 
     return Message.fromJson(
@@ -1940,11 +2087,12 @@ class API {
   /// Array of [GameHighScore] objects.
   ///
   /// https://core.telegram.org/bots/api#getgamehighscores
-  Future<List<GameHighScore>> getGameHighScores(
-      {@required int userID,
-      int chatID,
-      int messageID,
-      String inlineMessageID}) async {
+  Future<List<GameHighScore>> getGameHighScores({
+    @required int userID,
+    int chatID,
+    int messageID,
+    String inlineMessageID,
+  }) async {
     if (inlineMessageID == null && (chatID == null || messageID == null)) {
       return Future.error(ApiException(
           description: 'At least inlineMessageID is required. '
@@ -1955,7 +2103,7 @@ class API {
       'user_id': userID,
       'chat_id': chatID,
       'message_id': messageID,
-      'inline_message_id': inlineMessageID
+      'inline_message_id': inlineMessageID,
     });
 
     return (await _client.post(method: 'getGameHighScores', formData: formData))
@@ -1970,18 +2118,19 @@ class API {
   /// (Yes, we're aware of the **“proper”** singular of **die**.
   /// But it's awkward, and we decided to help it change.
   /// One dice at a time!)
-  Future<Message> sendDice(
-      {@required ChatID chatID,
-      DiceType emoji,
-      bool disableNotification,
-      int replyToMessageID,
-      ReplyMarkup replyMarkup}) async {
+  Future<Message> sendDice({
+    @required ChatID chatID,
+    DiceType emoji,
+    bool disableNotification,
+    int replyToMessageID,
+    ReplyMarkup replyMarkup,
+  }) async {
     final formData = FormData.fromMap({
       'chat_id': chatID,
       'emoji': emoji?.emoji ?? DiceType.dice.emoji,
       'disable_notification': disableNotification,
       'reply_to_message_id': replyToMessageID,
-      'reply_markup': jsonEncode(replyMarkup)
+      'reply_markup': jsonEncode(replyMarkup),
     });
 
     return Message.fromJson(
@@ -2002,7 +2151,9 @@ class API {
   /// Returns **True** on success.
   ///
   /// https://core.telegram.org/bots/api#setmycommands
-  Future<bool> setMyCommands({@required List<BotCommand> commands}) async {
+  Future<bool> setMyCommands({
+    @required List<BotCommand> commands,
+  }) async {
     for (var command in commands) {
       if (command.command == null || command.description == null) {
         return Future.error(PaperPlaneException(
@@ -2010,7 +2161,9 @@ class API {
       }
     }
 
-    final formData = FormData.fromMap({'commands': commands});
+    final formData = FormData.fromMap({
+      'commands': commands,
+    });
 
     return await _client.post(method: 'setMyCommands', formData: formData);
   }
@@ -2022,9 +2175,15 @@ class API {
   /// [thumb] argument accepts [Luggage] object.
   ///
   /// https://core.telegram.org/bots/api#setstickersetthumb
-  Future<bool> setStickerSetThumb(
-      {@required name, @required int user_id, Luggage thumb}) async {
-    final formData = FormData.fromMap({'name': name, 'user_id': user_id});
+  Future<bool> setStickerSetThumb({
+    @required name,
+    @required int userId,
+    Luggage thumb,
+  }) async {
+    final formData = FormData.fromMap({
+      'name': name,
+      'user_id': userId,
+    });
 
     switch (thumb.type) {
       case 'link':

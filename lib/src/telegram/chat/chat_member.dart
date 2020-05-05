@@ -112,26 +112,27 @@ class ChatMember {
   @JsonKey(name: 'can_add_web_page_previews')
   bool canAddWebPagePreviews;
 
-  ChatMember(
-      {this.user,
-      this.status,
-      this.customTitle,
-      this.untilDate,
-      this.canBeEdited,
-      this.canPostMessages,
-      this.canEditMessages,
-      this.canDeleteMessages,
-      this.canRestrictMembers,
-      this.canPromoteMembers,
-      this.canChangeInfo,
-      this.canInviteUsers,
-      this.canPinMessages,
-      this.isMember,
-      this.canSendMessages,
-      this.canSendMediaMessages,
-      this.canSendPolls,
-      this.canSendOtherMessages,
-      this.canAddWebPagePreviews});
+  ChatMember({
+    this.user,
+    this.status,
+    this.customTitle,
+    this.untilDate,
+    this.canBeEdited,
+    this.canPostMessages,
+    this.canEditMessages,
+    this.canDeleteMessages,
+    this.canRestrictMembers,
+    this.canPromoteMembers,
+    this.canChangeInfo,
+    this.canInviteUsers,
+    this.canPinMessages,
+    this.isMember,
+    this.canSendMessages,
+    this.canSendMediaMessages,
+    this.canSendPolls,
+    this.canSendOtherMessages,
+    this.canAddWebPagePreviews,
+  });
 
   factory ChatMember.fromJson(Map<String, dynamic> json) =>
       _$ChatMemberFromJson(json);

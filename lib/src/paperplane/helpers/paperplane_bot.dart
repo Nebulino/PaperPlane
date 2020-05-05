@@ -60,17 +60,18 @@ class Bot {
   @JsonKey(name: 'supports_inline_queries')
   bool supportsInlineQueries;
 
-  Bot(
-      {this.token,
-      this.id,
-      this.isBot,
-      this.firstName,
-      this.lastName,
-      this.username,
-      this.languageCode,
-      this.canJoinGroups,
-      this.canReadAllGroupMessages,
-      this.supportsInlineQueries});
+  Bot({
+    this.token,
+    this.id,
+    this.isBot,
+    this.firstName,
+    this.lastName,
+    this.username,
+    this.languageCode,
+    this.canJoinGroups,
+    this.canReadAllGroupMessages,
+    this.supportsInlineQueries,
+  });
 
   factory Bot.fromJson(Map<String, dynamic> json) => _$BotFromJson(json);
 

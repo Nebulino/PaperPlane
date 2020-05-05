@@ -23,7 +23,11 @@ class GameHighScore {
   @JsonKey(name: 'score', required: true)
   int score;
 
-  GameHighScore({this.position, this.user, this.score});
+  GameHighScore({
+    this.position,
+    this.user,
+    this.score,
+  });
 
   factory GameHighScore.fromJson(Map<String, dynamic> json) =>
       _$GameHighScoreFromJson(json);

@@ -15,7 +15,7 @@ enum ChatAction {
   UPLOAD_DOCUMENT,
   FIND_LOCATION,
   RECORD_VIDEO_NOTE,
-  UPLOAD_VIDEO_NOTE
+  UPLOAD_VIDEO_NOTE,
 }
 
 extension ChatActionExtension on ChatAction {

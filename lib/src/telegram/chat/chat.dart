@@ -83,21 +83,22 @@ class Chat {
   @JsonKey(name: 'can_set_sticker_set')
   bool canSetStickerSet;
 
-  Chat(
-      {this.id,
-      this.type,
-      this.title,
-      this.username,
-      this.firstName,
-      this.lastName,
-      this.photo,
-      this.description,
-      this.inviteLink,
-      this.pinnedMessage,
-      this.permissions,
-      this.slowModeDelay,
-      this.stickerSetName,
-      this.canSetStickerSet});
+  Chat({
+    this.id,
+    this.type,
+    this.title,
+    this.username,
+    this.firstName,
+    this.lastName,
+    this.photo,
+    this.description,
+    this.inviteLink,
+    this.pinnedMessage,
+    this.permissions,
+    this.slowModeDelay,
+    this.stickerSetName,
+    this.canSetStickerSet,
+  });
 
   factory Chat.fromJson(Map<String, dynamic> json) => _$ChatFromJson(json);
 

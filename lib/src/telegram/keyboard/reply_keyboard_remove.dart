@@ -42,7 +42,10 @@ class ReplyKeyboardRemove implements ReplyMarkup {
   @JsonKey(name: 'selective')
   bool selective;
 
-  ReplyKeyboardRemove({this.remove_keyboard, this.selective});
+  ReplyKeyboardRemove({
+    this.remove_keyboard,
+    this.selective,
+  });
 
   factory ReplyKeyboardRemove.fromJson(Map<String, dynamic> json) =>
       _$ReplyKeyboardRemoveFromJson(json);

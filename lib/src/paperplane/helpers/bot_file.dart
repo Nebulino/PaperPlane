@@ -16,28 +16,39 @@ class BotFile {
   String fileName;
   final Bot _bot;
 
-  BotFile._(this._bot, {this.fileName});
+  BotFile._(
+    this._bot, {
+    this.fileName,
+  });
 
   /// Creates a BotFile from a file.
-  factory BotFile.fromFile(io.File file) {
+  factory BotFile.fromFile(
+    io.File file,
+  ) {
     return BotFile._(Bot.fromJson(jsonDecode(file.readAsStringSync())));
   }
 
   /// Import a PaperPlane file.
-  static Future<BotFile> import(
-      {String fileName = 'PaperPlaneBot.json'}) async {
+  static Future<BotFile> import({
+    String fileName = 'PaperPlaneBot.json',
+  }) async {
     if (io.FileSystemEntity.typeSync('${fileName}') ==
         io.FileSystemEntityType.notFound) {
       throw PaperPlaneException(description: 'BotFile not found.');
     }
 
     final content = await io.File(fileName).readAsString();
-    return BotFile._(Bot.fromJson(jsonDecode(content)), fileName: fileName);
+    return BotFile._(
+      Bot.fromJson(jsonDecode(content)),
+      fileName: fileName,
+    );
   }
 
   /// Export a PaperPlane file.
-  static void export(
-      {@required Bot bot, String fileName = 'PaperPlaneBot.json'}) {
+  static void export({
+    @required Bot bot,
+    String fileName = 'PaperPlaneBot.json',
+  }) {
     io.File(fileName).writeAsString(jsonEncode(bot.toJson()));
   }
 

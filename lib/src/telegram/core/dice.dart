@@ -21,7 +21,10 @@ class Dice {
   @JsonKey(name: 'value', required: true)
   int value;
 
-  Dice({this.emoji, this.value});
+  Dice({
+    this.emoji,
+    this.value,
+  });
 
   factory Dice.fromJson(Map<String, dynamic> json) => _$DiceFromJson(json);
 

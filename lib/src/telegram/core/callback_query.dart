@@ -65,14 +65,15 @@ class CallbackQuery {
   @JsonKey(name: 'game_short_name')
   String gameShortName;
 
-  CallbackQuery(
-      {this.id,
-      this.from,
-      this.message,
-      this.inlineMessageID,
-      this.chatInstance,
-      this.data,
-      this.gameShortName});
+  CallbackQuery({
+    this.id,
+    this.from,
+    this.message,
+    this.inlineMessageID,
+    this.chatInstance,
+    this.data,
+    this.gameShortName,
+  });
 
   factory CallbackQuery.fromJson(Map<String, dynamic> json) =>
       _$CallbackQueryFromJson(json);

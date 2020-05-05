@@ -82,16 +82,17 @@ class InputMediaVideo implements InputMedia {
   @JsonKey(name: 'supports_streaming', required: true)
   bool supportsStreaming;
 
-  InputMediaVideo(
-      {this.type = 'video',
-      this.media,
-      this.thumb,
-      this.caption,
-      this.parseMode,
-      this.width,
-      this.height,
-      this.duration,
-      this.supportsStreaming});
+  InputMediaVideo({
+    this.type = 'video',
+    this.media,
+    this.thumb,
+    this.caption,
+    this.parseMode,
+    this.width,
+    this.height,
+    this.duration,
+    this.supportsStreaming,
+  });
 
   factory InputMediaVideo.fromJson(Map<String, dynamic> json) =>
       _$InputMediaVideoFromJson(json);

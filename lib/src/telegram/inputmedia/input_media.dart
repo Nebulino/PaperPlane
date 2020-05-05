@@ -39,7 +39,12 @@ class InputMedia {
   @JsonKey(name: 'parse_mode')
   ParseMode parseMode;
 
-  InputMedia({this.type, this.media, this.caption, this.parseMode});
+  InputMedia({
+    this.type,
+    this.media,
+    this.caption,
+    this.parseMode,
+  });
 
   factory InputMedia.fromJson(Map<String, dynamic> json) =>
       _$InputMediaFromJson(json);

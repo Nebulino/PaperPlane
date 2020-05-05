@@ -39,7 +39,12 @@ class File {
   @JsonKey(name: 'file_path')
   String filePath;
 
-  File({this.fileID, this.fileUniqueID, this.fileSize, this.filePath});
+  File({
+    this.fileID,
+    this.fileUniqueID,
+    this.fileSize,
+    this.filePath,
+  });
 
   factory File.fromJson(Map<String, dynamic> json) => _$FileFromJson(json);
 

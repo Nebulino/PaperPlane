@@ -15,7 +15,10 @@ import 'package:paperplane/src/tools/client/telegram_response.dart';
 class TelegramClient {
   Dio _dio;
 
-  TelegramClient({@required String token, String proxy}) {
+  TelegramClient({
+    @required String token,
+    String proxy,
+  }) {
     _dio = Dio(
       BaseOptions(
           baseUrl: 'https://api.telegram.org/bot$token/',
@@ -69,14 +72,18 @@ class TelegramClient {
   }
 
   /// It executes a GET request.
-  Future<dynamic> get(
-      {@required String method, Map<String, dynamic> parameters}) async {
+  Future<dynamic> get({
+    @required String method,
+    Map<String, dynamic> parameters,
+  }) async {
     return (await _dio.get(method, queryParameters: parameters ?? {})).data;
   }
 
   /// It executes a Multipart/form-data request.
-  Future<dynamic> post(
-      {@required String method, @required FormData formData}) async {
+  Future<dynamic> post({
+    @required String method,
+    @required FormData formData,
+  }) async {
     return (await _dio.post(method, data: formData)).data;
   }
 }

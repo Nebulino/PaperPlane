@@ -85,20 +85,21 @@ class InlineQueryResultDocument implements InlineQueryResult {
   @JsonKey(name: 'thumb_height')
   int thumbHeight;
 
-  InlineQueryResultDocument(
-      {this.type = 'document',
-      this.id,
-      this.title,
-      this.caption,
-      this.parseMode,
-      this.documentUrl,
-      this.mimeType,
-      this.description,
-      this.replyMarkup,
-      this.inputMessageContent,
-      this.thumbUrl,
-      this.thumbWidth,
-      this.thumbHeight});
+  InlineQueryResultDocument({
+    this.type = 'document',
+    this.id,
+    this.title,
+    this.caption,
+    this.parseMode,
+    this.documentUrl,
+    this.mimeType,
+    this.description,
+    this.replyMarkup,
+    this.inputMessageContent,
+    this.thumbUrl,
+    this.thumbWidth,
+    this.thumbHeight,
+  });
 
   factory InlineQueryResultDocument.fromJson(Map<String, dynamic> json) =>
       _$InlineQueryResultDocumentFromJson(json);

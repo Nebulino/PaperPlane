@@ -24,7 +24,10 @@ class LabeledPrice {
   @JsonKey(name: 'amount', required: true)
   int amount;
 
-  LabeledPrice({this.label, this.amount});
+  LabeledPrice({
+    this.label,
+    this.amount,
+  });
 
   factory LabeledPrice.fromJson(Map<String, dynamic> json) =>
       _$LabeledPriceFromJson(json);

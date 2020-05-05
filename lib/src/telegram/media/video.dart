@@ -47,15 +47,16 @@ class Video {
   @JsonKey(name: 'file_size')
   int fileSize;
 
-  Video(
-      {this.fileID,
-      this.fileUniqueID,
-      this.width,
-      this.height,
-      this.duration,
-      this.thumb,
-      this.mimeType,
-      this.fileSize});
+  Video({
+    this.fileID,
+    this.fileUniqueID,
+    this.width,
+    this.height,
+    this.duration,
+    this.thumb,
+    this.mimeType,
+    this.fileSize,
+  });
 
   factory Video.fromJson(Map<String, dynamic> json) => _$VideoFromJson(json);
 

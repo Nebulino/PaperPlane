@@ -71,18 +71,19 @@ class InlineQueryResultContact implements InlineQueryResult {
   @JsonKey(name: 'thumb_height')
   int thumbHeight;
 
-  InlineQueryResultContact(
-      {this.type = 'contact',
-      this.id,
-      this.phoneNumber,
-      this.firstName,
-      this.lastName,
-      this.vcard,
-      this.replyMarkup,
-      this.inputMessageContent,
-      this.thumbUrl,
-      this.thumbWidth,
-      this.thumbHeight});
+  InlineQueryResultContact({
+    this.type = 'contact',
+    this.id,
+    this.phoneNumber,
+    this.firstName,
+    this.lastName,
+    this.vcard,
+    this.replyMarkup,
+    this.inputMessageContent,
+    this.thumbUrl,
+    this.thumbWidth,
+    this.thumbHeight,
+  });
 
   factory InlineQueryResultContact.fromJson(Map<String, dynamic> json) =>
       _$InlineQueryResultContactFromJson(json);

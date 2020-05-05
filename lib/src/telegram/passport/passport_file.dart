@@ -33,7 +33,12 @@ class PassportFile {
       toJson: _dateTimeToTelegramInt)
   DateTime fileDate;
 
-  PassportFile({this.fileID, this.fileUniqueID, this.fileSize, this.fileDate});
+  PassportFile({
+    this.fileID,
+    this.fileUniqueID,
+    this.fileSize,
+    this.fileDate,
+  });
 
   factory PassportFile.fromJson(Map<String, dynamic> json) =>
       _$PassportFileFromJson(json);

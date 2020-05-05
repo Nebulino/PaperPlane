@@ -80,19 +80,20 @@ class InlineQueryResultCachedMpeg4Gif implements InlineQueryResult {
   @JsonKey(name: 'input_message_content')
   InputMessageContent inputMessageContent;
 
-  InlineQueryResultCachedMpeg4Gif(
-      {this.type = 'mpeg4_gif',
-      this.id,
-      this.mpeg4Url,
-      this.mpeg4Width,
-      this.mpeg4Height,
-      this.mpeg4Duration,
-      this.thumbUrl,
-      this.title,
-      this.caption,
-      this.parseMode,
-      this.replyMarkup,
-      this.inputMessageContent});
+  InlineQueryResultCachedMpeg4Gif({
+    this.type = 'mpeg4_gif',
+    this.id,
+    this.mpeg4Url,
+    this.mpeg4Width,
+    this.mpeg4Height,
+    this.mpeg4Duration,
+    this.thumbUrl,
+    this.title,
+    this.caption,
+    this.parseMode,
+    this.replyMarkup,
+    this.inputMessageContent,
+  });
 
   factory InlineQueryResultCachedMpeg4Gif.fromJson(Map<String, dynamic> json) =>
       _$InlineQueryResultCachedMpeg4GifFromJson(json);

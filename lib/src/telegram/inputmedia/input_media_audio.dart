@@ -78,15 +78,16 @@ class InputMediaAudio implements InputMedia {
   @JsonKey(name: 'title')
   String title;
 
-  InputMediaAudio(
-      {this.type = 'audio',
-      this.media,
-      this.thumb,
-      this.caption,
-      this.parseMode,
-      this.duration,
-      this.performer,
-      this.title});
+  InputMediaAudio({
+    this.type = 'audio',
+    this.media,
+    this.thumb,
+    this.caption,
+    this.parseMode,
+    this.duration,
+    this.performer,
+    this.title,
+  });
 
   factory InputMediaAudio.fromJson(Map<String, dynamic> json) =>
       _$InputMediaAudioFromJson(json);

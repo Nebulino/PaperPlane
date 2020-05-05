@@ -51,15 +51,16 @@ class ChatPermissions {
   @JsonKey(name: 'can_pin_messages')
   bool canPinMessages;
 
-  ChatPermissions(
-      {this.canSendMessages,
-      this.canSendMediaMessages,
-      this.canSendPolls,
-      this.canSendOtherMessages,
-      this.canAddWebPagePreviews,
-      this.canChangeInfo,
-      this.canInviteUsers,
-      this.canPinMessages});
+  ChatPermissions({
+    this.canSendMessages,
+    this.canSendMediaMessages,
+    this.canSendPolls,
+    this.canSendOtherMessages,
+    this.canAddWebPagePreviews,
+    this.canChangeInfo,
+    this.canInviteUsers,
+    this.canPinMessages,
+  });
 
   factory ChatPermissions.fromJson(Map<String, dynamic> json) =>
       _$ChatPermissionsFromJson(json);

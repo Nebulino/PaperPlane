@@ -39,12 +39,13 @@ class Invoice {
   @JsonKey(name: 'total_amount', required: true)
   int total_amount;
 
-  Invoice(
-      {this.title,
-      this.description,
-      this.start_parameter,
-      this.currency,
-      this.total_amount});
+  Invoice({
+    this.title,
+    this.description,
+    this.start_parameter,
+    this.currency,
+    this.total_amount,
+  });
 
   factory Invoice.fromJson(Map<String, dynamic> json) =>
       _$InvoiceFromJson(json);

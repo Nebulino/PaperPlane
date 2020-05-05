@@ -32,8 +32,12 @@ class InputContactMessageContent implements InputMessageContent {
   @JsonKey(name: 'vcard')
   String vcard;
 
-  InputContactMessageContent(
-      {this.phoneNumber, this.firstName, this.lastName, this.vcard});
+  InputContactMessageContent({
+    this.phoneNumber,
+    this.firstName,
+    this.lastName,
+    this.vcard,
+  });
 
   factory InputContactMessageContent.fromJson(Map<String, dynamic> json) =>
       _$InputContactMessageContentFromJson(json);

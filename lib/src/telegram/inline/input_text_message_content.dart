@@ -30,8 +30,11 @@ class InputTextMessageContent implements InputMessageContent {
   @JsonKey(name: 'disable_web_page_preview')
   bool disableWebPagePreview;
 
-  InputTextMessageContent(
-      {this.messageText, this.parseMode, this.disableWebPagePreview});
+  InputTextMessageContent({
+    this.messageText,
+    this.parseMode,
+    this.disableWebPagePreview,
+  });
 
   factory InputTextMessageContent.fromJson(Map<String, dynamic> json) =>
       _$InputTextMessageContentFromJson(json);

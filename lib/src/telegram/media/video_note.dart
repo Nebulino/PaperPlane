@@ -44,13 +44,14 @@ class VideoNote {
   @JsonKey(name: 'file_size')
   int fileSize;
 
-  VideoNote(
-      {this.fileID,
-      this.fileUniqueID,
-      this.length,
-      this.duration,
-      this.thumb,
-      this.fileSize});
+  VideoNote({
+    this.fileID,
+    this.fileUniqueID,
+    this.length,
+    this.duration,
+    this.thumb,
+    this.fileSize,
+  });
 
   factory VideoNote.fromJson(Map<String, dynamic> json) =>
       _$VideoNoteFromJson(json);

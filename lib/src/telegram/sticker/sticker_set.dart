@@ -36,13 +36,14 @@ class StickerSet {
   @JsonKey(name: 'thumb')
   PhotoSize thumb;
 
-  StickerSet(
-      {this.name,
-      this.title,
-      this.isAnimated,
-      this.containsMasks,
-      this.stickers,
-      this.thumb});
+  StickerSet({
+    this.name,
+    this.title,
+    this.isAnimated,
+    this.containsMasks,
+    this.stickers,
+    this.thumb,
+  });
 
   factory StickerSet.fromJson(Map<String, dynamic> json) =>
       _$StickerSetFromJson(json);

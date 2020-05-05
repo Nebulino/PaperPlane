@@ -49,11 +49,12 @@ class ReplyKeyboardMarkup implements ReplyMarkup {
   @JsonKey(name: 'selective')
   bool selective;
 
-  ReplyKeyboardMarkup(
-      {this.keyboard,
-      this.resizeKeyboard,
-      this.oneTimeKeyboard,
-      this.selective});
+  ReplyKeyboardMarkup({
+    this.keyboard,
+    this.resizeKeyboard,
+    this.oneTimeKeyboard,
+    this.selective,
+  });
 
   factory ReplyKeyboardMarkup.fromJson(Map<String, dynamic> json) =>
       _$ReplyKeyboardMarkupFromJson(json);

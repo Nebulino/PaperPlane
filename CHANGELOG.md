@@ -1,5 +1,11 @@
+## 0.6.4
+
+- Added trailing comma.
+- Changed some snake variable leftovers.
+- Updated a dependency.
+
 ## 0.6.3
-#### Big update.
+### Big update.
 
 - Updated to Telegram API v4.8.
 - Modified some docs.
@@ -7,12 +13,12 @@
 - Created DiceType to control which emoji are usable.
 
 ## 0.6.2
-#### Fixed LongPolling setup.
+### Fixed LongPolling setup.
 
 - Removed for now UpdateType. Need to check the behaviour.
 
 ## 0.6.1
-#### Hello Webhook!
+### Hello Webhook!
 
 - A webhook implementation test.
 
@@ -21,7 +27,7 @@
 - Fixed DateTime from Unix int in seconds from telegram and vice versa.
 
 ## 0.6.0
-#### Hello Primitives!
+### Hello Primitives!
 
 - Started using Dart Primitives for some parameters in Telegram API Library.
 - Started renaming all variables to follow Dart Effective Language Rules.
@@ -31,7 +37,7 @@
 - More documentation.
 
 ## 0.5.2
-#### Big update.
+### Big update.
 
 - Updated to Telegram API v4.7.
 - Modified some docs.
@@ -48,8 +54,8 @@
 - Removed UUID package and created just a simple String Generator Helper.
 
 ## 0.5.0
-#### Huge package rewrite.
-##### Now all Telegram API v4.6 are supported.
+### Huge package rewrite.
+#### Now all Telegram API v4.6 are supported.
      
 - Fixed sendMediaGroup. 
 - Started using Dio as HTTPClient => TelegramClient.
@@ -61,7 +67,7 @@
 - Rewritten some part of the package.
 - Refactored some functions.
 - Testing a ChatIdentifier object to manage functions that accepts int chat_id and String chat_id 
-    (for groups and channels).
+      (for groups and channels).
 - Remove some un-necessary exceptions.
 - Rewritten "clean" scripts.
 - More to come...
@@ -79,7 +85,7 @@
 - Fixed blob sending.
 
 ## 0.4.2
-#### Another update.
+### Another update.
 
 - Fixed Telegram API v.4.6.
 - Created PollAnswer.
@@ -89,7 +95,7 @@
 - Fixed CHANGELOG.md.
 
 ## 0.4.1
-#### A new step for the docs, and more...
+### A new step for the docs, and more...
 
 - Updated some methods.
 - Created some extensions.
@@ -98,7 +104,7 @@
 - Some refactoring.
 
 ## 0.4.0
-#### Huge Update. Basic polling!
+### Huge Update. Basic polling!
 
 - Implemented a basic long polling implementation.
 - To achieve this, created Updater.
@@ -107,7 +113,7 @@
 - Refactored some part of the code.
 
 ## 0.3.0
-#### Big update.
+### Big update.
 
 - Finished implementing all Telegram Api Methods.
 - TODO: make possible using @username in chat_id in some methods.
@@ -124,7 +130,7 @@
 - Changed the version on pubspec.yaml.
 
 ## 0.2.0
-#### Big update.
+### Big update.
 
 - Modified PaperPlane class, it can make bots now.
 - Created Telegram Class, it helps bridging PaperPlane and Telegram Api methods.
@@ -153,12 +159,12 @@
 - Added LICENSE.
 
 ## 0.1.0
-#### Pre-release
+### Pre-release
 
 - First Pre-release, no Telegram methods implemented.
 - Modified the README.md to make it more appealing.
 - Created all Telegram API types Classes.
-- Added functions in each types fromJson and toJson.
+- Added functions in each type fromJson and toJson.
 - Added some Script for building and cleaning.
 
 ## 0.0.1

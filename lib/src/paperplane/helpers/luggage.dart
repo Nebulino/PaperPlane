@@ -43,8 +43,8 @@ class Luggage {
     return Luggage._('link', link);
   }
 
-  factory Luggage.withTGFileID({@required String file_id}) {
-    return Luggage._('file_id', file_id);
+  factory Luggage.withTGFileID({@required String fileId}) {
+    return Luggage._('file_id', fileId);
   }
 
   String get type => _type;
@@ -59,7 +59,9 @@ class Luggage {
     }
   }
 
-  String getName({String type}) {
+  String getName({
+    String type,
+  }) {
     if (_type == 'file') {
       return path.basename(_content.path);
     } else {

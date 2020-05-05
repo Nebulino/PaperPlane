@@ -96,21 +96,22 @@ class InlineQueryResultVideo implements InlineQueryResult {
   @JsonKey(name: 'input_message_content')
   InputMessageContent inputMessageContent;
 
-  InlineQueryResultVideo(
-      {this.id,
-      this.type = 'video',
-      this.videoUrl,
-      this.mimeType,
-      this.thumbUrl,
-      this.title,
-      this.caption,
-      this.parseMode,
-      this.videoWidth,
-      this.videoHeight,
-      this.videoDuration,
-      this.description,
-      this.replyMarkup,
-      this.inputMessageContent});
+  InlineQueryResultVideo({
+    this.id,
+    this.type = 'video',
+    this.videoUrl,
+    this.mimeType,
+    this.thumbUrl,
+    this.title,
+    this.caption,
+    this.parseMode,
+    this.videoWidth,
+    this.videoHeight,
+    this.videoDuration,
+    this.description,
+    this.replyMarkup,
+    this.inputMessageContent,
+  });
 
   factory InlineQueryResultVideo.fromJson(Map<String, dynamic> json) =>
       _$InlineQueryResultVideoFromJson(json);
