@@ -1,8 +1,8 @@
 import 'package:paperplane/helpers.dart';
-/**
- * PaperPlane - Just a Telegram Library for Dart
- * Copyright (c) 2020 Nebulino
- */
+//                                               //
+// PaperPlane - Just a Telegram Library for Dart //
+//          Copyright (c) 2020 Nebulino          //
+//                                               //
 
 import 'package:paperplane/paperplane.dart';
 import 'package:test/test.dart';
