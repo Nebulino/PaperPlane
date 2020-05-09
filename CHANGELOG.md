@@ -1,3 +1,9 @@
+## 0.6.5
+
+- Updated Copyright headline for a bump to Dart 2.8.0.
+- Updated the README.md.
+- Updated the pubspec.yaml.
+
 ## 0.6.4
 
 - Added trailing comma.

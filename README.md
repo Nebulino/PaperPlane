@@ -6,7 +6,7 @@ A package to interact with the official
 
 [Telegram Bot API](https://core.telegram.org/bots/api).
 
-[![Dart Version](https://img.shields.io/badge/Dart-2.7.2-blue.svg?style=flat-square&logo=dart)](https://dart.dev)
+[![Dart Version](https://img.shields.io/badge/Dart-2.8.0-blue.svg?style=flat-square&logo=dart)](https://dart.dev)
 [![Build Status](https://img.shields.io/travis/Nebulino/PaperPlane/master?style=flat-square&logo=travis)](https://travis-ci.org/github/Nebulino/PaperPlane)
 [![Bot API](https://img.shields.io/badge/Bot%20API-v.4.8-00aced.svg?style=flat-square&logo=telegram)](https://core.telegram.org/bots/api)
 [![Nebulino](https://img.shields.io/badge/💬%20Telegram-Nebulino-blue.svg?style=flat-square)](https://t.me/Nebulino/)
@@ -74,7 +74,7 @@ dependencies:
 From pub.dev:
 ```yaml
 dependencies:
-  paperplane: ^0.6.4
+  paperplane: ^0.6.5
 ```
 
 ## Features and bugs
@@ -82,7 +82,7 @@ dependencies:
 ### All API up-to v4.8 are supported
 #### Implemented a base for a future solid implementation of Long Polling
 
-Still, not implemented the Webhook.
+Still, the Webhook needs more tests.
 
 You can use Long Polling mode for now. 
 

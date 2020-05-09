@@ -1,7 +1,7 @@
-/**
- * PaperPlane - Just a Telegram Library for Dart
- * Copyright (c) 2020 Nebulino
- */
+//                                               //
+// PaperPlane - Just a Telegram Library for Dart //
+//          Copyright (c) 2020 Nebulino          //
+//                                               //
 
 import 'dart:core';
 import 'dart:math' show Random;

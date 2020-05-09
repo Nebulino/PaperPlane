@@ -1,7 +1,7 @@
-/**
- * PaperPlane - Just a Telegram Library for Dart
- * Copyright (c) 2020 Nebulino
- */
+//                                               //
+// PaperPlane - Just a Telegram Library for Dart //
+//          Copyright (c) 2020 Nebulino          //
+//                                               //
 
 /// Contains every type of [encrypted passport element type].
 ///
