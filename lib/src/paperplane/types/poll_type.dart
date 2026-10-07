@@ -10,14 +10,8 @@ enum PollType {
 }
 
 extension PollTypeExtension on PollType {
-  String get type {
-    switch (this) {
-      case PollType.QUIZ:
-        return 'quiz';
-      case PollType.REGULAR:
-        return 'regular';
-      default:
-        return null;
-    }
-  }
+  String get type => switch (this) {
+        PollType.QUIZ => 'quiz',
+        PollType.REGULAR => 'regular',
+      };
 }

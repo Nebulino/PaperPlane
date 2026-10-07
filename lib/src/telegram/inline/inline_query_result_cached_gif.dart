@@ -3,7 +3,7 @@
 //          Copyright (c) 2020 Nebulino          //
 //                                               //
 
-part of inline;
+part of '../inline.dart';
 
 /// Represents a link to an animated GIF file stored
 /// on the Telegram servers.
@@ -19,25 +19,25 @@ class InlineQueryResultCachedGif implements InlineQueryResult {
   /// Type of the result, must be *gif*.
   @JsonKey(name: 'type', required: true)
   @override
-  String type;
+  String? type;
 
   /// Unique identifier for this result, 1-64 bytes.
   @JsonKey(name: 'id', required: true)
   @override
-  String id;
+  String? id;
 
   /// A valid file identifier for the GIF file.
   @JsonKey(name: 'gif_file_id', required: true)
-  String gifFileID;
+  String? gifFileID;
 
   /// *Optional.* Title for the result.
   @JsonKey(name: 'title')
-  String title;
+  String? title;
 
   /// *Optional.* Caption of the GIF file to be sent,
   /// 0-1024 characters after entities parsing.
   @JsonKey(name: 'caption')
-  String caption;
+  String? caption;
 
   /// *Optional.*
   /// Send *[Markdown]* or *[HTML]*,
@@ -48,17 +48,17 @@ class InlineQueryResultCachedGif implements InlineQueryResult {
   /// [HTML]: https://core.telegram.org/bots/api#html-style
   /// [bold, italic, fixed-width text or inline URLs]: https://core.telegram.org/bots/api#formatting-options
   @JsonKey(name: 'parse_mode')
-  ParseMode parseMode;
+  ParseMode? parseMode;
 
   /// *Optional.* [Inline keyboard] attached to the message.
   ///
   /// [Inline keyboard]: https://core.telegram.org/bots#inline-keyboards-and-on-the-fly-updating
   @JsonKey(name: 'reply_markup')
-  InlineKeyboardMarkup replyMarkup;
+  InlineKeyboardMarkup? replyMarkup;
 
   /// *Optional.* Content of the message to be sent instead of the GIF animation.
   @JsonKey(name: 'input_message_content')
-  InputMessageContent inputMessageContent;
+  InputMessageContent? inputMessageContent;
 
   InlineQueryResultCachedGif({
     this.type = 'gif',

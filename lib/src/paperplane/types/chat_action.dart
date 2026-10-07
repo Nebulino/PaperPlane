@@ -19,28 +19,15 @@ enum ChatAction {
 }
 
 extension ChatActionExtension on ChatAction {
-  String get action {
-    switch (this) {
-      case ChatAction.TYPING:
-        return 'typing';
-      case ChatAction.UPLOAD_PHOTO:
-        return 'upload_photo';
-      case ChatAction.RECORD_VIDEO:
-        return 'record_video';
-      case ChatAction.RECORD_AUDIO:
-        return 'record_audio';
-      case ChatAction.UPLOAD_AUDIO:
-        return 'upload_audio';
-      case ChatAction.UPLOAD_DOCUMENT:
-        return 'upload_document';
-      case ChatAction.FIND_LOCATION:
-        return 'find_location';
-      case ChatAction.RECORD_VIDEO_NOTE:
-        return 'record_video_note';
-      case ChatAction.UPLOAD_VIDEO_NOTE:
-        return 'upload_video_note';
-      default:
-        return null;
-    }
-  }
+  String get action => switch (this) {
+        ChatAction.TYPING => 'typing',
+        ChatAction.UPLOAD_PHOTO => 'upload_photo',
+        ChatAction.RECORD_VIDEO => 'record_video',
+        ChatAction.RECORD_AUDIO => 'record_audio',
+        ChatAction.UPLOAD_AUDIO => 'upload_audio',
+        ChatAction.UPLOAD_DOCUMENT => 'upload_document',
+        ChatAction.FIND_LOCATION => 'find_location',
+        ChatAction.RECORD_VIDEO_NOTE => 'record_video_note',
+        ChatAction.UPLOAD_VIDEO_NOTE => 'upload_video_note',
+      };
 }

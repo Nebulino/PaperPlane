@@ -3,7 +3,7 @@
 //          Copyright (c) 2020 Nebulino          //
 //                                               //
 
-part of inputmedia;
+part of '../inputmedia.dart';
 
 /// This object represents the content of a media
 /// message to be sent. It should be one of
@@ -18,7 +18,7 @@ part of inputmedia;
 class InputMedia {
   /// Type of the result.
   @JsonKey(name: 'type', required: true)
-  String type;
+  String? type;
 
   /// Container of the media.
   @JsonKey(name: 'media', required: true)
@@ -26,7 +26,7 @@ class InputMedia {
 
   /// Caption, 0-1024 characters after entities parsing.
   @JsonKey(name: 'caption')
-  String caption;
+  String? caption;
 
   /// *Optional.*
   /// Send *[Markdown]* or *[HTML]*,
@@ -37,7 +37,7 @@ class InputMedia {
   /// [HTML]: https://core.telegram.org/bots/api#html-style
   /// [bold, italic, fixed-width text or inline URLs]: https://core.telegram.org/bots/api#formatting-options
   @JsonKey(name: 'parse_mode')
-  ParseMode parseMode;
+  ParseMode? parseMode;
 
   InputMedia({
     this.type,

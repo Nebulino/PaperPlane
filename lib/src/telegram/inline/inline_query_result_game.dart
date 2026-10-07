@@ -3,7 +3,7 @@
 //          Copyright (c) 2020 Nebulino          //
 //                                               //
 
-part of inline;
+part of '../inline.dart';
 
 /// Represents a [Game].
 ///
@@ -20,22 +20,22 @@ class InlineQueryResultGame implements InlineQueryResult {
   /// Type of the result, must be *game*.
   @JsonKey(name: 'type', required: true)
   @override
-  String type;
+  String? type;
 
   /// Unique identifier for this result, 1-64 bytes.
   @JsonKey(name: 'id', required: true)
   @override
-  String id;
+  String? id;
 
   /// Short name of the game.
   @JsonKey(name: 'game_short_name', required: true)
-  String gameShortName;
+  String? gameShortName;
 
   /// *Optional.* [Inline keyboard] attached to the message.
   ///
   /// [Inline keyboard]: https://core.telegram.org/bots#inline-keyboards-and-on-the-fly-updating
   @JsonKey(name: 'reply_markup')
-  InlineKeyboardMarkup replyMarkup;
+  InlineKeyboardMarkup? replyMarkup;
 
   InlineQueryResultGame({
     this.type = 'game',

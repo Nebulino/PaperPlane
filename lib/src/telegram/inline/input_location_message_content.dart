@@ -3,7 +3,7 @@
 //          Copyright (c) 2020 Nebulino          //
 //                                               //
 
-part of inline;
+part of '../inline.dart';
 
 /// Represents the [content] of a location message
 /// to be sent as the result of an inline query.
@@ -15,11 +15,11 @@ part of inline;
 class InputLocationMessageContent implements InputMessageContent {
   /// Latitude of the location in degrees.
   @JsonKey(name: 'latitude', required: true)
-  double latitude;
+  double? latitude;
 
   /// Longitude of the location in degrees.
   @JsonKey(name: 'longitude', required: true)
-  double longitude;
+  double? longitude;
 
   /// *Optional.* Period in seconds for which the location can be updated,
   /// should be between 60 and 86400.
@@ -27,7 +27,7 @@ class InputLocationMessageContent implements InputMessageContent {
       name: 'live_period',
       fromJson: _durationFromTelegramSeconds,
       toJson: _durationToTelegramSeconds)
-  Duration live_period;
+  Duration? live_period;
 
   InputLocationMessageContent({
     this.latitude,
@@ -43,11 +43,9 @@ class InputLocationMessageContent implements InputMessageContent {
 
   /// Helper: converts into a Duration type from
   /// a int received from Telegram API.
-  static Duration _durationFromTelegramSeconds(int seconds) =>
-      seconds == null ? null : Duration(seconds: seconds);
+  static Duration? _durationFromTelegramSeconds(int? seconds) => seconds != null ? Duration(seconds: seconds) : null;
 
   /// Helper: converts into a Duration type into
   /// a int to be sent to Telegram API.
-  static int _durationToTelegramSeconds(Duration duration) =>
-      duration?.inSeconds;
+  static int? _durationToTelegramSeconds(Duration? duration) => duration?.inSeconds;
 }

@@ -3,7 +3,7 @@
 //          Copyright (c) 2020 Nebulino          //
 //                                               //
 
-part of passport;
+part of '../passport.dart';
 
 /// This object represents a file uploaded to Telegram Passport.
 /// Currently all Telegram Passport files are in JPEG format when
@@ -14,24 +14,24 @@ part of passport;
 class PassportFile {
   /// Identifier for this file, which can be used to download or reuse the file.
   @JsonKey(name: 'file_id', required: true)
-  String fileID;
+  String? fileID;
 
   /// Unique identifier for this file, which is supposed to
   /// be the same over time and for different bots.
   /// Can't be used to download or reuse the file.
   @JsonKey(name: 'file_unique_id', required: true)
-  String fileUniqueID;
+  String? fileUniqueID;
 
   /// File size.
   @JsonKey(name: 'file_size', required: true)
-  int fileSize;
+  int? fileSize;
 
   /// Unix time when the file was uploaded.
   @JsonKey(
       name: 'fileDate',
       fromJson: _dateTimeFromTelegramInt,
       toJson: _dateTimeToTelegramInt)
-  DateTime fileDate;
+  DateTime? fileDate;
 
   PassportFile({
     this.fileID,
@@ -47,13 +47,9 @@ class PassportFile {
 
   /// Helper: converts into a DateTime type from
   /// a int (unix time) received from Telegram API.
-  static DateTime _dateTimeFromTelegramInt(int unixTime) => unixTime == null
-      ? null
-      : DateTime.fromMillisecondsSinceEpoch(unixTime * 1000);
+  static DateTime? _dateTimeFromTelegramInt(int? unixTime) => unixTime != null ? DateTime.fromMillisecondsSinceEpoch(unixTime * 1000) : null;
 
   /// Helper: converts from a DateTime type into
   /// a int (unix time) to be sent to Telegram API.
-  static int _dateTimeToTelegramInt(DateTime dateTime) => dateTime == null
-      ? null
-      : (dateTime.millisecondsSinceEpoch / 1000).round();
+  static int? _dateTimeToTelegramInt(DateTime? dateTime) => dateTime != null ? (dateTime.millisecondsSinceEpoch / 1000).round() : null;
 }

@@ -3,7 +3,7 @@
 //          Copyright (c) 2020 Nebulino          //
 //                                               //
 
-part of user;
+part of '../user.dart';
 
 /// This object represent a user's profile pictures.
 ///
@@ -12,11 +12,11 @@ part of user;
 class UserProfilePhotos {
   /// Total number of profile pictures the target user has.
   @JsonKey(name: 'total_count', required: true)
-  int totalCount;
+  int? totalCount;
 
   /// Requested profile pictures (in up to 4 sizes each).
   @JsonKey(name: 'photos', required: true)
-  List<List<PhotoSize>> photos;
+  List<List<PhotoSize>>? photos;
 
   UserProfilePhotos({
     this.totalCount,

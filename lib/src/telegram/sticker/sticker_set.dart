@@ -3,7 +3,7 @@
 //          Copyright (c) 2020 Nebulino          //
 //                                               //
 
-part of sticker;
+part of '../sticker.dart';
 
 /// This object represents a sticker set.
 ///
@@ -12,29 +12,29 @@ part of sticker;
 class StickerSet {
   /// Sticker set name.
   @JsonKey(name: 'name', required: true)
-  String name;
+  String? name;
 
   /// Sticker set title.
   @JsonKey(name: 'title', required: true)
-  String title;
+  String? title;
 
   /// True, if the sticker set contains [animated stickers].
   ///
   /// [animated stickers]: https://telegram.org/blog/animated-stickers
   @JsonKey(name: 'is_animated', required: true)
-  bool isAnimated;
+  bool? isAnimated;
 
   /// True, if the sticker set contains masks.
   @JsonKey(name: 'contains_masks', required: true)
-  bool containsMasks;
+  bool? containsMasks;
 
   /// List of all set stickers.
   @JsonKey(name: 'stickers', required: true)
-  List<Sticker> stickers;
+  List<Sticker>? stickers;
 
   /// *Optional.* Sticker set thumbnail in the .WEBP or .TGS format.
   @JsonKey(name: 'thumb')
-  PhotoSize thumb;
+  PhotoSize? thumb;
 
   StickerSet({
     this.name,

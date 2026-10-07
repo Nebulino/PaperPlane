@@ -14,7 +14,7 @@ part 'telegram_response.g.dart';
 class TelegramResponse {
   /// It says if the response is valid.
   @JsonKey(name: 'ok', required: true)
-  bool valid;
+  bool? valid;
 
   /// If the response is valid. It contains the result.
   @JsonKey(name: 'result')
@@ -22,15 +22,15 @@ class TelegramResponse {
 
   /// If the response is not valid, It contains the error code.
   @JsonKey(name: 'error_code')
-  int errorCode;
+  int? errorCode;
 
   /// If the response is not valid, It contains the error description.
   @JsonKey(name: 'description')
-  String description;
+  String? description;
 
   /// If the response is valid, It can contains some important information.
   @JsonKey(name: 'response_parameters')
-  ResponseParameters responseParameters;
+  ResponseParameters? responseParameters;
 
   TelegramResponse({
     this.valid,

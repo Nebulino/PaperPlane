@@ -15,13 +15,16 @@ void main() {
   paperplane.engine();
   paperplane.startPolling();
 
-  paperplane.onInlineQuery().listen((query) =>
-      paperplane.api.answerInlineQuery(inlineQueryID: query.id, results: [
+  paperplane.onInlineQuery().listen((query) {
+    if (query.id != null) {
+      paperplane.api.answerInlineQuery(inlineQueryID: query.id!, results: [
         InlineQueryResultArticle()
           ..id = 'test'
           ..title = 'test'
           ..inputMessageContent = (InputTextMessageContent()
             ..messageText = '*done!*'
             ..parseMode = ParseMode.MARKDOWN)
-      ]));
+      ]);
+    }
+  });
 }

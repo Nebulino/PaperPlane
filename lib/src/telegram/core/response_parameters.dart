@@ -3,7 +3,7 @@
 //          Copyright (c) 2020 Nebulino          //
 //                                               //
 
-part of core;
+part of '../core.dart';
 
 /// Contains information about why a request was unsuccessful.
 ///
@@ -19,12 +19,12 @@ class ResponseParameters {
   /// integer or double-precision float type are safe
   /// for storing this identifier.
   @JsonKey(name: 'migrate_to_chat_id')
-  int migrateToChatID;
+  int? migrateToChatID;
 
   /// *Optional.* In case of exceeding flood control,
   /// the number of seconds left to wait before the request can be repeated.
   @JsonKey(name: 'retry_after')
-  int retryAfter;
+  int? retryAfter;
 
   ResponseParameters({
     this.migrateToChatID,

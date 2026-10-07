@@ -3,7 +3,7 @@
 //          Copyright (c) 2020 Nebulino          //
 //                                               //
 
-part of passport;
+part of '../passport.dart';
 
 /// Represents an issue with a document scan.
 /// The error is considered resolved when the file with the
@@ -15,7 +15,7 @@ class PassportElementErrorFile implements PassportElementError {
   /// Error source, must be *file*.
   @JsonKey(name: 'source', required: true)
   @override
-  EncryptedPassportElementSource source;
+  EncryptedPassportElementSource? source;
 
   /// The section of the user's Telegram Passport which
   /// has the issue, one of “utility_bill”, “bank_statement”,
@@ -23,16 +23,16 @@ class PassportElementErrorFile implements PassportElementError {
   /// “temporary_registration”.
   @JsonKey(name: 'type', required: true)
   @override
-  EncryptedPassportElementType type;
+  EncryptedPassportElementType? type;
 
   /// Base64-encoded file hash.
   @JsonKey(name: 'file_hash', required: true)
-  String fileHash;
+  String? fileHash;
 
   /// Error message.
   @JsonKey(name: 'message', required: true)
   @override
-  String message;
+  String? message;
 
   PassportElementErrorFile({
     this.source = EncryptedPassportElementSource.file,

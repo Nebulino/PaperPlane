@@ -26,10 +26,10 @@ void main() {
   // good if you create a bot using a TOKEN for example.
   paperplane.engine()
     ..then((bot) => paperplane.export(bot: bot, file_name: 'bot.json'))
-    ..then((bot) => paperplane.api.getChat(chatID: master).then((master_data) =>
+    ..then((bot) => paperplane.api.getChat(chatID: master).then((masterData) =>
         paperplane.api.sendMessage(
             chatID: master,
-            text: "I'm departed master ${master_data.username}...")));
+            text: "I'm departed master ${masterData.username}...")));
 
   paperplane.setLoggerLevel(level: Level.debug);
 
@@ -47,10 +47,12 @@ void main() {
 
   // 2. set your conditions!
   updater
-      .where((onUpdate) => onUpdate.message.text != null)
-      .where((onUpdate) => onUpdate.message.text == 'uwu')
+      .where((onUpdate) => onUpdate.message?.text == 'uwu')
       .listen((update) {
-    api.sendMessage(chatID: ChatID.fromID(update.message.chat.id), text: 'owo');
+    final chatId = update.message?.chat?.id;
+    if (chatId != null) {
+      api.sendMessage(chatID: ChatID.fromID(chatId), text: 'owo');
+    }
   });
 
   // => If you want to manage events, just do as follows...
@@ -58,19 +60,27 @@ void main() {
       .onMessage()
       .where((message) => message.text == 'cacca')
       .listen((message) {
-    api.sendPhoto(
-        // Send an image from a URL.
-        chatID: ChatID.fromID(message.chat.id),
-        photo: Luggage.withLink(
-            link: 'https://pbs.twimg.com/media/ETObHKAUUAE7nSM.jpg'));
+    final chatId = message.chat?.id;
+    if (chatId != null) {
+      api.sendPhoto(
+          // Send an image from a URL.
+          chatID: ChatID.fromID(chatId),
+          photo: Luggage.withLink(
+              link: 'https://pbs.twimg.com/media/ETObHKAUUAE7nSM.jpg'));
+    }
   });
 
   paperplane.onMessage().where((message) => message.text == 'voice').listen(
-      (message) => api.sendAudio(
+      (message) {
+    final chatId = message.chat?.id;
+    if (chatId != null) {
+      api.sendAudio(
           // Send a File. You can also send a blob (Uint8List).
-          chatID: ChatID.fromID(message.chat.id),
+          chatID: ChatID.fromID(chatId),
           audio:
-              Luggage.withFile(file: io.File('./files/voices/kokodayo.ogg'))));
+              Luggage.withFile(file: io.File('./files/voices/kokodayo.ogg')));
+    }
+  });
 
   // For more information about the methods, watch the wiki
   // (on pub.dev: https://pub.dev/packages/paperplane)!

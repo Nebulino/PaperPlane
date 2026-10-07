@@ -3,7 +3,7 @@
 //          Copyright (c) 2020 Nebulino          //
 //                                               //
 
-part of inline;
+part of '../inline.dart';
 
 /// Represents a location on a map.
 /// By default, the location will be sent by the user.
@@ -22,24 +22,24 @@ class InlineQueryResultLocation implements InlineQueryResult {
   /// Type of the result, must be *location*.
   @JsonKey(name: 'type', required: true)
   @override
-  String type;
+  String? type;
 
   /// Unique identifier for this result, 1-64 bytes.
   @JsonKey(name: 'id', required: true)
   @override
-  String id;
+  String? id;
 
   /// Location latitude in degrees.
   @JsonKey(name: 'latitude', required: true)
-  double latitude;
+  double? latitude;
 
   /// Location longitude in degrees.
   @JsonKey(name: 'longitude', required: true)
-  double longitude;
+  double? longitude;
 
   /// Location title.
   @JsonKey(name: 'title', required: true)
-  String title;
+  String? title;
 
   /// *Optional.* Period in seconds for which the location can be updated,
   /// should be between 60 and 86400.
@@ -47,29 +47,29 @@ class InlineQueryResultLocation implements InlineQueryResult {
       name: 'live_period',
       fromJson: _durationFromTelegramSeconds,
       toJson: _durationToTelegramSeconds)
-  Duration live_period;
+  Duration? live_period;
 
   /// *Optional.* [Inline keyboard] attached to the message.
   ///
   /// [Inline keyboard]: https://core.telegram.org/bots#inline-keyboards-and-on-the-fly-updating
   @JsonKey(name: 'reply_markup')
-  InlineKeyboardMarkup replyMarkup;
+  InlineKeyboardMarkup? replyMarkup;
 
   /// 	*Optional.* Content of the message to be sent instead of the location.
   @JsonKey(name: 'input_message_content')
-  InputMessageContent inputMessageContent;
+  InputMessageContent? inputMessageContent;
 
   /// *Optional.* Url of the thumbnail for the result.
   @JsonKey(name: 'thumb_url')
-  String thumb_url;
+  String? thumb_url;
 
   /// *Optional.* Thumbnail width.
   @JsonKey(name: 'thumb_width')
-  int thumb_width;
+  int? thumb_width;
 
   /// *Optional.* Thumbnail height.
   @JsonKey(name: 'thumb_height')
-  int thumb_height;
+  int? thumb_height;
 
   InlineQueryResultLocation({
     this.type = 'location',
@@ -93,11 +93,9 @@ class InlineQueryResultLocation implements InlineQueryResult {
 
   /// Helper: converts into a Duration type from
   /// a int received from Telegram API.
-  static Duration _durationFromTelegramSeconds(int seconds) =>
-      seconds == null ? null : Duration(seconds: seconds);
+  static Duration? _durationFromTelegramSeconds(int? seconds) => seconds != null ? Duration(seconds: seconds) : null;
 
   /// Helper: converts into a Duration type into
   /// a int to be sent to Telegram API.
-  static int _durationToTelegramSeconds(Duration duration) =>
-      duration?.inSeconds;
+  static int? _durationToTelegramSeconds(Duration? duration) => duration?.inSeconds;
 }

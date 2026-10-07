@@ -3,7 +3,7 @@
 //          Copyright (c) 2020 Nebulino          //
 //                                               //
 
-part of game;
+part of '../game.dart';
 
 /// This object represents a game.
 /// Use BotFather to create and edit games,
@@ -14,15 +14,15 @@ part of game;
 class Game {
   /// Title of the game.
   @JsonKey(name: 'title', required: true)
-  String title;
+  String? title;
 
   /// Description of the game.
   @JsonKey(name: 'description', required: true)
-  String description;
+  String? description;
 
   /// Photo that will be displayed in the game message in chats.
   @JsonKey(name: 'photo', required: true)
-  List<PhotoSize> photo;
+  List<PhotoSize>? photo;
 
   /// *Optional.* Brief description of the game or high scores
   /// included in the game message.
@@ -31,19 +31,19 @@ class Game {
   /// or manually edited using [editMessageText].
   /// 0-4096 characters.
   @JsonKey(name: 'text', required: true)
-  String text;
+  String? text;
 
   /// *Optional.* Special entities that appear in text, such as usernames,
   /// URLs, bot commands, etc.
   @JsonKey(name: 'text_entities', required: true)
-  List<MessageEntity> textEntities;
+  List<MessageEntity>? textEntities;
 
   /// *Optional.* Animation that will be displayed in the game message in chats.
   /// Upload via [BotFather]
   ///
   /// [BotFather]: https://t.me/botfather
   @JsonKey(name: 'animation', required: true)
-  Animation animation;
+  Animation? animation;
 
   Game({
     this.title,

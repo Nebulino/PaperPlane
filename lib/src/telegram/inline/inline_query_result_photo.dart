@@ -3,7 +3,7 @@
 //          Copyright (c) 2020 Nebulino          //
 //                                               //
 
-part of inline;
+part of '../inline.dart';
 
 /// Represents a link to a photo.
 /// By default, this photo will be sent
@@ -19,43 +19,43 @@ class InlineQueryResultPhoto implements InlineQueryResult {
   /// Type of the result, must be *photo*.
   @JsonKey(name: 'type', required: true)
   @override
-  String type;
+  String? type;
 
   /// Unique identifier for this result, 1-64 bytes.
   @JsonKey(name: 'id', required: true)
   @override
-  String id;
+  String? id;
 
   /// A valid URL of the photo.
   /// Photo must be in **jpeg** format.
   /// Photo size must not exceed 5MB.
   @JsonKey(name: 'photo_url', required: true)
-  String photoUrl;
+  String? photoUrl;
 
   /// URL of the thumbnail for the photo.
   @JsonKey(name: 'thumb_url', required: true)
-  String thumbUrl;
+  String? thumbUrl;
 
   /// *Optional.* Width of the photo.
   @JsonKey(name: 'photo_width')
-  int photoWidth;
+  int? photoWidth;
 
   /// *Optional.* Height of the photo.
   @JsonKey(name: 'photo_height')
-  int photoHeight;
+  int? photoHeight;
 
   /// *Optional.* Title for the result.
   @JsonKey(name: 'title')
-  String title;
+  String? title;
 
   /// *Optional.* Short description of the result.
   @JsonKey(name: 'description')
-  String description;
+  String? description;
 
   /// *Optional.* Caption of the photo to be sent,
   /// 0-1024 characters after entities parsing
   @JsonKey(name: 'caption')
-  String caption;
+  String? caption;
 
   /// *Optional.*
   /// Send *[Markdown]* or *[HTML]*,
@@ -66,18 +66,18 @@ class InlineQueryResultPhoto implements InlineQueryResult {
   /// [HTML]: https://core.telegram.org/bots/api#html-style
   /// [bold, italic, fixed-width text or inline URLs]: https://core.telegram.org/bots/api#formatting-options
   @JsonKey(name: 'parse_mode')
-  ParseMode parseMode;
+  ParseMode? parseMode;
 
   /// *Optional.* [Inline keyboard] attached to the message.
   ///
   /// [Inline keyboard]: https://core.telegram.org/bots#inline-keyboards-and-on-the-fly-updating
   @JsonKey(name: 'reply_markup')
-  InlineKeyboardMarkup replyMarkup;
+  InlineKeyboardMarkup? replyMarkup;
 
   /// *Optional.*
   /// Content of the message to be sent instead of the photo.
   @JsonKey(name: 'input_message_content')
-  InputMessageContent inputMessageContent;
+  InputMessageContent? inputMessageContent;
 
   InlineQueryResultPhoto({
     this.type = 'photo',

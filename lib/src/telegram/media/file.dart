@@ -3,7 +3,7 @@
 //          Copyright (c) 2020 Nebulino          //
 //                                               //
 
-part of media;
+part of '../media.dart';
 
 /// This object represents a file ready to be downloaded.
 /// The file can be downloaded via the link
@@ -22,22 +22,22 @@ part of media;
 class File {
   /// Identifier for this file, which can be used to download or reuse the file.
   @JsonKey(name: 'file_id', required: true)
-  String fileID;
+  String? fileID;
 
   /// Unique identifier for this file, which is supposed to be the same over
   /// time and for different bots. Can't be used to download or reuse the file.
   @JsonKey(name: 'file_unique_id', required: true)
-  String fileUniqueID;
+  String? fileUniqueID;
 
   /// *Optional.* File size, if known.
   @JsonKey(name: 'file_size')
-  int fileSize;
+  int? fileSize;
 
   /// *Optional.* File path.
   /// Use [https://api.telegram.org/file/bot<token>/<file_path>]
   /// to get the file.
   @JsonKey(name: 'file_path')
-  String filePath;
+  String? filePath;
 
   File({
     this.fileID,

@@ -11,12 +11,10 @@ import 'package:paperplane/telegram.dart';
 /// The user can use this to manage the updates directly.
 class Updater {
   // The update queue.
-  StreamController<Update> _queue;
+  final StreamController<Update> _queue = StreamController.broadcast();
 
   /// It creates the Updater.
-  Updater() {
-    _queue = StreamController.broadcast();
-  }
+  Updater();
 
   /// It adds a new update in the update queue.
   void updateQueue(Update update) {

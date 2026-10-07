@@ -3,7 +3,7 @@
 //          Copyright (c) 2020 Nebulino          //
 //                                               //
 
-part of passport;
+part of '../passport.dart';
 
 /// Contains information about Telegram Passport
 /// data shared with the bot by the user.
@@ -14,11 +14,11 @@ class PassportData {
   /// Array with information about documents and other
   /// Telegram Passport elements that was shared with the bot.
   @JsonKey(name: 'data', required: true)
-  List<EncryptedPassportElement> data;
+  List<EncryptedPassportElement>? data;
 
   /// Encrypted credentials required to decrypt the data.
   @JsonKey(name: 'credentials', required: true)
-  EncryptedCredentials credentials;
+  EncryptedCredentials? credentials;
 
   PassportData({
     this.data,

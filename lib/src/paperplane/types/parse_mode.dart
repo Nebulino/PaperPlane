@@ -11,16 +11,9 @@ enum ParseMode {
 }
 
 extension ParseModeExtension on ParseMode {
-  String get mode {
-    switch (this) {
-      case ParseMode.MARKDOWN:
-        return 'MARKDOWN';
-      case ParseMode.MARKDOWNV2:
-        return 'MARKDOWNV2';
-      case ParseMode.HTML:
-        return 'HTML';
-      default:
-        return null;
-    }
-  }
+  String get mode => switch (this) {
+        ParseMode.MARKDOWN => 'MARKDOWN',
+        ParseMode.MARKDOWNV2 => 'MARKDOWNV2',
+        ParseMode.HTML => 'HTML',
+      };
 }

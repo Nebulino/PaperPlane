@@ -3,7 +3,7 @@
 //          Copyright (c) 2020 Nebulino          //
 //                                               //
 
-part of inline;
+part of '../inline.dart';
 
 /// Represents a venue.
 /// By default, the venue will be sent by the user.
@@ -22,60 +22,60 @@ class InlineQueryResultVenue implements InlineQueryResult {
   /// Type of the result, must be *venue*.
   @JsonKey(name: 'type', required: true)
   @override
-  String type;
+  String? type;
 
   /// Unique identifier for this result, 1-64 bytes.
   @JsonKey(name: 'id', required: true)
   @override
-  String id;
+  String? id;
 
   /// Latitude of the venue location in degrees.
   @JsonKey(name: 'latitude', required: true)
-  double latitude;
+  double? latitude;
 
   /// Longitude of the venue location in degrees.
   @JsonKey(name: 'longitude', required: true)
-  double longitude;
+  double? longitude;
 
   /// Title of the venue.
   @JsonKey(name: 'title', required: true)
-  String title;
+  String? title;
 
   /// Address of the venue.
   @JsonKey(name: 'address', required: true)
-  String address;
+  String? address;
 
   /// *Optional.* Foursquare identifier of the venue if known.
   @JsonKey(name: 'foursquare_id')
-  String foursquareID;
+  String? foursquareID;
 
   /// *Optional.* Foursquare type of the venue, if known.
   /// (For example, “arts_entertainment/default”,
   /// “arts_entertainment/aquarium” or “food/icecream”.).
   @JsonKey(name: 'foursquare_type')
-  String foursquareType;
+  String? foursquareType;
 
   /// *Optional.* [Inline keyboard] attached to the message.
   ///
   /// [Inline keyboard]: https://core.telegram.org/bots#inline-keyboards-and-on-the-fly-updating
   @JsonKey(name: 'reply_markup')
-  InlineKeyboardMarkup replyMarkup;
+  InlineKeyboardMarkup? replyMarkup;
 
   /// *Optional.* Content of the message to be sent instead of the venue.
   @JsonKey(name: 'input_message_content')
-  InputMessageContent inputMessageContent;
+  InputMessageContent? inputMessageContent;
 
   /// *Optional.* Url of the thumbnail for the result.
   @JsonKey(name: 'thumb_url')
-  String thumbUrl;
+  String? thumbUrl;
 
   /// *Optional.* Thumbnail width.
   @JsonKey(name: 'thumb_width')
-  int thumbWidth;
+  int? thumbWidth;
 
   /// *Optional.* Thumbnail height.
   @JsonKey(name: 'thumb_height')
-  int thumbHeight;
+  int? thumbHeight;
 
   InlineQueryResultVenue({
     this.type = 'venue',

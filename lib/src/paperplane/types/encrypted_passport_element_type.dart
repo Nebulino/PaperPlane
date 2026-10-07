@@ -40,36 +40,21 @@ enum EncryptedPassportElementType {
 
 extension EncryptedPassportElementTypeExtension
     on EncryptedPassportElementType {
-  String get element {
-    switch (this) {
-      case EncryptedPassportElementType.personal_details:
-        return 'personal_details';
-      case EncryptedPassportElementType.passport:
-        return 'passport';
-      case EncryptedPassportElementType.driver_license:
-        return 'driver_license';
-      case EncryptedPassportElementType.identity_card:
-        return 'identity_card';
-      case EncryptedPassportElementType.internal_passport:
-        return 'internal_passport';
-      case EncryptedPassportElementType.address:
-        return 'address';
-      case EncryptedPassportElementType.utility_bill:
-        return 'utility_bill';
-      case EncryptedPassportElementType.bank_statement:
-        return 'bank_statement';
-      case EncryptedPassportElementType.rental_agreement:
-        return 'rental_agreement';
-      case EncryptedPassportElementType.passport_registration:
-        return 'passport_registration';
-      case EncryptedPassportElementType.temporary_registration:
-        return 'temporary_registration';
-      case EncryptedPassportElementType.phone_number:
-        return 'phone_number';
-      case EncryptedPassportElementType.email:
-        return 'email';
-      default:
-        return null;
-    }
-  }
+  String get element => switch (this) {
+        EncryptedPassportElementType.personal_details => 'personal_details',
+        EncryptedPassportElementType.passport => 'passport',
+        EncryptedPassportElementType.driver_license => 'driver_license',
+        EncryptedPassportElementType.identity_card => 'identity_card',
+        EncryptedPassportElementType.internal_passport => 'internal_passport',
+        EncryptedPassportElementType.address => 'address',
+        EncryptedPassportElementType.utility_bill => 'utility_bill',
+        EncryptedPassportElementType.bank_statement => 'bank_statement',
+        EncryptedPassportElementType.rental_agreement => 'rental_agreement',
+        EncryptedPassportElementType.passport_registration =>
+          'passport_registration',
+        EncryptedPassportElementType.temporary_registration =>
+          'temporary_registration',
+        EncryptedPassportElementType.phone_number => 'phone_number',
+        EncryptedPassportElementType.email => 'email',
+      };
 }

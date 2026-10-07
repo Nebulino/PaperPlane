@@ -3,7 +3,7 @@
 //          Copyright (c) 2020 Nebulino          //
 //                                               //
 
-part of keyboard;
+part of '../keyboard.dart';
 
 /// This object represents a [custom keyboard] with reply options
 /// (see [Introduction to bots] for details and examples).
@@ -17,7 +17,7 @@ class ReplyKeyboardMarkup implements ReplyMarkup {
   /// Array of button rows, each represented by an
   /// Array of [KeyboardButton] objects
   @JsonKey(name: 'keyboard', required: true)
-  List<List<KeyboardButton>> keyboard;
+  List<List<KeyboardButton>>? keyboard;
 
   /// *Optional.* Requests clients to resize the keyboard
   /// vertically for optimal fit
@@ -25,7 +25,7 @@ class ReplyKeyboardMarkup implements ReplyMarkup {
   /// Defaults to *false*, in which case the custom keyboard is always of the
   /// same height as the app's standard keyboard.
   @JsonKey(name: 'resize_keyboard')
-  bool resizeKeyboard;
+  bool? resizeKeyboard;
 
   /// *Optional.* Requests clients to hide the keyboard as soon as it's been used.
   /// The keyboard will still be available,
@@ -33,7 +33,7 @@ class ReplyKeyboardMarkup implements ReplyMarkup {
   /// the chat – the user can press a special button in the input field
   /// to see the custom keyboard again. Defaults to *false*.
   @JsonKey(name: 'one_time_keyboard')
-  bool oneTimeKeyboard;
+  bool? oneTimeKeyboard;
 
   /// *Optional.*
   /// Use this parameter if you want to show the keyboard to
@@ -47,7 +47,7 @@ class ReplyKeyboardMarkup implements ReplyMarkup {
   /// bot replies to the request with a keyboard to select the new language.
   /// Other users in the group don’t see the keyboard.
   @JsonKey(name: 'selective')
-  bool selective;
+  bool? selective;
 
   ReplyKeyboardMarkup({
     this.keyboard,

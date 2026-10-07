@@ -3,7 +3,7 @@
 //          Copyright (c) 2020 Nebulino          //
 //                                               //
 
-part of keyboard;
+part of '../keyboard.dart';
 
 /// This object represents an [inline keyboard] that appears right next to the
 /// message it belongs to.
@@ -21,7 +21,7 @@ class InlineKeyboardMarkup implements ReplyMarkup {
   /// an Array of [InlineKeyboardButton] objects
   ///
   /// [InlineKeyboardButton]: https://core.telegram.org/bots/api#inlinekeyboardbutton
-  List<List<InlineKeyboardButton>> inline_keyboard;
+  List<List<InlineKeyboardButton>>? inline_keyboard;
 
   InlineKeyboardMarkup({
     this.inline_keyboard,

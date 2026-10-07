@@ -3,7 +3,7 @@
 //          Copyright (c) 2020 Nebulino          //
 //                                               //
 
-part of inline;
+part of '../inline.dart';
 
 /// This object represents one result of an inline query.
 /// Telegram clients currently support results of the following 20 types:
@@ -33,11 +33,11 @@ part of inline;
 class InlineQueryResult {
   /// Type of the result.
   @JsonKey(name: 'type', required: true)
-  String type;
+  String? type;
 
   /// Unique identifier for this result, 1-64 Bytes.
   @JsonKey(name: 'id', required: true)
-  String id;
+  String? id;
 
   InlineQueryResult({
     this.type,

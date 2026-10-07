@@ -12,9 +12,9 @@ class LongPolling {
   int offset;
   int limit;
   int timeout;
-  List<String> allowedUpdates;
+  List<String>? allowedUpdates;
 
-  Updater updater;
+  late final Updater updater;
 
   final Telegram _telegram;
 
@@ -54,7 +54,7 @@ class LongPolling {
       if (clean) _cleanUpdates();
       _longPolling();
     } else {
-      PaperPlaneException(
+      throw PaperPlaneException(
           description: 'PaperPlane is already in polling mode.');
     }
   }
@@ -73,10 +73,17 @@ class LongPolling {
           for (var update in updates) {
             // It adds all the updates in the queue.
             updater.updateQueue(update);
-            offset = update.updateID + 1;
+            if (update.updateID != null) {
+              offset = update.updateID! + 1;
+            }
           }
         }
         _longPolling();
+      }).catchError((error) {
+        // If an error occurs, wait a bit or continue polling if still active
+        if (_polling) {
+          Future.delayed(const Duration(seconds: 1), _longPolling);
+        }
       });
     }
   }

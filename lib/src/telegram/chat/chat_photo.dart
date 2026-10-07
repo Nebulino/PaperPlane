@@ -3,7 +3,7 @@
 //          Copyright (c) 2020 Nebulino          //
 //                                               //
 
-part of chat;
+part of '../chat.dart';
 
 /// This object represents a chat photo.
 ///
@@ -14,25 +14,25 @@ class ChatPhoto {
   /// This file_id can be used only for photo download and only for as
   /// long as the photo is not changed.
   @JsonKey(name: 'small_file_id', required: true)
-  String smallFileID;
+  String? smallFileID;
 
   /// Unique file identifier of small (160x160) chat photo,
   /// which is supposed to be the same over time and for different bots.
   /// Can't be used to download or reuse the file.
   @JsonKey(name: 'small_file_unique_id', required: true)
-  String smallFileUniqueID;
+  String? smallFileUniqueID;
 
   /// File identifier of big (640x640) chat photo.
   /// This file_id can be used only for photo download and only for as
   /// long as the photo is not changed.
   @JsonKey(name: 'big_file_id', required: true)
-  String bigFileID;
+  String? bigFileID;
 
   /// Unique file identifier of big (640x640) chat photo,
   /// which is supposed to be the same over time and for different bots.
   /// Can't be used to download or reuse the file.
   @JsonKey(name: 'big_file_unique_id', required: true)
-  String bigFileUniqueID;
+  String? bigFileUniqueID;
 
   ChatPhoto({
     this.smallFileID,

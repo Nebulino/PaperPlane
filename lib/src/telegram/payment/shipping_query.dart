@@ -3,7 +3,7 @@
 //          Copyright (c) 2020 Nebulino          //
 //                                               //
 
-part of payment;
+part of '../payment.dart';
 
 /// This object contains information about an incoming shipping query.
 ///
@@ -12,19 +12,19 @@ part of payment;
 class ShippingQuery {
   /// Unique query identifier.
   @JsonKey(name: 'id', required: true)
-  String id;
+  String? id;
 
   /// User who sent the query.
   @JsonKey(name: 'from', required: true)
-  User from;
+  User? from;
 
   /// Bot specified invoice payload.
   @JsonKey(name: 'invoice_payload', required: true)
-  String invoicePayload;
+  String? invoicePayload;
 
   /// User specified shipping address.
   @JsonKey(name: 'shipping_address', required: true)
-  ShippingAddress shippingAddress;
+  ShippingAddress? shippingAddress;
 
   ShippingQuery({
     this.id,

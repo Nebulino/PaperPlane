@@ -9,10 +9,10 @@ library inputmedia;
 import 'package:json_annotation/json_annotation.dart';
 import 'package:paperplane/helpers.dart';
 
-part '../telegram/inputmedia/input_media.dart';
-part '../telegram/inputmedia/input_media_animation.dart';
-part '../telegram/inputmedia/input_media_audio.dart';
-part '../telegram/inputmedia/input_media_document.dart';
-part '../telegram/inputmedia/input_media_photo.dart';
-part '../telegram/inputmedia/input_media_video.dart';
+part 'inputmedia/input_media.dart';
+part 'inputmedia/input_media_animation.dart';
+part 'inputmedia/input_media_audio.dart';
+part 'inputmedia/input_media_document.dart';
+part 'inputmedia/input_media_photo.dart';
+part 'inputmedia/input_media_video.dart';
 part 'inputmedia.g.dart';

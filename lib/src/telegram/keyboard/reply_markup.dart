@@ -3,7 +3,7 @@
 //          Copyright (c) 2020 Nebulino          //
 //                                               //
 
-part of keyboard;
+part of '../keyboard.dart';
 
 /// Abstract object that represents a ReplyMarkup.
 /// * [ReplyKeyboardMarkup](https://core.telegram.org/bots/api#replykeyboardmarkup)

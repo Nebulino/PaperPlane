@@ -3,7 +3,7 @@
 //          Copyright (c) 2020 Nebulino          //
 //                                               //
 
-part of payment;
+part of '../payment.dart';
 
 /// This object represents a shipping address.
 ///
@@ -12,27 +12,27 @@ part of payment;
 class ShippingAddress {
   /// ISO 3166-1 alpha-2 country code.
   @JsonKey(name: 'country_code', required: true)
-  String countryCode;
+  String? countryCode;
 
   /// State, if applicable.
   @JsonKey(name: 'state', required: true)
-  String state;
+  String? state;
 
   /// City.
   @JsonKey(name: 'city', required: true)
-  String city;
+  String? city;
 
   /// First line for the address.
   @JsonKey(name: 'street_line1', required: true)
-  String streetLine1;
+  String? streetLine1;
 
   /// Second line for the address.
   @JsonKey(name: 'street_line2', required: true)
-  String streetLine2;
+  String? streetLine2;
 
   /// Address post code.
   @JsonKey(name: 'post_code', required: true)
-  String postcode;
+  String? postcode;
 
   ShippingAddress({
     this.countryCode,

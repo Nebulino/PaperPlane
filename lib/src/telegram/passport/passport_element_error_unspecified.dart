@@ -3,7 +3,7 @@
 //          Copyright (c) 2020 Nebulino          //
 //                                               //
 
-part of passport;
+part of '../passport.dart';
 
 /// Represents an issue in an unspecified place.
 /// The error is considered resolved when new data is added.
@@ -14,21 +14,21 @@ class PassportElementErrorUnspecified implements PassportElementError {
   /// Error source, must be unspecified.
   @JsonKey(name: 'source', required: true)
   @override
-  EncryptedPassportElementSource source;
+  EncryptedPassportElementSource? source;
 
   /// Type of element of the user's Telegram Passport which has the issue.
   @JsonKey(name: 'type', required: true)
   @override
-  EncryptedPassportElementType type;
+  EncryptedPassportElementType? type;
 
   /// Base64-encoded element hash.
   @JsonKey(name: 'file_hash', required: true)
-  String fileHash;
+  String? fileHash;
 
   /// Error message.
   @JsonKey(name: 'message', required: true)
   @override
-  String message;
+  String? message;
 
   PassportElementErrorUnspecified({
     this.source = EncryptedPassportElementSource.unspecified,

@@ -3,7 +3,7 @@
 //          Copyright (c) 2020 Nebulino          //
 //                                               //
 
-part of poll;
+part of '../poll.dart';
 
 /// This object represents an answer of a user in a non-anonymous poll.
 ///
@@ -12,16 +12,16 @@ part of poll;
 class PollAnswer {
   /// Unique poll identifier.
   @JsonKey(name: 'poll_id', required: true)
-  String pollID;
+  String? pollID;
 
   /// The user, who changed the answer to the poll.
   @JsonKey(name: 'user', required: true)
-  User user;
+  User? user;
 
   /// 0-based identifiers of answer options, chosen by the user.
   /// May be empty if the user retracted their vote.
   @JsonKey(name: 'options_ids', required: true)
-  List<int> optionsIDs;
+  List<int>? optionsIDs;
 
   PollAnswer({
     this.pollID,

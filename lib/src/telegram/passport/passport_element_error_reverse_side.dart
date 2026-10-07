@@ -3,7 +3,7 @@
 //          Copyright (c) 2020 Nebulino          //
 //                                               //
 
-part of passport;
+part of '../passport.dart';
 
 /// Represents an issue with the reverse side of a document.
 /// The error is considered resolved when the file with reverse
@@ -15,21 +15,21 @@ class PassportElementErrorReverseSide implements PassportElementError {
   /// Error source, must be *reverse_side*.
   @JsonKey(name: 'source', required: true)
   @override
-  EncryptedPassportElementSource source;
+  EncryptedPassportElementSource? source;
 
   /// Type of the result, must be *gif*
   @JsonKey(name: 'type', required: true)
   @override
-  EncryptedPassportElementType type;
+  EncryptedPassportElementType? type;
 
   /// Error message.
   @JsonKey(name: 'message', required: true)
   @override
-  String message;
+  String? message;
 
   /// Error source, must be reverse_side.
   @JsonKey(name: 'file_hash', required: true)
-  String file_hash;
+  String? file_hash;
 
   PassportElementErrorReverseSide({
     this.source = EncryptedPassportElementSource.reverse_side,

@@ -3,7 +3,6 @@
 //          Copyright (c) 2020 Nebulino          //
 //                                               //
 
-import 'package:meta/meta.dart';
 import 'package:paperplane/src/paperplane/core/api.dart';
 import 'package:paperplane/src/tools/client/telegram_client.dart';
 
@@ -15,12 +14,12 @@ import 'package:paperplane/src/tools/client/telegram_client.dart';
 class Telegram {
   final String _token;
 
-  TelegramClient _client;
-  API _api;
+  late final TelegramClient _client;
+  late final API _api;
 
   Telegram._(
     this._token, {
-    String proxy,
+    String? proxy,
   }) {
     _client = TelegramClient(token: _token, proxy: proxy);
     _api = API(_client);
@@ -28,8 +27,8 @@ class Telegram {
 
   /// Helps the user understanding how to create a [Telegram] object.
   Telegram({
-    @required String token,
-    String proxy,
+    required String token,
+    String? proxy,
   }) : this._(token, proxy: proxy);
 
   /// Return the token used to create the [APIs].

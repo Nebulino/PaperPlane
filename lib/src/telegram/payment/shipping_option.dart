@@ -3,7 +3,7 @@
 //          Copyright (c) 2020 Nebulino          //
 //                                               //
 
-part of payment;
+part of '../payment.dart';
 
 /// This object represents one shipping option.
 ///
@@ -12,15 +12,15 @@ part of payment;
 class ShippingOption {
   /// Shipping option identifier.
   @JsonKey(name: 'id', required: true)
-  String id;
+  String? id;
 
   /// Option title.
   @JsonKey(name: 'title', required: true)
-  String title;
+  String? title;
 
   /// List of price portions.
   @JsonKey(name: 'prices', required: true)
-  List<LabeledPrice> prices;
+  List<LabeledPrice>? prices;
 
   ShippingOption({
     this.id,

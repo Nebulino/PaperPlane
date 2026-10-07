@@ -3,7 +3,7 @@
 //          Copyright (c) 2020 Nebulino          //
 //                                               //
 
-part of poll;
+part of '../poll.dart';
 
 /// This object contains information about one answer option in a poll.
 ///
@@ -12,11 +12,11 @@ part of poll;
 class PollOption {
   /// Option text, 1-100 characters.
   @JsonKey(name: 'text', required: true)
-  String text;
+  String? text;
 
   /// Number of users that voted for this option.
   @JsonKey(name: 'voter_count', required: true)
-  int voterCount;
+  int? voterCount;
 
   PollOption({
     this.text,

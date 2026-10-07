@@ -3,7 +3,7 @@
 //          Copyright (c) 2020 Nebulino          //
 //                                               //
 
-part of core;
+part of '../core.dart';
 
 /// This object represents a dice with random value from 1 to 6.
 /// (Yes, we're aware of the *“proper”*
@@ -15,11 +15,11 @@ part of core;
 class Dice {
   /// Emoji on which the dice throw animation is based.
   @JsonKey(name: 'emoji')
-  String emoji;
+  String? emoji;
 
   /// Value of the dice, 1-6.
   @JsonKey(name: 'value', required: true)
-  int value;
+  int? value;
 
   Dice({
     this.emoji,

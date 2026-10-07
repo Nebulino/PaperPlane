@@ -9,6 +9,6 @@ library message;
 import 'package:json_annotation/json_annotation.dart';
 import 'package:paperplane/telegram.dart';
 
-part '../telegram/message/message.dart';
-part '../telegram/message/message_entity.dart';
+part 'message/message.dart';
+part 'message/message_entity.dart';
 part 'message.g.dart';

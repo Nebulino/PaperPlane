@@ -3,7 +3,7 @@
 //          Copyright (c) 2020 Nebulino          //
 //                                               //
 
-part of sticker;
+part of '../sticker.dart';
 
 /// This object represents a sticker.
 ///
@@ -12,46 +12,46 @@ part of sticker;
 class Sticker {
   /// Identifier for this file, which can be used to download or reuse the file.
   @JsonKey(name: 'file_id', required: true)
-  String fileID;
+  String? fileID;
 
   /// Unique identifier for this file, which is supposed to be the same over
   /// time and for different bots. Can't be used to download or reuse the file.
   @JsonKey(name: 'file_unique_id', required: true)
-  String fileUniqueID;
+  String? fileUniqueID;
 
   /// Sticker width.
   @JsonKey(name: 'width', required: true)
-  int width;
+  int? width;
 
   /// Sticker height.
   @JsonKey(name: 'height', required: true)
-  int height;
+  int? height;
 
   /// True, if the sticker is [animated].
   ///
   /// [animated]: https://telegram.org/blog/animated-stickers
   @JsonKey(name: 'is_animated', required: true)
-  bool isAnimated;
+  bool? isAnimated;
 
   /// *Optional.* Sticker thumbnail in the .WEBP or .JPG format.
   @JsonKey(name: 'thumb')
-  PhotoSize thumb;
+  PhotoSize? thumb;
 
   /// *Optional.* Emoji associated with the sticker.
   @JsonKey(name: 'emoji')
-  String emoji;
+  String? emoji;
 
   /// *Optional.* Name of the sticker set to which the sticker belongs.
   @JsonKey(name: 'set_name')
-  String setName;
+  String? setName;
 
   /// *Optional.* For mask stickers, the position where the mask should be placed.
   @JsonKey(name: 'mask_position')
-  MaskPosition maskPosition;
+  MaskPosition? maskPosition;
 
   /// *Optional.* File size.
   @JsonKey(name: 'file_size')
-  int fileSize;
+  int? fileSize;
 
   Sticker({
     this.fileID,

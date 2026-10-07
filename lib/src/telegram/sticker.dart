@@ -10,7 +10,7 @@ import 'package:json_annotation/json_annotation.dart';
 import 'package:paperplane/helpers.dart';
 import 'package:paperplane/telegram.dart';
 
-part '../telegram/sticker/mask_position.dart';
-part '../telegram/sticker/sticker.dart';
-part '../telegram/sticker/sticker_set.dart';
+part 'sticker/mask_position.dart';
+part 'sticker/sticker.dart';
+part 'sticker/sticker_set.dart';
 part 'sticker.g.dart';

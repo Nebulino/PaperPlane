@@ -10,20 +10,20 @@ import 'package:test/test.dart';
 // Some PaperPlane tests
 void main() {
   group('A group of tests', () {
-    PaperPlane paperplane;
-    String token;
-    ParseMode parse_mode;
+    late PaperPlane paperplane;
+    late String token;
+    ParseMode? parseMode;
 
     setUp(() {
       token = 'Just a token.';
       paperplane = PaperPlane.createBot(token: token);
-      parse_mode = null;
+      parseMode = null;
     });
 
     test('PaperPlane Tests', () {
       expect(paperplane, isA<PaperPlane>());
       expect(paperplane.token, isA<String>());
-      expect(parse_mode.toString(), isA<String>());
+      expect(parseMode.toString(), isA<String>());
     });
   });
 }

@@ -3,7 +3,7 @@
 //          Copyright (c) 2020 Nebulino          //
 //                                               //
 
-part of keyboard;
+part of '../keyboard.dart';
 
 /// Upon receiving a message with this object,
 /// Telegram clients will display a reply interface to the user
@@ -39,7 +39,7 @@ class ForceReply implements ReplyMarkup {
   /// Shows reply interface to the user, as if they manually selected the bot‘s
   /// message and tapped ’Reply'.
   @JsonKey(name: 'force_reply', required: true)
-  bool forceReply;
+  bool? forceReply;
 
   /// *Optional.* Use this parameter if you want to force reply
   /// from specific users only.
@@ -48,7 +48,7 @@ class ForceReply implements ReplyMarkup {
   /// 2) if the bot's message is a reply
   ///   (has reply_to_message_id), sender of the original message.
   @JsonKey(name: 'selective')
-  bool selective;
+  bool? selective;
 
   ForceReply({
     this.forceReply,

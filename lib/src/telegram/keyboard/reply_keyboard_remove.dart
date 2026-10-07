@@ -3,7 +3,7 @@
 //          Copyright (c) 2020 Nebulino          //
 //                                               //
 
-part of keyboard;
+part of '../keyboard.dart';
 
 /// Upon receiving a message with this object,
 /// Telegram clients will remove the current custom keyboard
@@ -24,7 +24,7 @@ class ReplyKeyboardRemove implements ReplyMarkup {
   /// if you want to hide the keyboard from sight but keep it accessible,
   /// use *one_time_keyboard* in [ReplyKeyboardMarkup]).
   @JsonKey(name: 'remove_keyboard', required: true)
-  bool remove_keyboard;
+  bool? remove_keyboard;
 
   /// *Optional.*
   /// Use this parameter if you want to remove the keyboard for
@@ -40,7 +40,7 @@ class ReplyKeyboardRemove implements ReplyMarkup {
   /// while still showing the keyboard with poll options
   /// to users who haven't voted yet.
   @JsonKey(name: 'selective')
-  bool selective;
+  bool? selective;
 
   ReplyKeyboardRemove({
     this.remove_keyboard,
