@@ -24,6 +24,10 @@ class MessageEntity {
   ///   “italic” (italic text),
   ///   “underline” (underlined text),
   ///   “strikethrough” (strikethrough text),
+  ///   “spoiler” (spoiler message),
+  ///   “blockquote” (collapsed or standard quote),
+  ///   “expandable_blockquote” (expandable quote),
+  ///   “custom_emoji” (for inline custom emoji stickers),
   ///   “code” (monowidth string),
   ///   “pre” (monowidth block),
   ///   “text_link” (for clickable text URLs),
@@ -54,6 +58,10 @@ class MessageEntity {
   @JsonKey(name: 'language')
   String? language;
 
+  /// *Optional.* For “custom_emoji” only, unique identifier of the custom emoji.
+  @JsonKey(name: 'custom_emoji_id')
+  String? customEmojiID;
+
   MessageEntity({
     this.type,
     this.offset,
@@ -61,6 +69,7 @@ class MessageEntity {
     this.url,
     this.user,
     this.language,
+    this.customEmojiID,
   });
 
   factory MessageEntity.fromJson(Map<String, dynamic> json) =>

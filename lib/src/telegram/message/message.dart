@@ -14,6 +14,15 @@ class Message {
   @JsonKey(name: 'message_id', required: true)
   int? messageID;
 
+  /// *Optional.* Unique identifier of a message thread to which the message
+  /// belongs; for supergroups only.
+  @JsonKey(name: 'message_thread_id')
+  int? messageThreadID;
+
+  /// *Optional.* Whether the message is sent to a forum topic.
+  @JsonKey(name: 'is_topic_message')
+  bool? isTopicMessage;
+
   /// *Optional.* Sender, empty for messages sent to channels.
   @JsonKey(name: 'from')
   User? from;
@@ -68,6 +77,16 @@ class Message {
   /// is a reply.
   @JsonKey(name: 'reply_to_message')
   Message? replyToMessage;
+
+  /// *Optional.* For replies that quote part of the original message,
+  /// information about the quoted part of the message.
+  @JsonKey(name: 'quote')
+  TextQuote? quote;
+
+  /// *Optional.* Options used for link preview generation for the message,
+  /// if it is a text message and link preview options were specified.
+  @JsonKey(name: 'link_preview_options')
+  LinkPreviewOptions? linkPreviewOptions;
 
   /// *Optional.* Date the message was last edited in Unix time.
   @JsonKey(
@@ -273,6 +292,8 @@ class Message {
 
   Message({
     this.messageID,
+    this.messageThreadID,
+    this.isTopicMessage,
     this.from,
     this.date,
     this.chat,
@@ -283,6 +304,8 @@ class Message {
     this.forwardSenderName,
     this.forwardDate,
     this.replyToMessage,
+    this.quote,
+    this.linkPreviewOptions,
     this.editDate,
     this.mediaGroupID,
     this.authorSignature,

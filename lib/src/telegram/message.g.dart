@@ -10,6 +10,8 @@ Message _$MessageFromJson(Map<String, dynamic> json) {
   $checkKeys(json, requiredKeys: const ['message_id', 'date', 'chat']);
   return Message(
       messageID: (json['message_id'] as num?)?.toInt(),
+      messageThreadID: (json['message_thread_id'] as num?)?.toInt(),
+      isTopicMessage: json['is_topic_message'] as bool?,
       from: json['from'] == null
           ? null
           : User.fromJson(json['from'] as Map<String, dynamic>),
@@ -32,6 +34,14 @@ Message _$MessageFromJson(Map<String, dynamic> json) {
       replyToMessage: json['reply_to_message'] == null
           ? null
           : Message.fromJson(json['reply_to_message'] as Map<String, dynamic>),
+      quote: json['quote'] == null
+          ? null
+          : TextQuote.fromJson(json['quote'] as Map<String, dynamic>),
+      linkPreviewOptions: json['link_preview_options'] == null
+          ? null
+          : LinkPreviewOptions.fromJson(
+              json['link_preview_options'] as Map<String, dynamic>,
+            ),
       editDate: Message._dateTimeFromTelegramInt(
         (json['edit_date'] as num?)?.toInt(),
       ),
@@ -130,6 +140,8 @@ Message _$MessageFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$MessageToJson(Message instance) => <String, dynamic>{
   'message_id': ?instance.messageID,
+  'message_thread_id': ?instance.messageThreadID,
+  'is_topic_message': ?instance.isTopicMessage,
   'from': ?instance.from,
   'date': ?Message._dateTimeToTelegramInt(instance.date),
   'chat': ?instance.chat,
@@ -140,6 +152,8 @@ Map<String, dynamic> _$MessageToJson(Message instance) => <String, dynamic>{
   'forward_sender_name': ?instance.forwardSenderName,
   'forward_date': ?Message._dateTimeToTelegramInt(instance.forwardDate),
   'reply_to_message': ?instance.replyToMessage,
+  'quote': ?instance.quote,
+  'link_preview_options': ?instance.linkPreviewOptions,
   'edit_date': ?Message._dateTimeToTelegramInt(instance.editDate),
   'media_group_id': ?instance.mediaGroupID,
   'author_signature': ?instance.authorSignature,
@@ -179,6 +193,15 @@ Map<String, dynamic> _$MessageToJson(Message instance) => <String, dynamic>{
   'reply_markup': ?instance.replyMarkup,
 };
 
+MessageId _$MessageIdFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, requiredKeys: const ['message_id']);
+  return MessageId(messageID: (json['message_id'] as num?)?.toInt());
+}
+
+Map<String, dynamic> _$MessageIdToJson(MessageId instance) => <String, dynamic>{
+  'message_id': ?instance.messageID,
+};
+
 MessageEntity _$MessageEntityFromJson(Map<String, dynamic> json) {
   $checkKeys(json, requiredKeys: const ['type', 'offset', 'length']);
   return MessageEntity(
@@ -190,6 +213,7 @@ MessageEntity _$MessageEntityFromJson(Map<String, dynamic> json) {
         ? null
         : User.fromJson(json['user'] as Map<String, dynamic>),
     language: json['language'] as String?,
+    customEmojiID: json['custom_emoji_id'] as String?,
   );
 }
 
@@ -201,4 +225,68 @@ Map<String, dynamic> _$MessageEntityToJson(MessageEntity instance) =>
       'url': ?instance.url,
       'user': ?instance.user,
       'language': ?instance.language,
+      'custom_emoji_id': ?instance.customEmojiID,
     };
+
+ReplyParameters _$ReplyParametersFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, requiredKeys: const ['message_id']);
+  return ReplyParameters(
+    messageID: (json['message_id'] as num?)?.toInt(),
+    chatID: json['chat_id'],
+    allowSendingWithoutReply: json['allow_sending_without_reply'] as bool?,
+    quote: json['quote'] as String?,
+    quoteParseMode: json['quote_parse_mode'] as String?,
+    quoteEntities: (json['quote_entities'] as List<dynamic>?)
+        ?.map((e) => MessageEntity.fromJson(e as Map<String, dynamic>))
+        .toList(),
+    quotePosition: (json['quote_position'] as num?)?.toInt(),
+  );
+}
+
+Map<String, dynamic> _$ReplyParametersToJson(ReplyParameters instance) =>
+    <String, dynamic>{
+      'message_id': ?instance.messageID,
+      'chat_id': ?instance.chatID,
+      'allow_sending_without_reply': ?instance.allowSendingWithoutReply,
+      'quote': ?instance.quote,
+      'quote_parse_mode': ?instance.quoteParseMode,
+      'quote_entities': ?instance.quoteEntities,
+      'quote_position': ?instance.quotePosition,
+    };
+
+LinkPreviewOptions _$LinkPreviewOptionsFromJson(Map<String, dynamic> json) =>
+    LinkPreviewOptions(
+      isDisabled: json['is_disabled'] as bool?,
+      url: json['url'] as String?,
+      preferSmallMedia: json['prefer_small_media'] as bool?,
+      preferLargeMedia: json['prefer_large_media'] as bool?,
+      showAboveText: json['show_above_text'] as bool?,
+    );
+
+Map<String, dynamic> _$LinkPreviewOptionsToJson(LinkPreviewOptions instance) =>
+    <String, dynamic>{
+      'is_disabled': ?instance.isDisabled,
+      'url': ?instance.url,
+      'prefer_small_media': ?instance.preferSmallMedia,
+      'prefer_large_media': ?instance.preferLargeMedia,
+      'show_above_text': ?instance.showAboveText,
+    };
+
+TextQuote _$TextQuoteFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, requiredKeys: const ['text', 'position']);
+  return TextQuote(
+    text: json['text'] as String?,
+    entities: (json['entities'] as List<dynamic>?)
+        ?.map((e) => MessageEntity.fromJson(e as Map<String, dynamic>))
+        .toList(),
+    position: (json['position'] as num?)?.toInt(),
+    isManual: json['is_manual'] as bool?,
+  );
+}
+
+Map<String, dynamic> _$TextQuoteToJson(TextQuote instance) => <String, dynamic>{
+  'text': ?instance.text,
+  'entities': ?instance.entities,
+  'position': ?instance.position,
+  'is_manual': ?instance.isManual,
+};

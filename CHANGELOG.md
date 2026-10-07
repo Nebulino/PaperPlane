@@ -1,3 +1,22 @@
+## 0.7.0
+### Dart 3 Migration & Telegram Bot API Modernization
+
+- **Dart 3 & Sound Null Safety**: Full codebase migrated to Dart 3 (`sdk: ^3.8.0`) with sound null safety.
+- **Modern Dependencies**: Upgraded to Dio 5.x, Logger 2.x, lints 6.x, and json_serializable 6.x.
+- **Modern Messaging (Telegram Bot API 7.0+)**:
+  - Added `ReplyParameters` for advanced replies and quote styling (`quote`, `quote_parse_mode`, `quote_position`).
+  - Added `LinkPreviewOptions` for granular link preview management.
+  - Added `TextQuote` and `MessageId` models.
+  - Added batch message operations: `deleteMessages`, `forwardMessages`, `copyMessages`, and `copyMessage`.
+  - Added new message entity types: `spoiler`, `custom_emoji`, `blockquote`, `expandable_blockquote`.
+  - Added forum topics support fields: `messageThreadID`, `isTopicMessage`.
+  - Added media spoiler and protection options across all `send*` methods (`hasSpoiler`, `showCaptionAboveMedia`, `protectContent`, `allowSendingWithoutReply`).
+  - Added helper extension methods on `Message`: `delete()`, `forward()`, `copy()`.
+- **Bug Fixes**:
+  - Fixed runtime `TypeError` in integer constants (`20E6 as int`).
+  - Fixed concurrent modification error in `MessageEntityHelper`.
+  - Fixed port validation logic in `Webhook`.
+
 ## 0.6.5
 
 - Updated Copyright headline for a bump to Dart 2.8.0.

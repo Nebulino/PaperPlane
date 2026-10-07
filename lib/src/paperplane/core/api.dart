@@ -123,19 +123,33 @@ class API {
   Future<Message> sendMessage({
     required ChatID chatID,
     required String text,
+    int? messageThreadID,
     ParseMode? parseMode,
+    List<MessageEntity>? entities,
+    LinkPreviewOptions? linkPreviewOptions,
     bool? disableWebPagePreview,
     bool? disableNotification,
+    bool? protectContent,
+    ReplyParameters? replyParameters,
     int? replyToMessageID,
+    bool? allowSendingWithoutReply,
     ReplyMarkup? replyMarkup,
   }) async {
     final formData = FormData.fromMap({
       'chat_id': chatID,
       'text': text,
+      'message_thread_id': messageThreadID,
       'parse_mode': parseMode?.mode,
+      'entities': entities != null ? jsonEncode(entities) : null,
+      'link_preview_options':
+          linkPreviewOptions != null ? jsonEncode(linkPreviewOptions) : null,
       'disable_web_page_preview': disableWebPagePreview,
       'disable_notification': disableNotification,
+      'protect_content': protectContent,
+      'reply_parameters':
+          replyParameters != null ? jsonEncode(replyParameters) : null,
       'reply_to_message_id': replyToMessageID,
+      'allow_sending_without_reply': allowSendingWithoutReply,
       'reply_markup': replyMarkup != null ? jsonEncode(replyMarkup) : null,
     });
     return Message.fromJson(await _client.post(method: 'sendMessage', formData: formData) as Map<String, dynamic>);
@@ -148,17 +162,128 @@ class API {
   Future<Message> forwardMessage({
     required ChatID chatID,
     required ChatID fromChatID,
-    bool? disableNotification,
     required int messageID,
+    int? messageThreadID,
+    bool? disableNotification,
+    bool? protectContent,
   }) async {
     final formData = FormData.fromMap({
       'chat_id': chatID,
       'from_chat_id': fromChatID,
-      'disable_notification': disableNotification,
       'message_id': messageID,
+      'message_thread_id': messageThreadID,
+      'disable_notification': disableNotification,
+      'protect_content': protectContent,
     });
 
     return Message.fromJson(await _client.post(method: 'forwardMessage', formData: formData) as Map<String, dynamic>);
+  }
+
+  /// Forwards multiple messages of any kind.
+  ///
+  /// If some of the specified messages can't be found or forwarded, they are skipped.
+  /// Service messages and messages with protected content can't be forwarded.
+  /// Returns a list of [MessageId] on success.
+  ///
+  /// See https://core.telegram.org/bots/api#forwardmessages
+  Future<List<MessageId>> forwardMessages({
+    required ChatID chatID,
+    required ChatID fromChatID,
+    required List<int> messageIDs,
+    int? messageThreadID,
+    bool? disableNotification,
+    bool? protectContent,
+  }) async {
+    final formData = FormData.fromMap({
+      'chat_id': chatID,
+      'from_chat_id': fromChatID,
+      'message_ids': jsonEncode(messageIDs),
+      'message_thread_id': messageThreadID,
+      'disable_notification': disableNotification,
+      'protect_content': protectContent,
+    });
+
+    final res = await _client.post(method: 'forwardMessages', formData: formData) as List;
+    return res.map((e) => MessageId.fromJson(e as Map<String, dynamic>)).toList();
+  }
+
+  /// Copies a message of any kind.
+  ///
+  /// Service messages, giveaway messages, giveaway winners messages, and invoice
+  /// messages can't be copied. A quiz poll can be copied only if the value of the
+  /// field `correct_option_id` is known to the bot. The method is analogous to the
+  /// method [forwardMessage], but the copied message doesn't have a link to the original
+  /// message.
+  /// Returns the [MessageId] of the sent message on success.
+  ///
+  /// See https://core.telegram.org/bots/api#copymessage
+  Future<MessageId> copyMessage({
+    required ChatID chatID,
+    required ChatID fromChatID,
+    required int messageID,
+    int? messageThreadID,
+    String? caption,
+    ParseMode? parseMode,
+    List<MessageEntity>? captionEntities,
+    bool? showCaptionAboveMedia,
+    bool? disableNotification,
+    bool? protectContent,
+    ReplyParameters? replyParameters,
+    int? replyToMessageID,
+    bool? allowSendingWithoutReply,
+    ReplyMarkup? replyMarkup,
+  }) async {
+    final formData = FormData.fromMap({
+      'chat_id': chatID,
+      'from_chat_id': fromChatID,
+      'message_id': messageID,
+      'message_thread_id': messageThreadID,
+      'caption': caption,
+      'parse_mode': parseMode?.mode,
+      'caption_entities':
+          captionEntities != null ? jsonEncode(captionEntities) : null,
+      'show_caption_above_media': showCaptionAboveMedia,
+      'disable_notification': disableNotification,
+      'protect_content': protectContent,
+      'reply_parameters':
+          replyParameters != null ? jsonEncode(replyParameters) : null,
+      'reply_to_message_id': replyToMessageID,
+      'allow_sending_without_reply': allowSendingWithoutReply,
+      'reply_markup': replyMarkup != null ? jsonEncode(replyMarkup) : null,
+    });
+
+    return MessageId.fromJson(await _client.post(method: 'copyMessage', formData: formData) as Map<String, dynamic>);
+  }
+
+  /// Copies multiple messages of any kind.
+  ///
+  /// If some of the specified messages can't be found or copied, they are skipped.
+  /// Service messages, giveaway messages, giveaway winners messages, and invoice
+  /// messages can't be copied.
+  /// Returns a list of [MessageId] on success.
+  ///
+  /// See https://core.telegram.org/bots/api#copymessages
+  Future<List<MessageId>> copyMessages({
+    required ChatID chatID,
+    required ChatID fromChatID,
+    required List<int> messageIDs,
+    int? messageThreadID,
+    bool? disableNotification,
+    bool? protectContent,
+    bool? removeCaption,
+  }) async {
+    final formData = FormData.fromMap({
+      'chat_id': chatID,
+      'from_chat_id': fromChatID,
+      'message_ids': jsonEncode(messageIDs),
+      'message_thread_id': messageThreadID,
+      'disable_notification': disableNotification,
+      'protect_content': protectContent,
+      'remove_caption': removeCaption,
+    });
+
+    final res = await _client.post(method: 'copyMessages', formData: formData) as List;
+    return res.map((e) => MessageId.fromJson(e as Map<String, dynamic>)).toList();
   }
 
   /// Use this method to send photos.
@@ -217,25 +342,37 @@ class API {
   Future<Message> sendAudio({
     required ChatID chatID,
     required Luggage audio,
+    int? messageThreadID,
     String? caption,
     ParseMode? parseMode,
+    List<MessageEntity>? captionEntities,
     Duration? duration,
     String? performer,
     String? title,
     Luggage? thumb,
     bool? disableNotification,
+    bool? protectContent,
+    ReplyParameters? replyParameters,
     int? replyToMessageID,
+    bool? allowSendingWithoutReply,
     ReplyMarkup? replyMarkup,
   }) async {
     final formData = FormData.fromMap({
       'chat_id': chatID,
+      'message_thread_id': messageThreadID,
       'caption': caption,
       'parse_mode': parseMode?.mode,
+      'caption_entities':
+          captionEntities != null ? jsonEncode(captionEntities) : null,
       'duration': duration?.inSeconds,
       'performer': performer,
       'title': title,
       'disable_notification': disableNotification,
+      'protect_content': protectContent,
+      'reply_parameters':
+          replyParameters != null ? jsonEncode(replyParameters) : null,
       'reply_to_message_id': replyToMessageID,
+      'allow_sending_without_reply': allowSendingWithoutReply,
       'reply_markup': replyMarkup != null ? jsonEncode(replyMarkup) : null,
     });
 
@@ -286,19 +423,33 @@ class API {
   Future<Message> sendDocument({
     required ChatID chatID,
     required Luggage document,
+    int? messageThreadID,
     Luggage? thumb,
     String? caption,
     ParseMode? parseMode,
+    List<MessageEntity>? captionEntities,
+    bool? disableContentTypeDetection,
     bool? disableNotification,
+    bool? protectContent,
+    ReplyParameters? replyParameters,
     int? replyToMessageID,
+    bool? allowSendingWithoutReply,
     ReplyMarkup? replyMarkup,
   }) async {
     final formData = FormData.fromMap({
       'chat_id': chatID,
+      'message_thread_id': messageThreadID,
       'caption': caption,
       'parse_mode': parseMode?.mode,
+      'caption_entities':
+          captionEntities != null ? jsonEncode(captionEntities) : null,
+      'disable_content_type_detection': disableContentTypeDetection,
       'disable_notification': disableNotification,
+      'protect_content': protectContent,
+      'reply_parameters':
+          replyParameters != null ? jsonEncode(replyParameters) : null,
       'reply_to_message_id': replyToMessageID,
+      'allow_sending_without_reply': allowSendingWithoutReply,
       'reply_markup': replyMarkup != null ? jsonEncode(replyMarkup) : null,
     });
 
@@ -349,27 +500,43 @@ class API {
   Future<Message> sendVideo({
     required ChatID chatID,
     required Luggage video,
+    int? messageThreadID,
     Duration? duration,
     int? width,
     int? height,
     Luggage? thumb,
     String? caption,
     ParseMode? parseMode,
+    List<MessageEntity>? captionEntities,
+    bool? showCaptionAboveMedia,
+    bool? hasSpoiler,
     bool? supportsStreaming,
     bool? disableNotification,
+    bool? protectContent,
+    ReplyParameters? replyParameters,
     int? replyToMessageID,
+    bool? allowSendingWithoutReply,
     ReplyMarkup? replyMarkup,
   }) async {
     final formData = FormData.fromMap({
       'chat_id': chatID,
+      'message_thread_id': messageThreadID,
       'duration': duration?.inSeconds,
       'width': width,
       'height': height,
       'caption': caption,
       'parse_mode': parseMode?.mode,
+      'caption_entities':
+          captionEntities != null ? jsonEncode(captionEntities) : null,
+      'show_caption_above_media': showCaptionAboveMedia,
+      'has_spoiler': hasSpoiler,
       'supports_streaming': supportsStreaming,
       'disable_notification': disableNotification,
+      'protect_content': protectContent,
+      'reply_parameters':
+          replyParameters != null ? jsonEncode(replyParameters) : null,
       'reply_to_message_id': replyToMessageID,
+      'allow_sending_without_reply': allowSendingWithoutReply,
       'reply_markup': replyMarkup != null ? jsonEncode(replyMarkup) : null,
     });
 
@@ -419,25 +586,41 @@ class API {
   Future<Message> sendAnimation({
     required ChatID chatID,
     required Luggage animation,
+    int? messageThreadID,
     Duration? duration,
     int? width,
     int? height,
     Luggage? thumb,
     String? caption,
     ParseMode? parseMode,
+    List<MessageEntity>? captionEntities,
+    bool? showCaptionAboveMedia,
+    bool? hasSpoiler,
     bool? disableNotification,
+    bool? protectContent,
+    ReplyParameters? replyParameters,
     int? replyToMessageID,
+    bool? allowSendingWithoutReply,
     ReplyMarkup? replyMarkup,
   }) async {
     final formData = FormData.fromMap({
       'chat_id': chatID,
+      'message_thread_id': messageThreadID,
       'duration': duration?.inSeconds,
       'width': width,
       'height': height,
       'caption': caption,
       'parse_mode': parseMode?.mode,
+      'caption_entities':
+          captionEntities != null ? jsonEncode(captionEntities) : null,
+      'show_caption_above_media': showCaptionAboveMedia,
+      'has_spoiler': hasSpoiler,
       'disable_notification': disableNotification,
+      'protect_content': protectContent,
+      'reply_parameters':
+          replyParameters != null ? jsonEncode(replyParameters) : null,
       'reply_to_message_id': replyToMessageID,
+      'allow_sending_without_reply': allowSendingWithoutReply,
       'reply_markup': replyMarkup != null ? jsonEncode(replyMarkup) : null,
     });
 
@@ -489,20 +672,32 @@ class API {
   Future<Message> sendVoice({
     required ChatID chatID,
     required Luggage voice,
+    int? messageThreadID,
     String? caption,
     ParseMode? parseMode,
+    List<MessageEntity>? captionEntities,
     Duration? duration,
     bool? disableNotification,
+    bool? protectContent,
+    ReplyParameters? replyParameters,
     int? replyToMessageID,
+    bool? allowSendingWithoutReply,
     ReplyMarkup? replyMarkup,
   }) async {
     final formData = FormData.fromMap({
       'chat_id': chatID,
+      'message_thread_id': messageThreadID,
       'caption': caption,
       'parse_mode': parseMode?.mode,
+      'caption_entities':
+          captionEntities != null ? jsonEncode(captionEntities) : null,
       'duration': duration?.inSeconds,
       'disable_notification': disableNotification,
+      'protect_content': protectContent,
+      'reply_parameters':
+          replyParameters != null ? jsonEncode(replyParameters) : null,
       'reply_to_message_id': replyToMessageID,
+      'allow_sending_without_reply': allowSendingWithoutReply,
       'reply_markup': replyMarkup != null ? jsonEncode(replyMarkup) : null,
     });
 
@@ -535,19 +730,28 @@ class API {
   Future<Message> sendVideoNote({
     required ChatID chatID,
     required Luggage videoNote,
+    int? messageThreadID,
     Duration? duration,
     int? length,
     Luggage? thumb,
     bool? disableNotification,
+    bool? protectContent,
+    ReplyParameters? replyParameters,
     int? replyToMessageID,
+    bool? allowSendingWithoutReply,
     ReplyMarkup? replyMarkup,
   }) async {
     final formData = FormData.fromMap({
       'chat_id': chatID,
+      'message_thread_id': messageThreadID,
       'duration': duration?.inSeconds,
       'lenght': length,
       'disable_notification': disableNotification,
+      'protect_content': protectContent,
+      'reply_parameters':
+          replyParameters != null ? jsonEncode(replyParameters) : null,
       'reply_to_message_id': replyToMessageID,
+      'allow_sending_without_reply': allowSendingWithoutReply,
       'reply_markup': replyMarkup != null ? jsonEncode(replyMarkup) : null,
     });
 
@@ -595,8 +799,12 @@ class API {
   Future<List<Message>> sendMediaGroup({
     required ChatID chatID,
     required List<InputMediaLuggage> media,
+    int? messageThreadID,
     bool? disableNotification,
+    bool? protectContent,
+    ReplyParameters? replyParameters,
     int? replyToMessageID,
+    bool? allowSendingWithoutReply,
   }) async {
     if (media.length < 2) {
       return Future.error(ApiException(
@@ -632,8 +840,13 @@ class API {
     final formData = FormData.fromMap({
       'chat_id': chatID,
       'media': jsonEncode(mediaToSend),
+      'message_thread_id': messageThreadID,
       'disable_notification': disableNotification,
+      'protect_content': protectContent,
+      'reply_parameters':
+          replyParameters != null ? jsonEncode(replyParameters) : null,
       'reply_to_message_id': replyToMessageID,
+      'allow_sending_without_reply': allowSendingWithoutReply,
     });
 
     formData.files.addAll(mediaFileToSend);
@@ -650,18 +863,33 @@ class API {
     required ChatID chatID,
     required double latitude,
     required double longitude,
+    int? messageThreadID,
+    double? horizontalAccuracy,
     int? livePeriod,
+    int? heading,
+    int? proximityAlertRadius,
     bool? disableNotification,
+    bool? protectContent,
+    ReplyParameters? replyParameters,
     int? replyToMessageID,
+    bool? allowSendingWithoutReply,
     ReplyMarkup? replyMarkup,
   }) async {
     final formData = FormData.fromMap({
       'chat_id': chatID,
       'latitude': latitude,
       'longitude': longitude,
+      'message_thread_id': messageThreadID,
+      'horizontal_accuracy': horizontalAccuracy,
       'live_period': livePeriod,
+      'heading': heading,
+      'proximity_alert_radius': proximityAlertRadius,
       'disable_notification': disableNotification,
+      'protect_content': protectContent,
+      'reply_parameters':
+          replyParameters != null ? jsonEncode(replyParameters) : null,
       'reply_to_message_id': replyToMessageID,
+      'allow_sending_without_reply': allowSendingWithoutReply,
       'reply_markup': replyMarkup != null ? jsonEncode(replyMarkup) : null,
     });
 
@@ -742,10 +970,16 @@ class API {
     required double longitude,
     required String title,
     required String address,
+    int? messageThreadID,
     String? foursquareID,
     String? foursquareType,
+    String? googlePlaceID,
+    String? googlePlaceType,
     bool? disableNotification,
+    bool? protectContent,
+    ReplyParameters? replyParameters,
     int? replyToMessageID,
+    bool? allowSendingWithoutReply,
     ReplyMarkup? replyMarkup,
   }) async {
     final formData = FormData.fromMap({
@@ -754,10 +988,17 @@ class API {
       'longitude': longitude,
       'title': title,
       'address': address,
+      'message_thread_id': messageThreadID,
       'foursquare_id': foursquareID,
       'foursquare_type': foursquareType,
+      'google_place_id': googlePlaceID,
+      'google_place_type': googlePlaceType,
       'disable_notification': disableNotification,
+      'protect_content': protectContent,
+      'reply_parameters':
+          replyParameters != null ? jsonEncode(replyParameters) : null,
       'reply_to_message_id': replyToMessageID,
+      'allow_sending_without_reply': allowSendingWithoutReply,
       'reply_markup': replyMarkup != null ? jsonEncode(replyMarkup) : null,
     });
 
@@ -772,20 +1013,29 @@ class API {
     required ChatID chatID,
     required String phoneNumber,
     required String firstName,
+    int? messageThreadID,
     String? lastName,
     String? vcard,
     bool? disableNotification,
+    bool? protectContent,
+    ReplyParameters? replyParameters,
     int? replyToMessageID,
+    bool? allowSendingWithoutReply,
     ReplyMarkup? replyMarkup,
   }) async {
     final formData = FormData.fromMap({
       'chat_id': chatID,
       'phone_number': phoneNumber,
       'first_name': firstName,
+      'message_thread_id': messageThreadID,
       'last_name': lastName,
       'vcard': vcard,
       'disable_notification': disableNotification,
+      'protect_content': protectContent,
+      'reply_parameters':
+          replyParameters != null ? jsonEncode(replyParameters) : null,
       'reply_to_message_id': replyToMessageID,
+      'allow_sending_without_reply': allowSendingWithoutReply,
       'reply_markup': replyMarkup != null ? jsonEncode(replyMarkup) : null,
     });
 
@@ -800,34 +1050,51 @@ class API {
     required ChatID chatID,
     required String question,
     required List<String> options,
+    int? messageThreadID,
+    ParseMode? questionParseMode,
+    List<MessageEntity>? questionEntities,
     bool? isAnonymous,
     PollType? type,
     bool? allowsMultipleAnswers,
     int? correctOptionID,
     String? explanation,
     ParseMode? explanationParseMode,
+    List<MessageEntity>? explanationEntities,
     Duration? openPeriod,
     DateTime? closeDate,
     bool? isClosed,
     bool? disableNotification,
+    bool? protectContent,
+    ReplyParameters? replyParameters,
     int? replyToMessageID,
+    bool? allowSendingWithoutReply,
     ReplyMarkup? replyMarkup,
   }) async {
     var formData = FormData.fromMap({
       'chat_id': chatID,
       'question': question,
       'options': jsonEncode(options),
+      'message_thread_id': messageThreadID,
+      'question_parse_mode': questionParseMode?.mode,
+      'question_entities':
+          questionEntities != null ? jsonEncode(questionEntities) : null,
       'is_anonymous': isAnonymous,
       'type': (type ?? PollType.REGULAR.type),
       'allows_multiple_answers': allowsMultipleAnswers,
       'correct_option_id': correctOptionID,
       'explanation': explanation,
-      'explanation_parse_mode': explanationParseMode,
+      'explanation_parse_mode': explanationParseMode?.mode,
+      'explanation_entities':
+          explanationEntities != null ? jsonEncode(explanationEntities) : null,
       'open_period': openPeriod?.inSeconds,
       'close_date': closeDate != null ? (closeDate.millisecondsSinceEpoch / 1000).round() : null,
       'is_closed': isClosed,
       'disable_notification': disableNotification,
+      'protect_content': protectContent,
+      'reply_parameters':
+          replyParameters != null ? jsonEncode(replyParameters) : null,
       'reply_to_message_id': replyToMessageID,
+      'allow_sending_without_reply': allowSendingWithoutReply,
       'reply_markup': replyMarkup != null ? jsonEncode(replyMarkup) : null,
     });
 
@@ -1550,6 +1817,24 @@ class API {
     return await _client.post(method: 'deleteMessage', formData: formData);
   }
 
+  /// Deletes multiple messages simultaneously.
+  ///
+  /// If some of the specified messages can't be found, they are skipped.
+  /// Returns `true` on success.
+  ///
+  /// See https://core.telegram.org/bots/api#deletemessages
+  Future<bool> deleteMessages({
+    required ChatID chatID,
+    required List<int> messageIDs,
+  }) async {
+    final formData = FormData.fromMap({
+      'chat_id': chatID,
+      'message_ids': jsonEncode(messageIDs),
+    });
+
+    return await _client.post(method: 'deleteMessages', formData: formData) as bool;
+  }
+
   /// Use this method to send static .WEBP or animated .TGS stickers.
   /// On success, the sent [Message] is returned.
   ///
@@ -1559,14 +1844,25 @@ class API {
   Future<Message> sendSticker({
     required ChatID chatID,
     required Luggage sticker,
+    int? messageThreadID,
+    String? emoji,
     bool? disableNotification,
+    bool? protectContent,
+    ReplyParameters? replyParameters,
     int? replyToMessageID,
+    bool? allowSendingWithoutReply,
     ReplyMarkup? replyMarkup,
   }) async {
     final formData = FormData.fromMap({
       'chat_id': chatID,
+      'message_thread_id': messageThreadID,
+      'emoji': emoji,
       'disable_notification': disableNotification,
+      'protect_content': protectContent,
+      'reply_parameters':
+          replyParameters != null ? jsonEncode(replyParameters) : null,
       'reply_to_message_id': replyToMessageID,
+      'allow_sending_without_reply': allowSendingWithoutReply,
       'reply_markup': replyMarkup != null ? jsonEncode(replyMarkup) : null,
     });
 
@@ -2076,16 +2372,25 @@ class API {
   /// One dice at a time!)
   Future<Message> sendDice({
     required ChatID chatID,
+    int? messageThreadID,
     DiceType? emoji,
     bool? disableNotification,
+    bool? protectContent,
+    ReplyParameters? replyParameters,
     int? replyToMessageID,
+    bool? allowSendingWithoutReply,
     ReplyMarkup? replyMarkup,
   }) async {
     final formData = FormData.fromMap({
       'chat_id': chatID,
+      'message_thread_id': messageThreadID,
       'emoji': emoji?.emoji ?? DiceType.dice.emoji,
       'disable_notification': disableNotification,
+      'protect_content': protectContent,
+      'reply_parameters':
+          replyParameters != null ? jsonEncode(replyParameters) : null,
       'reply_to_message_id': replyToMessageID,
+      'allow_sending_without_reply': allowSendingWithoutReply,
       'reply_markup': replyMarkup != null ? jsonEncode(replyMarkup) : null,
     });
 

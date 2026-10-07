@@ -347,4 +347,62 @@ extension MessageHelper on Message {
       replyMarkup: replyMarkup,
     );
   }
+
+  /// Deletes the current message.
+  Future<bool> delete() {
+    return _api.deleteMessage(
+      chatID: ChatID.fromID(chat?.id ?? 0),
+      messageID: messageID ?? 0,
+    );
+  }
+
+  /// Forwards the current message to a target chat.
+  Future<Message> forward({
+    required ChatID toChatID,
+    int? messageThreadID,
+    bool? disableNotification,
+    bool? protectContent,
+  }) {
+    return _api.forwardMessage(
+      chatID: toChatID,
+      fromChatID: ChatID.fromID(chat?.id ?? 0),
+      messageID: messageID ?? 0,
+      messageThreadID: messageThreadID,
+      disableNotification: disableNotification,
+      protectContent: protectContent,
+    );
+  }
+
+  /// Copies the current message to a target chat.
+  Future<MessageId> copy({
+    required ChatID toChatID,
+    int? messageThreadID,
+    String? caption,
+    ParseMode? parseMode,
+    List<MessageEntity>? captionEntities,
+    bool? showCaptionAboveMedia,
+    bool? disableNotification,
+    bool? protectContent,
+    ReplyParameters? replyParameters,
+    int? replyToMessageID,
+    bool? allowSendingWithoutReply,
+    ReplyMarkup? replyMarkup,
+  }) {
+    return _api.copyMessage(
+      chatID: toChatID,
+      fromChatID: ChatID.fromID(chat?.id ?? 0),
+      messageID: messageID ?? 0,
+      messageThreadID: messageThreadID,
+      caption: caption,
+      parseMode: parseMode,
+      captionEntities: captionEntities,
+      showCaptionAboveMedia: showCaptionAboveMedia,
+      disableNotification: disableNotification,
+      protectContent: protectContent,
+      replyParameters: replyParameters,
+      replyToMessageID: replyToMessageID,
+      allowSendingWithoutReply: allowSendingWithoutReply,
+      replyMarkup: replyMarkup,
+    );
+  }
 }
