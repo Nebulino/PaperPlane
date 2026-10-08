@@ -97,6 +97,10 @@ dependencies:
 
 Please file feature requests and bugs at the [issue tracker][tracker].
 
+## License
+
+Released under the [MIT License](LICENSE).
+
 ##### Copyright © 2020-2026 Nebulino
 
 [tracker]: https://github.com/Nebulino/PaperPlane/issues
