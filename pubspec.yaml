@@ -2,7 +2,8 @@ name: paperplane
 description: A Flying Telegram Bot API Wrapper created from Scratch and Paper.
 version: 0.7.0
 homepage: https://github.com/Nebulino/PaperPlane
-issues: https://github.com/Nebulino/PaperPlane/issues
+repository: https://github.com/Nebulino/PaperPlane
+issue_tracker: https://github.com/Nebulino/PaperPlane/issues
 
 environment:
   sdk: ^3.8.0
