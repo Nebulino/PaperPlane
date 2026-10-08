@@ -3,7 +3,7 @@
 //          Copyright (c) 2020 Nebulino          //
 //                                               //
 
-part of payment;
+part of '../payment.dart';
 
 /// This object contains basic information about a successful payment.
 ///
@@ -14,7 +14,7 @@ class SuccessfulPayment {
   ///
   /// [currency]: https://core.telegram.org/bots/payments#supported-currencies
   @JsonKey(name: 'currency', required: true)
-  String currency;
+  String? currency;
 
   /// Total price in the *smallest units* of the currency
   /// (integer, not float/double). For example, for a price of [US$ 1.45]
@@ -24,27 +24,27 @@ class SuccessfulPayment {
   ///
   /// [currencies.json]: https://core.telegram.org/bots/payments/currencies.json
   @JsonKey(name: 'total_amount', required: true)
-  int totalAmount;
+  int? totalAmount;
 
   /// Bot specified invoice payload.
   @JsonKey(name: 'invoice_payload', required: true)
-  String invoicePayload;
+  String? invoicePayload;
 
   /// *Optional.* Identifier of the shipping option chosen by the user.
   @JsonKey(name: 'shipping_option_id')
-  String shippingOptionID;
+  String? shippingOptionID;
 
   /// *Optional.* Order info provided by the user.
   @JsonKey(name: 'order_info')
-  OrderInfo orderInfo;
+  OrderInfo? orderInfo;
 
   /// Telegram payment identifier.
   @JsonKey(name: 'telegram_payment_charge_id')
-  String telegramPaymentChargeID;
+  String? telegramPaymentChargeID;
 
   /// Provider payment identifier.
   @JsonKey(name: 'provider_payment_charge_id')
-  String providerPaymentChargeID;
+  String? providerPaymentChargeID;
 
   SuccessfulPayment({
     this.currency,

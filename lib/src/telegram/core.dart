@@ -9,11 +9,11 @@ library core;
 import 'package:json_annotation/json_annotation.dart';
 import 'package:paperplane/telegram.dart';
 
-part '../telegram/core/bot_command.dart';
-part '../telegram/core/callback_query.dart';
-part '../telegram/core/dice.dart';
-part '../telegram/core/login_url.dart';
-part '../telegram/core/response_parameters.dart';
-part '../telegram/core/update.dart';
-part '../telegram/core/webhook_info.dart';
+part 'core/bot_command.dart';
+part 'core/callback_query.dart';
+part 'core/dice.dart';
+part 'core/login_url.dart';
+part 'core/response_parameters.dart';
+part 'core/update.dart';
+part 'core/webhook_info.dart';
 part 'core.g.dart';

@@ -3,7 +3,7 @@
 //          Copyright (c) 2020 Nebulino          //
 //                                               //
 
-part of chat;
+part of '../chat.dart';
 
 /// This object represents a chat.
 ///
@@ -17,37 +17,37 @@ class Chat {
   /// But it is smaller than 52 bits, so a signed 64 bit integer or
   /// double-precision float type are safe for storing this identifier.
   @JsonKey(name: 'id', required: true)
-  int id;
+  int? id;
 
   /// Type of chat, can be either “private”, “group”, “supergroup” or “channel”.
   @JsonKey(name: 'type', required: true)
-  String type;
+  String? type;
 
   /// *Optional.* Title, for supergroups, channels and group chats.
   @JsonKey(name: 'title')
-  String title;
+  String? title;
 
   /// *Optional.* Username, for private chats, supergroups and channels
   /// if available.
   @JsonKey(name: 'username')
-  String username;
+  String? username;
 
   /// *Optional.* First name of the other party in a private chat.
   @JsonKey(name: 'first_name')
-  String firstName;
+  String? firstName;
 
   /// *Optional.* Last name of the other party in a private chat.
   @JsonKey(name: 'last_name')
-  String lastName;
+  String? lastName;
 
   /// *Optional.* Chat photo. Returned only in [getChat].
   @JsonKey(name: 'photo')
-  ChatPhoto photo;
+  ChatPhoto? photo;
 
   /// *Optional.* Description, for groups, supergroups and channel chats.
   /// Returned only in [getChat].
   @JsonKey(name: 'description')
-  String description;
+  String? description;
 
   /// *Optional.* Chat invite link, for groups,
   /// supergroups and channel chats.
@@ -55,33 +55,33 @@ class Chat {
   /// so the bot must first generate the link using [exportChatInviteLink].
   /// Returned only in [getChat].
   @JsonKey(name: 'invite_link')
-  String inviteLink;
+  String? inviteLink;
 
   /// *Optional.* Pinned message, for groups, supergroups and channels.
   /// Returned only in [getChat].
   @JsonKey(name: 'pinned_message')
-  Message pinnedMessage;
+  Message? pinnedMessage;
 
   /// *Optional.* Default chat member permissions, for groups and supergroups.
   /// Returned only in [getChat].
   @JsonKey(name: 'permissions')
-  ChatPermissions permissions;
+  ChatPermissions? permissions;
 
   /// *Optional.* For supergroups,
   /// the minimum allowed delay between consecutive messages sent by each
   /// unpriviledged user. Returned only in [getChat].
   @JsonKey(name: 'slow_mode_delay')
-  int slowModeDelay;
+  int? slowModeDelay;
 
   /// *Optional.* For supergroups, name of group sticker set.
   /// Returned only in [getChat].
   @JsonKey(name: 'sticker_set_name')
-  String stickerSetName;
+  String? stickerSetName;
 
   /// *Optional.* True, if the bot can change the group sticker set.
   /// Returned only in [getChat].
   @JsonKey(name: 'can_set_sticker_set')
-  bool canSetStickerSet;
+  bool? canSetStickerSet;
 
   Chat({
     this.id,

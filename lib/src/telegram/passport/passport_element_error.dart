@@ -3,7 +3,7 @@
 //          Copyright (c) 2020 Nebulino          //
 //                                               //
 
-part of passport;
+part of '../passport.dart';
 
 /// This object represents an error in the Telegram Passport element
 /// which was submitted that should be resolved by the user.
@@ -23,15 +23,15 @@ part of passport;
 class PassportElementError {
   /// Error source.
   @JsonKey(name: 'source', required: true)
-  EncryptedPassportElementSource source;
+  EncryptedPassportElementSource? source;
 
   /// Error type.
   @JsonKey(name: 'type', required: true)
-  EncryptedPassportElementType type;
+  EncryptedPassportElementType? type;
 
   /// Error message.
   @JsonKey(name: 'message', required: true)
-  String message;
+  String? message;
 
   PassportElementError({
     this.source,

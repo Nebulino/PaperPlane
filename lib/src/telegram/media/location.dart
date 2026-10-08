@@ -3,7 +3,7 @@
 //          Copyright (c) 2020 Nebulino          //
 //                                               //
 
-part of media;
+part of '../media.dart';
 
 /// This object represents a point on the map.
 ///
@@ -12,11 +12,11 @@ part of media;
 class Location {
   /// Longitude as defined by sender.
   @JsonKey(name: 'longitude', required: true)
-  double longitude;
+  double? longitude;
 
   /// Latitude as defined by sender.
   @JsonKey(name: 'latitude', required: true)
-  double latitude;
+  double? latitude;
 
   Location({
     this.longitude,
@@ -26,6 +26,5 @@ class Location {
   factory Location.fromJson(Map<String, dynamic> json) =>
       _$LocationFromJson(json);
 
-  Map<String, dynamic> toJson(Map<String, dynamic> json) =>
-      _$LocationToJson(this);
+  Map<String, dynamic> toJson() => _$LocationToJson(this);
 }

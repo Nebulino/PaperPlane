@@ -3,7 +3,7 @@
 //          Copyright (c) 2020 Nebulino          //
 //                                               //
 
-part of inputmedia;
+part of '../inputmedia.dart';
 
 /// Represents a video to be sent.
 ///
@@ -13,7 +13,7 @@ class InputMediaVideo implements InputMedia {
   /// Type of the result, must be *video*.
   @JsonKey(name: 'type', required: true)
   @override
-  String type;
+  String? type;
 
   /// File to send.
   /// Pass a file_id to send a file that exists on
@@ -48,7 +48,7 @@ class InputMediaVideo implements InputMedia {
   /// 0-1024 characters after entities parsing.
   @JsonKey(name: 'caption')
   @override
-  String caption;
+  String? caption;
 
   /// *Optional.*
   /// Send *[Markdown]* or *[HTML]*,
@@ -60,27 +60,27 @@ class InputMediaVideo implements InputMedia {
   /// [bold, italic, fixed-width text or inline URLs]: https://core.telegram.org/bots/api#formatting-options
   @JsonKey(name: 'parse_mode')
   @override
-  ParseMode parseMode;
+  ParseMode? parseMode;
 
   /// *Optional.* Video width.
   @JsonKey(name: 'width')
-  int width;
+  int? width;
 
   /// *Optional.* Video height.
   @JsonKey(name: 'height')
-  int height;
+  int? height;
 
   /// *Optional.* Video duration.
   @JsonKey(
       name: 'duration',
       fromJson: _durationFromTelegramSeconds,
       toJson: _durationToTelegramSeconds)
-  Duration duration;
+  Duration? duration;
 
   /// *Optional.*
   /// Pass True, if the uploaded video is suitable for streaming.
   @JsonKey(name: 'supports_streaming', required: true)
-  bool supportsStreaming;
+  bool? supportsStreaming;
 
   InputMediaVideo({
     this.type = 'video',
@@ -102,11 +102,9 @@ class InputMediaVideo implements InputMedia {
 
   /// Helper: converts into a Duration type from
   /// a int received from Telegram API.
-  static Duration _durationFromTelegramSeconds(int seconds) =>
-      seconds == null ? null : Duration(seconds: seconds);
+  static Duration? _durationFromTelegramSeconds(int? seconds) => seconds != null ? Duration(seconds: seconds) : null;
 
   /// Helper: converts into a Duration type into
   /// a int to be sent to Telegram API.
-  static int _durationToTelegramSeconds(Duration duration) =>
-      duration?.inSeconds;
+  static int? _durationToTelegramSeconds(Duration? duration) => duration?.inSeconds;
 }

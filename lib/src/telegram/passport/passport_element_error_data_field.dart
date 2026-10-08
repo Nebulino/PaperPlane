@@ -3,7 +3,7 @@
 //          Copyright (c) 2020 Nebulino          //
 //                                               //
 
-part of passport;
+part of '../passport.dart';
 
 /// Represents an issue in one of the data fields that was provided by the user.
 /// The error is considered resolved when the field's value changes.
@@ -14,7 +14,7 @@ class PassportElementErrorDataField implements PassportElementError {
   /// Error source, must be *data*.
   @JsonKey(name: 'source', required: true)
   @override
-  EncryptedPassportElementSource source;
+  EncryptedPassportElementSource? source;
 
   /// The section of the user's Telegram Passport
   /// which has the error, one of “personal_details”,
@@ -22,20 +22,20 @@ class PassportElementErrorDataField implements PassportElementError {
   /// “internal_passport”, “address”.
   @JsonKey(name: 'type', required: true)
   @override
-  EncryptedPassportElementType type;
+  EncryptedPassportElementType? type;
 
   /// Name of the data field which has the error.
   @JsonKey(name: 'field_name', required: true)
-  String fieldName;
+  String? fieldName;
 
   /// Base64-encoded data hash.
   @JsonKey(name: 'data_hash', required: true)
-  String dataHash;
+  String? dataHash;
 
   /// Error message.
   @JsonKey(name: 'message', required: true)
   @override
-  String message;
+  String? message;
 
   PassportElementErrorDataField({
     this.source = EncryptedPassportElementSource.data,

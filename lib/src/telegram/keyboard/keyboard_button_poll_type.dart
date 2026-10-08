@@ -3,7 +3,7 @@
 //          Copyright (c) 2020 Nebulino          //
 //                                               //
 
-part of keyboard;
+part of '../keyboard.dart';
 
 /// This object represents type of a poll, which is allowed to be created and
 /// sent when the corresponding button is pressed.
@@ -16,7 +16,7 @@ class KeyboardButtonPollType {
   /// If *regular* is passed, only regular polls will be allowed.
   /// Otherwise, the user will be allowed to create a poll of any type.
   @JsonKey(name: 'type')
-  String type;
+  String? type;
 
   KeyboardButtonPollType({
     this.type,

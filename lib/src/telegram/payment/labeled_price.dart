@@ -3,7 +3,7 @@
 //          Copyright (c) 2020 Nebulino          //
 //                                               //
 
-part of payment;
+part of '../payment.dart';
 
 /// This object represents a portion of the price for goods or services.
 ///
@@ -12,7 +12,7 @@ part of payment;
 class LabeledPrice {
   /// Portion label.
   @JsonKey(name: 'label', required: true)
-  String label;
+  String? label;
 
   /// Total price in the *smallest units* of the currency
   /// (integer, not float/double). For example, for a price of [US$ 1.45]
@@ -22,7 +22,7 @@ class LabeledPrice {
   ///
   /// [currencies.json]: https://core.telegram.org/bots/payments/currencies.json
   @JsonKey(name: 'amount', required: true)
-  int amount;
+  int? amount;
 
   LabeledPrice({
     this.label,

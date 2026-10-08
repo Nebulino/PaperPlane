@@ -3,7 +3,7 @@
 //          Copyright (c) 2020 Nebulino          //
 //                                               //
 
-part of inline;
+part of '../inline.dart';
 
 /// Represents a link to an mp3 audio file stored on the Telegram servers.
 /// By default, this audio file will be sent by the user.
@@ -22,20 +22,20 @@ class InlineQueryResultCachedAudio implements InlineQueryResult {
   /// Type of the result, must be *audio*.
   @JsonKey(name: 'type', required: true)
   @override
-  String type;
+  String? type;
 
   /// Unique identifier for this result, 1-64 bytes.
   @JsonKey(name: 'id', required: true)
   @override
-  String id;
+  String? id;
 
   /// A valid file identifier for the audio file.
   @JsonKey(name: 'audio_file_id', required: true)
-  String audioFileID;
+  String? audioFileID;
 
   /// *Optional.* Caption, 0-1024 characters after entities parsing.
   @JsonKey(name: 'caption')
-  String caption;
+  String? caption;
 
   /// *Optional.*
   /// Send *[Markdown]* or *[HTML]*,
@@ -46,17 +46,17 @@ class InlineQueryResultCachedAudio implements InlineQueryResult {
   /// [HTML]: https://core.telegram.org/bots/api#html-style
   /// [bold, italic, fixed-width text or inline URLs]: https://core.telegram.org/bots/api#formatting-options
   @JsonKey(name: 'parse_mode')
-  ParseMode parseMode;
+  ParseMode? parseMode;
 
   /// *Optional.* [Inline keyboard] attached to the message.
   ///
   /// [Inline keyboard]: https://core.telegram.org/bots#inline-keyboards-and-on-the-fly-updating
   @JsonKey(name: 'reply_markup')
-  InlineKeyboardMarkup replyMarkup;
+  InlineKeyboardMarkup? replyMarkup;
 
   /// *Optional.* Content of the message to be sent instead of the audio.
   @JsonKey(name: 'input_message_content')
-  InputMessageContent inputMessageContent;
+  InputMessageContent? inputMessageContent;
 
   InlineQueryResultCachedAudio({
     this.type = 'audio',

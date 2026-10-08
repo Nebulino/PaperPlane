@@ -26,6 +26,10 @@ extension PaperPlaneDispatcherExtension on PaperPlane {
   Stream<InlineQuery> onInlineQuery() => _dispatcher.onInlineQuery();
 
   /// When called it calls the dispatcher.
+  Stream<ChosenInlineResult> onChosenInlineResult() =>
+      _dispatcher.onChosenInlineResult();
+
+  /// When called it calls the dispatcher.
   Stream<CallbackQuery> onCallbackQuery() => _dispatcher.onCallbackQuery();
 
   /// When called it calls the dispatcher.

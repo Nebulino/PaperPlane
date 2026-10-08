@@ -3,15 +3,13 @@
 //          Copyright (c) 2020 Nebulino          //
 //                                               //
 
-import 'package:dio/dio.dart';
-
-/// It extends [DioError] class.
 /// You can find [description] that gives a brief error information.
-class TelegramClientException extends DioError {
-  String description;
+class TelegramClientException implements Exception {
+  final String? description;
 
   TelegramClientException({this.description});
 
   @override
-  String toString() => '[HttpClientException]' + (': ${description}' ?? '');
+  String toString() =>
+      '[TelegramClientException]${description != null ? ': $description' : ''}';
 }

@@ -3,7 +3,7 @@
 //          Copyright (c) 2020 Nebulino          //
 //                                               //
 
-part of chat;
+part of '../chat.dart';
 
 /// This object contains information about one member of a chat.
 ///
@@ -12,16 +12,16 @@ part of chat;
 class ChatMember {
   /// Information about the user.
   @JsonKey(name: 'user', required: true)
-  User user;
+  User? user;
 
   /// The member's status in the chat. Can be “creator”,
   /// “administrator”, “member”, “restricted”, “left” or “kicked”.
   @JsonKey(name: 'status', required: true)
-  String status;
+  String? status;
 
   /// *Optional.* Owner and administrators only. Custom title for this user.
   @JsonKey(name: 'custom_title')
-  String customTitle;
+  String? customTitle;
 
   /// *Optional.* Restricted and kicked only.
   /// Date when restrictions will be lifted for this user; unix time.
@@ -29,33 +29,33 @@ class ChatMember {
       name: 'until_date',
       fromJson: _dateTimeFromTelegramInt,
       toJson: _dateTimeToTelegramInt)
-  DateTime untilDate;
+  DateTime? untilDate;
 
   /// *Optional.* Administrators only.
   /// True, if the bot is allowed to edit administrator privileges of that user.
   @JsonKey(name: 'can_be_edited')
-  bool canBeEdited;
+  bool? canBeEdited;
 
   /// *Optional.* Administrators only.
   /// True, if the administrator can post in the channel; channels only.
   @JsonKey(name: 'can_post_messages')
-  bool canPostMessages;
+  bool? canPostMessages;
 
   /// *Optional.* Administrators only. True,
   /// if the administrator can edit messages of other users and
   /// can pin messages; channels only.
   @JsonKey(name: 'can_edit_messages')
-  bool canEditMessages;
+  bool? canEditMessages;
 
   /// *Optional.* Administrators only.
   /// True, if the administrator can delete messages of other users.
   @JsonKey(name: 'can_delete_messages')
-  bool canDeleteMessages;
+  bool? canDeleteMessages;
 
   /// *Optional.* Administrators only.
   /// True, if the administrator can restrict, ban or unban chat members.
   @JsonKey(name: 'can_restrict_members')
-  bool canRestrictMembers;
+  bool? canRestrictMembers;
 
   /// *Optional.* Administrators only.
   /// True, if the administrator can add new administrators
@@ -63,54 +63,54 @@ class ChatMember {
   /// that he has promoted, directly or indirectly
   /// (promoted by administrators that were appointed by the user).
   @JsonKey(name: 'can_promote_members')
-  bool canPromoteMembers;
+  bool? canPromoteMembers;
 
   /// *Optional.* Administrators and restricted only.
   /// True, if the user is allowed to change the chat title,
   /// photo and other settings.
   @JsonKey(name: 'can_change_info')
-  bool canChangeInfo;
+  bool? canChangeInfo;
 
   /// *Optional.* Administrators and restricted only.
   /// True, if the user is allowed to invite new users to the chat.
   @JsonKey(name: 'can_invite_users')
-  bool canInviteUsers;
+  bool? canInviteUsers;
 
   /// *Optional.* Administrators and restricted only.
   /// True, if the user is allowed to pin messages; groups and supergroups only.
   @JsonKey(name: 'can_pin_messages')
-  bool canPinMessages;
+  bool? canPinMessages;
 
   /// *Optional.* Restricted only.
   /// True, if the user is a member of the chat at the moment of the request.
   @JsonKey(name: 'is_member')
-  bool isMember;
+  bool? isMember;
 
   /// *Optional.* Restricted only.
   /// True, if the user is allowed to send text messages, contacts,
   /// locations and venues.
   @JsonKey(name: 'can_send_messages')
-  bool canSendMessages;
+  bool? canSendMessages;
 
   /// *Optional.* Restricted only. True, if the user is allowed
   /// to send audios, documents, photos, videos, video notes and voice notes.
   @JsonKey(name: 'can_send_media_messages')
-  bool canSendMediaMessages;
+  bool? canSendMediaMessages;
 
   /// *Optional.* Restricted only. True, if the user is allowed to send polls.
   @JsonKey(name: 'can_send_polls')
-  bool canSendPolls;
+  bool? canSendPolls;
 
   /// *Optional.* Restricted only.
   /// True, if the user is allowed to send animations,
   /// games, stickers and use inline bots.
   @JsonKey(name: 'can_send_other_messages')
-  bool canSendOtherMessages;
+  bool? canSendOtherMessages;
 
   /// *Optional.* Restricted only.
   /// True, if the user is allowed to add web page previews to their messages.
   @JsonKey(name: 'can_add_web_page_previews')
-  bool canAddWebPagePreviews;
+  bool? canAddWebPagePreviews;
 
   ChatMember({
     this.user,
@@ -141,13 +141,9 @@ class ChatMember {
 
   /// Helper: converts into a DateTime type from
   /// a int (unix time) received from Telegram API.
-  static DateTime _dateTimeFromTelegramInt(int unixTime) => unixTime == null
-      ? null
-      : DateTime.fromMillisecondsSinceEpoch(unixTime * 1000);
+  static DateTime? _dateTimeFromTelegramInt(int? unixTime) => unixTime != null ? DateTime.fromMillisecondsSinceEpoch(unixTime * 1000) : null;
 
   /// Helper: converts from a DateTime type into
   /// a int (unix time) to be sent to Telegram API.
-  static int _dateTimeToTelegramInt(DateTime dateTime) => dateTime == null
-      ? null
-      : (dateTime.millisecondsSinceEpoch / 1000).round();
+  static int? _dateTimeToTelegramInt(DateTime? dateTime) => dateTime != null ? (dateTime.millisecondsSinceEpoch / 1000).round() : null;
 }

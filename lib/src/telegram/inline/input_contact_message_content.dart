@@ -3,7 +3,7 @@
 //          Copyright (c) 2020 Nebulino          //
 //                                               //
 
-part of inline;
+part of '../inline.dart';
 
 /// Represents the [content] of a contact message to be sent
 /// as the result of an inline query.
@@ -15,22 +15,22 @@ part of inline;
 class InputContactMessageContent implements InputMessageContent {
   /// Contact's phone number.
   @JsonKey(name: 'phone_number')
-  String phoneNumber;
+  String? phoneNumber;
 
   /// Contact's first name.
   @JsonKey(name: 'first_name')
-  String firstName;
+  String? firstName;
 
   /// *Optional.* Contact's last name.
   @JsonKey(name: 'last_name')
-  String lastName;
+  String? lastName;
 
   /// *Optional.* Additional data about
   /// the contact in the form of a [vCard], 0-2048 bytes.
   ///
   /// [vCard]: https://en.wikipedia.org/wiki/VCard
   @JsonKey(name: 'vcard')
-  String vcard;
+  String? vcard;
 
   InputContactMessageContent({
     this.phoneNumber,

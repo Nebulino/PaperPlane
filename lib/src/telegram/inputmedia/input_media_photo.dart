@@ -3,7 +3,7 @@
 //          Copyright (c) 2020 Nebulino          //
 //                                               //
 
-part of inputmedia;
+part of '../inputmedia.dart';
 
 /// Represents a photo to be sent.
 ///
@@ -13,7 +13,7 @@ class InputMediaPhoto implements InputMedia {
   /// Type of the result, must be *animation*
   @JsonKey(name: 'type', required: true)
   @override
-  String type;
+  String? type;
 
   /// File to send.
   /// Pass a file_id to send a file that exists on
@@ -32,7 +32,7 @@ class InputMediaPhoto implements InputMedia {
   /// 0-1024 characters after entities parsing.
   @JsonKey(name: 'caption')
   @override
-  String caption;
+  String? caption;
 
   /// *Optional.*
   /// Send *[Markdown]* or *[HTML]*,
@@ -44,7 +44,7 @@ class InputMediaPhoto implements InputMedia {
   /// [bold, italic, fixed-width text or inline URLs]: https://core.telegram.org/bots/api#formatting-options
   @JsonKey(name: 'parse_mode')
   @override
-  ParseMode parseMode;
+  ParseMode? parseMode;
 
   InputMediaPhoto({
     this.type = 'photo',

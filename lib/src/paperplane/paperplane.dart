@@ -6,34 +6,26 @@
 import 'dart:io' as io;
 
 import 'package:logger/logger.dart';
-import 'package:meta/meta.dart';
 import 'package:paperplane/helpers.dart';
 import 'package:paperplane/paperplane.dart';
 import 'package:paperplane/paperplane_exceptions.dart';
-import 'package:paperplane/src/paperplane/core/api.dart';
-import 'package:paperplane/src/paperplane/core/dispatcher.dart';
-import 'package:paperplane/src/paperplane/core/updater.dart';
-import 'package:paperplane/src/paperplane/helpers/bot_file.dart';
-import 'package:paperplane/src/paperplane/helpers/paperplane_bot.dart';
-import 'package:paperplane/src/paperplane/mode/long_polling.dart';
-import 'package:paperplane/src/paperplane/mode/webhook.dart';
 import 'package:paperplane/telegram.dart';
 
 /// This is the brain of my Wrapper.
 /// You need at least "import 'package:paperplane/paperplane.dart'"
 /// to create a simple Bot using PaperPlane.
 class PaperPlane {
-  static PaperPlane _paperplane;
+  static PaperPlane? _paperplane;
 
   final Telegram _telegram;
 
-  Logger _logger;
-  LongPolling _polling;
-  Webhook _webhook;
-  Bot _me;
+  late final Logger _logger;
+  LongPolling? _polling;
+  Webhook? _webhook;
+  Bot? _me;
   bool _isFlying = false;
 
-  Dispatcher dispatcher;
+  late final Dispatcher dispatcher;
 
   PaperPlane._(this._telegram) {
     dispatcher = Dispatcher();
@@ -45,35 +37,33 @@ class PaperPlane {
             lineLength: 120,
             colors: true,
             printEmojis: true,
-            printTime: false));
+            dateTimeFormat: DateTimeFormat.none));
   }
 
   /// Creates a PaperPlane instance from a token.
   PaperPlane.createBot({
-    @required String token,
+    required String token,
   }) : this._(Telegram(token: token));
 
   /// Creates a PaperPlane instance from a [BotFile] object.
   PaperPlane.createFromFile({
-    @required BotFile bot_file,
-  }) : this._(Telegram(token: (bot_file.data.token)));
+    required BotFile bot_file,
+  }) : this._(Telegram(token: bot_file.data.token ?? ''));
 
   /// Creates a PaperPlane instance from a [Telegram] Object.
   PaperPlane.importTelegram({
-    @required Telegram telegram,
+    required Telegram telegram,
   }) : this._(telegram);
 
   /// Buckle up. We're turning on the engine.
   /// It starts the api stuff...
   Future<Bot> engine() async {
     _logger.d('Starting the engine~');
-    if (_telegram.token == null) {
-      throw PaperPlaneException(description: 'API not created correctly.');
-    }
 
-    await _telegram.methods.getBot().then(_crosscheck);
+    final bot = await _telegram.methods.getBot();
+    _crosscheck(bot);
     _paperplane = this;
-    return _me;
+    return _me!;
   }
 
   /// Fasten your seat belts, we're going to fly.
@@ -83,23 +73,22 @@ class PaperPlane {
   ) {
     _logger.d('Starting the crosscheck.');
     _me = bot;
-    _me.token = _telegram.token;
+    _me!.token = _telegram.token;
     _isFlying = true;
-    _logger.i('${_me.username} is ready to fly!');
+    _logger.i('${_me!.username} is ready to fly!');
   }
 
   /// It exports a [BotFile] in the same directory of the executable.
   void export({
-    @required Bot bot,
-    String file_name,
+    required Bot bot,
+    String? file_name,
   }) {
     if (_isFlying) {
       _logger.i('Exporting occurs on landing...');
       BotFile.export(bot: bot, fileName: file_name);
     } else {
       throw PaperPlaneException(
-          description: "Can't export... "
-              'PaperPlane is not ready...');
+          description: "Can't export... PaperPlane is not ready...");
     }
   }
 
@@ -108,7 +97,7 @@ class PaperPlane {
     int offset = 0,
     int limit = 100,
     int timeout = 30,
-    List<String> allowedUpdates,
+    List<String>? allowedUpdates,
   }) {
     _polling = LongPolling(
       _telegram,
@@ -123,14 +112,14 @@ class PaperPlane {
   Future<void> startPolling({
     bool clean = false,
   }) async {
-    _logger.d('Start Polling with clean: ${false}');
+    _logger.d('Start Polling with clean: $clean');
     if (_isFlying) {
       throw PaperPlaneException(
           description: 'The PaperPlane is already on air.');
     }
 
     _polling ??= LongPolling(_telegram);
-    _polling
+    _polling!
       ..start(clean)
       ..updater.onUpdate().listen(_dispatchUpdate);
   }
@@ -140,14 +129,14 @@ class PaperPlane {
 
   /// Setup the [Webhook] before running it.
   Future<void> setupWebhook({
-    @required url,
-    @required secretPath,
-    io.File certificate,
-    io.File privateKey,
+    required String url,
+    required String secretPath,
+    io.File? certificate,
+    io.File? privateKey,
     int port = 443,
     bool toBeUploaded = false,
     int maxConnections = Constant.MAX_WEBHOOK_CONNECTIONS,
-    List<UpdateType> allowedUpdates,
+    List<UpdateType>? allowedUpdates,
   }) async {
     _webhook = Webhook(
       _telegram,
@@ -155,9 +144,13 @@ class PaperPlane {
       secretPath: secretPath,
       certificate: certificate,
       privateKey: privateKey,
+      port: port,
+      toBeUploaded: toBeUploaded,
+      maxConnections: maxConnections,
+      allowedUpdates: allowedUpdates,
     );
 
-    await _webhook.setWebhook();
+    await _webhook!.setWebhook();
   }
 
   /// Starts a [Bot] as [Webhook].
@@ -168,11 +161,11 @@ class PaperPlane {
     }
 
     if (_webhook == null) {
-      throw PaperPlaneException(description: 'No webhook to be runned.');
+      throw PaperPlaneException(description: 'No webhook to be run.');
     }
 
-    await _webhook.start();
-    _webhook.updater.onUpdate().listen(_dispatchUpdate);
+    await _webhook!.start();
+    _webhook!.updater.onUpdate().listen(_dispatchUpdate);
   }
 
   /// It stops the bot.
@@ -180,19 +173,21 @@ class PaperPlane {
     if (!_isFlying) {
       throw PaperPlaneException(description: 'No PaperPlane departed.');
     }
-    _logger.i('${_me.username} is landing...');
+    _logger.i('${_me?.username} is landing...');
 
     if (_polling != null) {
-      _polling.stopPolling();
+      _polling!.stopPolling();
       _polling = null;
     }
 
     if (_webhook != null) {
-      _webhook.deleteWebhook().then((_) {
-        _webhook.stopServer();
+      _webhook!.deleteWebhook().then((_) {
+        _webhook!.stopServer();
         _webhook = null;
       });
     }
+
+    _isFlying = false;
   }
 
   /// It scraps the PaperPlane.
@@ -203,10 +198,10 @@ class PaperPlane {
 
   /// Set a log level. The default is **Level.info**.
   void setLoggerLevel({
-    @required Level level,
+    required Level level,
   }) {
     Logger.level = level;
-    _logger.d('Settings the logger level to ${level}.');
+    _logger.d('Settings the logger level to $level.');
   }
 
   /// Get the [Updater] if you want to work directly with the [updates].
@@ -214,9 +209,9 @@ class PaperPlane {
   /// [updates]: [Update]
   Updater get updater {
     if (_polling != null) {
-      return _polling.updater;
+      return _polling!.updater;
     } else if (_webhook != null) {
-      return _webhook.updater;
+      return _webhook!.updater;
     } else {
       throw PaperPlaneException(
           description: "Can't get the updater, "
@@ -225,7 +220,7 @@ class PaperPlane {
   }
 
   /// Returns the [PaperPlane] instance.
-  static PaperPlane get fly => _paperplane;
+  static PaperPlane? get fly => _paperplane;
 
   /// Returns all the methods possible.
   API get api => _telegram.methods;
@@ -237,7 +232,7 @@ class PaperPlane {
   Logger get logger => _logger;
 
   /// Obtain the [Bot] object if created correctly.
-  Bot get pilot => _me;
+  Bot? get pilot => _me;
 
   /// Return **true** if the bot is running.
   bool get isFlying => _isFlying;

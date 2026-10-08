@@ -14,18 +14,10 @@ enum MaskPositionPoint {
 }
 
 extension MaskPositionPointExtension on MaskPositionPoint {
-  String get position {
-    switch (this) {
-      case MaskPositionPoint.forehead:
-        return 'forehead';
-      case MaskPositionPoint.eyes:
-        return 'eyes';
-      case MaskPositionPoint.mouth:
-        return 'mouth';
-      case MaskPositionPoint.chin:
-        return 'chin';
-      default:
-        return null;
-    }
-  }
+  String get position => switch (this) {
+        MaskPositionPoint.forehead => 'forehead',
+        MaskPositionPoint.eyes => 'eyes',
+        MaskPositionPoint.mouth => 'mouth',
+        MaskPositionPoint.chin => 'chin',
+      };
 }

@@ -3,7 +3,7 @@
 //          Copyright (c) 2020 Nebulino          //
 //                                               //
 
-part of media;
+part of '../media.dart';
 
 /// This object represents a general file
 /// (as opposed to [photos], [voice messages] and [audio files]).
@@ -17,28 +17,28 @@ part of media;
 class Document {
   /// Identifier for this file, which can be used to download or reuse the file.
   @JsonKey(name: 'file_id', required: true)
-  String fileID;
+  String? fileID;
 
   /// Unique identifier for this file, which is supposed to be the same over
   /// time and for different bots. Can't be used to download or reuse the file.
   @JsonKey(name: 'file_unique_id', required: true)
-  String fileUniqueID;
+  String? fileUniqueID;
 
   /// *Optional.* Document thumbnail as defined by sender.
   @JsonKey(name: 'thumb')
-  PhotoSize thumb;
+  PhotoSize? thumb;
 
   /// *Optional.* Original filename as defined by sender.
   @JsonKey(name: 'file_name')
-  String fileName;
+  String? fileName;
 
   /// *Optional.* MIME type of the file as defined by sender.
   @JsonKey(name: 'mime_type')
-  String mimeType;
+  String? mimeType;
 
   /// *Optional.* File size.
   @JsonKey(name: 'file_size')
-  int file_size;
+  int? file_size;
 
   Document({
     this.fileID,

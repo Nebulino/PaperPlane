@@ -12,14 +12,8 @@ enum DiceType {
 }
 
 extension DiceTypeExtension on DiceType {
-  String get emoji {
-    switch (this) {
-      case DiceType.dice:
-        return '🎲';
-      case DiceType.dart:
-        return '🎯';
-      default:
-        return null;
-    }
-  }
+  String get emoji => switch (this) {
+        DiceType.dice => '🎲',
+        DiceType.dart => '🎯',
+      };
 }

@@ -3,7 +3,7 @@
 //          Copyright (c) 2020 Nebulino          //
 //                                               //
 
-part of core;
+part of '../core.dart';
 
 /// This object represents a parameter of the inline keyboard button used to
 /// automatically authorize a user.
@@ -34,11 +34,11 @@ class LoginUrl {
   /// [Receiving authorization data]: https://core.telegram.org/widgets/login#receiving-authorization-data
   /// [Checking authorization]: https://core.telegram.org/widgets/login#checking-authorization
   @JsonKey(name: 'url', required: true)
-  String url;
+  String? url;
 
   /// *Optional.* New text of the button in forwarded messages.
   @JsonKey(name: 'forward_text')
-  String forwardText;
+  String? forwardText;
 
   /// *Optional.* Username of a bot, which will be used for user authorization.
   /// See [Setting up a bot] for more details.
@@ -49,12 +49,12 @@ class LoginUrl {
   /// [Setting up a bot]: https://core.telegram.org/widgets/login#setting-up-a-bot
   /// [Linking your domain to the bot]: https://core.telegram.org/widgets/login#linking-your-domain-to-the-bot
   @JsonKey(name: 'bot_username')
-  String botUsername;
+  String? botUsername;
 
   /// *Optional.* Pass True to request the permission
   /// for your bot to send messages to the user.
   @JsonKey(name: 'request_write_access')
-  bool requestWriteAccess;
+  bool? requestWriteAccess;
 
   LoginUrl({
     this.url,
@@ -66,6 +66,5 @@ class LoginUrl {
   factory LoginUrl.fromJson(Map<String, dynamic> json) =>
       _$LoginUrlFromJson(json);
 
-  Map<String, dynamic> toJson(Map<String, dynamic> json) =>
-      _$LoginUrlToJson(this);
+  Map<String, dynamic> toJson() => _$LoginUrlToJson(this);
 }

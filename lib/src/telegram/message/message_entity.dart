@@ -3,7 +3,7 @@
 //          Copyright (c) 2020 Nebulino          //
 //                                               //
 
-part of message;
+part of '../message.dart';
 
 /// This object represents one special entity in a
 /// text message. For example, hashtags, usernames, URLs, etc.
@@ -24,6 +24,10 @@ class MessageEntity {
   ///   “italic” (italic text),
   ///   “underline” (underlined text),
   ///   “strikethrough” (strikethrough text),
+  ///   “spoiler” (spoiler message),
+  ///   “blockquote” (collapsed or standard quote),
+  ///   “expandable_blockquote” (expandable quote),
+  ///   “custom_emoji” (for inline custom emoji stickers),
   ///   “code” (monowidth string),
   ///   “pre” (monowidth block),
   ///   “text_link” (for clickable text URLs),
@@ -31,28 +35,32 @@ class MessageEntity {
   ///
   /// [without usernames]: https://telegram.org/blog/edit#new-mentions
   @JsonKey(name: 'type', required: true)
-  String type;
+  String? type;
 
   /// Offset in UTF-16 code units to the start of the entity.
   @JsonKey(name: 'offset', required: true)
-  int offset;
+  int? offset;
 
   /// Length of the entity in UTF-16 code units.
   @JsonKey(name: 'length', required: true)
-  int length;
+  int? length;
 
   /// *Optional.* For “text_link” only, url that will be
   /// opened after user taps on the text.
   @JsonKey(name: 'url')
-  String url;
+  String? url;
 
   /// *Optional.* For “text_mention” only, the mentioned user.
   @JsonKey(name: 'user')
-  User user;
+  User? user;
 
   /// *Optional.* For “pre” only, the programming language of the entity text.
   @JsonKey(name: 'language')
-  String language;
+  String? language;
+
+  /// *Optional.* For “custom_emoji” only, unique identifier of the custom emoji.
+  @JsonKey(name: 'custom_emoji_id')
+  String? customEmojiID;
 
   MessageEntity({
     this.type,
@@ -61,6 +69,7 @@ class MessageEntity {
     this.url,
     this.user,
     this.language,
+    this.customEmojiID,
   });
 
   factory MessageEntity.fromJson(Map<String, dynamic> json) =>

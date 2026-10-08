@@ -3,7 +3,7 @@
 //          Copyright (c) 2020 Nebulino          //
 //                                               //
 
-part of inline;
+part of '../inline.dart';
 
 /// Represents a [result] of an inline query that was chosen by the user and sent to their chat partner.
 ///
@@ -18,15 +18,15 @@ part of inline;
 class ChosenInlineResult {
   ///	The unique identifier for the result that was chosen.
   @JsonKey(name: 'result_id', required: true)
-  String resultID;
+  String? resultID;
 
   /// The user that chose the result.
   @JsonKey(name: 'from', required: true)
-  User from;
+  User? from;
 
   /// *Optional.* Sender location, only for bots that require user location
   @JsonKey(name: 'location')
-  Location location;
+  Location? location;
 
   /// *Optional.* Identifier of the sent inline message.
   /// Available only if there is an [inline keyboard]
@@ -38,11 +38,11 @@ class ChosenInlineResult {
   /// [callback queries]: https://core.telegram.org/bots/api#callbackquery
   /// [edit]: https://core.telegram.org/bots/api#updating-messages
   @JsonKey(name: 'inline_message_id')
-  String inlineMessageID;
+  String? inlineMessageID;
 
   /// The query that was used to obtain the result.
   @JsonKey(name: 'query', required: true)
-  String query;
+  String? query;
 
   ChosenInlineResult({
     this.resultID,

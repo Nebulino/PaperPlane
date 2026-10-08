@@ -3,7 +3,7 @@
 //          Copyright (c) 2020 Nebulino          //
 //                                               //
 
-part of passport;
+part of '../passport.dart';
 
 /// Contains data required for decrypting and authenticating
 /// [EncryptedPassportElement].
@@ -21,16 +21,16 @@ class EncryptedCredentials {
   /// unique user's payload, data hashes and secrets required
   /// for EncryptedPassportElement decryption and authentication.
   @JsonKey(name: 'data', required: true)
-  String data;
+  String? data;
 
   /// Base64-encoded data hash for data authentication.
   @JsonKey(name: 'hash', required: true)
-  String hash;
+  String? hash;
 
   /// Base64-encoded secret, encrypted with the bot's public RSA key,
   /// required for data decryption.
   @JsonKey(name: 'secret', required: true)
-  String secret;
+  String? secret;
 
   EncryptedCredentials({
     this.data,

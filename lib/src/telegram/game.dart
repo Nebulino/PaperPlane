@@ -9,7 +9,7 @@ library game;
 import 'package:json_annotation/json_annotation.dart';
 import 'package:paperplane/telegram.dart';
 
-part '../telegram/game/callback_game.dart';
-part '../telegram/game/game.dart';
-part '../telegram/game/game_high_score.dart';
+part 'game/callback_game.dart';
+part 'game/game.dart';
+part 'game/game_high_score.dart';
 part 'game.g.dart';

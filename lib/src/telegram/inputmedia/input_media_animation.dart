@@ -3,7 +3,7 @@
 //          Copyright (c) 2020 Nebulino          //
 //                                               //
 
-part of inputmedia;
+part of '../inputmedia.dart';
 
 /// Represents an animation file
 /// (GIF or H.264/MPEG-4 AVC video without sound) to be sent.
@@ -14,7 +14,7 @@ class InputMediaAnimation implements InputMedia {
   /// Type of the result, must be *animation*.
   @JsonKey(name: 'type', required: true)
   @override
-  String type;
+  String? type;
 
   /// File to send.
   /// Pass a file_id to send a file that exists on
@@ -49,7 +49,7 @@ class InputMediaAnimation implements InputMedia {
   /// 0-1024 characters after entities parsing.
   @JsonKey(name: 'caption')
   @override
-  String caption;
+  String? caption;
 
   /// *Optional.*
   /// Send *[Markdown]* or *[HTML]*,
@@ -61,22 +61,22 @@ class InputMediaAnimation implements InputMedia {
   /// [bold, italic, fixed-width text or inline URLs]: https://core.telegram.org/bots/api#formatting-options
   @JsonKey(name: 'parse_mode')
   @override
-  ParseMode parseMode;
+  ParseMode? parseMode;
 
   /// *Optional.* Animation width.
   @JsonKey(name: 'width')
-  int width;
+  int? width;
 
   /// *Optional.* Animation height.
   @JsonKey(name: 'height')
-  int height;
+  int? height;
 
   /// *Optional.* Animation duration.
   @JsonKey(
       name: 'duration',
       fromJson: _durationFromTelegramSeconds,
       toJson: _durationToTelegramSeconds)
-  Duration duration;
+  Duration? duration;
 
   InputMediaAnimation({
     this.type = 'animation',
@@ -97,11 +97,9 @@ class InputMediaAnimation implements InputMedia {
 
   /// Helper: converts into a Duration type from
   /// a int received from Telegram API.
-  static Duration _durationFromTelegramSeconds(int seconds) =>
-      seconds == null ? null : Duration(seconds: seconds);
+  static Duration? _durationFromTelegramSeconds(int? seconds) => seconds != null ? Duration(seconds: seconds) : null;
 
   /// Helper: converts into a Duration type into
   /// a int to be sent to Telegram API.
-  static int _durationToTelegramSeconds(Duration duration) =>
-      duration?.inSeconds;
+  static int? _durationToTelegramSeconds(Duration? duration) => duration?.inSeconds;
 }

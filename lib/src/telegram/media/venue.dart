@@ -3,7 +3,7 @@
 //          Copyright (c) 2020 Nebulino          //
 //                                               //
 
-part of media;
+part of '../media.dart';
 
 /// This object represents a venue.
 ///
@@ -12,26 +12,26 @@ part of media;
 class Venue {
   /// Venue location.
   @JsonKey(name: 'location', required: true)
-  Location location;
+  Location? location;
 
   /// Name of the venue.
   @JsonKey(name: 'title', required: true)
-  String title;
+  String? title;
 
   /// Address of the venue.
   @JsonKey(name: 'address', required: true)
-  String address;
+  String? address;
 
   /// *Optional.* Foursquare identifier of the venue.
   @JsonKey(name: 'foursquare_id')
-  String foursquareID;
+  String? foursquareID;
 
   /// *Optional.*
   /// Foursquare type of the venue.
   /// (For example, “arts_entertainment/default”,
   /// “arts_entertainment/aquarium” or “food/icecream”.)
   @JsonKey(name: 'foursquare_type')
-  String foursquareType;
+  String? foursquareType;
 
   Venue({
     this.location,

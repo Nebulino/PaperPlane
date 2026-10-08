@@ -19,22 +19,22 @@ void main() async {
 
   var commands = <BotCommand>[];
 
-  final start_command =
+  final startCommand =
       BotCommand(command: 'start', description: 'Start me with this.');
 
-  final help_command = BotCommand(command: 'help', description: 'Neeed help?');
+  final helpCommand = BotCommand(command: 'help', description: 'Neeed help?');
 
-  commands.addAll([start_command, help_command]);
+  commands.addAll([startCommand, helpCommand]);
 
   final validate = await api.setMyCommands(commands: commands);
 
   await api.sendMessage(
       chatID: ChatID.fromID(TestValues.MASTER),
-      text: '${start_command.command} and '
-          '${help_command.command} set: ${validate}');
+      text: '${startCommand.command} and '
+          '${helpCommand.command} set: $validate');
 
-  final message_commands = await api.getMyCommands();
-  print(message_commands);
+  final messageCommands = await api.getMyCommands();
+  print(messageCommands);
 
   await api.sendDice(chatID: ChatID.fromID(TestValues.MASTER));
 }

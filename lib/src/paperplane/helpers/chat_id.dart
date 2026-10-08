@@ -8,7 +8,7 @@ import 'package:paperplane/paperplane_exceptions.dart';
 /// This helps managing [chat_id] field in [API].
 ///
 class ChatID {
-  dynamic _identifier;
+  final dynamic _identifier;
 
   ChatID._(
     this._identifier,
@@ -25,8 +25,9 @@ class ChatID {
   ) : this._(name);
 
   int get id {
-    if (_identifier.runtimeType == int) {
-      return _identifier;
+    final identifier = _identifier;
+    if (identifier is int) {
+      return identifier;
     } else {
       throw PaperPlaneException(
           description: 'The contained identifier is not an ID in int');

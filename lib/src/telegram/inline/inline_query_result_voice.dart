@@ -3,7 +3,7 @@
 //          Copyright (c) 2020 Nebulino          //
 //                                               //
 
-part of inline;
+part of '../inline.dart';
 
 /// Represents a link to a voice recording
 /// in an .ogg container encoded with OPUS.
@@ -25,25 +25,25 @@ class InlineQueryResultVoice implements InlineQueryResult {
   /// Type of the result, must be *voice*.
   @JsonKey(name: 'type', required: true)
   @override
-  String type;
+  String? type;
 
   /// Unique identifier for this result, 1-64 bytes.
   @JsonKey(name: 'id', required: true)
   @override
-  String id;
+  String? id;
 
   /// A valid URL for the voice recording.
   @JsonKey(name: 'voice_url', required: true)
-  String voiceUrl;
+  String? voiceUrl;
 
   /// Recording title.
   @JsonKey(name: 'title', required: true)
-  String title;
+  String? title;
 
   /// *Optional.* Caption,
   /// 0-1024 characters after entities parsing.
   @JsonKey(name: 'caption')
-  String caption;
+  String? caption;
 
   /// *Optional.*
   /// Send *[Markdown]* or *[HTML]*,
@@ -54,23 +54,23 @@ class InlineQueryResultVoice implements InlineQueryResult {
   /// [HTML]: https://core.telegram.org/bots/api#html-style
   /// [bold, italic, fixed-width text or inline URLs]: https://core.telegram.org/bots/api#formatting-options
   @JsonKey(name: 'parse_mode')
-  ParseMode parseMode;
+  ParseMode? parseMode;
 
   @JsonKey(
       name: 'voice_duration',
       fromJson: _durationFromTelegramSeconds,
       toJson: _durationToTelegramSeconds)
-  Duration voiceDuration;
+  Duration? voiceDuration;
 
   /// *Optional.* [Inline keyboard] attached to the message.
   ///
   /// [Inline keyboard]: https://core.telegram.org/bots#inline-keyboards-and-on-the-fly-updating
   @JsonKey(name: 'reply_markup')
-  InlineKeyboardMarkup replyMarkup;
+  InlineKeyboardMarkup? replyMarkup;
 
   /// *Optional.* Content of the message to be sent instead of the voice recording.
   @JsonKey(name: 'input_message_content')
-  InputMessageContent inputMessageContent;
+  InputMessageContent? inputMessageContent;
 
   InlineQueryResultVoice({
     this.type = 'voice',
@@ -92,11 +92,9 @@ class InlineQueryResultVoice implements InlineQueryResult {
 
   /// Helper: converts into a Duration type from
   /// a int received from Telegram API.
-  static Duration _durationFromTelegramSeconds(int seconds) =>
-      seconds == null ? null : Duration(seconds: seconds);
+  static Duration? _durationFromTelegramSeconds(int? seconds) => seconds != null ? Duration(seconds: seconds) : null;
 
   /// Helper: converts into a Duration type into
   /// a int to be sent to Telegram API.
-  static int _durationToTelegramSeconds(Duration duration) =>
-      duration?.inSeconds;
+  static int? _durationToTelegramSeconds(Duration? duration) => duration?.inSeconds;
 }

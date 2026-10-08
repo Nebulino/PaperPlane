@@ -3,7 +3,7 @@
 //          Copyright (c) 2020 Nebulino          //
 //                                               //
 
-part of media;
+part of '../media.dart';
 
 /// This object represents one size of a photo or a
 /// [file] / [sticker] thumbnail.
@@ -17,24 +17,24 @@ class PhotoSize {
   /// Identifier for this file,
   /// which can be used to download or reuse the file.
   @JsonKey(name: 'file_id', required: true)
-  String fileID;
+  String? fileID;
 
   /// Unique identifier for this file, which is supposed to be the same over
   /// time and for different bots. Can't be used to download or reuse the file.
   @JsonKey(name: 'file_unique_id', required: true)
-  String fileUniqueID;
+  String? fileUniqueID;
 
   /// Photo width.
   @JsonKey(name: 'width', required: true)
-  int width;
+  int? width;
 
   /// Photo height.
   @JsonKey(name: 'height', required: true)
-  int height;
+  int? height;
 
   /// *Optional.* File size.
   @JsonKey(name: 'file_size')
-  int fileSize;
+  int? fileSize;
 
   PhotoSize({
     this.fileID,

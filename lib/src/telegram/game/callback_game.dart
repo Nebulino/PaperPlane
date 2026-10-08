@@ -3,7 +3,7 @@
 //          Copyright (c) 2020 Nebulino          //
 //                                               //
 
-part of game;
+part of '../game.dart';
 
 /// A placeholder, currently holds no information.
 /// Use [BotFather] to set up your game.

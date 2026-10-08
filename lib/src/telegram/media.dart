@@ -8,15 +8,15 @@ library media;
 
 import 'package:json_annotation/json_annotation.dart';
 
-part '../telegram/media/animation.dart';
-part '../telegram/media/audio.dart';
-part '../telegram/media/contact.dart';
-part '../telegram/media/document.dart';
-part '../telegram/media/file.dart';
-part '../telegram/media/location.dart';
-part '../telegram/media/photo_size.dart';
-part '../telegram/media/venue.dart';
-part '../telegram/media/video.dart';
-part '../telegram/media/video_note.dart';
-part '../telegram/media/voice.dart';
+part 'media/animation.dart';
+part 'media/audio.dart';
+part 'media/contact.dart';
+part 'media/document.dart';
+part 'media/file.dart';
+part 'media/location.dart';
+part 'media/photo_size.dart';
+part 'media/venue.dart';
+part 'media/video.dart';
+part 'media/video_note.dart';
+part 'media/voice.dart';
 part 'media.g.dart';

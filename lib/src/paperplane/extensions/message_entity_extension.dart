@@ -10,47 +10,44 @@ import 'package:paperplane/telegram.dart';
 extension MessageEntityHelper on Message {
   /// It returns the entities list of a type.
   List<MessageEntity> getEntitiesByType(MessageEntityType type) {
-    var entity_list = entities ?? captionEntities;
-    for (var entity in entity_list) {
-      if (entity.type != type.toString()) {
-        entity_list.remove(entity);
-      }
-    }
-    return entity_list;
+    final entityList = entities ?? captionEntities;
+    if (entityList == null) return [];
+    return entityList
+        .where((entity) => entity.type == type.toString())
+        .toList();
   }
 
   /// It returns the entity index given a type.
   int entityIndex(MessageEntityType type) {
-    var entity_list = entities ?? captionEntities;
-
-    if (entity_list != null) {
-      for (var entity in entity_list) {
-        if (entity.type == type.toString()) return entity_list.indexOf(entity);
-      }
-    }
-    return -1;
+    final entityList = entities ?? captionEntities;
+    if (entityList == null) return -1;
+    return entityList.indexWhere((entity) => entity.type == type.toString());
   }
 
   /// It returns the message entity.
-  MessageEntity getMessageEntity(MessageEntityType type) {
-    var index = entityIndex(type);
-
-    if (index >= 0) {
-      return (entities ?? captionEntities)[index];
+  MessageEntity? getMessageEntity(MessageEntityType type) {
+    final entityList = entities ?? captionEntities;
+    if (entityList == null) return null;
+    final index = entityIndex(type);
+    if (index >= 0 && index < entityList.length) {
+      return entityList[index];
     }
-
     return null;
   }
 
   /// It returns the text of a given message entity.
-  String getEntityText(MessageEntityType type) {
-    var entity = getMessageEntity(type);
-
-    if (entity != null) {
-      return (text ?? caption)
-          .substring(entity.offset, entity.offset + entity.length);
+  String? getEntityText(MessageEntityType type) {
+    final entity = getMessageEntity(type);
+    if (entity == null || entity.offset == null || entity.length == null) {
+      return null;
     }
-
+    final content = text ?? caption;
+    if (content == null) return null;
+    final start = entity.offset!;
+    final end = start + entity.length!;
+    if (start >= 0 && end <= content.length) {
+      return content.substring(start, end);
+    }
     return null;
   }
 }

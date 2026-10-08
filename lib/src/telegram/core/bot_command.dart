@@ -3,7 +3,7 @@
 //          Copyright (c) 2020 Nebulino          //
 //                                               //
 
-part of core;
+part of '../core.dart';
 
 /// This object represents a bot command.
 ///
@@ -13,11 +13,11 @@ class BotCommand {
   /// Text of the command, 1-32 characters.
   /// Can contain only lowercase English letters, digits and underscores.
   @JsonKey(name: 'command', required: true)
-  String command;
+  String? command;
 
   /// Description of the command, 3-256 characters.
   @JsonKey(name: 'description', required: true)
-  String description;
+  String? description;
 
   BotCommand({
     this.command,

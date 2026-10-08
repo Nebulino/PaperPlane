@@ -3,7 +3,7 @@
 //          Copyright (c) 2020 Nebulino          //
 //                                               //
 
-part of inline;
+part of '../inline.dart';
 
 /// Represents a link to a sticker stored on the
 /// Telegram servers.
@@ -24,26 +24,26 @@ class InlineQueryResultCachedSticker implements InlineQueryResult {
   /// Type of the result, must be *sticker*.
   @JsonKey(name: 'type', required: true)
   @override
-  String type;
+  String? type;
 
   /// Unique identifier for this result, 1-64 bytes.
   @JsonKey(name: 'id', required: true)
   @override
-  String id;
+  String? id;
 
   /// A valid file identifier of the sticker
   @JsonKey(name: 'sticker_file_id', required: true)
-  String stickerFileID;
+  String? stickerFileID;
 
   /// *Optional.* [Inline keyboard] attached to the message.
   ///
   /// [Inline keyboard]: https://core.telegram.org/bots#inline-keyboards-and-on-the-fly-updating
   @JsonKey(name: 'reply_markup')
-  InlineKeyboardMarkup replyMarkup;
+  InlineKeyboardMarkup? replyMarkup;
 
   /// *Optional.* Content of the message to be sent instead of the sticker.
   @JsonKey(name: 'input_message_content')
-  InputMessageContent inputMessageContent;
+  InputMessageContent? inputMessageContent;
 
   InlineQueryResultCachedSticker({
     this.type = 'sticker',

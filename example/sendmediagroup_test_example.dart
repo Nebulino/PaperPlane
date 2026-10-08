@@ -18,34 +18,40 @@ void main() {
   var logger = Logger();
   var client = TelegramClient(token: TestValues.TOKEN);
 
-  var user_id = TestValues.MASTER;
+  var userId = TestValues.MASTER;
 
-  var image_test = io.File('./files/photos/test.jpg');
-  var luggage_photo = Luggage.withFile(file: image_test);
+  var imageTest = io.File('./files/photos/test.jpg');
+  var luggagePhoto = Luggage.withFile(file: imageTest);
 
-  var video_test = io.File('./files/videos/gatcha_experience.mp4');
-  var luggage_video = Luggage.withFile(file: video_test);
+  var videoTest = io.File('./files/videos/gatcha_experience.mp4');
+  var luggageVideo = Luggage.withFile(file: videoTest);
 
-  var photo_input_luggage = InputMediaLuggage.withPhoto(
-      photo: luggage_photo, caption: 'photo_luggage_input_media');
+  var photoInputLuggage = InputMediaLuggage.withPhoto(
+      photo: luggagePhoto, caption: 'photo_luggage_input_media');
 
-  var video_input_luggage = InputMediaLuggage.withVideo(
-      video: luggage_video, caption: 'video_luggage_input_media');
+  var videoInputLuggage = InputMediaLuggage.withVideo(
+      video: luggageVideo, caption: 'video_luggage_input_media');
 
-  logger.d('Photo media' + photo_input_luggage.media.toString());
-  logger.d('Video media' + video_input_luggage.media.toString());
+  logger.d('Photo media${photoInputLuggage.media}');
+  logger.d('Video media${videoInputLuggage.media}');
 
-  var media = [photo_input_luggage.media, video_input_luggage.media];
+  var media = [photoInputLuggage.media, videoInputLuggage.media];
 
   logger.d(media);
 
-  var form_data =
-      FormData.fromMap({'chat_id': user_id, 'media': jsonEncode(media)});
+  var formData =
+      FormData.fromMap({'chat_id': userId, 'media': jsonEncode(media)});
 
-  form_data.files.add(photo_input_luggage.file);
-  form_data.files.add(video_input_luggage.file);
+  final photoFile = photoInputLuggage.file;
+  if (photoFile != null) {
+    formData.files.add(photoFile);
+  }
+  final videoFile = videoInputLuggage.file;
+  if (videoFile != null) {
+    formData.files.add(videoFile);
+  }
 
-  client.post(method: 'sendMediaGroup', formData: form_data);
+  client.post(method: 'sendMediaGroup', formData: formData);
 
   // ################################################################
 }

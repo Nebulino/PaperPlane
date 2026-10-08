@@ -5,71 +5,70 @@
 
 import 'dart:async';
 
-import 'package:paperplane/paperplane_exceptions.dart';
 import 'package:paperplane/telegram.dart';
 
 /// It dispatches the updates into different queues.
 class Dispatcher {
   // All queues for different events...
-  StreamController<Message> _messageDispatcher;
-  StreamController<Message> _editedMessageDispatcher;
-  StreamController<Message> _channelPostDispatcher;
-  StreamController<Message> _editedChannelPostDispatcher;
-  StreamController<InlineQuery> _inlineQueryDispatcher;
-  StreamController<ChosenInlineResult> _chosenInlineResultDispatcher;
-  StreamController<CallbackQuery> _callbackQueryDispatcher;
-  StreamController<ShippingQuery> _shippingQueryDispatcher;
-  StreamController<PreCheckoutQuery> _preCheckoutQueryDispatcher;
-  StreamController<Poll> _PollDispatcher;
-  StreamController<PollAnswer> _pollAnswerDispatcher;
+  final StreamController<Message> _messageDispatcher =
+      StreamController.broadcast();
+  final StreamController<Message> _editedMessageDispatcher =
+      StreamController.broadcast();
+  final StreamController<Message> _channelPostDispatcher =
+      StreamController.broadcast();
+  final StreamController<Message> _editedChannelPostDispatcher =
+      StreamController.broadcast();
+  final StreamController<InlineQuery> _inlineQueryDispatcher =
+      StreamController.broadcast();
+  final StreamController<ChosenInlineResult> _chosenInlineResultDispatcher =
+      StreamController.broadcast();
+  final StreamController<CallbackQuery> _callbackQueryDispatcher =
+      StreamController.broadcast();
+  final StreamController<ShippingQuery> _shippingQueryDispatcher =
+      StreamController.broadcast();
+  final StreamController<PreCheckoutQuery> _preCheckoutQueryDispatcher =
+      StreamController.broadcast();
+  final StreamController<Poll> _pollDispatcher =
+      StreamController.broadcast();
+  final StreamController<PollAnswer> _pollAnswerDispatcher =
+      StreamController.broadcast();
 
-  /// It creates the Dispatcher that helps dividing each updates into different
-  /// queue.
-  Dispatcher() {
-    // Creating all StreamControllers...
-    _messageDispatcher = StreamController.broadcast();
-    _editedMessageDispatcher = StreamController.broadcast();
-    _channelPostDispatcher = StreamController.broadcast();
-    _editedChannelPostDispatcher = StreamController.broadcast();
-    _inlineQueryDispatcher = StreamController.broadcast();
-    _chosenInlineResultDispatcher = StreamController.broadcast();
-    _callbackQueryDispatcher = StreamController.broadcast();
-    _shippingQueryDispatcher = StreamController.broadcast();
-    _preCheckoutQueryDispatcher = StreamController.broadcast();
-    _PollDispatcher = StreamController.broadcast();
-    _pollAnswerDispatcher = StreamController.broadcast();
-  }
+  Dispatcher();
 
   /// Dispatch the update into each queues.
   void dispatchUpdate(Update update) {
-    if (update == null) {
-      throw PaperPlaneException(
-          description: 'Error while dispatching: the update is null.');
-    } else if (update.message != null) {
-      _messageDispatcher.add(update.message);
-    } else if (update.editedMessage != null) {
-      _editedMessageDispatcher.add(update.editedMessage);
-    } else if (update.channelPost != null) {
-      _channelPostDispatcher.add(update.channelPost);
-    } else if (update.editedMessage != null) {
-      _editedChannelPostDispatcher.add(update.editedChannelPost);
-    } else if (update.inlineQuery != null) {
-      _inlineQueryDispatcher.add(update.inlineQuery);
-    } else if (update.chosenInlineResult != null) {
-      _chosenInlineResultDispatcher.add(update.chosenInlineResult);
-    } else if (update.callbackQuery != null) {
-      _callbackQueryDispatcher.add(update.callbackQuery);
-    } else if (update.shippingQuery != null) {
-      _shippingQueryDispatcher.add(update.shippingQuery);
-    } else if (update.preCheckoutQuery != null) {
-      _preCheckoutQueryDispatcher.add(update.preCheckoutQuery);
-    } else if (update.poll != null) {
-      _PollDispatcher.add(update.poll);
-    } else if (update.pollAnswer != null) {
-      _pollAnswerDispatcher.add(update.pollAnswer);
-    } else {
-      throw PaperPlaneException(
-          description: 'The update cannot be dispatched.');
+    if (update.message != null) {
+      _messageDispatcher.add(update.message!);
+    }
+    if (update.editedMessage != null) {
+      _editedMessageDispatcher.add(update.editedMessage!);
+    }
+    if (update.channelPost != null) {
+      _channelPostDispatcher.add(update.channelPost!);
+    }
+    if (update.editedChannelPost != null) {
+      _editedChannelPostDispatcher.add(update.editedChannelPost!);
+    }
+    if (update.inlineQuery != null) {
+      _inlineQueryDispatcher.add(update.inlineQuery!);
+    }
+    if (update.chosenInlineResult != null) {
+      _chosenInlineResultDispatcher.add(update.chosenInlineResult!);
+    }
+    if (update.callbackQuery != null) {
+      _callbackQueryDispatcher.add(update.callbackQuery!);
+    }
+    if (update.shippingQuery != null) {
+      _shippingQueryDispatcher.add(update.shippingQuery!);
+    }
+    if (update.preCheckoutQuery != null) {
+      _preCheckoutQueryDispatcher.add(update.preCheckoutQuery!);
+    }
+    if (update.poll != null) {
+      _pollDispatcher.add(update.poll!);
+    }
+    if (update.pollAnswer != null) {
+      _pollAnswerDispatcher.add(update.pollAnswer!);
     }
   }
 
@@ -103,7 +102,7 @@ class Dispatcher {
       _preCheckoutQueryDispatcher.stream;
 
   /// When called returns the stream.
-  Stream<Poll> onPoll() => _PollDispatcher.stream;
+  Stream<Poll> onPoll() => _pollDispatcher.stream;
 
   /// When called returns the stream.
   Stream<PollAnswer> onPollAnswer() => _pollAnswerDispatcher.stream;

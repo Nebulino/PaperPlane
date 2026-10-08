@@ -6,7 +6,6 @@
 import 'dart:io' as io;
 import 'dart:typed_data';
 
-import 'package:meta/meta.dart';
 import 'package:paperplane/paperplane_exceptions.dart';
 import 'package:path/path.dart' as path;
 
@@ -24,26 +23,26 @@ import 'package:path/path.dart' as path;
 class Luggage {
   /// The type of the Luggage content.
   /// It can be: io.File, bytes, url, file_id,
-  String _type;
+  final String _type;
 
   /// The real content inside the luggage to be sent with the "PaperPlane".
-  dynamic _content;
+  final dynamic _content;
 
   Luggage._(this._type, this._content);
 
-  factory Luggage.withFile({@required io.File file}) {
+  factory Luggage.withFile({required io.File file}) {
     return Luggage._('file', file);
   }
 
-  factory Luggage.withBytes({@required Uint8List blob}) {
+  factory Luggage.withBytes({required Uint8List blob}) {
     return Luggage._('bytes', blob);
   }
 
-  factory Luggage.withLink({@required String link}) {
+  factory Luggage.withLink({required String link}) {
     return Luggage._('link', link);
   }
 
-  factory Luggage.withTGFileID({@required String fileId}) {
+  factory Luggage.withTGFileID({required String fileId}) {
     return Luggage._('file_id', fileId);
   }
 
@@ -55,17 +54,17 @@ class Luggage {
     } else if (_type == 'file') {
       return (_content as io.File).readAsBytesSync();
     } else {
-      return _content;
+      return _content as Uint8List;
     }
   }
 
   String getName({
-    String type,
+    String? type,
   }) {
     if (_type == 'file') {
-      return path.basename(_content.path);
+      return path.basename((_content as io.File).path);
     } else {
-      return (type ?? 'paperplane') + '-${DateTime.now()}';
+      return '${type ?? 'paperplane'}-${DateTime.now()}';
     }
   }
 
@@ -74,7 +73,7 @@ class Luggage {
     if (_type != 'link' && _type != 'file_id') {
       throw PaperPlaneException(description: "Can't export as String.");
     } else {
-      return _content;
+      return _content.toString();
     }
   }
 }

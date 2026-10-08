@@ -44,6 +44,17 @@ class MessageEntityType {
 
   static const MessageEntityType Url = MessageEntityType._('url');
 
+  static const MessageEntityType Spoiler = MessageEntityType._('spoiler');
+
+  static const MessageEntityType CustomEmoji =
+      MessageEntityType._('custom_emoji');
+
+  static const MessageEntityType Blockquote =
+      MessageEntityType._('blockquote');
+
+  static const MessageEntityType ExpandableBlockquote =
+      MessageEntityType._('expandable_blockquote');
+
   @override
   String toString() => _type;
 }

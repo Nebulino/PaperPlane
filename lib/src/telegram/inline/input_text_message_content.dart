@@ -3,7 +3,7 @@
 //          Copyright (c) 2020 Nebulino          //
 //                                               //
 
-part of inline;
+part of '../inline.dart';
 
 /// Represents the [content] of a text message to be sent as the result of an inline query.
 ///
@@ -13,7 +13,7 @@ part of inline;
 class InputTextMessageContent implements InputMessageContent {
   /// Text of the message to be sent, 1-4096 characters.
   @JsonKey(name: 'message_text', required: true)
-  String messageText;
+  String? messageText;
 
   /// *Optional.*
   /// Send *[Markdown]* or *[HTML]*,
@@ -24,11 +24,11 @@ class InputTextMessageContent implements InputMessageContent {
   /// [HTML]: https://core.telegram.org/bots/api#html-style
   /// [bold, italic, fixed-width text or inline URLs]: https://core.telegram.org/bots/api#formatting-options
   @JsonKey(name: 'parse_mode')
-  ParseMode parseMode;
+  ParseMode? parseMode;
 
   /// *Optional.* Disables link previews for links in the sent message.
   @JsonKey(name: 'disable_web_page_preview')
-  bool disableWebPagePreview;
+  bool? disableWebPagePreview;
 
   InputTextMessageContent({
     this.messageText,

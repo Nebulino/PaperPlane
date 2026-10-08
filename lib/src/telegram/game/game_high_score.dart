@@ -3,7 +3,7 @@
 //          Copyright (c) 2020 Nebulino          //
 //                                               //
 
-part of game;
+part of '../game.dart';
 
 /// This object represents one row of the high scores
 /// table for a game.
@@ -13,15 +13,15 @@ part of game;
 class GameHighScore {
   /// Position in high score table for the game
   @JsonKey(name: 'position', required: true)
-  int position;
+  int? position;
 
   /// User.
   @JsonKey(name: 'user', required: true)
-  User user;
+  User? user;
 
   /// Score.
   @JsonKey(name: 'score', required: true)
-  int score;
+  int? score;
 
   GameHighScore({
     this.position,

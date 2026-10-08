@@ -3,7 +3,7 @@
 //          Copyright (c) 2020 Nebulino          //
 //                                               //
 
-part of inline;
+part of '../inline.dart';
 
 /// Represents a link to a page containing an embedded
 /// video player or a video file.
@@ -24,33 +24,33 @@ class InlineQueryResultVideo implements InlineQueryResult {
   /// Type of the result, must be *video*.
   @JsonKey(name: 'type', required: true)
   @override
-  String type;
+  String? type;
 
   /// Unique identifier for this result, 1-64 bytes.
   @JsonKey(name: 'id', required: true)
   @override
-  String id;
+  String? id;
 
   /// A valid URL for the embedded video player or video file.
   @JsonKey(name: 'video_url', required: true)
-  String videoUrl;
+  String? videoUrl;
 
   /// Mime type of the content of video url, “text/html” or “video/mp4”.
   @JsonKey(name: 'mime_type', required: true)
-  String mimeType;
+  String? mimeType;
 
   /// URL of the thumbnail (jpeg only) for the video.
   @JsonKey(name: 'thumb_url', required: true)
-  String thumbUrl;
+  String? thumbUrl;
 
   /// Title for the result.
   @JsonKey(name: 'title', required: true)
-  String title;
+  String? title;
 
   /// *Optional.* Caption of the video to be sent,
   /// 0-1024 characters after entities parsing
   @JsonKey(name: 'caption')
-  String caption;
+  String? caption;
 
   /// *Optional.*
   /// Send *[Markdown]* or *[HTML]*,
@@ -61,32 +61,32 @@ class InlineQueryResultVideo implements InlineQueryResult {
   /// [HTML]: https://core.telegram.org/bots/api#html-style
   /// [bold, italic, fixed-width text or inline URLs]: https://core.telegram.org/bots/api#formatting-options
   @JsonKey(name: 'parse_mode')
-  ParseMode parseMode;
+  ParseMode? parseMode;
 
   /// *Optional.* Video width.
   @JsonKey(name: 'video_width')
-  int videoWidth;
+  int? videoWidth;
 
   /// *Optional.* Video height.
   @JsonKey(name: 'video_height')
-  int videoHeight;
+  int? videoHeight;
 
   /// *Optional.* Video duration in seconds.
   @JsonKey(
       name: 'video_duration',
       fromJson: _durationFromTelegramSeconds,
       toJson: _durationToTelegramSeconds)
-  Duration videoDuration;
+  Duration? videoDuration;
 
   /// *Optional.* Short description of the result.
   @JsonKey(name: 'description')
-  String description;
+  String? description;
 
   /// *Optional.* [Inline keyboard] attached to the message.
   ///
   /// [Inline keyboard]: https://core.telegram.org/bots#inline-keyboards-and-on-the-fly-updating
   @JsonKey(name: 'reply_markup')
-  InlineKeyboardMarkup replyMarkup;
+  InlineKeyboardMarkup? replyMarkup;
 
   /// *Optional.*
   /// Content of the message to be sent instead of the video.
@@ -94,7 +94,7 @@ class InlineQueryResultVideo implements InlineQueryResult {
   /// is used to send an HTML-page as a result
   /// (e.g., a YouTube video).
   @JsonKey(name: 'input_message_content')
-  InputMessageContent inputMessageContent;
+  InputMessageContent? inputMessageContent;
 
   InlineQueryResultVideo({
     this.id,
@@ -121,11 +121,9 @@ class InlineQueryResultVideo implements InlineQueryResult {
 
   /// Helper: converts into a Duration type from
   /// a int received from Telegram API.
-  static Duration _durationFromTelegramSeconds(int seconds) =>
-      seconds == null ? null : Duration(seconds: seconds);
+  static Duration? _durationFromTelegramSeconds(int? seconds) => seconds != null ? Duration(seconds: seconds) : null;
 
   /// Helper: converts into a Duration type into
   /// a int to be sent to Telegram API.
-  static int _durationToTelegramSeconds(Duration duration) =>
-      duration?.inSeconds;
+  static int? _durationToTelegramSeconds(Duration? duration) => duration?.inSeconds;
 }

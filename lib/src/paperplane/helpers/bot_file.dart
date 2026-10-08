@@ -6,14 +6,13 @@
 import 'dart:convert';
 import 'dart:io' as io;
 
-import 'package:meta/meta.dart';
 import 'package:paperplane/helpers.dart';
 import 'package:paperplane/paperplane_exceptions.dart';
 
 /// It creates a virtual BotFile from a file.
 /// It helps creating a PaperPlane instance from a file.
 class BotFile {
-  String fileName;
+  String? fileName;
   final Bot _bot;
 
   BotFile._(
@@ -32,7 +31,7 @@ class BotFile {
   static Future<BotFile> import({
     String fileName = 'PaperPlaneBot.json',
   }) async {
-    if (io.FileSystemEntity.typeSync('${fileName}') ==
+    if (io.FileSystemEntity.typeSync(fileName) ==
         io.FileSystemEntityType.notFound) {
       throw PaperPlaneException(description: 'BotFile not found.');
     }
@@ -46,10 +45,11 @@ class BotFile {
 
   /// Export a PaperPlane file.
   static void export({
-    @required Bot bot,
-    String fileName = 'PaperPlaneBot.json',
+    required Bot bot,
+    String? fileName,
   }) {
-    io.File(fileName).writeAsString(jsonEncode(bot.toJson()));
+    io.File(fileName ?? 'PaperPlaneBot.json')
+        .writeAsString(jsonEncode(bot.toJson()));
   }
 
   /// Get a [Bot] object from the file.

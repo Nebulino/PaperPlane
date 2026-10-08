@@ -3,7 +3,7 @@
 //          Copyright (c) 2020 Nebulino          //
 //                                               //
 
-part of inline;
+part of '../inline.dart';
 
 /// Represents a link to a video animation
 /// (H.264/MPEG-4 AVC video without sound).
@@ -20,44 +20,44 @@ class InlineQueryResultMpeg4Gif implements InlineQueryResult {
   /// Type of the result, must be *mpeg4_gif*.
   @JsonKey(name: 'type', required: true)
   @override
-  String type;
+  String? type;
 
   /// Unique identifier for this result, 1-64 bytes.
   @JsonKey(name: 'id', required: true)
   @override
-  String id;
+  String? id;
 
   /// A valid URL for the MP4 file. File size must not exceed 1MB.
   @JsonKey(name: 'mpeg4_url')
-  String mpeg4Url;
+  String? mpeg4Url;
 
   /// *Optional.* Video width.
   @JsonKey(name: 'mpeg4_width')
-  int mpeg4Width;
+  int? mpeg4Width;
 
   /// *Optional.* Video height.
   @JsonKey(name: 'mpeg4_height')
-  int mpeg4Height;
+  int? mpeg4Height;
 
   /// *Optional.* Video duration.
   @JsonKey(
       name: 'mpeg4_duration',
       fromJson: _durationFromTelegramSeconds,
       toJson: _durationToTelegramSeconds)
-  Duration mpeg4Duration;
+  Duration? mpeg4Duration;
 
   /// URL of the static thumbnail (jpeg or gif) for the result.
   @JsonKey(name: 'thumb_url')
-  String thumbUrl;
+  String? thumbUrl;
 
   /// *Optional.* Title for the result.
   @JsonKey(name: 'title')
-  String title;
+  String? title;
 
   /// *Optional.* Caption of the MPEG-4 file to be sent,
   /// 0-1024 characters after entities parsing
   @JsonKey(name: 'caption')
-  String caption;
+  String? caption;
 
   /// *Optional.*
   /// Send *[Markdown]* or *[HTML]*,
@@ -68,17 +68,17 @@ class InlineQueryResultMpeg4Gif implements InlineQueryResult {
   /// [HTML]: https://core.telegram.org/bots/api#html-style
   /// [bold, italic, fixed-width text or inline URLs]: https://core.telegram.org/bots/api#formatting-options
   @JsonKey(name: 'parse_mode')
-  ParseMode parseMode;
+  ParseMode? parseMode;
 
   /// *Optional.* [Inline keyboard] attached to the message.
   ///
   /// [Inline keyboard]: https://core.telegram.org/bots#inline-keyboards-and-on-the-fly-updating
   @JsonKey(name: 'reply_markup')
-  InlineKeyboardMarkup replyMarkup;
+  InlineKeyboardMarkup? replyMarkup;
 
   /// *Optional.* Content of the message to be sent instead of the video animation.
   @JsonKey(name: 'input_message_content')
-  InputMessageContent inputMessageContent;
+  InputMessageContent? inputMessageContent;
 
   InlineQueryResultMpeg4Gif({
     this.type = 'mpeg4_gif',
@@ -103,11 +103,9 @@ class InlineQueryResultMpeg4Gif implements InlineQueryResult {
 
   /// Helper: converts into a Duration type from
   /// a int received from Telegram API.
-  static Duration _durationFromTelegramSeconds(int seconds) =>
-      seconds == null ? null : Duration(seconds: seconds);
+  static Duration? _durationFromTelegramSeconds(int? seconds) => seconds != null ? Duration(seconds: seconds) : null;
 
   /// Helper: converts into a Duration type into
   /// a int to be sent to Telegram API.
-  static int _durationToTelegramSeconds(Duration duration) =>
-      duration?.inSeconds;
+  static int? _durationToTelegramSeconds(Duration? duration) => duration?.inSeconds;
 }

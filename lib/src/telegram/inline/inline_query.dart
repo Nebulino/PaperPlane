@@ -3,7 +3,7 @@
 //          Copyright (c) 2020 Nebulino          //
 //                                               //
 
-part of inline;
+part of '../inline.dart';
 
 /// This object represents an incoming inline query.
 /// When the user sends an empty query,
@@ -14,26 +14,26 @@ part of inline;
 class InlineQuery {
   /// Unique identifier for this query.
   @JsonKey(name: 'id', required: true)
-  String id;
+  String? id;
 
   /// Sender.
   @JsonKey(name: 'from', required: true)
-  User from;
+  User? from;
 
   /// *Optional.* Sender location,
   /// only for bots that request user location.
   @JsonKey(name: 'location')
-  Location location;
+  Location? location;
 
   /// *Optional.* Sender location,
   /// only for bots that request user location.
   @JsonKey(name: 'query', required: true)
-  String query;
+  String? query;
 
   /// Offset of the results to be returned,
   /// can be controlled by the bot.
   @JsonKey(name: 'offset', required: true)
-  String offset;
+  String? offset;
 
   InlineQuery({
     this.id,
