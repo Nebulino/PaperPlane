@@ -16,6 +16,9 @@
   - Fixed runtime `TypeError` in integer constants (`20E6 as int`).
   - Fixed concurrent modification error in `MessageEntityHelper`.
   - Fixed port validation logic in `Webhook`.
+- **Maintenance**:
+  - Relicensed the package under the **MIT License** (was Nebulino Public License).
+  - Set up automated publishing to pub.dev via GitHub Actions (OIDC) with a release gate on the `publish` branch.
 
 ## 0.6.5
 
