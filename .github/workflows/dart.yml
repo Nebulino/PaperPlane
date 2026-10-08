@@ -1,37 +1,70 @@
-name: Dart CI
+name: Publish to pub.dev
+
+# Pub.dev → package → Admin → "Automated publishing" must be enabled with:
+#   repository:  Nebulino/PaperPlane
+#   tag pattern: v{{version}}
+# Then publish with:
+#   git tag v0.7.0 && git push origin v0.7.0
+# (`version:` in pubspec.yaml must match the tag, minus the leading "v")
 
 on:
+  # Manual run: in the GitHub UI pick the TAG as the ref, not a branch —
+  # OIDC only authorizes runs whose ref matches the tag pattern on pub.dev.
+  workflow_dispatch:
   push:
-    branches: [ publish ]
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+'          # v0.7.0
+      - 'v[0-9]+.[0-9]+.[0-9]+-*'        # v0.7.0-beta.1 (pre-releases)
+
+concurrency:
+  group: publish-${{ github.ref }}
+  cancel-in-progress: false
 
 jobs:
-  publish_paperplane:
-    runs-on: ubuntu-latest
+  publish:
+    permissions:
+      id-token: write   # required for OIDC authentication to pub.dev
+      contents: read
+    # Official Dart Team reusable workflow: sets up the Dart SDK, provides the
+    # OIDC token, runs `dart pub publish --dry-run` then `dart pub publish -f`.
+    uses: dart-lang/setup-dart/.github/workflows/publish.yml@v1
 
-    container:
-      image:  google/dart:latest
-
-    steps:
-    - uses: actions/checkout@v2
-      
-    - name: Install dependencies.
-      run: pub get
-      
-    - name: Clean the project if necessary
-      run: sh ./clean.sh
-      
-    - name: Generate .g.dart object files.
-      run: pub run build_runner build
-      
-    - name: Publish on pub.dev.  
-      id: publish_package
-      uses: k-paxian/dart-package-publisher@master
-      with:
-        credentialJson: ${{ secrets.CREDENTIAL_JSON }}
-      
-    - name: 'Commit release tag'
-      if: steps.publish_package.outputs.success
-      uses: hole19/git-tag-action@master
-      env:
-        TAG: ${{steps.publish_package.outputs.package}}-${{steps.publish_package.outputs.localVersion}}
-        GITHUB_TOKEN: ${{ secrets.OAOTH_GITHUB_TOKEN }}
+# ---------------------------------------------------------------------------
+# FALLBACK — only if you cannot use pub.dev's OIDC "Automated publishing".
+# It authenticates with a long-lived Google refresh token stored in
+# secrets.CREDENTIAL_JSON (contents of ~/.config/dart/pub-credentials.json).
+# Note: for OAuth-based publishing the package must be published by a
+# *verified publisher* that owns the package, otherwise pub.dev asks for
+# interactive authorization and the run dies mid-step (no error, just a hang).
+# Replace the job above with this one:
+#
+#  publish:
+#    runs-on: ubuntu-latest
+#    permissions:
+#      contents: write
+#    steps:
+#      - uses: actions/checkout@v4
+#      - uses: dart-lang/setup-dart@v1
+#      - name: Install dependencies
+#        run: dart pub get
+#      - name: Check generated code is not stale
+#        run: |
+#          dart run build_runner build --delete-conflicting-outputs
+#          if ! git diff --quiet -- '*.g.dart'; then
+#            echo "::error::Stale *.g.dart files. Run ./build.sh and commit before tagging."
+#            git --no-pager diff --stat -- '*.g.dart'
+#            exit 1
+#          fi
+#      - name: Publish on pub.dev
+#        id: publish_package
+#        uses: k-paxian/dart-package-publisher@master
+#        with:
+#          credentialJson: ${{ secrets.CREDENTIAL_JSON }}
+#          force: true
+#      - name: Commit release tag
+#        if: steps.publish_package.outputs.success
+#        uses: hole19/git-tag-action@master
+#        env:
+#          TAG: ${{ steps.publish_package.outputs.package }}-${{ steps.publish_package.outputs.localVersion }}
+#          GITHUB_TOKEN: ${{ secrets.OAOTH_GITHUB_TOKEN }}
+# ---------------------------------------------------------------------------
